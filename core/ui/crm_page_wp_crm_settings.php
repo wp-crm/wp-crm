@@ -35,7 +35,8 @@ if(empty($wp_crm['data_structure']['attributes'])) {
   var notification_action_arguments = new Array();
 
   jQuery(document).ready(function() {
-    jQuery("#wp_crm_settings_tabs").tabs({ cookie: { expires: 30 } });
+    jQuery("#wp_crm_settings_tabs").tabs({ cookie: { expires: 30,
+      name: 'wpc_settings_page_tabs' } });
 
     // Check plugin updates
     jQuery(".wp_crm_ajax_check_plugin_updates").click(function() {

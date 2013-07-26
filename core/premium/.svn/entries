@@ -2,13 +2,13 @@
 
 dir
 746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.33.2/core/premium
+http://plugins.svn.wordpress.org/wp-crm/tags/0.34.0/core/premium
 http://plugins.svn.wordpress.org
 
 
 
-2012-12-12T17:42:30.023365Z
-637906
+2013-04-05T16:37:52.954164Z
+692347
 andypotanin
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2013-07-26T05:36:48.000000Z
-2aabff276c50934fb0eaad644a72be68
-2012-12-12T17:42:30.023365Z
-637906
+2013-07-26T05:36:46.000000Z
+122a56eb02d49083e9ad5d3b30b3b182
+2013-04-05T16:37:52.954164Z
+692347
 andypotanin
 
 
@@ -58,7 +58,7 @@ andypotanin
 
 
 
-60457
+60463
 
 index.php
 file
@@ -66,10 +66,10 @@ file
 
 
 
-2013-07-26T05:36:48.000000Z
+2013-07-26T05:36:46.000000Z
 d41d8cd98f00b204e9800998ecf8427e
-2012-12-12T17:42:30.023365Z
-637906
+2013-04-05T16:37:52.954164Z
+692347
 andypotanin
 
 

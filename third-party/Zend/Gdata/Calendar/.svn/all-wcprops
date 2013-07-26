@@ -1,35 +1,35 @@
 K 25
 svn:wc:ra_dav:version-url
 V 67
-/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Calendar
+/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Gdata/Calendar
 END
 ListEntry.php
 K 25
 svn:wc:ra_dav:version-url
 V 81
-/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Calendar/ListEntry.php
+/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Gdata/Calendar/ListEntry.php
 END
 ListFeed.php
 K 25
 svn:wc:ra_dav:version-url
 V 80
-/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Calendar/ListFeed.php
+/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Gdata/Calendar/ListFeed.php
 END
 EventEntry.php
 K 25
 svn:wc:ra_dav:version-url
 V 82
-/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Calendar/EventEntry.php
+/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Gdata/Calendar/EventEntry.php
 END
 EventFeed.php
 K 25
 svn:wc:ra_dav:version-url
 V 81
-/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Calendar/EventFeed.php
+/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Gdata/Calendar/EventFeed.php
 END
 EventQuery.php
 K 25
 svn:wc:ra_dav:version-url
 V 82
-/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Calendar/EventQuery.php
+/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Gdata/Calendar/EventQuery.php
 END

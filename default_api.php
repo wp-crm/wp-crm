@@ -763,6 +763,12 @@ if(!function_exists('wp_crm_save_user_data')) {
 
     if($new_user) {
       $user_id = wp_insert_user($insert_data);
+
+      //** If multisite - assign user to blog */
+      global $blog_id;
+      if ( $blog_id ) {
+        add_user_to_blog( $blog_id, $user_id, $insert_data['role'] );
+      }
     } else {
       $user_id = wp_update_user($insert_data);
     }

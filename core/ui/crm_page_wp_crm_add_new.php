@@ -28,7 +28,7 @@ if($wp_crm_user)  {
 
 $wp_crm_js = array(
   'user_id' => is_numeric($user_id) ? $user_id : false,
-  'hidden_attributes' => $wp_crm['hidden_attributes']
+  'hidden_attributes' => !empty( $wp_crm['hidden_attributes'] ) ? $wp_crm['hidden_attributes'] : array()
 );
 
 if($wp_crm['configuration']['standardize_display_name'] == 'true' && !empty($wp_crm['configuration']['display_name_rule'])) {

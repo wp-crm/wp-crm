@@ -677,7 +677,7 @@ class class_contact_messages {
   <?php  if($form['message_field'] == 'on') { ?>
   <li class="wp_crm_form_element wp_crm_message_field ">
     <div class="control-group">
-      <label class="control-label wp_crm_input_label"></label>
+      <label class="control-label wp_crm_input_label">&nbsp;</label>
       <div class="controls wp_crm_input_wrapper">
         <?php echo WP_CRM_F::user_input_field('message_field', false,  array('input_type' => 'textarea'), $user_data, "tabindex=$tabindex"); ?>
       </div>

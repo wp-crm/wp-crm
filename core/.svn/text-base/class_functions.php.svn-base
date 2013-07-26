@@ -15,12 +15,12 @@ class WP_CRM_F {
   /**
    * Detailed Activity Log
    *
-   * @todo Add geolocation service. 
+   * @todo Add geolocation service.
    * @todo Add caching for host resolution.
    */
   static function get_detailed_activity_log( $args = '' ) {
     global $wpdb, $wp_crm;
-    
+
     $args = wp_parse_args( $args, array(
       'object_type' => 'user',
       'hide_empty' => false,
@@ -34,64 +34,64 @@ class WP_CRM_F {
           'other' => 2,
           'hidden' => 'false'
         )
-      )    
+      )
     ));
-        
+
     $activity_log = WP_CRM_F::get_events( $args );
-    
+
     $_resolved = array();
     $_locations = get_transient( '_wpc_geolocation' );
-    
+
     if( !$_locations ) {
       $_update_cache = true;
     }
 
     foreach( (array) $activity_log as $count => $entry ) {
-    
+
       $activity_log[ $count ]->display_name = get_userdata( $entry->object_id )->display_name;
       $activity_log[ $count ]->edit_url = admin_url( 'admin.php?page=wp_crm_add_new&user_id=' . $entry->object_id );
       $activity_log[ $count ]->time_stamp = strtotime( $entry->time );
       $activity_log[ $count ]->date = date( get_option( 'date_format', strtotime( $entry->time ) ) );
       $activity_log[ $count ]->time_ago = human_time_diff( strtotime( $entry->time ) ) . __( ' ago.', 'wpp' );
-      
+
       switch( true ) {
-        
+
         case $entry->attribute == 'detailed_log' && $entry->action == 'login':
           $activity_log[ $count ]->text = sprintf( __( 'Logged in from %1s.', 'wpp' ), $entry->value );
-                    
+
           if( function_exists( 'gethostbyaddr' )) {
-            $activity_log[ $count ]->host_name = $_resolved[ $entry->value ] ? $_resolved[ $entry->value ] : $_resolved[ $entry->value ] = @gethostbyaddr( $entry->value );          
+            $activity_log[ $count ]->host_name = $_resolved[ $entry->value ] ? $_resolved[ $entry->value ] : $_resolved[ $entry->value ] = @gethostbyaddr( $entry->value );
           }
-          
+
           if( $entry->value ) {
             $activity_log[ $count ]->location = $_locations[ $entry->value ] ? $_locations[ $entry->value ] : $_locations[ $entry->value ] = WP_CRM_F::get_service( 'geolocation', '', $entry->value, array( 'json' ) );
           }
-          
+
         break;
-      
+
         case $entry->attribute == 'detailed_log' && $entry->action == 'logout':
           $activity_log[ $count ]->text = sprintf( __( 'Logged out from %1s.', 'wpp' ), $entry->value );
-                    
+
           if( function_exists( 'gethostbyaddr' )) {
-            $activity_log[ $count ]->host_name = $_resolved[ $entry->value ] ? $_resolved[ $entry->value ] : $_resolved[ $entry->value ] = @gethostbyaddr( $entry->value );          
+            $activity_log[ $count ]->host_name = $_resolved[ $entry->value ] ? $_resolved[ $entry->value ] : $_resolved[ $entry->value ] = @gethostbyaddr( $entry->value );
           }
-          
+
           if( $entry->value ) {
             $activity_log[ $count ]->location = $_locations[ $entry->value ] ? $_locations[ $entry->value ] : $_locations[ $entry->value ] = WP_CRM_F::get_service( 'geolocation', '', $entry->value, array( 'json' ) );
           }
-          
+
         break;
-      
+
       }
-      
+
     }
-    
+
     if( $_update_cache && $_locations ) {
-      set_transient( '_wpc_geolocation', $_locations, 3600 ); 
+      set_transient( '_wpc_geolocation', $_locations, 3600 );
     }
-    
+
     return $activity_log;
-    
+
   }
 
   /**
@@ -215,8 +215,8 @@ class WP_CRM_F {
     return is_wp_error( $response) ? $response : new WP_Error( 'error', sprintf( __( 'API Failure: %1s.' , UD_API_Transdomain ), $response[ 'response' ][ 'message' ] ));
 
   }
-  
-  
+
+
   /**
    * Get details about an attribute.
    *
@@ -352,17 +352,17 @@ class WP_CRM_F {
 
     /* All profiles */
     if(count($wp_filter['personal_options'])) {
-      add_meta_box( 'wp_crm_personal_options', __('Personal Options', 'wp_crm') , array('WP_CRM_F', 'personal_options') , 'crm_page_wp_crm_add_new', 'normal', 'default');
+      add_meta_box( 'wp_crm_personal_options', __('Personal Options', 'wp_crm') , function($object) {  do_action('personal_options'); } , 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
 
     /* Non-self profile */
     if(!$own_profile && count($wp_filter['edit_user_profile'])) {
-      add_meta_box( 'wp_crm_edit_self_profile',  __('Additional Settings', 'wp_crm'), array('WP_CRM_F', 'edit_user_profile') , 'crm_page_wp_crm_add_new', 'normal', 'default');
+      add_meta_box( 'wp_crm_edit_self_profile',  __('Additional Settings', 'wp_crm'), function($object) {  do_action('edit_user_profile'); } , 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
 
     /* Self Profile  - Included into Special Actions box */
-    if($own_profile && (count($wp_filter['show_user_profile']) || count($wp_filter['profile_personal_options']))) {
-      //add_meta_box( 'wp_crm_edit_user_profile',  __('Additional Settings', 'wp_crm') , function($object) {  do_action('edit_user_profile'); do_action('profile_personal_options'); }, 'crm_page_wp_crm_add_new', 'normal', 'default');
+    if($own_profile && (count($wp_filter['profile_personal_options']))) {
+      //add_meta_box( 'wp_crm_edit_user_profile',  __('Additional Settings', 'wp_crm') , function($object) {   do_action('profile_personal_options'); }, 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
 
   }
@@ -1300,7 +1300,6 @@ class WP_CRM_F {
     /**
      * Performs a user search
      *
-     * @todo Need to add check if user is in the current site when in MultiSite mode. -potanin@UD
      * @since 0.1
      */
     static function user_search($search_vars = false, $args = array()) {
@@ -1368,6 +1367,18 @@ class WP_CRM_F {
             }
           }
 
+        }
+      }
+
+      //** Multi site fix */
+      if ( $blog_id ) {
+        switch ( true ) {
+          case $blog_id == 1:
+            $sql .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = 'wp_user_level' )";
+            break;
+          default :
+            $sql .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = 'wp_{$blog_id}_user_level' )";
+            break;
         }
       }
 
@@ -2229,7 +2240,7 @@ class WP_CRM_F {
       case 'password':
       case 'text':
         $input_type = in_array( $attribute['input_type'], array( 'date' ) ) ? 'text' : $attribute['input_type'] ;
-        foreach($values as $rand => $value_data) {  
+        foreach($values as $rand => $value_data) {
           ?>
           <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
           <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="'.$class.'"' : '' ; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug!='user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
@@ -3046,15 +3057,18 @@ class WP_CRM_F {
       update_user_option($current_user->ID, "crm_ui_crm_user_activity_{$row['attribute']}".(($row['other'])?'['.$row['other'].']':''), $row['hidden']);
     }
 
-    $all_messages = WP_CRM_F::get_events(array(
+    $params = array(
       'object_id' => $args['user_id'],
       'filter_types' => $args['filter_types'],
       'import_count' => ''
-    ));
+    );
+
+    $all_messages = WP_CRM_F::get_events($params);
+
     /** @todo $messages is not initialized */
-    if(!empty($passed_result)) {
-      $result =$passed_result;
-    }else{
+    if( !empty( $passed_result ) ) {
+      $result = $passed_result;
+    } else {
       $params['import_count'] = $args['per_page'];
       $result = WP_CRM_F::get_events($params);
     }
@@ -3076,17 +3090,17 @@ class WP_CRM_F {
 
       //** If detailed activity is tracked, certain fields are machine-populated. */
       if( $wp_crm['configuration']['track_detailed_user_activity'] == 'true' && empty( $entry_text ) ) {
-        
+
         switch( true ) {
-        
+
           case $entry->attribute == 'detailed_log' && $entry->action == 'login':
             $entry_text = sprintf( __( 'Logged in from IP %1s, %2s ago.', 'wpp' ), $entry->value, /* gethostbyaddr( $entry->value ), */ human_time_diff( strtotime( $entry->time ) ) );
           break;
-          
+
         }
-        
+
       }
-      
+
       if( empty( $entry_text ) ) {
         continue;
       }
@@ -3232,11 +3246,11 @@ class WP_CRM_F {
         }
       }
     }
-    
+
     foreach( (array) $args['filter_types'] as $type ) {
       $_attributes[ $type[ 'attribute' ] ] = $type[ 'hidden' ] == 'false' ? true : false;
     }
-     
+
     if($args['import_count']) {
       $limit = " LIMIT {$args[start]}, {$args[import_count]} ";
     }

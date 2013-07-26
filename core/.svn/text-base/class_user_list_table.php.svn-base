@@ -69,7 +69,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
     global $role, $usersearch;
 
     if(!isset($this->all_items)) {
-      $this->all_items = WP_CRM_F::user_search( $wp_crm_search);
+      $this->all_items = WP_CRM_F::user_search( $wp_crm_search );
     }
 
     //** Get User IDs */

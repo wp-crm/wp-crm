@@ -1,7 +1,7 @@
-/*  
-	
- */  
- 
+/*
+
+ */
+
  .wp_crm_contact_form {
   list-style-type:none;
  }
@@ -14,16 +14,15 @@
   width: 160px;
   padding-right: 15px;
  }
-  
- .wp_crm_contact_form li.wp_crm_submit_row div.wp_crm_input_wrapper,
- .wp_crm_contact_form li.wp_crm_message_field div.wp_crm_input_wrapper {
+
+ .wp_crm_contact_form li.wp_crm_submit_row div.wp_crm_input_wrapper {
   margin-left: 175px;
-  
+
  }
  .wp_crm_contact_form li.wp_crm_submit_row {
   padding-top: 15px;
  }
- 
+
  .wp_crm_contact_form li div.wp_crm_input_wrapper {
     float: left;
  }
@@ -42,22 +41,22 @@
  .wp_crm_contact_form li div.wp_crm_input_wrapper input {
   margin-bottom: 0;
  }
- 
+
  .wp_crm_contact_form li div.wp_crm_input_wrapper input.regular-text  {
   width: 15em;
  }
- 
+
  .wp_crm_contact_form li div.wp_crm_input_wrapper .wp_crm_error_messages {
   color: red;
   font-size: 0.9em;
  }
- 
+
  .wp_crm_contact_form li.wp_crm_form_response div{
-    margin-left: 175px; 
+    margin-left: 175px;
     margin-top: 12px;
     padding: 10px;
  }
- 
+
  .wp_crm_contact_form li.wp_crm_form_response div.success{
     background: none repeat scroll 0 0 #D2F1DF;
     border: 1px solid #A3BEAA;
@@ -67,5 +66,4 @@
     background: #FFD3C8;
     border: 1px solid #A2665F;
  }
- 
- 
+
