@@ -1,0 +1,1511 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-CRM\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-06 14:10-0500\n"
+"PO-Revision-Date: 2012-06-06 14:11-0500\n"
+"Last-Translator: Usability Dynamics, Inc. <info@usabilitydynamics.com>\n"
+"Language-Team: Usability Dynamics, Inc. <info@usabilitydnamics.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\wp-content\\plugins\\wp-crm\n"
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:36
+msgid "Single Line Text"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:37
+msgid "Checkbox"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:38
+msgid "Textarea"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:39
+msgid "Dropdown"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:40
+msgid "Password"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:41
+msgid "Date Picker"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:49
+msgid "View and edit plugin settings."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:50
+msgid "View individual prospects and the overview page."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:51
+msgid "View a user's profile."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:52
+msgid "Add to correspondence thread on a user's profile."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:53
+msgid "Send a group message to users."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:54
+msgid "Perform advanced functions such as mergins users."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:55
+msgid "Change passwords of other users. This is only checked if the user can edit users in the first place."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/action_hooks.php:56
+msgid "Change color scheme. This is only checked if the user can edit users in the first place."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:38
+msgid "Quick Password Reset"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:60
+msgid "Display Name"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:61
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:66
+msgid "Generated automatically by WordPress."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:65
+msgid "User Login"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:112
+#, php-format
+msgid "Password reset initiated by user. Reset URL: %1s."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:135
+msgid "Please enter a valid e-mail address."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:151
+msgid "User Registration"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:152
+msgid "Support Request"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:742
+msgid "Error saving user: Email address cannot be empty"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:747
+msgid "Error saving user: Email address is invalid"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:821
+msgid "New user added."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:825
+msgid "User updated."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:848
+#: C:\wamp\www\wp-content\plugins\wp-crm/default_api.php:852
+#, php-format
+msgid "Error saving user: %s"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:222
+msgid "Password Reset"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:282
+msgid "Users"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:285
+msgid "This page is used to filter and find various users. Visit the Settings page to select which attributes to show on the overview."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:286
+msgid "Exporting"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:287
+msgid "Once you narrow down the user results to the ones you want to export, click \"Show Actions\" and then \"Export to CSV\" to generate a comma separated flle."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:288
+msgid "The CSV export will only include the user data as defined in Data tab, on the Settings page."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:360
+msgid "Notifications"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:364
+msgid "User Editing"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:365
+msgid "Please visit the WP-CRM Settings page to determine which fields to display on the editing page."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:367
+msgid "User Activity History"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:368
+msgid "The activity history can be used to log notes regarding a user, and will display any incoming messages generated by the user when using a WP-CRM contact form."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:409
+msgid "Roles - Hidden Attributes"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:410
+msgid "If certain user attributes are not applicable to certain roles, such as \"Client Type\" to the \"Administrator\" role, you can elect to hide the unapplicable attributes on profile editing pages."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:411
+msgid "Predefined Values"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:412
+msgid "If you want your attributes to have predefiend values, such as in a dropdown, or a checkbox list, enter a comma separated list of values you want to use.  You can also get more advanced by using taxonomies - to load all values from a taxonomy, simply type ine: <b>taxonomy:taxonomy_name</b>."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:413
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:498
+msgid "Shortcode Forms"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:414
+msgid "Shortcode Forms, which can be used for contact forms, or profile editing, are setup here, and then inserted using a shortcode into a page, or a widget. The available contact form attributes are taken from the WP-CRM attributes, and when filled out by a user, are mapped over directly into their profile. User profiles are created based on the e-mail address, if one does not already exist, for keeping track of users. "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:416
+msgid "Shortcode Forms attributes"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:418
+msgid "display_notes = [ true | <b>false</b> ] &mdash; If a note exists for an attribute, it will be shown on the right."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:419
+msgid "require_login_for_existing_users = [ <b>true</b> | false ]"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:420
+msgid "use_current_user = [ <b>true</b> | false ]"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:421
+msgid "success_message = \"<i>custom text</i>\"  &mdash; default value is \""
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:421
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:524
+msgid "Your message has been sent. Thank you."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:422
+msgid "submit_text = \"<i>custom text</i>\"  &mdash; default value is \""
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:422
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:525
+msgid "Submit"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:423
+msgid "js_callback_function = \"<i>custom_function_name</i>\"  &mdash; default value is \""
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:423
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:424
+msgid "false"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:424
+msgid "js_validation_function = \"<i>custom_function_name</i>\"  &mdash; default value is \""
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:426
+msgid "For example, <b>[wp_crm_form form=example_from display_notes=true success_message=\"Your message was successfully sent!\" submit_text=\"Send message!\"]</b>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:428
+msgid "If a new user fills out a form, an account will be created for them based on the specified role.  "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:429
+msgid "<b>Important</b>: user's email attribute should have slug 'user_email'."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:431
+msgid "Automation"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:432
+msgid "Use other attribute as components. Example: <b>[last_name], [rank]</b> will become <b>Smith, Sgt.</b>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:433
+msgid "Notifications and Trigger Actions"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:434
+msgid "Notification messages can be fired off when certain events, such as contact form submission, are executed.  Multiple notification events can be attached to a single <b>trigger action</b>. Multiple tags, such as <b>[user_email]</b> and <b>[display_name]</b>, are available to be used as dynamically replaceable tags when setting up notifications."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:435
+msgid "Which tags are available depend on the trigger event, but in most cases all user data slugs can be used.  On a contact form message, <b>[message_content]</b>, <b>[profile_link]</b> and <b>[trigger_action]</b> variables are also available."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:573
+msgid "Your Profile"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:666
+msgid "Information"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:698
+msgid "All People"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:699
+msgid "New Person"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:700
+msgid "My Profile"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:702
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:866
+msgid "Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:905
+msgid "For more information:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:906
+msgid "<a href=\"https://usabilitydynamics.com/products/wp-crm/\" target=\"_blank\">WP-CRM Product Page</a>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:907
+msgid "<a href=\"https://usabilitydynamics.com/products/wp-crm/forum/\" target=\"_blank\">WP-CRM Forums</a>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:914
+msgid "Please upgrade Wordpress to the latest version for detailed help."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_core.php:914
+msgid "Or visit <a href=\"https://usabilitydynamics.com/products/wp-crm/\" target=\"_blank\">WP-CRM Help Page</a> on UsabilityDynamics.com"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:150
+msgid "Personal Options"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:155
+msgid "Additional Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:284
+msgid "User attempted to reset password, but reset email could not be sent."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:287
+msgid "Password reset initiated by user, email sent with a password reset link."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:378
+msgid "Invalid email"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:393
+msgid "Email already exists"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:607
+msgid "Unaccounted"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:615
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:274
+msgid "There is not enough quantifiable data to generate any graphs."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:777
+msgid "Notification template not found."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:1077
+msgid "No fake users found."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:1383
+msgid "Password reset. A random password has been generated for user by system."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:1407
+msgid "Message archived."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:1419
+msgid "Message deleted."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:1435
+msgid "Sender trashed."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2322
+msgid "Example Contact Form"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2328
+msgid "Thank your for your message!"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2331
+msgid ""
+"Hello [display_name],\n"
+"Thank you, your message has been received."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2334
+msgid "Message from Website"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2337
+msgid ""
+"Contact Form: [trigger_action]\n"
+"Sender Name: [display_name]\n"
+"Sender Email: [user_email]\n"
+"Message: [message_content]"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2462
+#, php-format
+msgid "An error occured during premium feature check: <b> %s </b>."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2504
+msgid "Feature Name"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2505
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2561
+msgid "Version"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2506
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2562
+msgid "Description"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2520
+#, php-format
+msgid "WP-CRM Premium Feature: %s updated to version %s from %s."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2522
+#, php-format
+msgid "WP-CRM Premium Feature: %s updated to version %s."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2542
+msgid "Update ran successfully but no features were downloaded because the setting is disabled."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2545
+msgid "Update ran successfully."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2560
+msgid "Name"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2741
+msgid "Show in User Activity History"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2761
+msgid "Note"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2764
+msgid "General Message"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2767
+msgid "Phone Call"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2770
+msgid "Meeting"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2773
+msgid "File"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2776
+msgid "Detailed Log"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2779
+#, php-format
+msgid "Shortcode Form Message %1s."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:2865
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3227
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3243
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:443
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1296
+msgid "Delete"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3131
+msgid "Last Name"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3134
+msgid "First Name"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3147
+msgid "Warning: there is no field with slug '"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3167
+msgid "Group:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3169
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3206
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3209
+msgid "Primary Information"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3193
+msgid "Attributes Groups"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3198
+msgid "Group Name"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3199
+msgid "Metabox Title"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3200
+msgid "Actions"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3253
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1304
+msgid "Add Row"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_functions.php:3375
+msgid "Add Another"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_list_table.php:308
+msgid "Nothing found."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:410
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:799
+msgid "Processing..."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:466
+msgid "UD Log Page for"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:467
+msgid "Clear Log"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:474
+msgid "Timestamp"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:475
+msgid "Event"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:476
+msgid "User"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:744
+msgid "Cache table does not exist. Attempting to create:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:757
+#, php-format
+msgid "SQL Ran: %s , verifying existance."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:762
+msgid "Table created and exists."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:766
+msgid "Table not created."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:833
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:870
+msgid "Log Started."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:962
+msgid "Today"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:963
+msgid "Tomorrow "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:963
+msgid "Yesterday "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:964
+#, php-format
+msgid " in %d days "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:964
+#, php-format
+msgid "%d days ago"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:1081
+msgid "Automatically logged failed JSON response: "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:1199
+#, php-format
+msgid "%s hours ago"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_ud.php:1201
+#, php-format
+msgid "%s minutes ago"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:155
+msgid "Bulk Actions"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:160
+msgid "Apply"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:329
+msgid "Role Lists"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:329
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:355
+msgid "Show"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:428
+#, php-format
+msgid "%1$s <span class=\"count\">(%2$s)</span>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/class_user_list_table.php:440
+msgid "Remove"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/bbpress.php:90
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/bbpress.php:111
+msgid "Posts"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/bbpress.php:91
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/bbpress.php:112
+msgid "Last Week"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/bbpress.php:92
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/bbpress.php:113
+msgid "Last Two Weeks"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/bbpress.php:126
+msgid "Forum Participation"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:62
+#, php-format
+msgid "Executing: %1s."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:75
+msgid "BuddyPress Profile Link"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:90
+#, php-format
+msgid "<a href=\"%1s\">BuddyPress Profile</a>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:103
+msgid "BuddyPress Profile Fields"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:234
+msgid "There was a problem updating some of your profile information, please try again."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:236
+msgid "Changes saved."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:262
+msgid "BuddyPress Profile Group"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:262
+msgid "BP Group:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:264
+msgid " - "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:409
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:423
+msgid "Clear"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:474
+msgid "View CRM Profile"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:533
+msgid "Please make sure you fill in all required Buddypress fields in this profile field group before saving."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/buddypress.php:549
+msgid "There was a problem updating some of Budypress profile information, please try again."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/connections/wp-invoice.php:96
+msgid "Sales"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:83
+msgid "Filter"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:102
+msgid "Message trashed."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:158
+msgid "Status"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:161
+msgid "New"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:167
+msgid "Archived"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:171
+msgid "All"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:175
+msgid "Originating Form"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:195
+msgid "Filter Results"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:202
+msgid "Visualize Contact Data"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:291
+msgid "Date"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:292
+msgid "All Daily Messages"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:402
+#, php-format
+msgid "Related %s:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:405
+msgid "ago"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:406
+msgid "other messages."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:413
+msgid "Trash"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:417
+msgid "Archive"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:423
+msgid "Trash Message and User"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:881
+msgid "A server error occurred while trying to process the form."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:969
+msgid "If you see this message, WP-CRM through you were a robot.  Please contact admin if you do not think are you one."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:982
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1007
+msgid "Form could not be submitted."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1060
+#, php-format
+msgid "%1s cannot be empty."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1071
+#, php-format
+msgid "This %1s belongs to a registered user, please login."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1092
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1103
+msgid "Form could not be submitted. Please make sure you have entered your information properly."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1100
+msgid "Message could not be sent. Please make sure you have entered your information properly."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1122
+msgid " -- No message. -- "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1198
+msgid "Use this section to add and configure new contact forms."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1203
+msgid "Form Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1204
+msgid "Fields"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1215
+msgid "Title:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1220
+msgid "Shortcode:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1227
+msgid "Role:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1232
+msgid "If new user created, assign this role."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1238
+msgid "Display textarea for custom message."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1243
+msgid "Send message notification even if no message is submitted."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1248
+msgid "Do not require users with existing accounts to sign in first."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1310
+msgid "To see list of variables you can use in wp_crm_contact_system_data open up the \"Help\" tab and view the user data structure.  Any variable you see in there can be used in the subject field, to field, BCC field, and the message body. Example: [user_email] would include the recipient's e-mail."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1311
+msgid "To add notification actions use the <b>wp_crm_notification_actions</b> filter, then call the action within <b>wp_crm_send_notification()</b> function, and the messages association with the given action will be fired off."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1316
+msgid "Options"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1321
+msgid "Default role to use for new contacts: "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1323
+msgid "WP-CRM creates user profiles, if only temporary, to store inquiries and messages from contact forms.  "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1347
+msgid "View messages from contact forms."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1388
+msgid "Message"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1389
+msgid "Sender"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1453
+msgid "Contact Messages"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:88
+msgid "Merge with another user."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:262
+msgid "User ID of the user you would like to merge the current user with:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:268
+msgid "Merge"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:269
+msgid "Cancel"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:331
+msgid "Attached file:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:460
+msgid "Save user before uploading files."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:512
+msgid "File Upload"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:75
+msgid "Group Messages"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:116
+msgid "PDF Attachment"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:119
+msgid "User attributes to include in PDF Attachments for each recipient without an e-mail:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:130
+msgid "When message recipients include users without e-mails, a PDF list of such recipients can be distributed amongst recipients with e-mails."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:153
+msgid "Type"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:157
+msgid "Contact Form Messages"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:162
+msgid "Group Messags"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:201
+msgid "Group Message"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:216
+msgid "Group Messages (Newsletters)"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:217
+msgid "To send a group message, first use the filters to narrow down to the users you want to contact."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:218
+msgid "Once the users are filtered, click \"Show Actions\", and \"Send Group Message\" to begin creating a message."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:360
+#, php-format
+msgid "You are about to send this message to %d users, are you sure?."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:366
+msgid "Sending..."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:411
+msgid "Send"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:434
+msgid "From: "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:443
+msgid "To: "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:449
+msgid "Template: "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:460
+msgid "Subject: "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:473
+#, php-format
+msgid "Be advised, %1d of the %2d intended recipients do not have an e-mail addresses.  <span class=\"wp_crm_secondary_action wp_crm_toggle\" toggle=\"wp_crm_no_email_actions\">Take action.</span>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:477
+#, php-format
+msgid "Evenly break-up the users amongst recipients in the %1s group, and send them the user report."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:478
+msgid "E-mail me full report of all users without e-mail addresses."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:500
+msgid "Send Message"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:501
+msgid "Discard"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:626
+msgid "There are no users in this list that have e-mails and the necessary role to disseminate the information."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:734
+#, php-format
+msgid "<p class=\"wp_crm_system_message\">User received PDF Attachment and asked to contact the following recipients: %1s </p>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:772
+msgid "No messages were sent. Check your SMTP settings."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:850
+#, php-format
+msgid "Please notify the folllowing (%1s) people of this message:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:1011
+msgid "Send Group Message"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_email_sync.php:355
+msgid "Import and Sync Emails"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:113
+msgid "User account updated by synchronizing with Google Contacts."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:116
+#, php-format
+msgid "User account created by importing from %1s Google account."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:145
+msgid "Google Contacts"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:149
+msgid "Google Username:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:151
+msgid "Password:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:153
+msgid "It is highly recommended you use an application-specific password."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:183
+msgid "Synchronizing with Google Contacts..."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:188
+msgid "Google Contacts Synchronization failed."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/premium/class_google_contacts.php:202
+msgid "Google Contacts Update"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:36
+msgid "Export to CSV"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:38
+msgid "Visualize User Data"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:45
+msgid "Perfomed actions"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:80
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:106
+msgid "Add Message"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:82
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:125
+msgid "loading"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:93
+msgid "Show Options"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:95
+msgid "Date:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:100
+msgid "Message type"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:125
+#, php-format
+msgid "Showing <span class=\"current_count\">%1s</span> messages of <span class=\"total_count\">%2s</span>. Load <span class=\"more_count\">%3s</span> more."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:197
+msgid "Toggle Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:201
+msgid "Set Password:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:205
+msgid "Type in new password twice to change."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:209
+msgid "Type your new password again."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:213
+msgid "Admin Options:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:217
+msgid "Capability Role:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:227
+msgid "Show Admin Bar when viewing site."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:233
+msgid "Color Scheme:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:261
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:263
+msgid "Save"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:261
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:263
+msgid "Update"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_add_new.php:10
+msgid "Profile created."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_add_new.php:12
+msgid "Profile updated."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_add_new.php:26
+msgid "Add New Person"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:88
+msgid "CRM Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:97
+msgid "Main"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:98
+msgid "UI"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:99
+msgid "Data"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:100
+msgid "Roles"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:119
+msgid "Premium Features"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:121
+msgid "Help"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:130
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:369
+msgid "General Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:136
+msgid "Replace default WordPress User page with WP-CRM."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:141
+msgid "Allow user accounts to be created without an e-mail address."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:146
+msgid "Disable default WordPress password reset e-mail notification."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:151
+msgid "Do not automatically convert line breaks in outgoing contact messages."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:156
+msgid "Track detailed user activity."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:161
+msgid "Enable Attribute Grouping."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:174
+msgid "Standardize Display Names."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:177
+msgid "Display name components: "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:185
+msgid "Email Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:190
+msgid "Default sender e-mail address."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:191
+#, php-format
+msgid "If you are not using SMTP, it is advisable to use a @%s email address to avoid being spammed."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:207
+msgid "General UI Settings"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:212
+msgid "Do not display user avatars on overview pages."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:219
+msgid "Primary User Identifier"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:236
+msgid "Overview Page User Card"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:237
+msgid "User data to be displayed in the <b>Information</b> column."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:256
+msgid "Quick User Actions"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:257
+msgid "User-specific actions that can be initiated from the user overview page."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:265
+#, php-format
+msgid "Enable: %1s"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:278
+msgid "This tab allows you to create and modify your notifications.  Notifications can be assigned to various events, such as new user registration, general contact messages, etc."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:283
+msgid "Message Header"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:285
+msgid "Trigger Actions"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:295
+msgid "Subject:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:299
+msgid "To:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:303
+msgid "BCC:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:307
+msgid "Send From:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:338
+msgid "You do not have any notification actions yet. "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:355
+msgid "For the <b>Send From</b> value enter an e-mailed address or a name and e-mail using the folloiwng format: John Smith <john.smith@gmail.com>"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:356
+msgid "To see list of variables you can use in notifications open up the \"Help\" tab and view the user data structure.  Any variable you see in there can be used in the subject field, to field, BCC field, and the message body. Example: [user_email] would include the recipient's e-mail."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:377
+msgid "Attribute"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:379
+msgid "Input Type"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:400
+msgid "Note:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:405
+msgid "Slug:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:412
+msgid "Toggle Advanced"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:421
+msgid "Primary"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:426
+msgid "Overview Column"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:431
+msgid "Required"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:436
+msgid "Uneditable"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:495
+msgid "User Roles"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:501
+msgid "Role"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:502
+msgid "Hidden Attributes"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:503
+msgid "Capabilities"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:531
+msgid "No capabilities found for role."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:564
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:611
+msgid "Force check of allowed premium features."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:565
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:612
+msgid "Check Updates"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:569
+msgid "When purchasing the premium features you will need to specify your domain to add the license correctly. <br />This is your domain:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:583
+msgid "[learn more]"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:592
+msgid "Disable feature."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:593
+msgid "Feature installed, using version"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:595
+#, php-format
+msgid "Please visit <a href=\"%s\">UsabilityDynamics.com</a> to purchase this feature."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:616
+msgid "Look up the <b>$wp_crm</b> global settings array. This array stores all the default settings, which are overwritten by database settings, and custom filters."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:617
+msgid "Show $wp_crm"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:623
+msgid "Show user data structure:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:624
+msgid "Show WP_CRM_F::user_object_structure()"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:625
+msgid "All possible meta keys:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:627
+msgid "Root Only:"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:633
+msgid "Lookup a user object by its ID."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:635
+msgid "Load User"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:641
+msgid "Get user meta report. Will return an array of common meta keys and a few sample values.  This should be used to help you analyze a website with a lot of existing user meta."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:642
+msgid "Get Report"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:648
+msgid "Generate "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:648
+msgid "fake users. "
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:649
+msgid "Generate"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:650
+msgid "Delete All Fake Users"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:655
+msgid "Restore Backup of WP-CRM Configuration"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:656
+msgid "Download Backup of Current WP-CRM Configuration."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:662
+msgid "Enable developer mode and start displaying additional information in the console log."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:675
+msgid "Save Changes"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:4
+msgid "User has been deleted and all associated posts have been trashed."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:8
+msgid "WP-CRM has been updated, and any premium features your domain qualifies for have been downloaded."
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:21
+msgid "CRM - All People"
+msgstr ""
+
+#: C:\wamp\www\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:21
+msgid "Add New"
+msgstr ""
+

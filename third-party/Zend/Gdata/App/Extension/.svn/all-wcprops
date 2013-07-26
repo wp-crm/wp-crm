@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension
+END
+Element.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Element.php
+END
+Subtitle.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Subtitle.php
+END
+Id.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Id.php
+END
+Summary.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Summary.php
+END
+Link.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Link.php
+END
+Edited.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Edited.php
+END
+Uri.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Uri.php
+END
+Source.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Source.php
+END
+Rights.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Rights.php
+END
+Draft.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Draft.php
+END
+Logo.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Logo.php
+END
+Author.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Author.php
+END
+Person.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Person.php
+END
+Content.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Content.php
+END
+Contributor.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Contributor.php
+END
+Category.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Category.php
+END
+Published.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Published.php
+END
+Name.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Name.php
+END
+Control.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Control.php
+END
+Title.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Title.php
+END
+Text.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Text.php
+END
+Updated.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Updated.php
+END
+Generator.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Generator.php
+END
+Email.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Email.php
+END
+Icon.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata/App/Extension/Icon.php
+END

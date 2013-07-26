@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Exception.php
+END
+Uri.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Uri.php
+END
+Gdata.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Gdata.php
+END
+Version.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Version.php
+END
+Loader.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Loader.php
+END
+Registry.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/638441/wp-crm/tags/0.33.0/third-party/Zend/Registry.php
+END

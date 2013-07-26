@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/638441/wp-crm/tags/0.33.0/core
+END
+class_core.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/638441/wp-crm/tags/0.33.0/core/class_core.php
+END
+class_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/638441/wp-crm/tags/0.33.0/core/class_functions.php
+END
+class_ud.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/638441/wp-crm/tags/0.33.0/core/class_ud.php
+END
+class_user_list_table.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/638441/wp-crm/tags/0.33.0/core/class_user_list_table.php
+END
+class_list_table.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/638441/wp-crm/tags/0.33.0/core/class_list_table.php
+END

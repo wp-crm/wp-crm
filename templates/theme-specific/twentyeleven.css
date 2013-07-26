@@ -1,0 +1,65 @@
+/*  
+	
+ */  
+ 
+ .wp_crm_contact_form {
+  list-style-type:none;
+ }
+ .wp_crm_contact_form ul {
+  list-style-type:none;
+ }
+ 
+ 
+ .wp_crm_contact_form li.wp_crm_form_element {
+    overflow: auto;
+    margin-bottom: 10px;
+ }
+ .wp_crm_contact_form li label.wp_crm_input_label {
+  float: left;
+  display: block;
+  width: 120px;
+  padding-right: 15px;
+ }
+ 
+  
+ .wp_crm_contact_form li.wp_crm_form_response,
+ .wp_crm_contact_form li.wp_crm_submit_row div.wp_crm_input_wrapper,
+ .wp_crm_contact_form li.wp_crm_message_field div.wp_crm_input_wrapper {
+  margin-left: 136px;
+  
+ }
+ 
+ .wp_crm_contact_form li.wp_crm_form_response div.success, 
+ .wp_crm_contact_form li.wp_crm_form_response div.failure {
+    padding: 10px;
+ }
+.wp_crm_contact_form li.wp_crm_form_response div.failure {
+    background: none repeat scroll 0 0 #FFEAEA;
+    border: 1px solid #C57878;
+ }
+.wp_crm_contact_form li.wp_crm_form_response div.success {
+    background: none repeat scroll 0 0 #E0F4DF;
+    border: 1px solid #B5C4B8;
+ }
+ 
+ 
+ .wp_crm_contact_form li.wp_crm_submit_row {
+  padding-top: 15px;
+ }
+ 
+ .wp_crm_contact_form li div.wp_crm_input_wrapper {
+    float: left;
+ }
+ .wp_crm_contact_form li div.wp_crm_input_wrapper ul {
+  margin:0;
+  padding:0;
+ }
+ .wp_crm_contact_form li div.wp_crm_input_wrapper textarea {
+  width: 100%;
+  height: 150px;
+ }
+ .wp_crm_contact_form li div.wp_crm_input_wrapper{
+  width: 400px;
+ }
+ 
+ 
