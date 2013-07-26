@@ -1371,16 +1371,9 @@ class WP_CRM_F {
       }
 
       //** Multi site fix */
-      if ( $blog_id ) {
-        switch ( true ) {
-          case $blog_id == 1:
-            $sql .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = 'wp_user_level' )";
-            break;
-          default :
-            $sql .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = 'wp_{$blog_id}_user_level' )";
-            break;
-        }
-      }
+      $id = get_current_blog_id();
+      $blog_prefix = $wpdb->get_blog_prefix($id);
+      $sql .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$blog_prefix}capabilities' )";
 
       $sql = $sql . $sort_by;
 

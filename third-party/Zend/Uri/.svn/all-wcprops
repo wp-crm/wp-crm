@@ -1,17 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Uri
+/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Uri
 END
 Exception.php
 K 25
 svn:wc:ra_dav:version-url
 V 70
-/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Uri/Exception.php
+/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Uri/Exception.php
 END
 Http.php
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Uri/Http.php
+/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Uri/Http.php
 END
