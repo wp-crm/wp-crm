@@ -347,7 +347,8 @@ class WP_CRM_Core {
   function crm_page_wp_crm_add_new() {
     global $wp_crm;
 
-    WP_CRM_F::crm_profile_page_metaboxes();
+    //Something wrong with this function. Looks like Metaboxed now had been made in another way. odokienko@UD
+    //WP_CRM_F::crm_profile_page_metaboxes();
 
     //** If we are on 'crm_page_wp_crm_add_new' screen - render metaboxes for groups */
     if($wp_crm['configuration']['allow_attributes_grouping'] == 'true') {

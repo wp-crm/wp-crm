@@ -1,0 +1,524 @@
+<?php
+/*
+Name: CRM Advanced Functions
+Class: class_crm_advanced_functions
+Version: 0.2.2
+Minimum Core Version: 0.33.0
+Description: Advanced power tools for WP-CRM: user merging, file uploads and more.
+Feature ID: 18
+*/
+
+add_action('wp_crm_init', array('class_crm_advanced_functions', 'init'));
+
+if($_REQUEST['action'] == 'wp_crm_upload_user_file') {
+  class_crm_advanced_functions::handle_ajax_file_upload();
+}
+
+class class_crm_advanced_functions {
+
+
+  /**
+   * Init level functions for advanced user functions management
+   *
+   * @version 1.0
+   * Copyright 2011 Usability Dynamics, Inc.  <info@usabilitydynamics.com>
+   */
+  function init() {
+
+    add_filter('wp_crm_before_file', array('class_crm_advanced_functions','wp_crm_before_file'));
+    add_filter('wp_crm_before_file_frontend', array('class_crm_advanced_functions','wp_crm_before_file'));
+
+    //** Do not inint this class if current user cannot perform any advanced functions */
+    if(!current_user_can('WP-CRM: Perform Advanced Functions')) {
+      return;
+    }
+
+    add_action('wp_crm_single_user_actions', array('class_crm_advanced_functions', 'wp_crm_single_user_actions'));
+    add_action('wp_ajax_wp_crm_advanced_display_user_merge_ui', create_function('', ' class_crm_advanced_functions::wp_crm_advanced_display_user_merge_ui($_REQUEST[user_id]); die(); '));
+    add_action('wp_ajax_wp_crm_get_user', create_function('', ' die(json_encode(wp_crm_get_user($_REQUEST["user_id"]))); '));
+
+    add_action('wp_crm_save_user', array('class_crm_advanced_functions', 'wp_crm_save_user'));
+
+    add_filter('wp_crm_configuration', array('class_crm_advanced_functions','add_file_upload_input_type'));
+    add_filter('wp_crm_activity_single_content', array('class_crm_advanced_functions','activity_single_content'), 0, 2);
+
+    add_action('wp_crm_render_input', array('class_crm_advanced_functions','wp_crm_render_input'));
+    add_action('wp_crm_render_input_frontend', array('class_crm_advanced_functions','wp_crm_render_input'));
+    add_action("admin_enqueue_scripts", array('class_crm_advanced_functions', "admin_enqueue_scripts"));
+    add_action('wp_crm_delete_log_entry', array('class_crm_advanced_functions','delete_log_entry'), 0, 2);
+
+  }
+
+
+  /**
+   * Handle mergins functions  here.
+   *
+   * This is a good place for other functions to hook in to migrate data outside of the CMR profile, or delete the older user upon merge.
+   *
+   * @since 0.1
+   */
+  function wp_crm_save_user($data) {
+    global $wp_crm;
+
+    if(!empty($data['args']['user_merged_from'])) {
+
+      $to_id = $data['user_id'];
+      $from_id = $data['args']['user_merged_from'];
+
+      do_action('wp_crm_users_merged', array('from_id' => $from_id, 'to_id' => $to_id));
+
+
+    }
+
+
+
+  }
+
+
+  function wp_crm_single_user_actions($object) {
+    $user_id = $object['ID']['default'][0];
+
+
+    if(empty($user_id) || !current_user_can('edit_users')) {
+      return;
+    }
+
+    ?>
+
+    <li class="button wp_crm_merge_user"><?php _e('Merge with another user.', 'wp_crm'); ?></li>
+
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+        jQuery(".button.wp_crm_merge_user").click(function() {
+
+          wp_crm_advanced_show_user_merge_ui();
+
+        });
+
+        function wp_crm_advanced_show_user_merge_ui() {
+
+          //** Clear our ajax messages */
+          jQuery(".wp_crm_ajax_update_message").hide();
+
+          jQuery.ajax({
+            url: ajaxurl,
+            context: document.body,
+            data: {
+              action : 'wp_crm_advanced_display_user_merge_ui',
+              user_id: <?php echo $user_id; ?>
+            },
+            success: function(result){
+                jQuery('.wp_crm_secondary_ajax_result').html(result);
+                jQuery('.wp_crm_secondary_ajax_result').show("slide", { direction: "down" }, 1000)
+            }
+          });
+        }
+
+      });
+    </script>
+  <?php
+
+  }
+
+  /**
+   * Return ui for user merging
+   *
+   * @param type $user_id
+   */
+  function wp_crm_advanced_display_user_merge_ui( $user_id ) {
+
+    $rand = rand(100,999999);
+    ?>
+     <script type="text/javascript">
+      jQuery(document).ready(function() {
+
+        var wpc_merge_form = jQuery("#wp_crm_user_merge_<?php echo $rand; ?>");
+        var wpc_lost_user_data = new Object();
+
+         jQuery(".wp_crm_do_merge", wpc_merge_form).live("click", function() {
+
+          var user_id = jQuery(".wpc_action_fields input.user_id", wpc_merge_form).val();
+
+          jQuery.post(
+            ajaxurl,
+            {
+              action: 'wp_crm_get_user',
+              user_id: user_id
+            },
+            function(result){
+
+              jQuery.each(result, function(key, values) {
+
+                var old_csv_values;
+                var this_wrapper = jQuery(".wp_crm_user_entry_row[meta_key=" + key + "]");
+
+                /* Do nothing if there is no UI element for this data */
+                if(!jQuery(this_wrapper).attr('wp_crm_input_type') || key == 'display_name') {
+                  //** Store all "lost" values in an object that we'll insert later into the log for reference */
+                  wpc_lost_user_data[key] =  wpc_get_clean_value(values);
+                  return;
+                }
+
+                var this_input_type = jQuery(this_wrapper).attr('wp_crm_input_type');
+                var this_input_wrap = jQuery(".wp_crm_input_wrap:last", this_wrapper);
+
+                if(this_input_type == 'text') {
+                  /* This attribute is a regular text field */
+
+                  /* Need to add function to check values in ALL elements of this meta type */
+
+                  var current_value = jQuery("input.regular-text", this_input_wrap).val();
+                  var new_value = wpc_get_clean_value(values);
+
+                  if(current_value == "") {
+                    /* If current value is empty, we simply put the merged value in there */
+                    jQuery("input.regular-text", this_input_wrap).val(new_value);
+                  } else {
+                    /* If data already exists, we add a new element */
+
+                     if(current_value == new_value) {
+                      return;
+                    }
+
+                    var new_element = this_input_wrap.clone();
+                    jQuery("input.regular-text", new_element).val(new_value);
+                    jQuery(new_element).insertAfter(this_input_wrap);
+                  }
+
+                  /* To be on the safe side, unhide this attribute if it was hidden */
+
+
+                } else if(this_input_type == "checkbox") {
+
+                  var wpc_checkbox_element = jQuery(".wp_crm_checkbox_list", this_input_wrap);
+
+                  jQuery.each(values,function(key, value) {
+
+                    if(value != "on") {
+                      return;
+                    }
+
+                    jQuery("li[option_meta_value="+key+"] input[type=checkbox]", wpc_checkbox_element).attr("checked", true);
+
+                  });
+
+
+                } else if(this_input_type == "dropdown") {
+
+                  var wpc_dropdown_element = jQuery(".wp_dropdown_input select:first", this_input_wrap);
+
+                  if(jQuery(":selcted", wpc_dropdown_element).text() == "") {
+
+                    jQuery.each(values, function(option_meta_key, option_value) {
+
+                      if(option_value == "on") {
+                        /* This is not being set for some reason */
+                        jQuery(wpc_dropdown_element).val(option_meta_key);
+                      }
+
+                    });
+
+                  } else {
+                    /* Dropdown already has value. For now we do not add more dropdowns */
+                  }
+
+
+                }
+
+
+                wp_crm_refresh_random_keys(this_input_wrap);
+
+
+                /* Cycle through input fields */
+                jQuery(".blank_slate", this_wrapper).hide();
+                jQuery(".input_div  ", this_wrapper).show();
+
+
+              });
+
+              jQuery("#crm_user").append('<input type="hidden" name="wp_crm[args][user_merged_from]" value="' + user_id + '"/>');
+
+            },
+            "json"
+          );
+
+         });
+
+         function wpc_get_clean_value(data) {
+
+          var clean_values = [];
+
+          jQuery.each(data, function(key, value) {
+            clean_values.push(value[0]);
+          });
+
+         return clean_values.join(",");
+
+         }
+
+
+      });
+     </script>
+    <div class="wpc_action_wrapper">
+
+      <div  id="wp_crm_user_merge_<?php echo $rand; ?>">
+        <ul class="wpc_action_fields">
+          <li>
+            <?php _e('User ID of the user you would like to merge the current user with:', 'wp_crm'); ?> <input type="text" class="small_field user_id" />
+          </li>
+
+        </ul>
+
+        <div class="wpc_actions">
+            <input type="button" value="<?php _e('Merge', 'wp_crm'); ?>" class="wp_crm_do_merge">
+            <input type="button" value="<?php _e('Cancel', 'wp_crm'); ?>" class="wp_crm_cancel_ajax_action">
+            <span class="wp_crm_group_message_response"></span>
+        </div>
+      </div>
+
+
+    </div>
+
+    <?php
+
+  }
+
+
+
+  /**
+   * Hook in to see if deleted log entry has an attached file, and delete it as well.
+   *
+   * @version 1.0
+   * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   */
+  function delete_log_entry($object_id) {
+    global $wpdb;
+
+    $log_info = $wpdb->get_row("SELECT * FROM {$wpdb->crm_log} WHERE id = '{$object_id}'");
+
+    if($log_info->attribute != 'file') {
+      return;
+    }
+
+    //** Deleted log entry corresponds to a file */
+    $user_files = class_crm_advanced_functions::get_user_files_info($log_info->user_id);
+    $file_name = $log_info->value;
+
+    if(WP_DEBUG) {
+      unlink($user_files['basedir'] . '/' . $file_name);
+    } else {
+      @unlink($user_files['basedir'] . '/' . $file_name);
+    }
+
+    return false;
+
+  }
+
+
+  /**
+   * Take over activity log when entry is regarding a file.
+   *
+   * @version 1.0
+   * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   */
+  function activity_single_content($default, $args = '') {
+
+    if($args['entry']->attribute != 'file') {
+      return $default;
+    }
+
+    $user_id = $args['args']['user_id'];
+    $entry = $args['entry'];
+    $file_name = $entry->value;
+
+    $user_files = class_crm_advanced_functions::get_user_files_info($user_id);
+
+    return _('Attached file:') . ' <a class="wp_crm_file_name wp_crm_new_window_link" target="_blank" href="' .$user_files['baseurl'] .'/' . $file_name . ' ">'.$file_name.'</a>';
+  }
+
+  /**
+   * Handle ajax file upload and saving.
+   *
+   * @todo Figure out a way to add error reporting that works with Uploadify
+   * @version 1.0
+   * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   */
+  function handle_ajax_file_upload() {
+    global $wpdb;
+
+    $user_id = $_REQUEST['user_id'];
+
+    $user_files = class_crm_advanced_functions::get_user_files_info($user_id);
+
+    if($user_files) {
+
+      $file_name = $_FILES['Filedata']['name'];
+      $tempFile = $_FILES['Filedata']['tmp_name'];
+      $targetFile =  $user_files['basedir'] . '/' . $file_name;
+
+      move_uploaded_file($tempFile,$targetFile);
+
+      if(file_exists($targetFile)) {
+        WP_CRM_F::insert_event("object_id={$user_id}&user_id={$user_id}&action=attach&attribute=file&value={$file_name}&other={$targetFile}&text=Uploaded {$file_name}.");
+        echo str_replace($_SERVER['DOCUMENT_ROOT'],'',$targetFile);
+      }
+    }
+
+    //* file_put_contents($user_files['basedir'] . '/log.txt', $debug); */
+
+
+  }
+
+  /**
+   * Get, or create, user-specific file directory.
+   *
+   * @todo Add an index.php file or htaccess to prevent direct access or directory viewing
+   *
+   * @version 1.0
+   * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   */
+  function get_user_files_info($user_id) {
+
+    if(!$user_id) {
+      return false;
+    }
+
+   $upload_dir = wp_upload_dir();
+
+   $main_directory = $upload_dir['basedir'] . '/crm_user_files';
+   $user_directory = $upload_dir['basedir'] . '/crm_user_files/' . $user_id;
+   $user_directory_url = $upload_dir['baseurl'] . '/crm_user_files/' . $user_id;
+
+   if(!file_exists($main_directory)) {
+    mkdir($main_directory);
+    chmod($main_directory, '0755');
+   }
+
+   if(!file_exists($user_directory)) {
+    mkdir($user_directory);
+    chmod($user_directory, '0755');
+   }
+
+   if(file_exists($user_directory)) {
+    return array(
+      'basedir' => trim($user_directory),
+      'baseurl' => trim($user_directory_url)
+    );
+   } else {
+    return false;
+   }
+
+  }
+
+  /**
+   * Render file upload input type
+   *
+   * @version 1.0
+   * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   */
+  function admin_enqueue_scripts($data) {
+    global $current_screen, $wp_properties, $wp_crm;
+
+    // Load scripts on specific pages
+    switch($current_screen->id)  {
+      case 'crm_page_wp_crm_add_new':
+
+        wp_enqueue_script('jquery-uploadify');
+        wp_enqueue_script('swfobject');
+      break;
+
+    }
+  }
+
+  /*
+   * Callback function
+   * It allows us to set $data['continue'] to true. It causes skipping of current iteration by fields array
+   * @param $data
+   * @return $data
+   * @author odokienko@UD
+   */
+  function wp_crm_before_file($data){
+
+    if( $data['attribute']['input_type'] == 'file_upload' && (
+        !current_user_can('WP-CRM: Perform Advanced Functions') ||
+        !current_user_can('upload_files'))) {
+      $data['continue'] = true;
+    }
+
+    return $data;
+  }
+
+  /**
+   * Render file upload input type
+   *
+   * @todo Need to make compatible with contact forms.  Upload event should not start until form is saved and validated otherwise.
+   * @version 1.0
+   * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   */
+  function wp_crm_render_input($data) {
+
+    if($data['attribute']['input_type'] != 'file_upload') {
+      return;
+    }
+
+    if($data['user_object']['new']) {
+      echo __( "Save user before uploading files.", 'wp_crm' );
+      return;
+    }
+
+    WP_CRM_F::force_script_inclusion('jquery-uploadify');
+
+    $user_id = WP_CRM_F::get_first_value($data['user_object']['ID']);
+
+    $rand_id =  rand(10000,99999);
+
+    ?>
+    <input id="wp_crm_file_upload_<?php echo $rand_id; ?>" type="file" />
+
+    <script type="text/javascript">
+
+      jQuery(document).ready(function() {
+        jQuery("#wp_crm_file_upload_<?php echo $rand_id; ?>").uploadify({
+          'uploader'  : '<?php echo WP_CRM_URL; ?>/third-party/uploadify/uploadify.swf',
+          'script'    : '<?php echo admin_url('admin-ajax.php'); ?>',
+          'scriptData': {'action':'wp_crm_upload_user_file','user_id': <?php echo is_numeric($user_id) ? $user_id : "''"; ?>},
+          'cancelImg' : '<?php echo WP_CRM_URL; ?>/third-party/uploadify/cancel.png',
+          'multi'     : true,
+          'auto'      : true,
+          'onError'   : function(event,ID,fileObj,errorObj) {},
+          'onComplete'   : function(event,queueID,fileObj,response,data) {$('#response').append(response);},
+          'onAllComplete' : function(event,ID,fileObj,response,data) {
+
+            if(typeof wp_crm_update_activity_stream == 'function') {
+              wp_crm_update_activity_stream();
+            }
+
+          }
+        });
+
+      });
+
+  </script>
+
+
+    <?php
+
+
+  }
+
+  /**
+   * Init level functions for email syncronziation management
+   *
+   * @version 1.0
+   * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   */
+  function add_file_upload_input_type($wp_crm_configuration) {
+
+    $wp_crm_configuration['input_types']['file_upload'] = __('File Upload', 'wp_crm');
+
+    return $wp_crm_configuration;
+
+  }
+
+
+}

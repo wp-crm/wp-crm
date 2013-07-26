@@ -1307,49 +1307,70 @@ class WP_CRM_F {
 
       $args = wp_parse_args( $args, array(
         'select_what' => '*',
-        'ids_only' => 'false'
+        'ids_only' => 'false',
+        'order_by' => 'user_registered',
+        'sort_order' => 'DESC',
       ));
+
+      $pr_columns = array(
+        'ID',
+        'user_login',
+        'user_pass',
+        'user_nicename',
+        'user_email',
+        'user_url',
+        'user_registered',
+        'user_activation_key',
+        'user_status',
+        'display_name',
+      );
 
       if($args['ids_only'] == 'true') {
         $args['select_what'] = 'ID';
       }
 
-      $sort_by = ' ORDER BY user_registered DESC ';
       /** Start our SQL, we include the 'WHERE 1' to avoid complex statements later */
 
-      $sql = "SELECT {$args[select_what]} FROM {$wpdb->users} AS u WHERE 1";
+      $select = "SELECT {$args[ 'select_what' ]} FROM {$wpdb->users} AS u ";
 
-      if(!empty($search_vars) && is_array($search_vars)) {
-        foreach($search_vars as $primary_key => $key_terms) {
+      $sort_by = " ";
+
+      $join = " ";
+
+      $where = " WHERE 1 ";
+
+      if(!empty( $search_vars ) && is_array( $search_vars )) {
+
+        foreach( $search_vars as $primary_key => $key_terms ) {
 
           //** Handle search_string differently, it applies to all meta values */
-          if($primary_key == 'search_string') {
+          if( $primary_key == 'search_string' ) {
             /* First, go through the users table */
             $tofind = trim(strtolower($key_terms));
-            if ($tofind){
-              $sql .= " AND (";
-              $sql .= " u.ID IN (SELECT ID FROM {$wpdb->users} WHERE LOWER(display_name) LIKE '%$tofind%' OR LOWER(user_email) LIKE '%$tofind%')";
+            if ( $tofind ){
+              $where .= " AND (";
+              $where .= " u.ID IN (SELECT ID FROM {$wpdb->users} WHERE LOWER(display_name) LIKE '%$tofind%' OR LOWER(user_email) LIKE '%$tofind%')";
               /* Now go through the users meta table */
-              $sql .= " OR u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE LOWER(meta_value) LIKE '%$tofind%')";
-              $sql .= ")";
+              $where .= " OR u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE LOWER(meta_value) LIKE '%$tofind%')";
+              $where .= ")";
             }
             continue;
           }
 
           //** Handle role filtering differently too*/
-          if($primary_key == 'wp_role') {
-            $sql .= " AND (";
+          if( $primary_key == 'wp_role' ) {
+            $where .= " AND (";
             unset($or);
-            foreach($key_terms as $single_term) {
+            foreach( $key_terms as $single_term ) {
               $or = (isset($or) ? " OR " : "");
-              $sql .= "{$or}u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$wpdb->prefix}capabilities' AND meta_value LIKE '%{$single_term}%')";
+              $where .= "{$or}u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$wpdb->prefix}capabilities' AND meta_value LIKE '%{$single_term}%')";
             }
-            $sql .= ")";
+            $where .= ")";
             continue;
           }
 
           //** Build array of actual meta keys and values ot look for */
-          if(is_array($key_terms)) {
+          if( is_array( $key_terms ) ) {
             /** Anything in here is required for the user (it's an OR), so we enclose our statement with () */
             $sql_option_array = array();
             foreach($key_terms as $single_term) {
@@ -1358,29 +1379,37 @@ class WP_CRM_F {
 
             }
             if ($sql_option_array){
-              $sql .= " AND (".  implode(' or ', $sql_option_array).")";
+              $where .= " AND (".  implode(' or ', $sql_option_array).")";
             }
-          }else{
-
+          } else {
             if ($wp_crm['data_structure']['attributes'][$primary_key]['input_type']=='checkbox'){
-              $sql .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$primary_key}' AND (meta_value = 'on' OR meta_value = 'true'))";
+              $where .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$primary_key}' AND (meta_value = 'on' OR meta_value = 'true'))";
             }
           }
 
         }
+
       }
 
-      //** Multi site fix */
-      $id = get_current_blog_id();
-      $blog_prefix = $wpdb->get_blog_prefix($id);
-      $sql .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$blog_prefix}capabilities' )";
+      /** Sorting */
+      if( in_array( $args[ 'order_by' ], $pr_columns ) ) {
+        $sort_by = " ORDER BY u.{$args[ 'order_by' ]} {$args[ 'sort_order' ]} ";
+      } else {
+        /** We can not sort multiple values. So we ignore them */
+        if( empty( $wp_crm['data_structure']['attributes'][$args[ 'order_by' ]][ 'option_keys' ] ) ) {
+          $join = " LEFT JOIN {$wpdb->usermeta} AS um ON um.user_id = u.ID AND um.meta_key = '{$args[ 'order_by' ]}' ";
+          $sort_by = " ORDER BY um.meta_value {$args[ 'sort_order' ]} ";
+        }
+      }
 
-      $sql = $sql . $sort_by;
+      $sql = $select . $join . $where . $sort_by;
+
+      //die( $sql );
 
       if($args['ids_only'] == 'true') {
-        $results = $wpdb->get_col($sql);
+        $results = $wpdb->get_col( $sql );
       } else {
-        $results = $wpdb->get_results($sql);
+        $results = $wpdb->get_results( $sql );
       }
 
       return $results;
@@ -1395,6 +1424,7 @@ class WP_CRM_F {
     *
     */
     static function ajax_table_rows($wp_settings = false) {
+      global $wp_crm;
 
       include WP_CRM_Path . '/core/class_user_list_table.php';
 
@@ -1404,6 +1434,23 @@ class WP_CRM_F {
       $iDisplayStart = $_REQUEST['iDisplayStart'];
       $iColumns = $_REQUEST['iColumns'];
 
+      //** */
+      $args = array();
+      if( !empty( $_REQUEST[ 'sSortDir_0' ] ) ) {
+        $args[ 'sort_order' ] = $_REQUEST[ 'sSortDir_0' ];
+      }
+      if( ( !empty( $_REQUEST[ 'iSortCol_0' ] ) || $_REQUEST[ 'iSortCol_0' ] == '0' ) && !empty( $_REQUEST[ 'sColumns' ] ) ) {
+        $sColumns = explode( ',', $_REQUEST[ 'sColumns' ] );
+        if( !empty( $sColumns[ $_REQUEST[ 'iSortCol_0' ] ] ) ) {
+          $order_by = $sColumns[ $_REQUEST[ 'iSortCol_0' ] ];
+          $order_by = str_replace( 'wp_crm_', '', $order_by );
+          if( key_exists( $order_by, $wp_crm[ 'data_structure' ][ 'attributes' ] ) ) {
+            $args[ 'order_by' ] = $order_by;
+          }
+        }
+
+      }
+
       //** Parse the serialized filters array */
       parse_str($_REQUEST['wp_crm_filter_vars'], $wp_crm_filter_vars);
       $wp_crm_search = $wp_crm_filter_vars['wp_crm_search'];
@@ -1411,7 +1458,7 @@ class WP_CRM_F {
       //* Init table object */
       $wp_list_table = new CRM_User_List_Table("ajax=true&per_page={$per_page}&iDisplayStart={$iDisplayStart}&iColumns={$iColumns}");
 
-      $wp_list_table->prepare_items($wp_crm_search);
+      $wp_list_table->prepare_items($wp_crm_search, $args );
 
       if ( $wp_list_table->has_items() ) {
 
@@ -3099,25 +3146,26 @@ class WP_CRM_F {
       }
 
       ?><tr class="wp_crm_activity_single <?php echo @implode(' ', array_unique($entry_classes)); ?>">
+          <td>
+            <div class="left clearfix">
+              <ul class='message_meta'>
+                <li class='timestamp'>
+                  <span class='time'><?php echo date(get_option('time_format'), strtotime($entry->time)); ?></span>
+                  <span class='date'><?php echo date(get_option('date_format'), strtotime($entry->time)); ?></span>:
+                </li>
+                <?php if($entry_type): ?><li class="entry_type"><?php echo $entry_type; ?> </li><?php endif; ?>
+                <?php if($left_by): ?><li class="by_user">by <?php echo $left_by; ?> </li><?php endif; ?>
+                <li class="wp_crm_log_actions">
+                  <span verify_action="true" instant_hide="true" class="wp_crm_message_quick_action wp_crm_subtle_link" object_id="<?php echo $entry->id; ?>" wp_crm_action="delete_log_entry"><?php _e('Delete', 'wp_crm'); ?></span>
+                </li>
+              </ul>
+            </div>
 
-        <td class="left">
-          <ul class='message_meta'>
-            <li class='timestamp'>
-              <span class='time'><?php echo date(get_option('time_format'), strtotime($entry->time)); ?></span>
-              <span class='date'><?php echo date(get_option('date_format'), strtotime($entry->time)); ?></span>
-            </li>
-            <?php if($entry_type): ?><li class="entry_type"><?php echo $entry_type; ?> </li><?php endif; ?>
-            <?php if($left_by): ?><li class="by_user">by <?php echo $left_by; ?> </li><?php endif; ?>
-            <li class="wp_crm_log_actions">
-              <span verify_action="true" instant_hide="true" class="wp_crm_message_quick_action wp_crm_subtle_link" object_id="<?php echo $entry->id; ?>" wp_crm_action="delete_log_entry"><?php _e('Delete', 'wp_crm'); ?></span>
-            </li>
-          </ul>
+            <div class="right clearfix">
+              <p class="wp_crm_entry_content"><?php echo $entry_text;  ?></p>
+            </div>
+
         </td>
-
-        <td class="right">
-          <p class="wp_crm_entry_content"><?php echo $entry_text;  ?></p>
-        </td>
-
       </tr><?php
 
     }

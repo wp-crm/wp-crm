@@ -216,11 +216,16 @@
    * @todo user_search() should be removed from here since this is a "general" function
    *
    */
-  function prepare_items($wp_crm_search = false) {
+  function prepare_items( $wp_crm_search = false, $args = array() ) {
     global $role, $usersearch;
 
+    $args = wp_parse_args( $args, array(
+      'order_by' => 'user_registered',
+      'sort_order' => 'DESC',
+    ));
+
     if(!isset($this->all_items)) {
-      $this->all_items = WP_CRM_F::user_search( $wp_crm_search);
+      $this->all_items = WP_CRM_F::user_search( $wp_crm_search, $args );
     }
 
      //** Do pagination  */

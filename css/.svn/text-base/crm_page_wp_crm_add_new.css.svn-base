@@ -267,9 +267,38 @@ div.wp_crm_advanced_user_actions.wp-tab-panel {
   display:none;
 }
 .wp_crm_activity_single ul.message_meta  {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
+ul.message_meta li {
+  float: left;
+  margin-right: 5px;
+  width: auto;
+}
+
+ul.message_meta li.wp_crm_log_actions span{
+  color: #5589aa;
+}
+ul.message_meta li:last-child {
+  margin-right: 0;
+}
+
+ul.message_meta li span {
+  float: left;
+}
+
+li.wp_crm_log_actions {margin-top: 5px;}
+
+div.wp_crm_activity_single {
+  }
+
+div.wp_crm_activity_single > div {
+  width: auto !important;
+}
+
+div.wp_crm_activity_single > div.right {
+  border-bottom: 1px solid #DDDDDD;
+}
 
 .wp_crm_activity_single .entry_type,
 .wp_crm_activity_single .by_user,
@@ -279,9 +308,15 @@ div.wp_crm_advanced_user_actions.wp-tab-panel {
   margin-top: 5px;
 }
 
-.wp_crm_activity_single td.right p.wp_crm_entry_content  {
-  padding-top: 5px;
-  padding-right: 10px;
+.wp_crm_activity_single div.right p.wp_crm_entry_content  {
+  padding: 5px;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 10px;
+  margin-bottom: 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.4em;
 }
 
 .wp_crm_activity_single .truncated {
@@ -367,7 +402,7 @@ div.wp_crm_advanced_user_actions.wp-tab-panel {
 
 .wp_crm_activity_single .left {
   vertical-align: top;
-  width: 150px;
+  /*width: 150px;*/
 }
 
 .wp_crm_activity_single .right {

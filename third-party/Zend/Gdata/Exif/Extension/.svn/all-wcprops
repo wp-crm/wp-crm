@@ -1,71 +1,71 @@
 K 25
 svn:wc:ra_dav:version-url
-V 73
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension
+V 71
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension
 END
 Distance.php
 K 25
 svn:wc:ra_dav:version-url
-V 86
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Distance.php
+V 84
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Distance.php
 END
 Exposure.php
 K 25
 svn:wc:ra_dav:version-url
-V 86
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Exposure.php
+V 84
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Exposure.php
 END
 Iso.php
 K 25
 svn:wc:ra_dav:version-url
-V 81
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Iso.php
+V 79
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Iso.php
 END
 FStop.php
 K 25
 svn:wc:ra_dav:version-url
-V 83
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/FStop.php
+V 81
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/FStop.php
 END
 Flash.php
 K 25
 svn:wc:ra_dav:version-url
-V 83
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Flash.php
+V 81
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Flash.php
 END
 Make.php
 K 25
 svn:wc:ra_dav:version-url
-V 82
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Make.php
+V 80
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Make.php
 END
 Tags.php
 K 25
 svn:wc:ra_dav:version-url
-V 82
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Tags.php
+V 80
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Tags.php
 END
 Time.php
 K 25
 svn:wc:ra_dav:version-url
-V 82
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Time.php
+V 80
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Time.php
 END
 Model.php
 K 25
 svn:wc:ra_dav:version-url
-V 83
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/Model.php
+V 81
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/Model.php
 END
 FocalLength.php
 K 25
 svn:wc:ra_dav:version-url
-V 89
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/FocalLength.php
+V 87
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/FocalLength.php
 END
 ImageUniqueId.php
 K 25
 svn:wc:ra_dav:version-url
-V 91
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Extension/ImageUniqueId.php
+V 89
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Extension/ImageUniqueId.php
 END

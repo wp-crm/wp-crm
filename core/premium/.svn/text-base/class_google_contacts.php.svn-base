@@ -1,0 +1,343 @@
+<?php
+/**
+ * Name: Google Contacts
+ * Class: class_google_contacts
+ * Version: 0.1.1
+ * Minimum Core Version: 0.33.0
+ * Description: Create contact forms using shortcodes and keep track of messages in your dashboard.
+ * Feature ID: 30
+ *
+ * Copyright 2012 Usability Dynamics, Inc. <info@usabilitydynamics.com>
+ *
+ */
+
+  add_action( 'wp_crm_init' , array( 'class_google_contacts', 'init' ));
+
+
+  /**
+   * class_contact_messages Class
+   *
+   * @version 0.1.0
+   * @author potaninU@D
+   */
+  class class_google_contacts {
+
+    /**
+     * Initialize.
+     *
+     * @version 0.1.0
+     * @author potaninU@D
+     */
+    function init() {
+
+      add_action( 'wp_crm_user_actions', array( 'class_google_contacts', 'wp_crm_user_actions' ));
+      add_action( 'wp_crm::settings_page::main_tab_bottom', array( 'class_google_contacts', 'settings_page_main_tab_bottom' ));
+
+      add_action( 'wp_ajax_wp_crm_sync_google_contacts', create_function( '', ' die( json_encode( class_google_contacts::sync_google_contacts()) );' ));
+      add_action( 'wp_ajax_wp_crm_sync_google_contacts', create_function( '', ' die( json_encode( class_google_contacts::sync_google_contacts()) );' ));
+
+    }
+
+
+
+    /**
+     * {}
+     *
+     * @version 0.1.0
+     * @author potaninU@D
+     */
+    function sync_google_contacts() {
+      global $wpdb, $current_user;
+
+      $result = class_google_contacts::get_google_contacts();
+
+      if( !$result ) {
+        return array(
+          'success' => 'false'
+        );
+      }
+
+      $counts = array(
+        'created' => '',
+        'updated' => '',
+        'skipped' => ''
+      );
+
+      foreach( (array) $result['contacts'] as $g_user ) {
+
+        if( empty( $g_user->user_email[0] ) ) {
+          $counts[ 'skipped' ][] = true;
+          continue;
+        }
+
+        $data = array(
+          'display_name' => $g_user->display_name,
+          'user_pass' => wp_generate_password(),
+          'user_login' => $g_user->user_email[0],
+          'user_email' => $g_user->user_email[0],
+          'role' => 'subscriber',
+          'description' => 'Imported from Google Contcts',
+        );
+
+        if( $user_id = username_exists( $g_user->user_email[0] ) ) {
+          $data[ 'ID' ] = $user_id;
+        }
+
+        $user_id = wp_insert_user( $data );
+
+        if( is_numeric( $user_id ) ) {
+
+          foreach( (array) $g_user->phone_number as $phone_number ) {
+            update_user_meta( $user_id, 'phone_number', $phone_number );
+          }
+
+          if( count( $g_user->user_email > 1 ) ) {
+            foreach( (array) $g_user->phone_number as $index => $phone_number ) {
+              if( $index === 0 ) {
+                continue;
+              }
+              update_user_meta( $user_id, 'secondary_email', $g_user->edited );
+            };
+          }
+
+          update_user_meta( $user_id, 'organization_name', $g_user->orgName );
+          update_user_meta( $user_id, 'organization_title', $g_user->orgTitle );
+
+          update_user_meta( $user_id, 'google_edited', $g_user->edited );
+          update_user_meta( $user_id, 'google_contact', true );
+          update_user_meta( $user_id, 'google_contact_updated', time() );
+          update_user_meta( $user_id, 'google_contact_source', $current_user->ID );
+
+          if( $data[ 'ID' ] ) {
+            $counts[ 'updated' ][] = $user_id;
+            wp_crm_add_to_user_log( $user_id, sprintf( __( 'User account updated by synchronizing with Google Contacts.', 'wp_crm' ), $wp_crm['google_contacts'][ $current_user->ID ][ 'login' ] ) );
+          } else {
+            $counts[ 'created' ][] = $user_id;
+            wp_crm_add_to_user_log( $user_id, sprintf( __( 'User account created by importing from %1s Google account.', 'wp_crm' ), $wp_crm['google_contacts'][ $current_user->ID ][ 'login' ] ) );
+          }
+
+        }
+
+      }
+
+      return array(
+        'success' => 'true',
+        'updated' => count( $counts[ 'updated' ] ),
+        'created' => count( $counts[ 'created' ] ),
+        'skipped' => count( $counts[ 'skipped' ] )
+      );
+
+    }
+
+
+    /**
+     * {}
+     *
+     * @version 0.1.0
+     * @author potaninU@D
+     */
+    function settings_page_main_tab_bottom() {
+      global $current_user, $wp_crm;
+
+      ?>
+
+      <tr>
+        <th><?php _e( 'Google Contacts' , 'wp_crm'); ?></th>
+        <td>
+          <ul>
+            <li>
+            <label><?php _e( 'Google Username:' , 'wp_crm'); ?></label>
+              <input autocomplete="off" class="regular-text" type="text" value="<?php echo esc_attr( $wp_crm['google_contacts'][ $current_user->ID ][ 'login']); ?>" name="wp_crm[google_contacts][<?php echo  $current_user->ID; ?>][login]" />
+              <label><?php _e( 'Password:' , 'wp_crm'); ?></label>
+              <input autocomplete="off" class="regular-text" type="password" value="<?php echo esc_attr( $wp_crm['google_contacts'][ $current_user->ID ][ 'password']); ?>" name="wp_crm[google_contacts][<?php echo  $current_user->ID; ?>][password]" />
+              <div class="description"><?php _e( 'It is highly recommended you use an application-specific password.', 'wp_crm'); ?></div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <?php
+
+    }
+
+
+    /**
+     * {}
+     *
+     * @version 0.1.0
+     * @author potaninU@D
+     */
+    function wp_crm_user_actions() {
+      global $current_user, $wp_crm;
+
+      if( empty( $wp_crm['google_contacts'][ $current_user->ID ][ 'login' ] ) || empty( $wp_crm['google_contacts'][ $current_user->ID ][ 'password' ] ) ) {
+        return;
+      }
+
+      ?>
+      <script type="text/javascript">
+
+        jQuery(document).ready(function() {
+
+          jQuery( '.wp_crm_sync_google_contacts' ).click(function() {
+
+            jQuery( '.wp_crm_ajax_update_message' ).show().removeClass( 'error' ).addClass( 'updated fade' ).html('<p><?php _e( 'Synchronizing with Google Contacts...' , 'wp_crm' ); ?></p>');
+
+            jQuery.post( ajaxurl, { action: 'wp_crm_sync_google_contacts' }, function( response ) {
+
+              if( response.success != 'true' ) {
+                jQuery( '.wp_crm_ajax_update_message' ).removeClass( 'updated fade' ).addClass( 'error' ).html('<p><?php _e( 'Google Contacts Synchronization failed.' , 'wp_crm' ); ?></p>');
+                return;
+              }
+
+              wp_list_table.fnDraw();
+              jQuery( '.wp_crm_ajax_update_message' ).html( '' ).hide();
+
+
+            }, 'json' );
+          });
+
+        });
+
+      </script>
+      <li class="button wp_crm_sync_google_contacts"><?php _e( 'Google Contacts Update' , 'wp_crm' ); ?></li>
+      <?php
+
+    }
+
+
+    /**
+     * {}
+     *
+     * @version 0.1.0
+     * @author potaninU@D
+     */
+    function create_connection() {
+      global $wp_crm, $current_user;
+
+      $include_path = get_include_path();
+      set_include_path( WP_CRM_Third_Party . '/' );
+
+      require_once 'Zend/Loader.php';
+      Zend_Loader::loadClass('Zend_Gdata');
+      Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
+      Zend_Loader::loadClass('Zend_Http_Client');
+      Zend_Loader::loadClass('Zend_Gdata_Query');
+      Zend_Loader::loadClass('Zend_Gdata_Feed');
+
+      try { $client = Zend_Gdata_ClientLogin::getHttpClient( $wp_crm['google_contacts'][ $current_user->ID ][ 'login' ], $wp_crm['google_contacts'][ $current_user->ID ][ 'password' ], 'cp' ); } catch (Exception $e) { }
+
+      //set_include_path( $include_path );
+
+      return $client;
+
+    }
+
+
+    /**
+     * {}
+     *
+     * @version 0.1.0
+     * @author potaninU@D
+     */
+    function update_google_contact() {
+
+      $doc  = new DOMDocument();
+      $doc->formatOutput = true;
+      $entry = $doc->createElement('atom:entry');
+      $entry->setAttributeNS('http://www.w3.org/2000/xmlns/' ,'xmlns:atom', 'http://www.w3.org/2005/Atom');
+      $entry->setAttributeNS('http://www.w3.org/2000/xmlns/' ,'xmlns:gd', 'http://schemas.google.com/g/2005');
+      $doc->appendChild($entry);
+
+      $name = $doc->createElement('gd:name');
+      $entry->appendChild($name);
+      $fullName = $doc->createElement('gd:fullName', $inputData['name']);
+      $name->appendChild($fullName);
+
+      $arr = explode(',', $inputData['email']);
+
+      foreach ($arr as $a) {
+        $email = $doc->createElement('gd:email');
+        $email->setAttribute('address', $a);
+        $email->setAttribute('rel' ,'http://schemas.google.com/g/2005#work');
+        $entry->appendChild($email);
+      }
+
+      // add org name element
+      $org = $doc->createElement('gd:organization');
+      $org->setAttribute('rel' ,'http://schemas.google.com/g/2005#work');
+      $entry->appendChild($org);
+      $orgName = $doc->createElement('gd:orgName', $inputData['org']);
+      $org->appendChild($orgName);
+
+      // insert entry
+      $entryResult = $gdata->insertEntry($doc->saveXML(), 'http://www.google.com/m8/feeds/contacts/default/full');
+      echo 'The ID of the new entry is: ' . $entryResult->id;
+
+    }
+
+
+    /**
+     * {}
+     *
+     * @version 0.1.0
+     * @author potaninU@D
+     */
+    function get_google_contacts() {
+      global $wp_crm, $current_user;
+
+      $client = class_google_contacts::create_connection();
+
+      if( !$client ) {
+        return false;
+      }
+
+      $gdata = new Zend_Gdata($client);
+      $gdata->setMajorProtocolVersion(3);
+
+      $query = new Zend_Gdata_Query( 'http://www.google.com/m8/feeds/contacts/default/full' );
+      $query->maxResults = 50;
+      $query->setParam('orderby', 'lastmodified');
+      $query->setParam('sortorder', 'descending');
+      $feed = $gdata->getFeed($query);
+
+      $response[ 'title' ] = $feed->title;
+      $response[ 'total' ] = $feed->totalResults;
+
+      foreach($feed as $entry) {
+        $obj = new stdClass;
+
+        $obj->edit = $entry->getEditLink()->href;
+        $obj->display_name = (string) $entry->title;
+        $obj->address = (string) $xml->structuredPostalAddress->formattedAddress;
+
+        $xml = simplexml_load_string( $entry->getXML() );
+
+        foreach ($xml->email as $e) {
+          $obj->user_email[] = (string) $e['address'];
+        }
+
+        foreach ($xml->phoneNumber as $p) {
+          $obj->phone_number[] = (string) $p;
+        }
+
+        foreach ($xml->website as $w) {
+          $obj->website[] = array(
+            'url' => (string) $w['href'],
+            'rel' => (string) $w['rel']
+          );
+        }
+
+        $obj->orgName = (string) $xml->organization->orgName;
+        $obj->orgTitle = (string) $xml->organization->orgTitle;
+        $obj->edited = (string) $xml->edited;
+
+        $response[ 'contacts'][] = $obj;
+
+      }
+
+      return $response;
+
+    }
+
+  }
+

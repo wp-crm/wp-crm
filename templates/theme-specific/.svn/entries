@@ -1,19 +1,15 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/templates/theme-specific
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/templates/theme-specific
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
-
-
-
-
+2013-04-01T14:47:35.815415Z
+828
+antonkorotkov
 
 
 
@@ -24,7 +20,11 @@ andypotanin
 
 
 
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+
+
+
+
+77241a24-6aaf-4773-9f00-7460793fbb7d
 
 twentyeleven.css
 file
@@ -32,10 +32,10 @@ file
 
 
 
-2013-07-26T05:36:53.000000Z
+2013-07-26T05:44:18.000000Z
 2610635fe8034c66557add3989a72809
-2013-04-18T16:44:49.608779Z
-699875
+2011-07-15T13:41:53.678624Z
+530
 andypotanin
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2013-07-26T05:36:53.000000Z
+2013-07-26T05:44:18.000000Z
 0efa0c4c03c9270ffa7552579972f4ed
-2013-04-18T16:44:49.608779Z
-699875
+2011-10-26T20:28:53.665134Z
+610
 andypotanin
 
 
@@ -100,10 +100,10 @@ file
 
 
 
-2013-07-26T05:36:53.000000Z
+2013-07-26T05:44:18.000000Z
 8dedc619f39c2642e694a7e7d19932f4
-2013-04-18T16:44:49.608779Z
-699875
+2012-01-24T17:44:24.081276Z
+668
 andypotanin
 
 
@@ -134,11 +134,11 @@ file
 
 
 
-2013-07-26T05:36:53.000000Z
+2013-07-26T05:44:18.000000Z
 cb772a769a92b5bf7dde539cc09bf098
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-04-01T14:47:35.815415Z
+828
+antonkorotkov
 
 
 

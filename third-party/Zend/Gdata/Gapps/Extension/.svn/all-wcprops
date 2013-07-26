@@ -1,41 +1,41 @@
 K 25
 svn:wc:ra_dav:version-url
-V 74
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Gapps/Extension
+V 72
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Gapps/Extension
 END
 Quota.php
 K 25
 svn:wc:ra_dav:version-url
-V 84
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Gapps/Extension/Quota.php
+V 82
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Gapps/Extension/Quota.php
 END
 Name.php
 K 25
 svn:wc:ra_dav:version-url
-V 83
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Gapps/Extension/Name.php
+V 81
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Gapps/Extension/Name.php
 END
 EmailList.php
 K 25
 svn:wc:ra_dav:version-url
-V 88
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Gapps/Extension/EmailList.php
+V 86
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Gapps/Extension/EmailList.php
 END
 Property.php
 K 25
 svn:wc:ra_dav:version-url
-V 87
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Gapps/Extension/Property.php
+V 85
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Gapps/Extension/Property.php
 END
 Nickname.php
 K 25
 svn:wc:ra_dav:version-url
-V 87
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Gapps/Extension/Nickname.php
+V 85
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Gapps/Extension/Nickname.php
 END
 Login.php
 K 25
 svn:wc:ra_dav:version-url
-V 84
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Gapps/Extension/Login.php
+V 82
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Gapps/Extension/Login.php
 END

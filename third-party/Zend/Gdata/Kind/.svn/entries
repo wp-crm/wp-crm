@@ -1,14 +1,14 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Kind
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/third-party/Zend/Gdata/Kind
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
+2012-04-07T05:17:30.516074Z
+713
 andypotanin
 
 
@@ -24,7 +24,7 @@ andypotanin
 
 
 
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+77241a24-6aaf-4773-9f00-7460793fbb7d
 
 EventEntry.php
 file
@@ -32,10 +32,10 @@ file
 
 
 
-2013-07-26T05:36:50.000000Z
+2013-07-26T05:44:16.000000Z
 3ca48dd8691fec145e7d03b14be8b287
-2013-04-18T16:44:49.608779Z
-699875
+2012-04-07T05:17:30.516074Z
+713
 andypotanin
 
 

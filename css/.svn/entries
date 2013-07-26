@@ -1,19 +1,15 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/css
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/css
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
-
-
-
-
+2013-06-21T13:01:09.958626Z
+849
+maxim
 
 
 
@@ -24,7 +20,11 @@ andypotanin
 
 
 
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+
+
+
+
+77241a24-6aaf-4773-9f00-7460793fbb7d
 
 toplevel_page_wp_crm.css
 file
@@ -32,11 +32,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 e30bfbe0f2670d25d6804651ac1fc772
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-05-30T10:24:29.191959Z
+749
+maxim
 
 
 
@@ -69,11 +69,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
-65269dfd3a7c938a08ff3a0923c1f425
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-07-26T05:44:18.000000Z
+c7c447a007459910ade843cfef4e8755
+2013-06-21T13:01:09.958626Z
+849
+maxim
 
 
 
@@ -95,7 +95,7 @@ andypotanin
 
 
 
-9674
+9850
 
 crm_page_wp_crm_settings.css
 file
@@ -103,11 +103,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 0927e70d26aaa2289bb23ac5c32fdde4
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-12-12T16:06:57.096515Z
+817
+maxim
 
 
 
@@ -137,11 +137,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
-c1e938712e63265285528acaaca238f3
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-07-26T05:44:18.000000Z
+893a269640909199121a94e71b98591b
+2013-05-16T13:53:35.536799Z
+847
+antonkorotkov
 
 
 
@@ -163,7 +163,7 @@ andypotanin
 
 
 
-11946
+12610
 
 crm_page_wp_crm_contact_messages.css
 file
@@ -171,11 +171,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 1756d9bacb0b520de13fd17f764c0a71
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-05-30T10:24:29.191959Z
+749
+maxim
 
 
 
@@ -205,11 +205,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 900ef22c525ac3f246a6c44747acf3bc
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-05-28T16:34:48.539627Z
+736
+maxim
 
 
 
@@ -239,11 +239,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 5c8ea64277b1a34eaf167d3e0d0443f1
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-12-12T16:20:27.775371Z
+818
+maxim
 
 
 

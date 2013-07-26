@@ -1,17 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
-V 63
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif
+V 61
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif
 END
 Entry.php
 K 25
 svn:wc:ra_dav:version-url
-V 73
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Entry.php
+V 71
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Entry.php
 END
 Feed.php
 K 25
 svn:wc:ra_dav:version-url
-V 72
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Exif/Feed.php
+V 70
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Exif/Feed.php
 END

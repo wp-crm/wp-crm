@@ -1,17 +1,41 @@
 K 25
 svn:wc:ra_dav:version-url
-V 48
-/!svn/ver/699875/wp-crm/tags/0.34.2/core/premium
+V 46
+/wp-crm/!svn/ver/851/trunk/wp-crm/core/premium
+END
+class_crm_group_messages.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/wp-crm/!svn/ver/845/trunk/wp-crm/core/premium/class_crm_group_messages.php
+END
+class_google_contacts.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/wp-crm/!svn/ver/803/trunk/wp-crm/core/premium/class_google_contacts.php
+END
+class_crm_advanced_functions.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/wp-crm/!svn/ver/831/trunk/wp-crm/core/premium/class_crm_advanced_functions.php
 END
 class_contact_messages.php
 K 25
 svn:wc:ra_dav:version-url
-V 75
-/!svn/ver/699875/wp-crm/tags/0.34.2/core/premium/class_contact_messages.php
+V 73
+/wp-crm/!svn/ver/851/trunk/wp-crm/core/premium/class_contact_messages.php
 END
 index.php
 K 25
 svn:wc:ra_dav:version-url
-V 58
-/!svn/ver/699875/wp-crm/tags/0.34.2/core/premium/index.php
+V 56
+/wp-crm/!svn/ver/479/trunk/wp-crm/core/premium/index.php
+END
+class_email_sync.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/wp-crm/!svn/ver/646/trunk/wp-crm/core/premium/class_email_sync.php
 END

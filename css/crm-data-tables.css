@@ -9,7 +9,7 @@
   margin-bottom: 15px;
 }
 
- 
+
 td.wp_crm_user_card  {
   min-height: 60px;
   display: block;
@@ -33,9 +33,9 @@ td.wp_crm_user_card  ul li.primary {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables features
  */
- 
- 
- 
+
+
+
 .dataTables_wrapper {
 	position: relative;
 	min-height: 302px;
@@ -118,9 +118,9 @@ table.display {
 	margin: 0 auto;
 	clear: both;
 	width: 100%;
-	
+
 	/* Note Firefox 3.5 and before have a bug with border-collapse
-	 * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 ) 
+	 * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 )
 	 * border-spacing: 0; is one possible option. Conditional-css.com is
 	 * useful for this kind of thing
 	 *
@@ -128,7 +128,7 @@ table.display {
 	 * It subtracts one px relative to the other browsers from the first column, and
 	 * adds one to the end...
 	 *
-	 * If you want that effect I'd suggest setting a border-top/left on th/td's and 
+	 * If you want that effect I'd suggest setting a border-top/left on th/td's and
 	 * then filling in the gaps with other borders.
 	 */
 }
@@ -165,23 +165,23 @@ table.display td.center {
  * DataTables sorting
  */
 
-.sorting_asc {
+#wp-list-table th.sorting_asc {
 	background: url('images/sort_asc.png') no-repeat center right;
 }
 
-.sorting_desc {
+#wp-list-table th.sorting_desc {
 	background: url('images/sort_desc.png') no-repeat center right;
 }
 
-.sorting {
+#wp-list-table th.sorting {
 	background: url('images/sort_both.png') no-repeat center right;
 }
 
-.sorting_asc_disabled {
+#wp-list-table th.sorting_asc_disabled {
 	background: url('images/sort_asc_disabled.png') no-repeat center right;
 }
 
-.sorting_desc_disabled {
+#wp-list-table th.sorting_desc_disabled {
 	background: url('images/sort_desc_disabled.png') no-repeat center right;
 }
 
@@ -321,34 +321,41 @@ td.details {
 }
 
 .paging_full_numbers span.paginate_button:hover {
-	
+
 }
 
 .paging_full_numbers span.paginate_active {
 	background-color: #99B3FF;
   background-color: #7D7D7D;
-  color: #FFFFFF;  
+  color: #FFFFFF;
 }
 
 table.display tr.even.row_selected td {
 	background-color: #B0BED9;
 }
 
-table.display tr.odd_row.row_selected td {    
+table.display tr.odd_row.row_selected td {
 
 }
 
+#wp-list-table th {
+  cursor: pointer;
+}
+
+#wp-list-table th.sorting_disabled {
+  cursor: default;
+}
 
 /*
  * Sorting classes for columns
  */
 /* For the standard odd/even */
 tr.odd_row td.sorting_1 {
-	
+
 }
 
 tr.odd_row td.sorting_2 {
-	
+
 }
 
 /* For the Conditional-CSS grading rows */

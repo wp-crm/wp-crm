@@ -1,11 +1,11 @@
 K 25
 svn:wc:ra_dav:version-url
-V 64
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Http/Client
+V 62
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Http/Client
 END
 Exception.php
 K 25
 svn:wc:ra_dav:version-url
-V 78
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Http/Client/Exception.php
+V 76
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Http/Client/Exception.php
 END

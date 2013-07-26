@@ -1,23 +1,23 @@
 K 25
 svn:wc:ra_dav:version-url
-V 57
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Http
+V 55
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Http
 END
 Client.php
 K 25
 svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Http/Client.php
+V 66
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Http/Client.php
 END
 Exception.php
 K 25
 svn:wc:ra_dav:version-url
-V 71
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Http/Exception.php
+V 69
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Http/Exception.php
 END
 Response.php
 K 25
 svn:wc:ra_dav:version-url
-V 70
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Http/Response.php
+V 68
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Http/Response.php
 END

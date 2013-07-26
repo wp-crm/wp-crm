@@ -1,35 +1,35 @@
 K 25
 svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Health
+V 63
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Health
 END
 ProfileListEntry.php
 K 25
 svn:wc:ra_dav:version-url
-V 86
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Health/ProfileListEntry.php
+V 84
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Health/ProfileListEntry.php
 END
 ProfileListFeed.php
 K 25
 svn:wc:ra_dav:version-url
-V 85
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Health/ProfileListFeed.php
+V 83
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Health/ProfileListFeed.php
 END
 ProfileEntry.php
 K 25
 svn:wc:ra_dav:version-url
-V 82
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Health/ProfileEntry.php
+V 80
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Health/ProfileEntry.php
 END
 ProfileFeed.php
 K 25
 svn:wc:ra_dav:version-url
-V 81
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Health/ProfileFeed.php
+V 79
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Health/ProfileFeed.php
 END
 Query.php
 K 25
 svn:wc:ra_dav:version-url
-V 75
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Health/Query.php
+V 73
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Health/Query.php
 END

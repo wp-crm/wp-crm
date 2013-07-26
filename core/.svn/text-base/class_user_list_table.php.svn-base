@@ -21,6 +21,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
    *
    */
   function CRM_User_List_Table($args = '') {
+    global $wp_crm;
 
     $args = wp_parse_args( $args, array(
       'plural' => '',
@@ -35,6 +36,19 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
     $this->_args = $args;
 
+    $pr_columns = array(
+      'ID',
+      'user_login',
+      'user_pass',
+      'user_nicename',
+      'user_email',
+      'user_url',
+      'user_registered',
+      'user_activation_key',
+      'user_status',
+      'display_name',
+    );
+
     //* Returns columns, hidden, sortable */
     list( $columns, $hidden ) = $this->get_column_info();
 
@@ -48,7 +62,20 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
         $column_visible = 'true';
       }
 
-      $this->aoColumns[] = "{ 'sClass': '{$column_slug} column-{$column_slug}', 'bVisible': {$column_visible}}";
+      //** Determine if column can be been sortable */
+      $column_sortable = 'false';
+      $attr = str_replace( 'wp_crm_', '', $column_slug );
+      if( in_array( $attr, $pr_columns ) ) {
+        $column_sortable = 'true';
+      } else {
+        if( key_exists( $attr, $wp_crm[ 'data_structure' ][ 'attributes' ] ) ) {
+          if( empty( $wp_crm['data_structure']['attributes'][$attr][ 'option_keys' ] ) ) {
+            $column_sortable = 'true';
+          }
+        }
+      }
+
+      $this->aoColumns[] = "{ 'sClass': '{$column_slug} column-{$column_slug}', 'bVisible': {$column_visible}, 'bSortable': {$column_sortable}}";
       $this->aoColumnDefs[] = "{ 'sName': '{$column_slug}', 'aTargets': [{$column_count}]}";
       $this->column_ids[$column_count] = $column_slug;
       $column_count++;
@@ -65,11 +92,16 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
    * @todo Needs to be updated to handle the AJAX requests.
    *
    */
-  function prepare_items($wp_crm_search = false) {
+  function prepare_items( $wp_crm_search = false, $args = array() ) {
     global $role, $usersearch;
 
+    $args = wp_parse_args( $args, array(
+      'order_by' => 'user_registered',
+      'sort_order' => 'DESC',
+    ));
+
     if(!isset($this->all_items)) {
-      $this->all_items = WP_CRM_F::user_search( $wp_crm_search );
+      $this->all_items = WP_CRM_F::user_search( $wp_crm_search, $args );
     }
 
     //** Get User IDs */

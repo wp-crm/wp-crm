@@ -1,17 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
-V 62
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Geo
+V 60
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Geo
 END
 Entry.php
 K 25
 svn:wc:ra_dav:version-url
-V 72
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Geo/Entry.php
+V 70
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Geo/Entry.php
 END
 Feed.php
 K 25
 svn:wc:ra_dav:version-url
-V 71
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Gdata/Geo/Feed.php
+V 69
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Gdata/Geo/Feed.php
 END

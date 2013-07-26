@@ -1,15 +1,16 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/third-party/dataTables
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/third-party/dataTables
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
+2011-10-08T04:57:55.417956Z
+597
 andypotanin
+has-props
 
 
 
@@ -23,8 +24,7 @@ andypotanin
 
 
 
-
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+77241a24-6aaf-4773-9f00-7460793fbb7d
 
 jquery.dataTables.min.js
 file
@@ -32,10 +32,10 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:17.000000Z
 02d6c0c7320b05d0ebb7782f6cf4013f
-2013-04-18T16:44:49.608779Z
-699875
+2011-07-29T02:27:29.148237Z
+543
 andypotanin
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:17.000000Z
 6ffd26a7baed720ea41646c2b319c31d
-2013-04-18T16:44:49.608779Z
-699875
+2011-10-08T04:57:55.417956Z
+597
 andypotanin
 
 

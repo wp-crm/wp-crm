@@ -1,19 +1,15 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/core
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/core
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
-
-
-
-
+2013-07-17T15:01:42.183585Z
+852
+theamok
 
 
 
@@ -24,7 +20,11 @@ andypotanin
 
 
 
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+
+
+
+
+77241a24-6aaf-4773-9f00-7460793fbb7d
 
 connections
 dir
@@ -35,11 +35,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
-abda40f42fed498f09cf81d958f3cb98
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-07-26T05:44:18.000000Z
+617b2cb1fc1da1d45af4a2536f38b7c8
+2013-07-17T15:01:42.183585Z
+852
+theamok
 
 
 
@@ -61,7 +61,7 @@ andypotanin
 
 
 
-37333
+37446
 
 class_functions.php
 file
@@ -69,11 +69,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
-aa6725e8b3697b92ac6c3569aa7512ed
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-07-26T05:44:18.000000Z
+3a61efa1329bec7cfb23b94257eccf09
+2013-06-21T13:01:09.958626Z
+849
+maxim
 
 
 
@@ -95,7 +95,7 @@ andypotanin
 
 
 
-124267
+125926
 
 class_ud.php
 file
@@ -103,11 +103,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 d5451988e64b7d1bd87dc7c15193a249
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-12-06T16:19:38.452217Z
+810
+rotcod
 
 
 
@@ -137,11 +137,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 cd5e3d7710155be261aad12d2210600c
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-07-24T12:49:34.030984Z
+791
+maxim
 
 
 
@@ -171,11 +171,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
-967c6c1cdecf49a58421bb375dce50d2
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-07-26T05:44:18.000000Z
+d5177f19645d6ff78800ed23f104d5d3
+2013-06-21T13:01:09.958626Z
+849
+maxim
 
 
 
@@ -197,7 +197,7 @@ andypotanin
 
 
 
-13879
+14835
 
 ui
 dir
@@ -208,11 +208,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
-394e4847ab7d8f029f77ce6fc3b071c9
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-07-26T05:44:18.000000Z
+fef5a6d4776b69cd0d1b196cd5e7d022
+2013-06-21T13:01:09.958626Z
+849
+maxim
 
 
 
@@ -234,7 +234,7 @@ andypotanin
 
 
 
-10682
+10833
 
 premium
 dir

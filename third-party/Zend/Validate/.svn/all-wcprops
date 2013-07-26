@@ -1,29 +1,29 @@
 K 25
 svn:wc:ra_dav:version-url
-V 61
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Validate
+V 59
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Validate
 END
 Hostname.php
 K 25
 svn:wc:ra_dav:version-url
-V 74
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Validate/Hostname.php
+V 72
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Validate/Hostname.php
 END
 Interface.php
 K 25
 svn:wc:ra_dav:version-url
-V 75
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Validate/Interface.php
+V 73
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Validate/Interface.php
 END
 Abstract.php
 K 25
 svn:wc:ra_dav:version-url
-V 74
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Validate/Abstract.php
+V 72
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Validate/Abstract.php
 END
 Ip.php
 K 25
 svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/Zend/Validate/Ip.php
+V 66
+/wp-crm/!svn/ver/713/trunk/wp-crm/third-party/Zend/Validate/Ip.php
 END

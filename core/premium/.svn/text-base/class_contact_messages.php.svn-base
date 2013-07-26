@@ -2,7 +2,7 @@
 /*
 Name: Shortcode Contact Forms
 Class: class_contact_messages
-Version: 0.2.3
+Version: 0.2.5
 Minimum Core Version: 0.33.0
 Description: Create contact forms using shortcodes and keep track of messages in your dashboard.
 Feature ID: 12
@@ -596,7 +596,9 @@ class class_contact_messages {
 
     extract($form_settings);
 
-    $form = $wp_crm['wp_crm_contact_system_data'][$form_slug];
+    $form = wp_parse_args( $wp_crm['wp_crm_contact_system_data'][$form_slug], array(
+      'request_method' => 'GET',
+    ) );
 
     if(empty($form['fields'])) {
       return false;
@@ -605,7 +607,7 @@ class class_contact_messages {
     WP_CRM_F::force_script_inclusion('jquery-ui-datepicker');
     WP_CRM_F::force_script_inclusion('wp_crm_profile_editor');
 
-    $wp_crm_nonce = md5(NONCE_KEY . $form_slug);
+    $wp_crm_nonce = md5(NONCE_KEY . $form_slug . rand( 10000, 99999 ) );
 
     $wpc_form_id = 'wpc_' . $wp_crm_nonce . '_form';
 
@@ -684,6 +686,7 @@ class class_contact_messages {
     </div>
   </li>
   <?php } ?>
+  <?php do_action('wp_crm_after_form_'.$form_slug, $form_settings); ?>
     <li class="wp_crm_form_response"><div class="wp_crm_response_text" style="display:none;"></li>
     <li class="wp_crm_submit_row">
       <div class="control-group">
@@ -808,6 +811,7 @@ class class_contact_messages {
         jQuery.ajax({
           url: "<?php echo admin_url('admin-ajax.php'); ?>",
           dataType: "json",
+          type: "<?php echo $form['request_method']; ?>",
           data: params,
           cache: false,
           success: function(result) {
@@ -1140,7 +1144,7 @@ class class_contact_messages {
       $notification_info['profile_link'] = admin_url("admin.php?page=wp_crm_add_new&user_id={$user_id}");
 
       /** Add extra filters */
-      $maybe_notification_info = apply_filters('wp_crm_notification_info', $notification_info, $associated_object);
+      $maybe_notification_info = apply_filters('wp_crm_notification_info', $notification_info, $associated_object, $confirmed_form_slug);
 
       //** Make sure our array wasn't overwritten by a poorly written hooked in function, it shuold never be blank */
       if(!empty($maybe_notification_info) || !is_array($maybe_notification_info)) {
@@ -1149,6 +1153,8 @@ class class_contact_messages {
 
       //** Pass the trigger and array of notification arguments to sender function */
       wp_crm_send_notification($confirmed_form_slug, $notification_info);
+
+      do_action('process_crm_message_'.$confirmed_form_slug);
 
     }
 
@@ -1232,6 +1238,14 @@ class class_contact_messages {
                 <span class="description"><?php _e( 'If new user created, assign this role.', 'wp_crm' ); ?></span>
              </li>
 
+             <li>
+                <label for=""><?php _e( 'Method:', 'wp_crm' ); ?></label>
+                <select id="" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][request_method]">
+                  <option value="GET" <?php echo $data['request_method'] == 'GET' ? 'selected="selected"' : ''; ?>>GET</option>
+                  <option value="POST" <?php echo $data['request_method'] == 'POST' ? 'selected="selected"' : ''; ?>>POST</option>
+                </select>
+                <span class="description"><?php _e( 'Form request method.', 'wp_crm' ); ?></span>
+             </li>
 
               <li class="wp_crm_checkbox_on_left">
                 <input <?php checked($data['message_field'], 'on'); ?> id="message_<?php echo $row_hash; ?>" type="checkbox"  name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][message_field]"  value="on"  value="<?php echo $data['message_field']; ?>" />

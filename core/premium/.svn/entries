@@ -1,14 +1,75 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/core/premium
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/core/premium
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
+2013-06-28T12:16:13.348200Z
+851
+antonkorotkov
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+77241a24-6aaf-4773-9f00-7460793fbb7d
+
+class_crm_group_messages.php
+file
+
+
+
+
+2013-07-26T05:44:18.000000Z
+69c42b5b8d8d6d2546038f912e7c30ac
+2013-05-06T15:44:00.511311Z
+845
+maxim
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+31839
+
+class_google_contacts.php
+file
+
+
+
+
+2013-07-26T05:44:18.000000Z
+ee975c6d7a9fd839d61e252b8047c929
+2012-08-14T21:48:39.252455Z
+803
 andypotanin
 
 
@@ -24,7 +85,48 @@ andypotanin
 
 
 
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+
+
+
+
+
+
+
+10897
+
+class_crm_advanced_functions.php
+file
+
+
+
+
+2013-07-26T05:44:18.000000Z
+fb34e404a74f151d4ff2718c33cef64a
+2013-04-02T15:21:52.826968Z
+831
+antonkorotkov
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16356
 
 class_contact_messages.php
 file
@@ -32,11 +134,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
-122a56eb02d49083e9ad5d3b30b3b182
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2013-07-26T05:44:18.000000Z
+59763b08b7a9b8ba6b2aa49f84c663aa
+2013-06-28T12:16:13.348200Z
+851
+antonkorotkov
 
 
 
@@ -58,7 +160,7 @@ andypotanin
 
 
 
-60463
+61397
 
 index.php
 file
@@ -66,11 +168,11 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 d41d8cd98f00b204e9800998ecf8427e
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2011-03-29T16:49:40.681785Z
+417
+twincitiestech
 
 
 
@@ -93,4 +195,38 @@ andypotanin
 
 
 0
+
+class_email_sync.php
+file
+
+
+
+
+2013-07-26T05:44:18.000000Z
+63cf9a96f566b27e2df7b29f2d659c8a
+2011-12-12T17:02:37.818185Z
+646
+andypotanin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11472
 

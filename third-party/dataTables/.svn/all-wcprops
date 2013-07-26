@@ -1,17 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
-V 58
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/dataTables
+V 56
+/wp-crm/!svn/ver/597/trunk/wp-crm/third-party/dataTables
 END
 jquery.dataTables.min.js
 K 25
 svn:wc:ra_dav:version-url
-V 83
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/dataTables/jquery.dataTables.min.js
+V 81
+/wp-crm/!svn/ver/543/trunk/wp-crm/third-party/dataTables/jquery.dataTables.min.js
 END
 jquery.dataTables.js
 K 25
 svn:wc:ra_dav:version-url
-V 79
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/dataTables/jquery.dataTables.js
+V 77
+/wp-crm/!svn/ver/597/trunk/wp-crm/third-party/dataTables/jquery.dataTables.js
 END

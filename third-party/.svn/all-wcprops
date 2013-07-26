@@ -1,23 +1,23 @@
 K 25
 svn:wc:ra_dav:version-url
-V 47
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party
+V 45
+/wp-crm/!svn/ver/736/trunk/wp-crm/third-party
 END
 jquery.smookie.js
 K 25
 svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/jquery.smookie.js
+V 63
+/wp-crm/!svn/ver/552/trunk/wp-crm/third-party/jquery.smookie.js
 END
 swfobject.js
 K 25
 svn:wc:ra_dav:version-url
-V 60
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/swfobject.js
+V 58
+/wp-crm/!svn/ver/597/trunk/wp-crm/third-party/swfobject.js
 END
 jsmin.php
 K 25
 svn:wc:ra_dav:version-url
-V 57
-/!svn/ver/699875/wp-crm/tags/0.34.2/third-party/jsmin.php
+V 55
+/wp-crm/!svn/ver/641/trunk/wp-crm/third-party/jsmin.php
 END

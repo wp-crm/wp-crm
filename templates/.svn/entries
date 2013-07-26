@@ -1,19 +1,15 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/templates
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/templates
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
-
-
-
-
+2013-04-01T14:47:35.815415Z
+828
+antonkorotkov
 
 
 
@@ -24,7 +20,11 @@ andypotanin
 
 
 
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+
+
+
+
+77241a24-6aaf-4773-9f00-7460793fbb7d
 
 wp-crm-default-styles.css
 file
@@ -32,11 +32,11 @@ file
 
 
 
-2013-07-26T05:36:53.000000Z
+2013-07-26T05:44:18.000000Z
 6341c99b1508cc77a263603c39619f59
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
+2012-05-31T14:32:28.320857Z
+758
+theamok
 
 
 

@@ -1,19 +1,15 @@
 10
 
 dir
-746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.34.2/third-party
-http://plugins.svn.wordpress.org
+852
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm/trunk/wp-crm/third-party
+https://imcrthy@ud.svn.beanstalkapp.com/wp-crm
 
 
 
-2013-04-18T16:44:49.608779Z
-699875
-andypotanin
-
-
-
-
+2012-05-28T16:34:48.539627Z
+736
+maxim
 
 
 
@@ -24,7 +20,11 @@ andypotanin
 
 
 
-b8457f37-d9ea-0310-8a92-e5e31aec5664
+
+
+
+
+77241a24-6aaf-4773-9f00-7460793fbb7d
 
 jquery.smookie.js
 file
@@ -32,10 +32,10 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 9f565054d980f4142647d0d04f45f49a
-2013-04-18T16:44:49.608779Z
-699875
+2011-08-11T19:37:48.555514Z
+552
 andypotanin
 
 
@@ -72,10 +72,10 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 84e07fa8222e5bf3f356cd7cec454b61
-2013-04-18T16:44:49.608779Z
-699875
+2011-10-08T04:57:55.417956Z
+597
 andypotanin
 
 
@@ -109,10 +109,10 @@ file
 
 
 
-2013-07-26T05:36:52.000000Z
+2013-07-26T05:44:18.000000Z
 1478affdd1d291c884b2e04aa38ae024
-2013-04-18T16:44:49.608779Z
-699875
+2011-12-08T03:52:47.365830Z
+641
 andypotanin
 
 
