@@ -1,17 +1,17 @@
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/premium
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/premium
 END
 class_contact_messages.php
 K 25
 svn:wc:ra_dav:version-url
 V 75
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/premium/class_contact_messages.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/premium/class_contact_messages.php
 END
 index.php
 K 25
 svn:wc:ra_dav:version-url
 V 58
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/premium/index.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/premium/index.php
 END

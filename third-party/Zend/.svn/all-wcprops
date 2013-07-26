@@ -1,41 +1,41 @@
 K 25
 svn:wc:ra_dav:version-url
 V 52
-/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend
+/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend
 END
 Exception.php
 K 25
 svn:wc:ra_dav:version-url
 V 66
-/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Exception.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Exception.php
 END
 Uri.php
 K 25
 svn:wc:ra_dav:version-url
 V 60
-/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Uri.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Uri.php
 END
 Gdata.php
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Gdata.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Gdata.php
 END
 Version.php
 K 25
 svn:wc:ra_dav:version-url
 V 64
-/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Version.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Version.php
 END
 Loader.php
 K 25
 svn:wc:ra_dav:version-url
 V 63
-/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Loader.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Loader.php
 END
 Registry.php
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/!svn/ver/692347/wp-crm/tags/0.34.0/third-party/Zend/Registry.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/third-party/Zend/Registry.php
 END

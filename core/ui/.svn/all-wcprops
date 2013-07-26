@@ -1,35 +1,35 @@
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/ui
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/ui
 END
 toplevel_page_wp_crm.php
 K 25
 svn:wc:ra_dav:version-url
 V 68
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/ui/toplevel_page_wp_crm.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/ui/toplevel_page_wp_crm.php
 END
 crm_page_wp_crm_detailed_logs.php
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/ui/crm_page_wp_crm_detailed_logs.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/ui/crm_page_wp_crm_detailed_logs.php
 END
 crm_page_wp_crm_settings.php
 K 25
 svn:wc:ra_dav:version-url
 V 72
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/ui/crm_page_wp_crm_settings.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/ui/crm_page_wp_crm_settings.php
 END
 crm_page_wp_crm_add_new.php
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/ui/crm_page_wp_crm_add_new.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/ui/crm_page_wp_crm_add_new.php
 END
 crm_metaboxes.php
 K 25
 svn:wc:ra_dav:version-url
 V 61
-/!svn/ver/692347/wp-crm/tags/0.34.0/core/ui/crm_metaboxes.php
+/!svn/ver/692728/wp-crm/tags/0.34.1/core/ui/crm_metaboxes.php
 END

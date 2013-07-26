@@ -350,19 +350,19 @@ class WP_CRM_F {
       $own_profile = true;
     }
 
-    /* All profiles */
+        /* All profiles */
     if(count($wp_filter['personal_options'])) {
-      add_meta_box( 'wp_crm_personal_options', __('Personal Options', 'wp_crm') , function($object) {  do_action('personal_options'); } , 'crm_page_wp_crm_add_new', 'normal', 'default');
+      add_meta_box( 'wp_crm_personal_options', __('Personal Options', 'wp_crm') , array('WP_CRM_F', 'personal_options') , 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
 
     /* Non-self profile */
     if(!$own_profile && count($wp_filter['edit_user_profile'])) {
-      add_meta_box( 'wp_crm_edit_self_profile',  __('Additional Settings', 'wp_crm'), function($object) {  do_action('edit_user_profile'); } , 'crm_page_wp_crm_add_new', 'normal', 'default');
+      add_meta_box( 'wp_crm_edit_self_profile',  __('Additional Settings', 'wp_crm'), array('WP_CRM_F', 'edit_user_profile') , 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
 
     /* Self Profile  - Included into Special Actions box */
-    if($own_profile && (count($wp_filter['profile_personal_options']))) {
-      //add_meta_box( 'wp_crm_edit_user_profile',  __('Additional Settings', 'wp_crm') , function($object) {   do_action('profile_personal_options'); }, 'crm_page_wp_crm_add_new', 'normal', 'default');
+    if($own_profile && (count($wp_filter['show_user_profile']) || count($wp_filter['profile_personal_options']))) {
+      //add_meta_box( 'wp_crm_edit_user_profile',  __('Additional Settings', 'wp_crm') , function($object) {  do_action('edit_user_profile'); do_action('profile_personal_options'); }, 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
 
   }
