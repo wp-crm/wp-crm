@@ -2,7 +2,7 @@
 /*
 Name: Shortcode Contact Forms
 Class: class_contact_messages
-Version: 0.2.2
+Version: 0.2.3
 Minimum Core Version: 0.33.0
 Description: Create contact forms using shortcodes and keep track of messages in your dashboard.
 Feature ID: 12
@@ -80,7 +80,7 @@ class class_contact_messages {
     $wp_crm_contact_messages_filter = apply_filters('wp_crm_messages_show_filter', $wp_crm_contact_messages_filter);
 
     if($wp_crm_contact_messages_filter) {
-      add_meta_box('wp_crm_messages_filter', __('Filter') , array('class_contact_messages','metabox_filter'), 'crm_page_wp_crm_contact_messages', 'normal', 'default');
+      add_meta_box('wp_crm_messages_filter', __( 'Filter', 'wp_crm' ) , array('class_contact_messages','metabox_filter'), 'crm_page_wp_crm_contact_messages', 'normal', 'default');
     }
 
    }
@@ -172,7 +172,7 @@ class class_contact_messages {
         </li>
 
       <?php if(is_array($contact_forms)) {  ?>
-        <li class="wpp_crm_filter_section_title"><?php _e('Originating Form'); ?></li>
+        <li class="wpp_crm_filter_section_title"><?php _e( 'Originating Form', 'wp_crm' ); ?></li>
       <?php foreach($contact_forms as $form_slug => $form_data) { ?>
 
         <li>
@@ -192,7 +192,7 @@ class class_contact_messages {
 
     <div class="major-publishing-actions">
       <div class="publishing-action">
-        <?php submit_button( __('Filter Results'), 'button', false, false, array('id' => 'search-submit') ); ?>
+        <?php submit_button( __( 'Filter Results', 'wp_crm' ), 'button', false, false, array('id' => 'search-submit') ); ?>
       </div>
       <br class='clear' />
     </div>
@@ -402,15 +402,15 @@ class class_contact_messages {
               <li><?php echo sprintf(__('Related %s:','wp_crm'), $post_type->labels->singular_name); ?> <a href="<?php echo admin_url("post.php?post={$associated_object->post_ID}&action=edit"); ?>" target="_blank"><?php echo $associated_object->post_title; ?></a></li>
               <?php } ?>
 
-              <li><?php echo human_time_diff(strtotime($object['time'])); ?> <?php _e('ago'); ?>.
-                <?php if($additional_messages) { echo '<a href="' . admin_url("admin.php?page=wp_crm_add_new&user_id=$user_id") . '">' . $additional_messages . ' ' . __('other messages.') . '</a>'; }  ?>
+              <li><?php echo human_time_diff(strtotime($object['time'])); ?> <?php _e( 'ago', 'wp_crm' ); ?>.
+                <?php if($additional_messages) { echo '<a href="' . admin_url("admin.php?page=wp_crm_add_new&user_id=$user_id") . '">' . $additional_messages . ' ' . __( 'other messages.', 'wp_crm' ) . '</a>'; }  ?>
               </li>
             </ul>
 
             <?php
 
             $row_actions = array(
-              'trash_message'=>__('Trash')
+              'trash_message'=>__( 'Trash', 'wp_crm' )
             );
 
             if($object['status'] != 'archived') {
@@ -495,7 +495,7 @@ class class_contact_messages {
 
   function settings_page_nav($current) {
     $current['contact_messages']['slug'] = 'contact_messages';
-    $current['contact_messages']['title'] = __('Shortcode Forms', 'wpp');
+    $current['contact_messages']['title'] = __('Shortcode Forms', 'wp_crm');
 
     return $current;
 
@@ -521,8 +521,8 @@ class class_contact_messages {
       'display_notes' => 'false',
       'require_login_for_existing_users' => 'true',
       'use_current_user' => 'true',
-      'success_message' => __('Your message has been sent. Thank you.'),
-      'submit_text' => __('Submit')
+      'success_message' => __( 'Your message has been sent. Thank you.', 'wp_crm' ),
+      'submit_text' => __( 'Submit', 'wp_crm' )
     ), $atts );
 
 
@@ -1200,9 +1200,9 @@ class class_contact_messages {
      <table id="wp_crm_wp_crm_contact_system_data" class="form-table wp_crm_form_table ud_ui_dynamic_table widefat">
       <thead>
         <tr>
-           <th class="wp_crm_contact_form_header_col"><?php _e('Form Settings','wpp') ?></th>
-           <th class="wp_crm_contact_form_attributes_col"><?php _e('Fields','wpp') ?></th>
-          <?php /* <th class="wp_crm_settings_col"><?php _e('Trigger Actions','wpp') ?></th> */ ?>
+           <th class="wp_crm_contact_form_header_col"><?php _e( 'Form Settings', 'wp_crm' ) ?></th>
+           <th class="wp_crm_contact_form_attributes_col"><?php _e( 'Fields', 'wp_crm' ) ?></th>
+          <?php /* <th class="wp_crm_settings_col"><?php _e( 'Trigger Actions','wp_crm' ) ?></th> */ ?>
           <th class="wp_crm_delete_col">&nbsp;</th>
           </tr>
       </thead>
@@ -1224,12 +1224,12 @@ class class_contact_messages {
 
 
               <li>
-                <label for=""><?php _e('Role:'); ?></label>
+                <label for=""><?php _e( 'Role:', 'wp_crm' ); ?></label>
                 <select id="" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][new_user_role]">
                   <option value=""> - </option>
                   <?php wp_dropdown_roles($data['new_user_role']); ?>
                 </select>
-                <span class="description"><?php _e('If new user created, assign this role.'); ?></span>
+                <span class="description"><?php _e( 'If new user created, assign this role.', 'wp_crm' ); ?></span>
              </li>
 
 
@@ -1293,7 +1293,7 @@ class class_contact_messages {
           </td>
           */ ?>
 
-          <td valign="middle"><span class="wp_crm_delete_row  button"><?php _e('Delete','wpp') ?></span></td>
+          <td valign="middle"><span class="wp_crm_delete_row  button"><?php _e( 'Delete', 'wp_crm' ) ?></span></td>
         </tr>
 
       <?php endforeach; ?>
@@ -1301,7 +1301,7 @@ class class_contact_messages {
       <tfoot>
         <tr>
           <td colspan='4'>
-          <input type="button" class="wp_crm_add_row button-secondary" value="<?php _e('Add Row','wpp') ?>" />
+          <input type="button" class="wp_crm_add_row button-secondary" value="<?php _e( 'Add Row', 'wp_crm' ) ?>" />
           </td>
         </tr>
       </tfoot>
@@ -1313,14 +1313,14 @@ class class_contact_messages {
 
       <table class='form-table'>
         <tr>
-          <th><?php _e('Options'); ?></th>
+          <th><?php _e( 'Options', 'wp_crm' ); ?></th>
           <td>
             <ul>
 
               <li>
-                <label for="wp_crm_new_contact_role"><?php _e('Default role to use for new contacts: '); ?></label>
+                <label for="wp_crm_new_contact_role"><?php _e( 'Default role to use for new contacts:', 'wp_crm' ); ?> </label>
                  <select id="wp_crm_new_contact_role" name="wp_crm[configuration][new_contact_role]"><option value=""> - </option><?php wp_dropdown_roles($wp_crm['configuration']['new_contact_role']); ?></select>
-                 <div class="description"><?php _e('WP-CRM creates user profiles, if only temporary, to store inquiries and messages from contact forms.  ', 'wp_crm'); ?></div>
+                 <div class="description"><?php _e('WP-CRM creates user profiles, if only temporary, to store inquiries and messages from contact forms.', 'wp_crm'); ?>  </div>
               </li>
             </ul>
           </td>

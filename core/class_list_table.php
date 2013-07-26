@@ -127,7 +127,7 @@
 
         "aoColumns": [<?php echo implode(",", $this->aoColumns); ?>],
         "fnDrawCallback": function(data) {
-          wp_list_table_do_columns();        
+          wp_list_table_do_columns();
         }
       });
 
@@ -143,13 +143,13 @@
 
 
     });
-    
+
     //** Cycle through rows and update the odd / even classes */
     function wp_list_table_rebrand_rows() {
       jQuery("#wp-list-table .wp_crm_row").removeClass("even_row odd_row");
       jQuery("#wp-list-table .wp_crm_row:odd").addClass("odd_row");
       jQuery("#wp-list-table .wp_crm_row:even").addClass("even_row");
-      
+
     }
 
     //** Check which columns are hidden, and hide data table columns */
@@ -157,7 +157,7 @@
 
       var visible_columns = jQuery('.hide-column-tog').filter(':checked').map(function() { return jQuery(this).val(); });
       var hidden_columns = jQuery('.hide-column-tog').filter(':not(:checked)').map(function() { return jQuery(this).val(); });
-      
+
       jQuery.each(hidden_columns, function(key, row_class) {
         jQuery('#wp-list-table .' + row_class).hide();
       });
@@ -305,7 +305,7 @@
     //** DataTables expects a set number of columns */
 
     $result[0] =  '';
-    $result[1] =  __( 'Nothing found.' );
+    $result[1] =  __( 'Nothing found.', 'wp_crm' );
 
     if(count($result) < $this->_args['iColumns']) {
 

@@ -51,7 +51,7 @@
     'View Profiles' => __('View a user\'s profile.', 'wp_crm'),
     'Add User Messages' => __('Add to correspondence thread on a user\'s profile.', 'wp_crm'),
     'Send Group Message' => __('Send a group message to users.', 'wp_crm'),
-    'Perform Advanced Functions' => __('Perform advanced functions such as mergins users.', 'wp_crm'),
+    'Perform Advanced Functions' => __('Perform advanced functions such as merging users.', 'wp_crm'),
     'Change Passwords' => __('Change passwords of other users. This is only checked if the user can edit users in the first place.', 'wp_crm'),
     'Change Color Scheme' => __('Change color scheme. This is only checked if the user can edit users in the first place.', 'wp_crm')
   );

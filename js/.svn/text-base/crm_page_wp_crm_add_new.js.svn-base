@@ -72,7 +72,11 @@ jQuery( document ).ready( function() {
           /* remove validation state */
           jQuery( obj ).attr('disabled', false).parent().removeClass( "email_validating" );
         });
+      }else{
+        /** Empty field is valid of course if it is not required */
+        jQuery( obj ).addClass( "email_validated" ).parent().addClass( "email_validated" );
       }
+
   });
 
 

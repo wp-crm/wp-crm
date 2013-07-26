@@ -375,7 +375,7 @@ class WP_CRM_F {
 
    function check_email_for_duplicates($email,$user_id){
      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-       return __("Invalid email");
+       return __( "Invalid email", 'wp_crm' );
      }
 
      $id = email_exists($email);
@@ -390,7 +390,7 @@ class WP_CRM_F {
           ($id != $user_id)                   /* or we've found duplicate not for current user_id */
         )
      ){
-       return __("Email already exists");
+       return __( "Email already exists", 'wp_crm' );
      }
 
      return false;
@@ -774,7 +774,7 @@ class WP_CRM_F {
       if(!empty($wp_crm['notifications'][$slug])) {
         return json_encode($wp_crm['notifications'][$slug]);;
       } else {
-        return json_encode(array('error' => __('Notification template not found.')));
+        return json_encode(array('error' => __('Notification template not found.', 'wp_crm')));
       }
     }
 
@@ -1960,6 +1960,8 @@ class WP_CRM_F {
       $attribute['input_type'] = $default_input_type;
     }
 
+    $class[] = 'wp_crm_'.$slug.'_field';
+
     if($attribute['input_type'] == 'text') {
       $class[] = 'regular-text';
     }
@@ -1983,6 +1985,10 @@ class WP_CRM_F {
 
     if($attribute['required'] == 'true') {
       $class[] = 'wp_crm_required_field';
+    }
+
+    if ($slug=='user_email'){
+      $class[] = 'email_validated';
     }
 
     if($attribute['has_options']) {
@@ -2020,7 +2026,7 @@ class WP_CRM_F {
         foreach($values as $rand => $value_data) {  ?>
         <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
 
-        <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?><?php echo (($slug=='user_email' && !empty($value_data['value']))?' email_validated':'');?>" type="<?php echo $attribute['input_type']; ?>" value="<?php echo ($slug!='user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+        <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="'.$class.'"' : '' ; ?> <?php echo 'type="'.$attribute['input_type'].'"'; ?> value="<?php echo ($slug!='user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
 
         <?php if($attribute['has_options']) { ?>
           <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> class="wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
@@ -2319,7 +2325,7 @@ class WP_CRM_F {
         $wp_crm['configuration']['default_sender_email'] = "CRM <$assumed_email>";
         $wp_crm['configuration']['primary_user_attribute'] = 'display_name';
 
-        $wp_crm['wp_crm_contact_system_data']['example_form']['title'] = __('Example Contact Form', 'wp_crm');
+        $wp_crm['wp_crm_contact_system_data']['example_form']['title'] = __('Example Shortcode Form', 'wp_crm');
         $wp_crm['wp_crm_contact_system_data']['example_form']['full_shortcode'] = '[wp_crm_form form=example_contact_form]';
         $wp_crm['wp_crm_contact_system_data']['example_form']['current_form_slug'] = 'example_contact_form';
         $wp_crm['wp_crm_contact_system_data']['example_form']['message_field'] = 'on';
@@ -2334,7 +2340,7 @@ class WP_CRM_F {
         $wp_crm['notifications']['message_notification']['subject'] = __('Message from Website', 'wp_crm');
         $wp_crm['notifications']['message_notification']['to'] = get_bloginfo('admin_email');
         $wp_crm['notifications']['message_notification']['send_from'] = $assumed_email;
-        $wp_crm['notifications']['message_notification']['message'] = __("Contact Form: [trigger_action]\nSender Name: [display_name]\nSender Email: [user_email]\nMessage: [message_content]", 'wp_crm');
+        $wp_crm['notifications']['message_notification']['message'] = __("Shortcode Form: [trigger_action]\nSender Name: [display_name]\nSender Email: [user_email]\nMessage: [message_content]", 'wp_crm');
         $wp_crm['notifications']['message_notification']['fire_on_action'] = array('example_form');
 
         $wp_crm['data_structure'] = WP_CRM_F::build_meta_keys( $wp_crm);
@@ -2361,6 +2367,27 @@ class WP_CRM_F {
     $wp_crm = apply_filters('wp_crm_settings', $wp_crm);
 
     return $wp_crm;
+
+  }
+
+  /**
+   * Make attribute of field user_email/required depends on
+   * option Allow account creation with no email
+   *
+   * @param array $new_settings
+   * @param array $old_settings
+   * @return array
+   * @author odokienko@UD
+   */
+  function wp_crm_settings_save_email_required ($new_settings,$old_settings){
+
+    if (!empty($new_settings['data_structure']['attributes']['user_email'])){
+
+      $new_settings['data_structure']['attributes']['user_email']['required'] = ($new_settings['configuration']['allow_account_creation_with_no_email']=='true') ? 'false' : 'true';
+
+    }
+
+    return $new_settings;
 
   }
 
@@ -2459,7 +2486,7 @@ class WP_CRM_F {
       }
 
       if($return) {
-        return sprintf(__('An error occured during premium feature check: <b> %s </b>.','wp_crm'), $error_string);
+        return sprintf(__('An error occurred during premium feature check: <b> %s </b>.','wp_crm'), $error_string);
       }
 
       return;
@@ -2832,47 +2859,44 @@ class WP_CRM_F {
 
     ob_start();
 
-    foreach($result as $entry):
+    foreach($result as $entry) {
 
-    //echo "<pre>";print_r($entry);echo "<pre>";
+      $entry_classes[] = $entry->attribute;
+      $entry_classes[] = $entry->object_type;
+      $entry_classes[] = $entry->action;
 
-    $entry_classes[] = $entry->attribute;
-    $entry_classes[] = $entry->object_type;
-    $entry_classes[] = $entry->action;
+      $entry_classes = apply_filters('wp_crm_entry_classes', $entry_classes, $entry);
+      $entry_type = apply_filters('wp_crm_entry_type_label', $entry->attribute, $entry);
+      $left_by = $wpdb->get_var("SELECT display_name FROM {$wpdb->users} WHERE ID = '{$entry->user_id}'");
+      $entry_text = apply_filters('wp_crm_activity_single_content', nl2br($entry->text), array('entry' => $entry, 'args' => $args));
 
-    $entry_classes = apply_filters('wp_crm_entry_classes', $entry_classes, $entry);
+      if( empty( $entry_text ) ){
+        continue;
+      }
 
-    $entry_type = apply_filters('wp_crm_entry_type_label', $entry->attribute, $entry);
+      ?><tr class="wp_crm_activity_single <?php echo @implode(' ', array_unique($entry_classes)); ?>">
 
-    $left_by = $wpdb->get_var("SELECT display_name FROM {$wpdb->users} WHERE ID = '{$entry->user_id}'");
+        <td class="left">
+          <ul class='message_meta'>
+            <li class='timestamp'>
+              <span class='time'><?php echo date(get_option('time_format'), strtotime($entry->time)); ?></span>
+              <span class='date'><?php echo date(get_option('date_format'), strtotime($entry->time)); ?></span>
+            </li>
+            <?php if($entry_type): ?><li class="entry_type"><?php echo $entry_type; ?> </li><?php endif; ?>
+            <?php if($left_by): ?><li class="by_user">by <?php echo $left_by; ?> </li><?php endif; ?>
+            <li class="wp_crm_log_actions">
+              <span verify_action="true" instant_hide="true" class="wp_crm_message_quick_action wp_crm_subtle_link" object_id="<?php echo $entry->id; ?>" wp_crm_action="delete_log_entry"><?php _e('Delete', 'wp_crm'); ?></span>
+            </li>
+          </ul>
+        </td>
 
-    if(empty($left_by)) {
-      // $left_by = __('System', 'wp_crm');
+        <td class="right">
+          <p class="wp_crm_entry_content"><?php echo $entry_text;  ?></p>
+        </td>
+
+      </tr><?php
+
     }
-
-    ?>
-    <tr class="wp_crm_activity_single <?php echo @implode(' ', array_unique($entry_classes)); ?>">
-
-    <td class="left">
-      <ul class='message_meta'>
-        <li class='timestamp'>
-          <span class='time'><?php echo date(get_option('time_format'), strtotime($entry->time)); ?></span>
-          <span class='date'><?php echo date(get_option('date_format'), strtotime($entry->time)); ?></span>
-        </li>
-        <?php if($entry_type): ?><li class="entry_type"><?php echo $entry_type; ?> </li><?php endif; ?>
-        <?php if($left_by): ?><li class="by_user">by <?php echo $left_by; ?> </li><?php endif; ?>
-        <li class="wp_crm_log_actions">
-          <span verify_action="true" instant_hide="true" class="wp_crm_message_quick_action wp_crm_subtle_link" object_id="<?php echo $entry->id; ?>" wp_crm_action="delete_log_entry"><?php _e('Delete'); ?></span>
-        </li>
-      </ul>
-    </td>
-
-    <td class="right">
-      <p class="wp_crm_entry_content"><?php echo apply_filters('wp_crm_activity_single_content', nl2br($entry->text), array('entry' => $entry, 'args' => $args)); ?></p>
-    </td>
-
-    </tr>
-    <?php endforeach;
 
     $new_per_page =  (($args['per_page'])?$args['per_page']:0)+((get_user_option( 'crm_page_wp_crm_add_new_per_page')) ? get_user_option( 'crm_page_wp_crm_add_new_per_page') : 10);
 
@@ -2967,6 +2991,7 @@ class WP_CRM_F {
 
     $defaults = array(
       'object_type' => 'user',
+      'hide_empty' => false,
       'order_by' => 'time',
       'start' => '0',
       'import_count' => ((get_user_option('crm_page_wp_crm_add_new_per_page'))? get_user_option('crm_page_wp_crm_add_new_per_page') : 10),
@@ -2996,8 +3021,12 @@ class WP_CRM_F {
       $query[] = " (object_id = '{$args['object_id']}') ";
     }
 
+    if($args['hide_empty']) {
+      $query[] = " (object_id = '{$args['object_id']}') ";
+    }
+
     if($args['object_type']) {
-      $query[] = " (object_type = '{$args['object_type']}') ";
+      $query[] = " (text != '') ";
     }
 
     if(is_array($args['filter_types'])) {
@@ -3027,6 +3056,7 @@ class WP_CRM_F {
     if($args['order_by']) {
       $order_by = " ORDER BY {$args[order_by]} DESC ";
     }
+
     $sql = "SELECT * FROM {$wpdb->crm_log} {$query} {$order_by} {$limit}";
 
     $results = $wpdb->get_results($sql);
@@ -3144,7 +3174,7 @@ class WP_CRM_F {
         $required_fields = apply_filters('wp_crm_requires_fields',$required_fields);
         foreach ($required_fields as $field){
           if (!array_key_exists($field,$wp_crm['data_structure']['attributes']) ){
-            WP_CRM_F::add_message(__('Warning: there is no field with slug \''.$field.'\' in list of user attributes on Data tab!'), 'bad');
+            WP_CRM_F::add_message( sprintf( __( 'Warning: there is no field with slug \'%s\' in list of user attributes on Data tab!', 'wp_crm' ), $field ), 'bad' );
           }
         }
     }

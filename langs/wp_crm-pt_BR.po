@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WP-CRM - Customer Relationship Management 0.08\n"
+"Project-Id-Version: WP-CRM - Customer Relationship Management\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-07 14:48-0500\n"
-"PO-Revision-Date: 2011-12-07 14:48-0500\n"
-"Last-Translator: Usability Dynamics, Inc. <info@usabilitydynamics.com>\n"
+"POT-Creation-Date: 2012-07-24 15:44+0200\n"
+"PO-Revision-Date: 2012-07-24 15:45+0200\n"
+"Last-Translator: Maxim Peshkov <maxim.peshkov@usabilitydynamics.com>\n"
 "Language-Team: Andre Luiz <andre@andrewebmaster.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,325 +13,461 @@ msgstr ""
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: C:\\wamp\\www\\usabilitydynamics.com\\development\\wordpress-plugins\\wp-content\\plugins\\wp-crm\n"
+"X-Poedit-SearchPath-1: ..\n"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:36
+#: ../action_hooks.php:36
 msgid "Single Line Text"
 msgstr "Texto de linha única"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:37
+#: ../action_hooks.php:37
 msgid "Checkbox"
 msgstr "Caixa de seleção"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:38
+#: ../action_hooks.php:38
 msgid "Textarea"
 msgstr "Textarea"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:39
+#: ../action_hooks.php:39
 msgid "Dropdown"
 msgstr "Dropdown"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:40
+#: ../action_hooks.php:40
 msgid "Password"
 msgstr "Senha"
 
+#: ../action_hooks.php:41
+msgid "Date Picker"
+msgstr ""
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:50
+#: ../action_hooks.php:49
 msgid "View and edit plugin settings."
 msgstr "Visualizar e editar as configurações CRM"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:51
+#: ../action_hooks.php:50
 msgid "View individual prospects and the overview page."
 msgstr "Ver perpectivas individuais na página de visão geral."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:52
+#: ../action_hooks.php:51
 msgid "View a user's profile."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:53
+#: ../action_hooks.php:52
 msgid "Add to correspondence thread on a user's profile."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:54
+#: ../action_hooks.php:53
 msgid "Send a group message to users."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/action_hooks.php:55
+#: ../action_hooks.php:54
 msgid "Perform advanced functions such as mergins users."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:39
+#: ../action_hooks.php:55
+msgid "Change passwords of other users. This is only checked if the user can edit users in the first place."
+msgstr ""
+
+#: ../action_hooks.php:56
+msgid "Change color scheme. This is only checked if the user can edit users in the first place."
+msgstr ""
+
+#: ../default_api.php:38
 msgid "Quick Password Reset"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:61
+#: ../default_api.php:60
 msgid "Display Name"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:62
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:67
+#: ../default_api.php:61
+#: ../default_api.php:66
 msgid "Generated automatically by WordPress."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:66
+#: ../default_api.php:65
 msgid "User Login"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:113
+#: ../default_api.php:112
 #, php-format
 msgid "Password reset initiated by user. Reset URL: %1s."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:161
+#: ../default_api.php:135
 msgid "Please enter a valid e-mail address."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:177
+#: ../default_api.php:151
 msgid "User Registration"
 msgstr "Registro de Usuário"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:178
+#: ../default_api.php:152
 msgid "Support Request"
 msgstr "Pedido de apoio"
 
+#: ../default_api.php:745
+msgid "Error saving user: Email address cannot be empty"
+msgstr ""
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:816
+#: ../default_api.php:750
+#, fuzzy
+msgid "Error saving user: Email address is invalid"
+msgstr "Erro ao salvar usuário: %s"
+
+# @ wp_crm
+#: ../default_api.php:824
 msgid "New user added."
 msgstr "Novo usuário adicionado."
 
 # @ default
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:820
+#: ../default_api.php:828
 msgid "User updated."
 msgstr "Usuário atualizada."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:841
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/default_api.php:845
+#: ../default_api.php:851
+#: ../default_api.php:855
 #, php-format
 msgid "Error saving user: %s"
 msgstr "Erro ao salvar usuário: %s"
 
+#: ../default_api.php:851
+msgid "Go to user profile"
+msgstr ""
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:258
+#: ../core/class_core.php:224
+#, fuzzy
+msgid "Password Reset"
+msgstr "Senha"
+
+# @ wp_crm
+#: ../core/class_core.php:284
 msgid "Users"
 msgstr "Usuarios"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:455
-msgid "Your Profile"
-msgstr ""
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:544
-msgid "Information"
-msgstr ""
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:577
-msgid "All People"
-msgstr ""
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:578
-msgid "New Person"
-msgstr ""
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:580
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:786
-msgid "Settings"
-msgstr "Configurações"
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:648
-#, fuzzy
-msgid "General</h3>"
-msgstr "Gerar"
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:649
+#: ../core/class_core.php:287
 msgid "This page is used to filter and find various users. Visit the Settings page to select which attributes to show on the overview."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:651
+#: ../core/class_core.php:288
 msgid "Exporting"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:652
+#: ../core/class_core.php:289
 msgid "Once you narrow down the user results to the ones you want to export, click \"Show Actions\" and then \"Export to CSV\" to generate a comma separated flle."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:653
+#: ../core/class_core.php:290
 msgid "The CSV export will only include the user data as defined in Data tab, on the Settings page."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:667
-msgid "<h3>User Editing</h3>"
+#: ../core/class_core.php:362
+msgid "Notifications"
+msgstr "Notificações"
+
+# @ wp_crm
+#: ../core/class_core.php:366
+#, fuzzy
+msgid "User Editing"
+msgstr "Registro de Usuário"
+
+#: ../core/class_core.php:367
+msgid "Please visit the WP-CRM Settings page to determine which fields to display on the editing page."
+msgstr ""
+
+#: ../core/class_core.php:369
+msgid "User Activity History"
+msgstr ""
+
+#: ../core/class_core.php:370
+msgid "The activity history can be used to log notes regarding a user, and will display any incoming messages generated by the user when using a WP-CRM contact form."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:668
-msgid "<p>Please visit the WP-CRM Settings page to determine which fields to display on the editing page.</p>"
-msgstr ""
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:670
-msgid "<h3>User Activity History</h3>"
-msgstr ""
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:671
-msgid "<p>The activity history can be used to log notes regarding a user, and will display any incoming messages generated by the user when using a WP-CRM contact form.</p>"
-msgstr ""
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:688
-msgid "Automation"
-msgstr ""
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:689
-msgid "Use other attribute as components. Example: <b>[last_name], [rank]</b> will become <b>Smith, Sgt.</b>"
-msgstr ""
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:691
+#: ../core/class_core.php:411
 #, fuzzy
 msgid "Roles - Hidden Attributes"
 msgstr "Esconder atributos"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:692
+#: ../core/class_core.php:412
 msgid "If certain user attributes are not applicable to certain roles, such as \"Client Type\" to the \"Administrator\" role, you can elect to hide the unapplicable attributes on profile editing pages."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:694
+#: ../core/class_core.php:413
 msgid "Predefined Values"
 msgstr "Valores predefinidos"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:695
+#: ../core/class_core.php:414
 msgid "If you want your attributes to have predefiend values, such as in a dropdown, or a checkbox list, enter a comma separated list of values you want to use.  You can also get more advanced by using taxonomies - to load all values from a taxonomy, simply type ine: <b>taxonomy:taxonomy_name</b>."
 msgstr ""
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:697
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:487
+#: ../core/class_core.php:415
+#: ../core/premium/class_contact_messages.php:498
 msgid "Shortcode Forms"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:698
+#: ../core/class_core.php:416
 msgid "Shortcode Forms, which can be used for contact forms, or profile editing, are setup here, and then inserted using a shortcode into a page, or a widget. The available contact form attributes are taken from the WP-CRM attributes, and when filled out by a user, are mapped over directly into their profile. User profiles are created based on the e-mail address, if one does not already exist, for keeping track of users. "
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:699
+#: ../core/class_core.php:418
+msgid "Shortcode Forms attributes"
+msgstr ""
+
+#: ../core/class_core.php:420
+msgid "display_notes = [ true | <b>false</b> ] &mdash; If a note exists for an attribute, it will be shown on the right."
+msgstr ""
+
+#: ../core/class_core.php:421
+msgid "require_login_for_existing_users = [ <b>true</b> | false ]"
+msgstr ""
+
+#: ../core/class_core.php:422
+msgid "use_current_user = [ <b>true</b> | false ]"
+msgstr ""
+
+#: ../core/class_core.php:423
+msgid "success_message = \"<i>custom text</i>\"  &mdash; default value is \""
+msgstr ""
+
+# @ default
+#: ../core/class_core.php:423
+#: ../core/premium/class_contact_messages.php:524
+msgid "Your message has been sent. Thank you."
+msgstr "Sua mensagem foi enviada!Em Breve recebera um e-mail de confirmação obrigado."
+
+#: ../core/class_core.php:424
+msgid "submit_text = \"<i>custom text</i>\"  &mdash; default value is \""
+msgstr ""
+
+# @ default
+#: ../core/class_core.php:424
+#: ../core/premium/class_contact_messages.php:525
+msgid "Submit"
+msgstr "Enviar"
+
+#: ../core/class_core.php:425
+msgid "js_callback_function = \"<i>custom_function_name</i>\"  &mdash; default value is \""
+msgstr ""
+
+#: ../core/class_core.php:425
+#: ../core/class_core.php:426
+msgid "false"
+msgstr ""
+
+#: ../core/class_core.php:426
+msgid "js_validation_function = \"<i>custom_function_name</i>\"  &mdash; default value is \""
+msgstr ""
+
+#: ../core/class_core.php:428
+msgid "For example, <b>[wp_crm_form form=example_from display_notes=true success_message=\"Your message was successfully sent!\" submit_text=\"Send message!\"]</b>"
+msgstr ""
+
+#: ../core/class_core.php:430
 msgid "If a new user fills out a form, an account will be created for them based on the specified role.  "
 msgstr ""
 
+#: ../core/class_core.php:431
+msgid "<b>Important</b>: user's email attribute should have slug 'user_email'."
+msgstr ""
+
+#: ../core/class_core.php:433
+msgid "Automation"
+msgstr ""
+
+#: ../core/class_core.php:434
+msgid "Use other attribute as components. Example: <b>[last_name], [rank]</b> will become <b>Smith, Sgt.</b>"
+msgstr ""
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:701
+#: ../core/class_core.php:435
 #, fuzzy
 msgid "Notifications and Trigger Actions"
 msgstr "Açoes trigger"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:702
-msgid "Notification messages can be fired off when certain events, such as contact form submission, are executed.  Multiple notification events can be attached to a single <b>trigger action</b>. Multiple tags, such as [user_email] and [display_name], are available to be used as dynamically replaceable tags when setting up notifications."
+#: ../core/class_core.php:436
+msgid "Notification messages can be fired off when certain events, such as contact form submission, are executed.  Multiple notification events can be attached to a single <b>trigger action</b>. Multiple tags, such as <b>[user_email]</b> and <b>[display_name]</b>, are available to be used as dynamically replaceable tags when setting up notifications."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_core.php:703
+#: ../core/class_core.php:437
 msgid "Which tags are available depend on the trigger event, but in most cases all user data slugs can be used.  On a contact form message, <b>[message_content]</b>, <b>[profile_link]</b> and <b>[trigger_action]</b> variables are also available."
 msgstr ""
 
+#: ../core/class_core.php:575
+msgid "Your Profile"
+msgstr ""
+
+#: ../core/class_core.php:668
+msgid "Information"
+msgstr ""
+
+#: ../core/class_core.php:700
+msgid "All People"
+msgstr ""
+
+#: ../core/class_core.php:701
+msgid "New Person"
+msgstr ""
+
+#: ../core/class_core.php:702
+msgid "My Profile"
+msgstr ""
+
+# @ wp_crm
+#: ../core/class_core.php:704
+#: ../core/class_core.php:868
+msgid "Settings"
+msgstr "Configurações"
+
+#: ../core/class_core.php:907
+msgid "For more information:"
+msgstr ""
+
+#: ../core/class_core.php:908
+msgid "WP-CRM Product Page"
+msgstr ""
+
+#: ../core/class_core.php:909
+msgid "WP-CRM Forums"
+msgstr ""
+
+#: ../core/class_core.php:916
+msgid "Please upgrade Wordpress to the latest version for detailed help."
+msgstr ""
+
+#: ../core/class_core.php:916
+msgid "Or visit"
+msgstr ""
+
+#: ../core/class_core.php:916
+msgid "WP-CRM Help Page"
+msgstr ""
+
+#: ../core/class_core.php:916
+msgid "on UsabilityDynamics.com"
+msgstr ""
+
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:37
+#: ../core/class_functions.php:150
 #, fuzzy
 msgid "Personal Options"
 msgstr "Opções"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:42
+#: ../core/class_functions.php:155
 #, fuzzy
 msgid "Additional Settings"
 msgstr "Configurações Gerais"
 
+#: ../core/class_functions.php:284
+msgid "User attempted to reset password, but reset email could not be sent."
+msgstr ""
+
+#: ../core/class_functions.php:287
+msgid "Password reset initiated by user, email sent with a password reset link."
+msgstr ""
+
+#: ../core/class_functions.php:378
+msgid "Invalid email"
+msgstr ""
+
+# @ wpp
+#: ../core/class_functions.php:393
+#, fuzzy
+msgid "Email already exists"
+msgstr "Tabela criada e existente"
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:402
+#: ../core/class_functions.php:607
 msgid "Unaccounted"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:410
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:263
+#: ../core/class_functions.php:615
+#: ../core/premium/class_contact_messages.php:274
 msgid "There is not enough quantifiable data to generate any graphs."
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:555
+#: ../core/class_functions.php:777
 msgid "Notification template not found."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:852
+#: ../core/class_functions.php:1077
 msgid "No fake users found."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:1147
+#: ../core/class_functions.php:1383
 msgid "Password reset. A random password has been generated for user by system."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:1171
+#: ../core/class_functions.php:1407
 msgid "Message archived."
 msgstr "Menssagem Arquivada"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:1183
+#: ../core/class_functions.php:1419
 msgid "Message deleted."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:1199
+#: ../core/class_functions.php:1435
 msgid "Sender trashed."
 msgstr "remetente na lixeira"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2009
+#: ../core/class_functions.php:2328
 msgid "Example Contact Form"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2015
+#: ../core/class_functions.php:2334
 msgid "Thank your for your message!"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2018
+#: ../core/class_functions.php:2337
 msgid ""
 "Hello [display_name],\n"
 "Thank you, your message has been received."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2021
+#: ../core/class_functions.php:2340
 msgid "Message from Website"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2024
+#: ../core/class_functions.php:2343
 msgid ""
 "Contact Form: [trigger_action]\n"
 "Sender Name: [display_name]\n"
@@ -340,1194 +476,1382 @@ msgid ""
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2151
+#: ../core/class_functions.php:2489
 #, php-format
 msgid "An error occured during premium feature check: <b> %s </b>."
 msgstr "Ocorreu um erro durante o check recurso premium: <b> %s </b>."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2200
+#: ../core/class_functions.php:2531
 msgid "Feature Name"
 msgstr "Nome do Recurso"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2201
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2257
+#: ../core/class_functions.php:2532
+#: ../core/class_functions.php:2588
 msgid "Version"
 msgstr "Versão"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2202
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2258
+#: ../core/class_functions.php:2533
+#: ../core/class_functions.php:2589
 msgid "Description"
 msgstr "Descrição"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2216
+#: ../core/class_functions.php:2547
 #, php-format
 msgid "WP-CRM Premium Feature: %s updated to version %s from %s."
 msgstr "CRM-Recurso Premium:%s atualizado para a versão %s de %s."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2218
+#: ../core/class_functions.php:2549
 #, php-format
 msgid "WP-CRM Premium Feature: %s updated to version %s."
 msgstr "CRM-Recurso Premium: %s atualizado para a versão %s."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2238
+#: ../core/class_functions.php:2569
 msgid "Update ran successfully but no features were downloaded because the setting is disabled."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2241
+#: ../core/class_functions.php:2572
 msgid "Update ran successfully."
 msgstr "Atualização foi executado com êxito."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2256
+#: ../core/class_functions.php:2587
 msgid "Name"
 msgstr "Nome"
+
+#: ../core/class_functions.php:2768
+msgid "Show in User Activity History"
+msgstr ""
+
+#: ../core/class_functions.php:2788
+msgid "Note"
+msgstr ""
+
+# @ wp_crm
+#: ../core/class_functions.php:2791
+#, fuzzy
+msgid "General Message"
+msgstr "Menssagem"
+
+#: ../core/class_functions.php:2794
+msgid "Phone Call"
+msgstr ""
+
+# @ wp_crm
+#: ../core/class_functions.php:2797
+#, fuzzy
+msgid "Meeting"
+msgstr "Configurações"
+
+# @ default
+#: ../core/class_functions.php:2800
+#, fuzzy
+msgid "File"
+msgstr "Filtro"
+
+#: ../core/class_functions.php:2803
+msgid "Detailed Log"
+msgstr ""
+
+# @ wp_crm
+#: ../core/class_functions.php:2806
+#, fuzzy, php-format
+msgid "Shortcode Form Message %1s."
+msgstr "Menssagem de Contato"
 
 # @ default
 # @ wpp
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2458
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:443
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1231
+#: ../core/class_functions.php:2888
+#: ../core/class_functions.php:3257
+#: ../core/class_functions.php:3273
+#: ../core/class_user_list_table.php:443
+#: ../core/premium/class_contact_messages.php:1296
 msgid "Delete"
 msgstr "Deletar"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2670
+#: ../core/class_functions.php:3161
 #, fuzzy
 msgid "Last Name"
 msgstr "Nome do Recurso"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_functions.php:2673
+#: ../core/class_functions.php:3164
 #, fuzzy
 msgid "First Name"
 msgstr "Nome do Recurso"
 
+#: ../core/class_functions.php:3177
+#, php-format
+msgid "Warning: there is no field with slug '%s' in list of user attributes on Data tab!"
+msgstr ""
+
+#: ../core/class_functions.php:3197
+msgid "Group:"
+msgstr ""
+
+#: ../core/class_functions.php:3199
+#: ../core/class_functions.php:3236
+#: ../core/class_functions.php:3239
+msgid "Primary Information"
+msgstr ""
+
+# @ wp_crm
+#: ../core/class_functions.php:3223
+#, fuzzy
+msgid "Attributes Groups"
+msgstr "Atributos"
+
+# @ wp_crm
+#: ../core/class_functions.php:3228
+#, fuzzy
+msgid "Group Name"
+msgstr "Menssagem"
+
+#: ../core/class_functions.php:3229
+msgid "Metabox Title"
+msgstr ""
+
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_list_table.php:308
+#: ../core/class_functions.php:3230
+#, fuzzy
+msgid "Actions"
+msgstr "Ações em massa"
+
+# @ wpp
+# @ wp_crm
+#: ../core/class_functions.php:3283
+#: ../core/premium/class_contact_messages.php:1304
+msgid "Add Row"
+msgstr "Adicionar linha"
+
+#: ../core/class_functions.php:3405
+msgid "Add Another"
+msgstr ""
+
+# @ default
+#: ../core/class_list_table.php:308
 msgid "Nothing found."
 msgstr "Nada encontrado"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:410
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:773
+#: ../core/class_ud.php:410
+#: ../core/premium/class_contact_messages.php:799
 msgid "Processing..."
 msgstr "Aguarde Processando ..."
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:466
+#: ../core/class_ud.php:466
+#: ../core/ud_api.php:1041
 msgid "UD Log Page for"
 msgstr "UD Log pagina para"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:467
+#: ../core/class_ud.php:467
+#: ../core/ud_api.php:1042
 msgid "Clear Log"
 msgstr "Clear Log"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:474
+#: ../core/class_ud.php:474
 msgid "Timestamp"
 msgstr "Timestamp"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:475
+#: ../core/class_ud.php:475
 msgid "Event"
 msgstr "Evento"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:476
+#: ../core/class_ud.php:476
 msgid "User"
 msgstr "Usuario"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:744
+#: ../core/class_ud.php:744
 msgid "Cache table does not exist. Attempting to create:"
 msgstr "Tabela de cache não existe. Tentando criar:"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:757
+#: ../core/class_ud.php:757
 #, php-format
 msgid "SQL Ran: %s , verifying existance."
 msgstr "SQL Ran: %s ,verificar a existência."
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:762
+#: ../core/class_ud.php:762
 msgid "Table created and exists."
 msgstr "Tabela criada e existente"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:766
+#: ../core/class_ud.php:766
 msgid "Table not created."
 msgstr "Tabela não criada."
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:833
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:870
+#: ../core/class_ud.php:833
+#: ../core/class_ud.php:870
+#: ../core/ud_api.php:924
 msgid "Log Started."
 msgstr "Log Iniciado."
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:962
+#: ../core/class_ud.php:962
 msgid "Today"
 msgstr "hoje"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:963
+#: ../core/class_ud.php:963
 msgid "Tomorrow "
 msgstr "Amanhã"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:963
+#: ../core/class_ud.php:963
 msgid "Yesterday "
 msgstr "Ontem"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:964
+#: ../core/class_ud.php:964
 #, php-format
 msgid " in %d days "
 msgstr "em %d dias"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:964
+#: ../core/class_ud.php:964
 #, php-format
 msgid "%d days ago"
 msgstr "%d dias atras"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:1081
+#: ../core/class_ud.php:1081
 msgid "Automatically logged failed JSON response: "
 msgstr "Automaticamente registrados não  JSON resposta:"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:1199
+#: ../core/class_ud.php:1199
 #, php-format
 msgid "%s hours ago"
 msgstr "%s Horas atras"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_ud.php:1201
+#: ../core/class_ud.php:1201
 #, php-format
 msgid "%s minutes ago"
 msgstr "%s minutos atras"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:155
+#: ../core/class_user_list_table.php:155
 msgid "Bulk Actions"
 msgstr "Ações em massa"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:160
+#: ../core/class_user_list_table.php:160
 msgid "Apply"
 msgstr "Aplicar"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:329
+#: ../core/class_user_list_table.php:329
 #, fuzzy
 msgid "Role Lists"
 msgstr "Funções"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:329
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:355
+#: ../core/class_user_list_table.php:329
+#: ../core/class_user_list_table.php:355
 msgid "Show"
 msgstr "Mostar"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:415
-#, php-format
-msgctxt "users"
-msgid "All <span class=\"count\">(%s)</span>"
-msgid_plural "All <span class=\"count\">(%s)</span>"
-msgstr[0] "Todas<span class=\"conta\">(%s)</span>"
-msgstr[1] "Todas<span class=\"contas\">(%s)</span>"
-
-# @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:428
+#: ../core/class_user_list_table.php:428
 #, php-format
 msgid "%1$s <span class=\"count\">(%2$s)</span>"
 msgstr "%1$s <span class=\"contas\">(%2$s)</span>"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/class_user_list_table.php:440
+#: ../core/class_user_list_table.php:440
 msgid "Remove"
 msgstr "Remover"
 
+#: ../core/ud_api.php:82
+msgid "API service not specified."
+msgstr ""
+
+#: ../core/ud_api.php:100
+#, php-format
+msgid "API Failure: %1s."
+msgstr ""
+
+#: ../core/ud_api.php:243
+msgid "UD Error"
+msgstr ""
+
+#: ../core/ud_api.php:830
+msgid "Unknown error."
+msgstr ""
+
+#: ../core/ud_api.php:910
+#, php-format
+msgid "You cannot call UD_API::log() before the %1$s hook, since the current user is not yet known."
+msgstr ""
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/bbpress.php:90
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/bbpress.php:111
+#: ../core/connections/bbpress.php:90
+#: ../core/connections/bbpress.php:111
 msgid "Posts"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/bbpress.php:91
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/bbpress.php:112
+#: ../core/connections/bbpress.php:91
+#: ../core/connections/bbpress.php:112
 msgid "Last Week"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/bbpress.php:92
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/bbpress.php:113
+#: ../core/connections/bbpress.php:92
+#: ../core/connections/bbpress.php:113
 msgid "Last Two Weeks"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/bbpress.php:126
+#: ../core/connections/bbpress.php:126
 msgid "Forum Participation"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/buddypress.php:23
+#: ../core/connections/buddypress.php:62
 #, php-format
 msgid "Executing: %1s."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/buddypress.php:35
+#: ../core/connections/buddypress.php:75
 msgid "BuddyPress Profile Link"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/buddypress.php:50
+#: ../core/connections/buddypress.php:90
 #, php-format
 msgid "<a href=\"%1s\">BuddyPress Profile</a>"
 msgstr ""
 
+#: ../core/connections/buddypress.php:103
+msgid "BuddyPress Profile Fields"
+msgstr ""
+
+#: ../core/connections/buddypress.php:234
+msgid "There was a problem updating some of your profile information, please try again."
+msgstr ""
+
+#: ../core/connections/buddypress.php:236
+msgid "Changes saved."
+msgstr ""
+
+#: ../core/connections/buddypress.php:262
+msgid "BuddyPress Profile Group"
+msgstr ""
+
+#: ../core/connections/buddypress.php:262
+msgid "BP Group:"
+msgstr ""
+
+#: ../core/connections/buddypress.php:264
+msgid " - "
+msgstr ""
+
+# @ wpp
+#: ../core/connections/buddypress.php:409
+#: ../core/connections/buddypress.php:423
+#, fuzzy
+msgid "Clear"
+msgstr "Clear Log"
+
+#: ../core/connections/buddypress.php:474
+msgid "View CRM Profile"
+msgstr ""
+
+#: ../core/connections/buddypress.php:533
+msgid "Please make sure you fill in all required Buddypress fields in this profile field group before saving."
+msgstr ""
+
+#: ../core/connections/buddypress.php:549
+msgid "There was a problem updating some of Budypress profile information, please try again."
+msgstr ""
+
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/connections/wp-invoice.php:96
+#: ../core/connections/wp-invoice.php:96
 msgid "Sales"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:69
+#: ../core/premium/class_contact_messages.php:83
 msgid "Filter"
 msgstr "Filtro"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:87
+#: ../core/premium/class_contact_messages.php:102
 msgid "Message trashed."
 msgstr "Mensagem de lixeira .."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:141
+#: ../core/premium/class_contact_messages.php:158
 msgid "Status"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:144
+#: ../core/premium/class_contact_messages.php:161
 msgid "New"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:150
+#: ../core/premium/class_contact_messages.php:167
 msgid "Archived"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:154
+#: ../core/premium/class_contact_messages.php:171
 msgid "All"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:158
+#: ../core/premium/class_contact_messages.php:175
 msgid "Originating Form"
 msgstr "Formulario Originario"
 
 # @ default
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:178
-msgid "Show Actions"
-msgstr ""
-
-# @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:181
+#: ../core/premium/class_contact_messages.php:195
 msgid "Filter Results"
 msgstr "resultado Filtragem"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:188
+#: ../core/premium/class_contact_messages.php:202
 msgid "Visualize Contact Data"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:281
+#: ../core/premium/class_contact_messages.php:291
 msgid "Date"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:282
+#: ../core/premium/class_contact_messages.php:292
 msgid "All Daily Messages"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:393
+#: ../core/premium/class_contact_messages.php:402
 #, php-format
 msgid "Related %s:"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:396
+#: ../core/premium/class_contact_messages.php:405
 msgid "ago"
 msgstr "atras"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:397
+#: ../core/premium/class_contact_messages.php:406
 msgid "other messages."
 msgstr "Outras menssagens"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:404
+#: ../core/premium/class_contact_messages.php:413
 msgid "Trash"
 msgstr "lixeira"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:408
+#: ../core/premium/class_contact_messages.php:417
 msgid "Archive"
 msgstr "Arquivo"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:414
+#: ../core/premium/class_contact_messages.php:423
 msgid "Trash Message and User"
 msgstr "Menssagem de lixeira usuario"
 
-# @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:513
-msgid "Your message has been sent. Thank you."
-msgstr "Sua mensagem foi enviada!Em Breve recebera um e-mail de confirmação obrigado."
-
-# @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:514
-msgid "Submit"
-msgstr "Enviar"
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:856
+#: ../core/premium/class_contact_messages.php:881
 msgid "A server error occurred while trying to process the form."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:941
+#: ../core/premium/class_contact_messages.php:969
 msgid "If you see this message, WP-CRM through you were a robot.  Please contact admin if you do not think are you one."
 msgstr "Se você ver esta mensagem, WP -through como se você fosse um robô. Entre em contato com administrador se você tem certeza que não é um Racker"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:954
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:979
+#: ../core/premium/class_contact_messages.php:982
+#: ../core/premium/class_contact_messages.php:1007
 msgid "Form could not be submitted."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1013
+#: ../core/premium/class_contact_messages.php:1060
 #, php-format
 msgid "%1s cannot be empty."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1024
+#: ../core/premium/class_contact_messages.php:1071
 #, php-format
 msgid "This %1s belongs to a registered user, please login."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1046
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1057
+#: ../core/premium/class_contact_messages.php:1092
+#: ../core/premium/class_contact_messages.php:1103
 msgid "Form could not be submitted. Please make sure you have entered your information properly."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1054
+#: ../core/premium/class_contact_messages.php:1100
 msgid "Message could not be sent. Please make sure you have entered your information properly."
 msgstr "Mensagem não pôde ser enviado. Por favor, certifique-se que você digitou as informações corretamente."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1076
+#: ../core/premium/class_contact_messages.php:1122
 msgid " -- No message. -- "
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1137
+#: ../core/premium/class_contact_messages.php:1198
 msgid "Use this section to add and configure new contact forms."
 msgstr "Use esta seção para adicionar e configurar novo formulario de contato."
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1142
+#: ../core/premium/class_contact_messages.php:1203
 msgid "Form Settings"
 msgstr "Configurações Form"
 
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1143
+#: ../core/premium/class_contact_messages.php:1204
 msgid "Fields"
 msgstr "campos"
 
 # @ wp_crm
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1154
+#: ../core/premium/class_contact_messages.php:1215
 msgid "Title:"
 msgstr "Titulo:"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1159
+#: ../core/premium/class_contact_messages.php:1220
 msgid "Shortcode:"
 msgstr "Shortcode:"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1166
+#: ../core/premium/class_contact_messages.php:1227
 msgid "Role:"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1171
+#: ../core/premium/class_contact_messages.php:1232
 msgid "If new user created, assign this role."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1177
+#: ../core/premium/class_contact_messages.php:1238
 msgid "Display textarea for custom message."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1182
+#: ../core/premium/class_contact_messages.php:1243
 msgid "Send message notification even if no message is submitted."
 msgstr ""
 
-# @ wpp
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1239
-msgid "Add Row"
-msgstr "Adicionar linha"
+#: ../core/premium/class_contact_messages.php:1248
+msgid "Do not require users with existing accounts to sign in first."
+msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1245
+#: ../core/premium/class_contact_messages.php:1310
 msgid "To see list of variables you can use in wp_crm_contact_system_data open up the \"Help\" tab and view the user data structure.  Any variable you see in there can be used in the subject field, to field, BCC field, and the message body. Example: [user_email] would include the recipient's e-mail."
 msgstr "Para ver a lista de variáveis ​​que você pode usar em wp_crm_contact_system_data abrir o \"Ajuda \" tab e visualizar a estrutura de dados do usuário. Qualquer variável que você vê lá pode ser usado no campo assunto, ao campo de campo, BCC, eo corpo da mensagem. Exemplo: [user_email] incluiira o destinatário de e-mail."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1246
+#: ../core/premium/class_contact_messages.php:1311
 msgid "To add notification actions use the <b>wp_crm_notification_actions</b> filter, then call the action within <b>wp_crm_send_notification()</b> function, and the messages association with the given action will be fired off."
 msgstr "Para adicionar ações de notificação usar o <b>wp_crm_notification_actions</b>filtro, em seguida, chamar a ação dentro<b>wp_crm_send_notification()</b> função,de associação com as mensagens de determinada ação será off."
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1251
+#: ../core/premium/class_contact_messages.php:1316
 msgid "Options"
 msgstr "Opções"
 
-# @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1256
-msgid "Default role to use for new contacts: "
+#: ../core/premium/class_contact_messages.php:1321
+msgid "Default role to use for new contacts:"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1258
-msgid "WP-CRM creates user profiles, if only temporary, to store inquiries and messages from contact forms.  "
+#: ../core/premium/class_contact_messages.php:1323
+#, fuzzy
+msgid "WP-CRM creates user profiles, if only temporary, to store inquiries and messages from contact forms."
 msgstr "CRM-cria perfis de usuários, se apenas temporário, para armazenar informações e mensagens a partir de formularios de contato."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1282
+#: ../core/premium/class_contact_messages.php:1347
 msgid "View messages from contact forms."
 msgstr "Exibir mensagens a partir de formulario de contato."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1323
+#: ../core/premium/class_contact_messages.php:1388
 msgid "Message"
 msgstr "Menssagem"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1324
+#: ../core/premium/class_contact_messages.php:1389
 msgid "Sender"
 msgstr "Remetente"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_contact_messages.php:1400
+#: ../core/premium/class_contact_messages.php:1453
 msgid "Contact Messages"
 msgstr "Menssagem de Contato"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:73
+#: ../core/premium/class_crm_advanced_functions.php:88
 msgid "Merge with another user."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:247
+#: ../core/premium/class_crm_advanced_functions.php:262
 msgid "User ID of the user you would like to merge the current user with:"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:253
+#: ../core/premium/class_crm_advanced_functions.php:268
 #, fuzzy
 msgid "Merge"
 msgstr "Menssagem"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_advanced_functions.php:254
+#: ../core/premium/class_crm_advanced_functions.php:269
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: ../core/premium/class_crm_advanced_functions.php:331
+msgid "Attached file:"
+msgstr ""
+
+#: ../core/premium/class_crm_advanced_functions.php:460
+msgid "Save user before uploading files."
+msgstr ""
+
+#: ../core/premium/class_crm_advanced_functions.php:512
+msgid "File Upload"
+msgstr ""
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:75
+#: ../core/premium/class_crm_group_messages.php:75
 #, fuzzy
 msgid "Group Messages"
 msgstr "Menssagem"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:116
+#: ../core/premium/class_crm_group_messages.php:116
 msgid "PDF Attachment"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:119
+#: ../core/premium/class_crm_group_messages.php:119
 msgid "User attributes to include in PDF Attachments for each recipient without an e-mail:"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:130
+#: ../core/premium/class_crm_group_messages.php:130
 msgid "When message recipients include users without e-mails, a PDF list of such recipients can be distributed amongst recipients with e-mails."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:153
+#: ../core/premium/class_crm_group_messages.php:153
 msgid "Type"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:157
+#: ../core/premium/class_crm_group_messages.php:157
 #, fuzzy
 msgid "Contact Form Messages"
 msgstr "Menssagem de Contato"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:162
+#: ../core/premium/class_crm_group_messages.php:162
 #, fuzzy
 msgid "Group Messags"
 msgstr "Menssagem de Contato"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:204
+#: ../core/premium/class_crm_group_messages.php:201
 #, fuzzy
 msgid "Group Message"
 msgstr "Menssagem"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:226
-msgid "<h3>Group Messages (Newsletters)</h3>"
+# @ wp_crm
+#: ../core/premium/class_crm_group_messages.php:216
+#, fuzzy
+msgid "Group Messages (Newsletters)"
+msgstr "Menssagem"
+
+#: ../core/premium/class_crm_group_messages.php:217
+msgid "To send a group message, first use the filters to narrow down to the users you want to contact."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:227
-msgid "<p>To send a group message, first use the filters to narrow down to the users you want to contact.</p>"
+#: ../core/premium/class_crm_group_messages.php:218
+msgid "Once the users are filtered, click \"Show Actions\", and \"Send Group Message\" to begin creating a message."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:228
-msgid "<p>Once the users are filtered, click \"Show Actions\", and \"Send Group Message\" to begin creating a message.</p>"
-msgstr ""
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:280
-#, php-format
-msgid "and %d other email"
-msgid_plural "and  %d other emails"
-msgstr[0] ""
-msgstr[1] ""
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:363
+#: ../core/premium/class_crm_group_messages.php:360
 #, php-format
 msgid "You are about to send this message to %d users, are you sure?."
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:369
+#: ../core/premium/class_crm_group_messages.php:366
 #, fuzzy
 msgid "Sending..."
 msgstr "Aguarde Processando ..."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:414
+#: ../core/premium/class_crm_group_messages.php:411
 #, fuzzy
 msgid "Send"
 msgstr "Remetente"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:437
+#: ../core/premium/class_crm_group_messages.php:434
 #, fuzzy
-msgid "From: "
+msgid "From:"
 msgstr "Enviado de:"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:446
-#, fuzzy
-msgid "To: "
+#: ../core/premium/class_crm_group_messages.php:443
+msgid "To:"
 msgstr "para:"
 
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:451
-#, fuzzy
-msgid "Subject: "
-msgstr "Assunto"
-
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:457
-msgid "Template: "
+#: ../core/premium/class_crm_group_messages.php:449
+msgid "Template:"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:474
+# @ wp_crm
+#: ../core/premium/class_crm_group_messages.php:460
+msgid "Subject:"
+msgstr "Assunto"
+
+#: ../core/premium/class_crm_group_messages.php:473
 #, php-format
 msgid "Be advised, %1d of the %2d intended recipients do not have an e-mail addresses.  <span class=\"wp_crm_secondary_action wp_crm_toggle\" toggle=\"wp_crm_no_email_actions\">Take action.</span>"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:478
+#: ../core/premium/class_crm_group_messages.php:477
 #, php-format
 msgid "Evenly break-up the users amongst recipients in the %1s group, and send them the user report."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:479
+#: ../core/premium/class_crm_group_messages.php:478
 msgid "E-mail me full report of all users without e-mail addresses."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:501
+#: ../core/premium/class_crm_group_messages.php:500
 #, fuzzy
 msgid "Send Message"
 msgstr "Menssagem"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:502
+#: ../core/premium/class_crm_group_messages.php:501
 msgid "Discard"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:600
+#: ../core/premium/class_crm_group_messages.php:626
 msgid "There are no users in this list that have e-mails and the necessary role to disseminate the information."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:693
+#: ../core/premium/class_crm_group_messages.php:734
 #, php-format
 msgid "<p class=\"wp_crm_system_message\">User received PDF Attachment and asked to contact the following recipients: %1s </p>"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:728
-#, php-format
-msgid "Successfully sent %d message."
-msgid_plural "Successfully sent %d messages."
-msgstr[0] ""
-msgstr[1] ""
-
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:731
+#: ../core/premium/class_crm_group_messages.php:772
 #, fuzzy
 msgid "No messages were sent. Check your SMTP settings."
 msgstr "Sua mensagem foi enviada!Em Breve recebera um e-mail de confirmação obrigado."
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:809
+#: ../core/premium/class_crm_group_messages.php:850
 #, php-format
 msgid "Please notify the folllowing (%1s) people of this message:"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_crm_group_messages.php:970
+#: ../core/premium/class_crm_group_messages.php:1011
 msgid "Send Group Message"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_email_sync.php:709
+#: ../core/premium/class_email_sync.php:355
 msgid "Import and Sync Emails"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_wp_crm_file_management.php:100
-msgid "Attached file:"
+#: ../core/premium/class_google_contacts.php:113
+msgid "User account updated by synchronizing with Google Contacts."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_wp_crm_file_management.php:208
-msgid "Save user before uploading files."
+#: ../core/premium/class_google_contacts.php:116
+#, php-format
+msgid "User account created by importing from %1s Google account."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/premium/class_wp_crm_file_management.php:254
-msgid "File Upload"
+#: ../core/premium/class_google_contacts.php:145
+msgid "Google Contacts"
+msgstr ""
+
+#: ../core/premium/class_google_contacts.php:149
+msgid "Google Username:"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:42
+#: ../core/premium/class_google_contacts.php:151
+#, fuzzy
+msgid "Password:"
+msgstr "Senha"
+
+#: ../core/premium/class_google_contacts.php:153
+msgid "It is highly recommended you use an application-specific password."
+msgstr ""
+
+#: ../core/premium/class_google_contacts.php:183
+msgid "Synchronizing with Google Contacts..."
+msgstr ""
+
+#: ../core/premium/class_google_contacts.php:188
+msgid "Google Contacts Synchronization failed."
+msgstr ""
+
+#: ../core/premium/class_google_contacts.php:202
+msgid "Google Contacts Update"
+msgstr ""
+
+# @ wp_crm
+#: ../core/ui/crm_metaboxes.php:36
 msgid "Export to CSV"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:44
+#: ../core/ui/crm_metaboxes.php:38
 msgid "Visualize User Data"
 msgstr ""
 
 # @ default
+#: ../core/ui/crm_metaboxes.php:45
+#, fuzzy
+msgid "Perfomed actions"
+msgstr "Opções"
+
+# @ default
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:88
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:105
+#: ../core/ui/crm_metaboxes.php:81
+#: ../core/ui/crm_metaboxes.php:107
 msgid "Add Message"
 msgstr ""
 
+#: ../core/ui/crm_metaboxes.php:83
+#: ../core/ui/crm_metaboxes.php:125
+msgid "loading"
+msgstr ""
+
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:99
+#: ../core/ui/crm_metaboxes.php:94
 msgid "Show Options"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:101
+#: ../core/ui/crm_metaboxes.php:96
 msgid "Date:"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:162
-msgid "Add Another"
+# @ wp_crm
+#: ../core/ui/crm_metaboxes.php:101
+#, fuzzy
+msgid "Message type"
+msgstr "Menssagem"
+
+#: ../core/ui/crm_metaboxes.php:125
+#, php-format
+msgid "Showing <span class=\"current_count\">%1s</span> messages of <span class=\"total_count\">%2s</span>. Load <span class=\"more_count\">%3s</span> more."
 msgstr ""
 
-# @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:199
-msgid "Toggle Advanced User Settings"
-msgstr ""
+# @ wpp
+#: ../core/ui/crm_metaboxes.php:196
+#, fuzzy
+msgid "Toggle Settings"
+msgstr "Configurações Form"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:201
+#: ../core/ui/crm_metaboxes.php:200
 msgid "Set Password:"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:205
+#: ../core/ui/crm_metaboxes.php:204
 msgid "Type in new password twice to change."
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:210
+#: ../core/ui/crm_metaboxes.php:208
 msgid "Type your new password again."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:215
-msgid "Change role:"
-msgstr ""
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:218
+# @ default
+#: ../core/ui/crm_metaboxes.php:212
 #, fuzzy
-msgid "User Role:"
-msgstr "Funções Usuarios"
+msgid "Admin Options:"
+msgstr "Opções"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:228
+# @ default
+#: ../core/ui/crm_metaboxes.php:216
+#, fuzzy
+msgid "Capability Role:"
+msgstr "Capacdades"
+
+#: ../core/ui/crm_metaboxes.php:226
 msgid "Show Admin Bar when viewing site."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:233
+#: ../core/ui/crm_metaboxes.php:231
 msgid "Color Scheme:"
 msgstr ""
 
 # @ wpp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:270
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:272
+#: ../core/ui/crm_metaboxes.php:257
+#: ../core/ui/crm_metaboxes.php:259
 msgid "Save"
 msgstr ""
 
 # @ wpp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:270
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:272
+#: ../core/ui/crm_metaboxes.php:257
+#: ../core/ui/crm_metaboxes.php:259
 msgid "Update"
 msgstr ""
 
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_metaboxes.php:284
-msgid "Add a general note."
-msgstr ""
-
 # @ wpp
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_add_new.php:10
+#: ../core/ui/crm_page_wp_crm_add_new.php:10
 #, fuzzy
 msgid "Profile created."
 msgstr "Tabela não criada."
 
 # @ default
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_add_new.php:12
+#: ../core/ui/crm_page_wp_crm_add_new.php:12
 #, fuzzy
 msgid "Profile updated."
 msgstr "Usuário atualizada."
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_add_new.php:23
+#: ../core/ui/crm_page_wp_crm_add_new.php:26
 msgid "Add New Person"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:88
+#: ../core/ui/crm_page_wp_crm_settings.php:88
 msgid "CRM Settings"
 msgstr "Configurações CRM"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:97
+#: ../core/ui/crm_page_wp_crm_settings.php:97
 msgid "Main"
 msgstr "primcipal"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:98
+#: ../core/ui/crm_page_wp_crm_settings.php:98
 msgid "UI"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:99
+#: ../core/ui/crm_page_wp_crm_settings.php:99
 msgid "Data"
 msgstr "Data"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:100
+#: ../core/ui/crm_page_wp_crm_settings.php:100
 msgid "Roles"
 msgstr "Funções"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:101
-msgid "Notifications"
-msgstr "Notificações"
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:119
+#: ../core/ui/crm_page_wp_crm_settings.php:119
 #, fuzzy
-msgid "Features"
+msgid "Premium Features"
 msgstr "Nome do Recurso"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:121
+#: ../core/ui/crm_page_wp_crm_settings.php:121
 msgid "Help"
 msgstr "Ajuda"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:130
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:363
+#: ../core/ui/crm_page_wp_crm_settings.php:130
+#: ../core/ui/crm_page_wp_crm_settings.php:369
 msgid "General Settings"
 msgstr "Configurações Gerais"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:136
+#: ../core/ui/crm_page_wp_crm_settings.php:136
 msgid "Replace default WordPress User page with WP-CRM."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:141
+#: ../core/ui/crm_page_wp_crm_settings.php:141
 msgid "Allow user accounts to be created without an e-mail address."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:146
+#: ../core/ui/crm_page_wp_crm_settings.php:146
 msgid "Disable default WordPress password reset e-mail notification."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:151
+#: ../core/ui/crm_page_wp_crm_settings.php:151
 msgid "Do not automatically convert line breaks in outgoing contact messages."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:156
+#: ../core/ui/crm_page_wp_crm_settings.php:156
 msgid "Track detailed user activity."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:169
+#: ../core/ui/crm_page_wp_crm_settings.php:161
+msgid "Enable Attribute Grouping."
+msgstr ""
+
+#: ../core/ui/crm_page_wp_crm_settings.php:174
 msgid "Standardize Display Names."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:172
+#: ../core/ui/crm_page_wp_crm_settings.php:177
 msgid "Display name components: "
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:180
+#: ../core/ui/crm_page_wp_crm_settings.php:185
 msgid "Email Settings"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:185
+#: ../core/ui/crm_page_wp_crm_settings.php:190
 msgid "Default sender e-mail address."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:186
+#: ../core/ui/crm_page_wp_crm_settings.php:191
 #, php-format
 msgid "If you are not using SMTP, it is advisable to use a @%s email address to avoid being spammed."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:200
+#: ../core/ui/crm_page_wp_crm_settings.php:207
 #, fuzzy
 msgid "General UI Settings"
 msgstr "Configurações Gerais"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:205
+#: ../core/ui/crm_page_wp_crm_settings.php:212
 msgid "Do not display user avatars on overview pages."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:212
+#: ../core/ui/crm_page_wp_crm_settings.php:219
 msgid "Primary User Identifier"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:230
+#: ../core/ui/crm_page_wp_crm_settings.php:236
 msgid "Overview Page User Card"
 msgstr "Visão Geral Cartão de pagina Usuário "
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:231
+#: ../core/ui/crm_page_wp_crm_settings.php:237
 msgid "User data to be displayed in the <b>Information</b> column."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:250
+#: ../core/ui/crm_page_wp_crm_settings.php:256
 #, fuzzy
 msgid "Quick User Actions"
 msgstr "Açoes trigger"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:251
+#: ../core/ui/crm_page_wp_crm_settings.php:257
 msgid "User-specific actions that can be initiated from the user overview page."
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:259
+#: ../core/ui/crm_page_wp_crm_settings.php:265
 #, php-format
 msgid "Enable: %1s"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:272
+#: ../core/ui/crm_page_wp_crm_settings.php:278
 msgid "This tab allows you to create and modify your notifications.  Notifications can be assigned to various events, such as new user registration, general contact messages, etc."
 msgstr "Este separador permite-lhe criar e modificar suas notificações. As notificações podem ser atribuídos a vários eventos, tais como registro de novo usuário, mensagens de contato em geral, etc"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:277
+#: ../core/ui/crm_page_wp_crm_settings.php:283
 msgid "Message Header"
 msgstr "Cabeçalho da Mensagem"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:279
+#: ../core/ui/crm_page_wp_crm_settings.php:285
 msgid "Trigger Actions"
 msgstr "Açoes trigger"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:289
-msgid "Subject:"
-msgstr "Assunto"
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:293
-msgid "To:"
-msgstr "para:"
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:297
+#: ../core/ui/crm_page_wp_crm_settings.php:303
 msgid "BCC:"
 msgstr "BCC:"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:301
+#: ../core/ui/crm_page_wp_crm_settings.php:307
 msgid "Send From:"
 msgstr "Enviado de:"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:332
+#: ../core/ui/crm_page_wp_crm_settings.php:338
 msgid "You do not have any notification actions yet. "
 msgstr "Você ainda não tem nehuma ações de notificação."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:349
+#: ../core/ui/crm_page_wp_crm_settings.php:355
 msgid "For the <b>Send From</b> value enter an e-mailed address or a name and e-mail using the folloiwng format: John Smith <john.smith@gmail.com>"
 msgstr "Para o <b>envio de</b> valor de digitar um endereço de e-mail ou um nome e e-mail usando o folloiwng formato Exemplo: Empresa<contatos.empresa@gmail.com>"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:350
+#: ../core/ui/crm_page_wp_crm_settings.php:356
 msgid "To see list of variables you can use in notifications open up the \"Help\" tab and view the user data structure.  Any variable you see in there can be used in the subject field, to field, BCC field, and the message body. Example: [user_email] would include the recipient's e-mail."
 msgstr "Para ver a lista de variáveis ​​que você pode usar em notificações abrir o \"Ajuda\" tab  e visualizar a estrutura de dados do usuário. Qualquer variável que você vê lá pode ser usado no campo assunto, ao campo de campo, BCC, eo corpo da mensagem. exemplo: [user_email] incluiria o do destinatário e-mail."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:371
+#: ../core/ui/crm_page_wp_crm_settings.php:377
 msgid "Attribute"
 msgstr "Atributos"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:373
+#: ../core/ui/crm_page_wp_crm_settings.php:379
 msgid "Input Type"
 msgstr "Tipo de Emtrada"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:392
+#: ../core/ui/crm_page_wp_crm_settings.php:400
 msgid "Note:"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:397
+#: ../core/ui/crm_page_wp_crm_settings.php:405
 msgid "Slug:"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:402
+#: ../core/ui/crm_page_wp_crm_settings.php:412
 msgid "Toggle Advanced"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:411
+#: ../core/ui/crm_page_wp_crm_settings.php:421
 msgid "Primary"
 msgstr "Promario"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:416
+#: ../core/ui/crm_page_wp_crm_settings.php:426
 msgid "Overview Column"
 msgstr "visão geral coluna"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:421
+#: ../core/ui/crm_page_wp_crm_settings.php:431
 msgid "Required"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:426
+#: ../core/ui/crm_page_wp_crm_settings.php:436
 msgid "Uneditable"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:486
+#: ../core/ui/crm_page_wp_crm_settings.php:495
 msgid "User Roles"
 msgstr "Funções Usuarios"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:492
+#: ../core/ui/crm_page_wp_crm_settings.php:501
 msgid "Role"
 msgstr "Funções"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:493
+#: ../core/ui/crm_page_wp_crm_settings.php:502
 msgid "Hidden Attributes"
 msgstr "Esconder atributos"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:494
+#: ../core/ui/crm_page_wp_crm_settings.php:503
 msgid "Capabilities"
 msgstr "Capacdades"
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:522
+#: ../core/ui/crm_page_wp_crm_settings.php:531
 msgid "No capabilities found for role."
 msgstr ""
 
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:555
-msgid "When purchasing the premium features you will need to specify your domain to add the license correctly. <br />This is your domain:"
-msgstr ""
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:570
-msgid "[learn more]"
-msgstr "[lSaiba Mais]"
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:579
-msgid "Disable feature."
-msgstr ""
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:580
-msgid "Feature installed, using version"
-msgstr "Recurso instalado, utilizando a versão"
-
-# @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:582
-#, php-format
-msgid "Please visit <a href=\"%s\">UsabilityDynamics.com</a> to purchase this feature."
-msgstr ""
-
 # @ wpp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:599
+#: ../core/ui/crm_page_wp_crm_settings.php:564
+#: ../core/ui/crm_page_wp_crm_settings.php:611
 msgid "Force check of allowed premium features."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:600
+#: ../core/ui/crm_page_wp_crm_settings.php:565
+#: ../core/ui/crm_page_wp_crm_settings.php:612
 msgid "Check Updates"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:604
+#: ../core/ui/crm_page_wp_crm_settings.php:569
+msgid "When purchasing the premium features you will need to specify your domain to add the license correctly. <br />This is your domain:"
+msgstr ""
+
+# @ wp_crm
+#: ../core/ui/crm_page_wp_crm_settings.php:583
+msgid "[learn more]"
+msgstr "[lSaiba Mais]"
+
+# @ wp_crm
+#: ../core/ui/crm_page_wp_crm_settings.php:592
+msgid "Disable feature."
+msgstr ""
+
+# @ wp_crm
+#: ../core/ui/crm_page_wp_crm_settings.php:593
+msgid "Feature installed, using version"
+msgstr "Recurso instalado, utilizando a versão"
+
+# @ wp_crm
+#: ../core/ui/crm_page_wp_crm_settings.php:595
+#, php-format
+msgid "Please visit <a href=\"%s\">UsabilityDynamics.com</a> to purchase this feature."
+msgstr ""
+
+# @ wp_crm
+#: ../core/ui/crm_page_wp_crm_settings.php:616
 msgid "Look up the <b>$wp_crm</b> global settings array. This array stores all the default settings, which are overwritten by database settings, and custom filters."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:605
+#: ../core/ui/crm_page_wp_crm_settings.php:617
 msgid "Show $wp_crm"
 msgstr "Mostrar $wp_crm"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:611
+#: ../core/ui/crm_page_wp_crm_settings.php:623
 msgid "Show user data structure:"
 msgstr "Mostrar estrutura de dados do usuário:"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:612
+#: ../core/ui/crm_page_wp_crm_settings.php:624
 msgid "Show WP_CRM_F::user_object_structure()"
 msgstr "Mostrar WP_CRM_F::user_object_structure()"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:613
+#: ../core/ui/crm_page_wp_crm_settings.php:625
 msgid "All possible meta keys:"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:615
+#: ../core/ui/crm_page_wp_crm_settings.php:627
 msgid "Root Only:"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:621
+#: ../core/ui/crm_page_wp_crm_settings.php:633
 msgid "Lookup a user object by its ID."
 msgstr "pesquisa de um objeto de usuário pelo seu ID."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:623
+#: ../core/ui/crm_page_wp_crm_settings.php:635
 msgid "Load User"
 msgstr "Carregar Usuario..."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:629
+#: ../core/ui/crm_page_wp_crm_settings.php:641
 msgid "Get user meta report. Will return an array of common meta keys and a few sample values.  This should be used to help you analyze a website with a lot of existing user meta."
 msgstr "Obter relatório meta do usuário. Irá retornar uma matriz de chaves meta comum e uma amostra de alguns valores. Isso deve ser usado para ajudar você a analisar um site com um monte de meta de usuário existente."
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:630
+#: ../core/ui/crm_page_wp_crm_settings.php:642
 msgid "Get Report"
 msgstr "Obter Relatóorio"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:636
+#: ../core/ui/crm_page_wp_crm_settings.php:648
 msgid "Generate "
 msgstr "Gerar"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:636
+#: ../core/ui/crm_page_wp_crm_settings.php:648
 msgid "fake users. "
 msgstr "falso(fake) usuario"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:637
+#: ../core/ui/crm_page_wp_crm_settings.php:649
 msgid "Generate"
 msgstr "Gerar"
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:638
+#: ../core/ui/crm_page_wp_crm_settings.php:650
 msgid "Delete All Fake Users"
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:643
+#: ../core/ui/crm_page_wp_crm_settings.php:655
 msgid "Restore Backup of WP-CRM Configuration"
 msgstr "Restaurar Backup do WP CRM-configuração"
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:644
+#: ../core/ui/crm_page_wp_crm_settings.php:656
 msgid "Download Backup of Current WP-CRM Configuration."
 msgstr "Baixar o Backup da Configuração WP CRM-Atuais."
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:650
+#: ../core/ui/crm_page_wp_crm_settings.php:662
 msgid "Enable developer mode and start displaying additional information in the console log."
 msgstr ""
 
 # @ wp_crm
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/crm_page_wp_crm_settings.php:663
+#: ../core/ui/crm_page_wp_crm_settings.php:675
 msgid "Save Changes"
 msgstr ""
 
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:4
+#: ../core/ui/toplevel_page_wp_crm.php:4
 msgid "User has been deleted and all associated posts have been trashed."
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:8
+#: ../core/ui/toplevel_page_wp_crm.php:8
 msgid "WP-CRM has been updated, and any premium features your domain qualifies for have been downloaded."
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:24
+#: ../core/ui/toplevel_page_wp_crm.php:21
 msgid "CRM - All People"
 msgstr ""
 
 # @ default
-#: C:\wamp\www\usabilitydynamics.com\development\wordpress-plugins\wp-content\plugins\wp-crm/core/ui/toplevel_page_wp_crm.php:24
+#: ../core/ui/toplevel_page_wp_crm.php:21
 msgid "Add New"
 msgstr ""
 
+# @ wp_crm
+#, fuzzy
+#~ msgid "General</h3>"
+#~ msgstr "Gerar"
+
+# @ default
+#~ msgctxt "users"
+#~ msgid "All <span class=\"count\">(%s)</span>"
+#~ msgid_plural "All <span class=\"count\">(%s)</span>"
+#~ msgstr[0] "Todas<span class=\"conta\">(%s)</span>"
+#~ msgstr[1] "Todas<span class=\"contas\">(%s)</span>"
+# @ wp_crm
+#, fuzzy
+#~ msgid "To: "
+#~ msgstr "para:"
+
+# @ wp_crm
+#, fuzzy
+#~ msgid "Subject: "
+#~ msgstr "Assunto"
+
+# @ wp_crm
+#, fuzzy
+#~ msgid "User Role:"
+#~ msgstr "Funções Usuarios"

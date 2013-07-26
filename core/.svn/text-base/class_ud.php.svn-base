@@ -463,17 +463,17 @@ padding:2px 6px;}
   </style>
 
   <div class="wrap">
-  <h2><?php _e('UD Log Page for','wpp') ?> get_option('<?php echo 'WP_CRM' . 'log'; ?>');
-  <a href="<?php echo admin_url("admin.php?page=ud_log&ud_action=clear_log"); ?>" class="button"><?php _e('Clear Log','wpp') ?></a>
+  <h2><?php _e('UD Log Page for','wp_crm') ?> get_option('<?php echo 'WP_CRM' . 'log'; ?>');
+  <a href="<?php echo admin_url("admin.php?page=ud_log&ud_action=clear_log"); ?>" class="button"><?php _e('Clear Log','wp_crm') ?></a>
   </h2>
 
 
   <table class="widefat">
    <thead>
    <tr>
-    <th style="width: 150px"><?php _e('Timestamp','wpp') ?></th>
-    <th><?php _e('Event','wpp') ?></th>
-    <th><?php _e('User','wpp') ?></th>
+    <th style="width: 150px"><?php _e('Timestamp','wp_crm') ?></th>
+    <th><?php _e('Event','wp_crm') ?></th>
+    <th><?php _e('User','wp_crm') ?></th>
    </tr>
    </thead>
 
@@ -741,7 +741,7 @@ class CRM_UD_F {
   if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name)
    return true;
 
-  CRM_UD_F::log(__("Cache table does not exist. Attempting to create:",'wpp'));
+  CRM_UD_F::log(__("Cache table does not exist. Attempting to create:",'wp_crm'));
 
   // Table does not exist, make it
   $sql = "CREATE TABLE " . $table_name . " (
@@ -754,16 +754,16 @@ class CRM_UD_F {
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   dbDelta($sql);
 
-  CRM_UD_F::log(sprintf(__('SQL Ran: %s , verifying existance.','wpp'), $sql ));
+  CRM_UD_F::log(sprintf(__('SQL Ran: %s , verifying existance.','wp_crm'), $sql ));
 
 
   // Verify it exists
   if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
-   CRM_UD_F::log(__("Table created and exists.",'wpp'));
+   CRM_UD_F::log(__("Table created and exists.",'wp_crm'));
    return true;
   }
 
-  CRM_UD_F::log(__("Table not created.",'wpp'));
+  CRM_UD_F::log(__("Table not created.",'wp_crm'));
 
   // Something went terribly wrong
   return false;
@@ -830,7 +830,7 @@ class CRM_UD_F {
   // If no session log created yet, create one
   if(!is_array($this_log)) {
    $this_log = array();
-   array_push($this_log, array(time(), __("Log Started.",'wpp')));
+   array_push($this_log, array(time(), __("Log Started.",'wp_crm')));
   }
 
   // Insert event into session
@@ -867,7 +867,7 @@ class CRM_UD_F {
   // If no session log created yet, create one
   if(!is_array($this_log)) {
    $this_log = array();
-   array_push($this_log, array(time(),__("Log Started.",'wpp')));
+   array_push($this_log, array(time(),__("Log Started.",'wp_crm')));
   }
   update_option($log_name, $this_log);
 
@@ -959,9 +959,9 @@ class CRM_UD_F {
   if($return_number)
    return $days;
 
-  if($days == 0) __('Today', 'wpp');
-  elseif($days == 1) { return($future ? __("Tomorrow ",'wpp') : __("Yesterday ",'wpp')); }
-  elseif($days > 1 && $days <= 6) { return ($future ? sprintf(__(" in %d days ",'wpp'), $days) : sprintf(__("%d days ago",'wpp'), $days)); }
+  if($days == 0) __('Today', 'wp_crm');
+  elseif($days == 1) { return($future ? __("Tomorrow ",'wp_crm') : __("Yesterday ",'wp_crm')); }
+  elseif($days > 1 && $days <= 6) { return ($future ? sprintf(__(" in %d days ",'wp_crm'), $days) : sprintf(__("%d days ago",'wp_crm'), $days)); }
   elseif($days > 6) { return date(get_option('date_format'), strtotime($date1)); }
  }
 
@@ -1010,7 +1010,7 @@ class CRM_UD_F {
   * @uses add_action() Calls 'admin_menu' hook with an anonymous (lambda-style) function which uses add_menu_page to create a UI Log page
   */
  function add_log_page() {
-  add_action('admin_menu', create_function('', "add_menu_page(__('Log','wpp'), __('Log','wpp'), 10, 'ud_log', array('CRM_UD_UI','show_log_page'));"));
+  add_action('admin_menu', create_function('', "add_menu_page(__('Log','wp_crm'), __('Log','wp_crm'), 10, 'ud_log', array('CRM_UD_UI','show_log_page'));"));
  }
 
  /**
@@ -1078,7 +1078,7 @@ class CRM_UD_F {
    'message' => $message);
 
   // Log in database
-  CRM_UD_F::log(__("Automatically logged failed JSON response: ",'wpp').$message);
+  CRM_UD_F::log(__("Automatically logged failed JSON response: ",'wp_crm').$message);
 
   echo json_encode($return);
   die();
@@ -1196,9 +1196,9 @@ class CRM_UD_F {
     $minutes_ago = round((time() - $time) / 60);
 
     if($minutes_ago > 60) {
-    return sprintf(__('%s hours ago','wpp'),round($minutes_ago / 60));
+    return sprintf(__('%s hours ago','wp_crm'),round($minutes_ago / 60));
     } else {
-    return sprintf(__('%s minutes ago','wpp'),$minutes_ago);
+    return sprintf(__('%s minutes ago','wp_crm'),$minutes_ago);
     }
 
   }

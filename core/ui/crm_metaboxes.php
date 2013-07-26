@@ -26,7 +26,7 @@ class toplevel_page_wp_crm {
     <div class="major-publishing-actions">
 
       <div class="publishing-action">
-        <?php submit_button(__('Filter Results'), 'button', false, false, array('id' => 'search-submit')); ?>
+        <?php submit_button(__('Filter Results','wp_crm'), 'button', false, false, array('id' => 'search-submit')); ?>
       </div>
       <br class="clear" />
     </div>
@@ -69,7 +69,8 @@ class crm_page_wp_crm_add_new {
 
     $params = array(
       'object_id' => $user_id,
-      'import_count' => $per_page
+      'import_count' => $per_page,
+      'hide_empty' => true
     );
 
     $limited_messages = WP_CRM_F::get_events($params);
@@ -79,7 +80,7 @@ class crm_page_wp_crm_add_new {
       <div class="wp_crm_activity_top">
         <input class="wp_crm_toggle_message_entry" type="button" value="<?php _e('Add Message', 'wp_crm'); ?>" />
         <?php do_action('wp_crm_user_activity_history_top', $object); ?>
-        <img class="loading" src="<?php echo WP_CRM_URL;?>/css/images/ajax-loader-arrows.gif" height="16" width="16" style="margin: 0pt auto; display:none" alt="<?php _e("loading");?>"/>
+        <img class="loading" src="<?php echo WP_CRM_URL;?>/css/images/ajax-loader-arrows.gif" height="16" width="16" style="margin: 0pt auto; display:none" alt="<?php _e("loading",'wp_crm');?>"/>
       </div>
       <?php
     endif;
@@ -100,7 +101,7 @@ class crm_page_wp_crm_add_new {
           <label for="wp_crm_message_type"><?php _e('Message type', 'wp_crm');?></label>
           <select id="wp_crm_message_type" class='wp_crm_dropdown'>
             <?php foreach ((array)apply_filters('crm_add_message_types',array('general_message'=>array('title'=>'General Message'),'phone_call'=>array('title'=>'Phone Call'),'meeting'=>array('title'=>'Meeting'))) as $type=>$options):?>
-            <option value="<?php echo $type;?>" title="Select type of message"><?php _e($options['title']);?></option>
+            <option value="<?php echo $type;?>" title="Select type of message"><?php echo $options['title'];?></option>
           <?php endforeach; ?>
           </select>
           <input type="button" id="wp_crm_add_message" value="<?php _e('Add Message', 'wp_crm'); ?>"/>
@@ -121,9 +122,7 @@ class crm_page_wp_crm_add_new {
     </table>
 
     <div class="wp_crm_stream_status wp_crm_load_more_stream" limited_messages="<?php echo count($limited_messages); ?>" all_messages="<?php echo count($all_messages); ?>"  per_page="<?php echo (((!empty($stream->per_page)) ? $stream->per_page : $per_page)); ?>" <?php if (empty($rest_messages)) { ?>style="display:none;" <?php } ?>>
-
-        <span class="wp_crm_counts"><?php printf(__('Showing <span class="current_count">%1s</span> messages of <span class="total_count">%2s</span>. Load <span class="more_count">%3s</span> more.', 'wp_crm'), count($limited_messages), count($all_messages), (($rest_messages>=$per_page)) ? $per_page : $rest_messages); ?>&nbsp;<img class="loading" src="<?php echo WP_CRM_URL;?>/css/images/ajax-loader-arrows.gif" height="16" width="16" style="margin: 0pt auto; display:none" alt="<?php _e("loading");?>"/></span>
-
+        <span class="wp_crm_counts"><?php printf(__('Showing <span class="current_count">%1s</span> messages of <span class="total_count">%2s</span>. Load <span class="more_count">%3s</span> more.', 'wp_crm'), count($limited_messages), count($all_messages), (($rest_messages>=$per_page)) ? $per_page : $rest_messages); ?>&nbsp;<img class="loading" src="<?php echo WP_CRM_URL;?>/css/images/ajax-loader-arrows.gif" height="16" width="16" style="margin: 0pt auto; display:none" alt="<?php _e("loading", 'wp_crm');?>"/></span>
     </div>
     <?php
   }
@@ -181,7 +180,7 @@ class crm_page_wp_crm_add_new {
    *
    */
   function special_actions($object) {
-    global $current_user, $wpdb, $wp_filter, $user_id;
+    global $current_user, $wpdb, $wp_filter, $user_id, $_wp_admin_css_colors;
 
     $current_user_id = $current_user->ID;
     $user_id = $object['ID']['default'][0];
@@ -194,46 +193,43 @@ class crm_page_wp_crm_add_new {
     <div id="minor-publishing">
       <ul class="wp_crm_advanced_user_actions_wrapper">
         <li class="wp_crm_advanced_user_actions">
-          <div class="wp_crm_toggle_advanced_user_actions wp_crm_link"><?php _e('Toggle Settings'); ?></div>
+          <div class="wp_crm_toggle_advanced_user_actions wp_crm_link"><?php _e('Toggle Settings','wp_crm'); ?></div>
           <div class="wp_crm_advanced_user_actions wp-tab-panel">
-          <?php if (current_user_can('edit_users')) { ?>
+            <?php if (current_user_can('edit_users')) { ?>
             <?php if (current_user_can('WP-CRM: Change Passwords')) { ?>
               <?php _e('Set Password:', 'wp_crm'); ?>
-                    <ul class="wp_crm_edit_password">
-                      <li>
-                        <input type="password" autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_1" name="wp_crm[user_data][user_pass][<?php echo rand(1000, 9999); ?>][value]" />
-                        <span class="description"><?php _e('Type in new password twice to change.'); ?></span>
-                      </li>
-                      <li>
-                        <input type="password" autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_2" />
-                        <span class="description"><?php _e('Type your new password again.'); ?></span>
-                      </li>
-                    </ul>
-            <?php } ?>
+              <ul class="wp_crm_edit_password">
+                <li>
+                  <input type="password" autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_1" name="wp_crm[user_data][user_pass][<?php echo rand(1000, 9999); ?>][value]" />
+                  <span class="description"><?php _e('Type in new password twice to change.','wp_crm'); ?></span>
+                </li>
+                <li>
+                  <input type="password" autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_2" />
+                  <span class="description"><?php _e('Type your new password again.','wp_crm'); ?></span>
+                </li>
+              </ul>
+              <?php } ?>
               <?php _e('Admin Options:', 'wp_crm'); ?>
-                    <ul>
-                      <?php if (current_user_can('edit_users')) { ?>
-                        <li class="wp_crm_edit_roles">
-                          <label for="wp_crm_role"><?php _e('Capability Role:', 'wp_crm'); ?></label>
-                          <select id="wp_crm_role" <?php echo ($own_profile ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
-                            <option value=""></option>
-                        <?php wp_dropdown_roles($object['role']['default'][0]); ?>
-                          </select>
-                        </li>
-                      <?php } ?>
-                      <li class="wp_crm_capability_bar">
-                        <input name="show_admin_bar_front" type="hidden" value="false"  />
-                        <input name="show_admin_bar_front" type="checkbox" id="show_admin_bar_front" value="true" <?php checked(_get_admin_bar_pref('front', $profileuser->ID)); ?> />
-                        <label for="show_admin_bar_front"><?php _e('Show Admin Bar when viewing site.'); ?> </label>
-                      </li>
-                    </ul>
-          <?php } ?>
-            <?php
-            if (current_user_can('WP-CRM: Change Color Scheme')) {
-              _e('Color Scheme:', 'wp_crm');
-              do_action('admin_color_scheme_picker');
-            }
-            ?>
+              <ul>
+                <?php if (current_user_can('edit_users')) { ?>
+                  <li class="wp_crm_edit_roles">
+                    <label for="wp_crm_role"><?php _e('Capability Role:', 'wp_crm'); ?></label>
+                    <select id="wp_crm_role" <?php echo ($own_profile ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
+                      <option value=""></option>
+                  <?php wp_dropdown_roles($object['role']['default'][0]); ?>
+                    </select>
+                  </li>
+                <?php } ?>
+                <li class="wp_crm_capability_bar">
+                  <input name="show_admin_bar_front" type="hidden" value="false"  />
+                  <input name="show_admin_bar_front" type="checkbox" id="show_admin_bar_front" value="true" <?php checked(_get_admin_bar_pref('front', $profileuser->ID)); ?> />
+                  <label for="show_admin_bar_front"><?php _e('Show Admin Bar when viewing site.','wp_crm'); ?> </label>
+                </li>
+              </ul>
+            <?php } ?>
+            <?php if ( count($_wp_admin_css_colors) > 1 && has_action('admin_color_scheme_picker') && current_user_can('WP-CRM: Change Color Scheme') ) { ?>
+            <?php _e('Color Scheme:', 'wp_crm'); do_action('admin_color_scheme_picker'); ?>
+            <?php } ?>
             </div>
           </li>
         </ul>
@@ -270,7 +266,7 @@ class crm_page_wp_crm_add_new {
           <ul class="wp_crm_action_list">
             <?php do_action('wp_crm_single_user_actions', $object); ?>
             <?php if ((current_user_can('remove_users') || current_user_can('delete_users')) && (!$object['new'] && $user_id != $current_user->ID)) { ?>
-              <li><a href="<?php echo wp_nonce_url("admin.php?wp_crm_action=delete_user&page=wp_crm&user_id={$user_id}", 'wp-crm-delete-user-' . $user_id); ?>" class="submitdelete deletion button"><?php _e('Delete'); ?></a></li>
+              <li><a href="<?php echo wp_nonce_url("admin.php?wp_crm_action=delete_user&page=wp_crm&user_id={$user_id}", 'wp-crm-delete-user-' . $user_id); ?>" class="submitdelete deletion button"><?php _e('Delete','wp_crm'); ?></a></li>
             <?php } ?>
           </ul>
         </div>

@@ -152,12 +152,12 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
       return;
 
     echo "<select name='action$two'>\n";
-    echo "<option value='-1' selected='selected'>" . __( 'Bulk Actions' ) . "</option>\n";
+    echo "<option value='-1' selected='selected'>" . __( 'Bulk Actions', 'wp_crm' ) . "</option>\n";
     foreach ( $this->_actions as $name => $title )
       echo "\t<option value='$name'>$title</option>\n";
     echo "</select>\n";
 
-    submit_button( __( 'Apply' ), 'button-secondary action', false, false, array( 'id' => "doaction$two" ) );
+    submit_button( __( 'Apply', 'wp_crm' ), 'button-secondary action', false, false, array( 'id' => "doaction$two" ) );
     echo "\n";
   }
 
@@ -253,7 +253,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
         case 'posts':
 
           if ( $numposts > 0 ) {
-            $r .= "<a href='edit.php?author=$user_id' title='" . esc_attr__( 'View posts by this author' ) . "' class='edit'>";
+            $r .= "<a href='edit.php?author=$user_id' title='" . esc_attr__( 'View posts by this author', 'wp_crm' ) . "' class='edit'>";
             $r .= $numposts;
             $r .= '</a>';
           } else {
@@ -425,7 +425,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
       $name = translate_user_role( $name );
       /* translators: User role name with count */
-      $name = sprintf( __('%1$s <span class="count">(%2$s)</span>'), $name, $avail_roles[$this_role] );
+      $name = sprintf( __('%1$s <span class="count">(%2$s)</span>', 'wp_crm'), $name, $avail_roles[$this_role] );
       $role_links[$this_role] = "<input type='radio' $class name='wp_crm_search[wp_role][]' value='$this_role' id='wp-crm-$this_role' class='wp_crm_role_list'/> <label for='wp-crm-$this_role'>$name</label>";
     }
 
@@ -437,10 +437,10 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
     if ( is_multisite() ) {
       if ( current_user_can( 'remove_users' ) )
-        $actions['remove'] = __( 'Remove' );
+        $actions['remove'] = __( 'Remove', 'wp_crm' );
     } else {
       if ( current_user_can( 'delete_users' ) )
-        $actions['delete'] = __( 'Delete' );
+        $actions['delete'] = __( 'Delete', 'wp_crm' );
     }
 
     return $actions;

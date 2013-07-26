@@ -435,7 +435,7 @@ if(!function_exists('wp_crm_send_notification')) {
   /**
    * Send an e-mail or a text message to a recipient .
    *
-   * Returns false if not a single notification was sent out.
+   * Returns true if at least one of notifications was sent out.
    *
    * @since 0.1
    */
@@ -463,7 +463,7 @@ if(!function_exists('wp_crm_send_notification')) {
     if(!$notifications) {
       return false;
     }
-
+    $result = false;
     //** Act upon every notification one at a time */
     foreach($notifications as $notification) {
 
@@ -473,10 +473,8 @@ if(!function_exists('wp_crm_send_notification')) {
         continue;
       }
 
-      $headers = "From: {$message[send_from]} \r\n\\";
-
-      /** @todo It would be better to find way send ReplyTo data that would be able to get it over phpmailer object to add it to ReplyTo massage field */
-      //$headers .= "ReplyTo: {$message[send_from]} \r\n\\";
+      $headers['From']    = "From: ".$message['send_from'];
+      $headers['Bcc']     = "Bcc: ".$message['bcc'];
 
       add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 
@@ -486,10 +484,12 @@ if(!function_exists('wp_crm_send_notification')) {
         $message['message'] = nl2br($message['message']);
       }
 
-      $result = wp_mail($message['to'], $message['subject'], $message['message'], $headers, ($args['attachments'] ? $args['attachments'] : false));
-    }
-    return ( isset($result) ? $result : false );
+      if (wp_mail($message['to'], $message['subject'], $message['message'], $headers, ($args['attachments'] ? $args['attachments'] : false))){
+        $result = true;
+      }
 
+    }
+    return $result;
   }
 } /* wp_crm_send_notification */
 
@@ -845,7 +845,7 @@ if(!function_exists('wp_crm_save_user_data')) {
         switch($user_id->get_error_code()) {
           case 'existing_user_email':
             $existing_id = email_exists($insert_data['user_email']);
-            WP_CRM_F::add_message(sprintf(__('Error saving user: %s', 'wp_crm'), $user_id->get_error_message() . ' <a href="' . admin_url("admin.php?page=wp_crm_add_new&user_id={$existing_id}"). '">'. ('Go to user profile') . '</a>'), 'bad');
+            WP_CRM_F::add_message(sprintf(__('Error saving user: %s', 'wp_crm'), $user_id->get_error_message() . ' <a href="' . admin_url("admin.php?page=wp_crm_add_new&user_id={$existing_id}"). '">'. __('Go to user profile','wp_crm') . '</a>'), 'bad');
           break;
 
           default:

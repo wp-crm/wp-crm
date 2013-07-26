@@ -93,7 +93,7 @@ class WPI_WPC {
 
 
   function wp_crm_overview_columns($current) {
-    $current['wpi_sales']['title'] = __('Sales');
+    $current['wpi_sales']['title'] = __('Sales','wp_crm');
     $current['wpi_sales']['overview_column'] = 'true';
     return $current;
 

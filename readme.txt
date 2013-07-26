@@ -3,8 +3,8 @@ Contributors: Usability Dynamics, andypotanin
 Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 3.0
-Tested up to: 3.4-RC1
-Stable tag: 0.33.0
+Tested up to: 3.4.1
+Stable tag: 0.33.1
 
 
 == Description ==
@@ -70,6 +70,14 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Initial public release.
 
 == Changelog ==
+
+= 0.33.1 =
+* Added ability to create user without email.
+* Added Russian localization.
+* Fixed prohibition of user updating without changing email.
+* Fixed BCC functionality on notification sending.
+* Added fix to hide blank user stream messages.
+* Added fix to Color Scheme: option to not be shown when there are no color schemes available.
 
 = 0.33.0 =
 * Added WordPress 3.4-RC1 compatibility.
