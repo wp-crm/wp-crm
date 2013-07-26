@@ -702,6 +702,11 @@ class WP_CRM_Core {
     add_submenu_page('wp_crm', __('My Profile', 'wp_crm'), __('My Profile', 'wp_crm'), 'WP-CRM: View Profiles', 'wp_crm_my_profile', array('WP_CRM_Core', 'page_loader'));
     $wp_crm['system']['pages']['your_profile'] = $wp_crm['system']['pages']['add_new'];
     $wp_crm['system']['pages']['settings'] = add_submenu_page('wp_crm', __('Settings', 'wp_crm'), __('Settings', 'wp_crm'), 'WP-CRM: Manage Settings', 'wp_crm_settings', array('WP_CRM_Core', 'page_loader'));
+    
+    if($wp_crm['configuration']['track_detailed_user_activity'] == 'true') {
+      $wp_crm['system']['pages']['user_logs'] = add_submenu_page('wp_crm', __( 'Activity Logs', 'wp_crm'),  __( 'Activity Logs', 'wp_crm'), 'WP-CRM: View Detailed Logs', 'wp_crm_detailed_logs', array('WP_CRM_Core', 'page_loader'));  
+    }
+    
     //** Migrate any pages that are under default user page */
     if($wp_crm['configuration']['replace_default_user_page'] == 'true') {
 

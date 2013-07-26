@@ -104,7 +104,7 @@ class crm_page_wp_crm_add_new {
             <option value="<?php echo $type;?>" title="Select type of message"><?php echo $options['title'];?></option>
           <?php endforeach; ?>
           </select>
-          <input type="button" id="wp_crm_add_message" value="<?php _e('Add Message', 'wp_crm'); ?>"/>
+          <input type="button" id="wp_crm_add_message" value="<?php _e('Submit', 'wp_crm'); ?>"/>
         </div>
       </div>
     </div>
@@ -145,7 +145,7 @@ class crm_page_wp_crm_add_new {
                 $row_classes[] = ((is_array($wp_crm['hidden_attributes'][$user_role]) && in_array($slug, $wp_crm['hidden_attributes'][$user_role])) ? 'hidden' : '');
                 $row_classes[] = 'wp_crm_user_entry_row';
                 $row_classes[] = "wp_crm_{$slug}_row";
-        ?>
+                ?>
                 <tr meta_key="<?php echo esc_attr($slug); ?>" wp_crm_input_type="<?php echo esc_attr($attribute['input_type']); ?>" class="<?php echo implode(' ', $row_classes); ?>">
                   <th>
                     <?php ob_start(); ?>

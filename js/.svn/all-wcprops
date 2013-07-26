@@ -1,35 +1,35 @@
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/!svn/ver/638414/wp-crm/tags/0.33.1/js
+/!svn/ver/637906/wp-crm/tags/0.33.2/js
 END
 crm_page_wp_crm_settings.js
 K 25
 svn:wc:ra_dav:version-url
 V 66
-/!svn/ver/638414/wp-crm/tags/0.33.1/js/crm_page_wp_crm_settings.js
+/!svn/ver/637906/wp-crm/tags/0.33.2/js/crm_page_wp_crm_settings.js
 END
 crm_page_wp_crm_add_new.js
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/!svn/ver/638414/wp-crm/tags/0.33.1/js/crm_page_wp_crm_add_new.js
+/!svn/ver/637906/wp-crm/tags/0.33.2/js/crm_page_wp_crm_add_new.js
 END
 wp_crm_global.js
 K 25
 svn:wc:ra_dav:version-url
 V 55
-/!svn/ver/638414/wp-crm/tags/0.33.1/js/wp_crm_global.js
+/!svn/ver/637906/wp-crm/tags/0.33.2/js/wp_crm_global.js
 END
 toplevel_page_wp_crm.js
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/!svn/ver/638414/wp-crm/tags/0.33.1/js/toplevel_page_wp_crm.js
+/!svn/ver/637906/wp-crm/tags/0.33.2/js/toplevel_page_wp_crm.js
 END
 wp_crm_profile_editor.js
 K 25
 svn:wc:ra_dav:version-url
 V 63
-/!svn/ver/638414/wp-crm/tags/0.33.1/js/wp_crm_profile_editor.js
+/!svn/ver/637906/wp-crm/tags/0.33.2/js/wp_crm_profile_editor.js
 END

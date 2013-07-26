@@ -754,7 +754,7 @@ class CRM_UD_F {
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   dbDelta($sql);
 
-  CRM_UD_F::log(sprintf(__('SQL Ran: %s , verifying existance.','wp_crm'), $sql ));
+  CRM_UD_F::log(sprintf(__('SQL Ran: %s , verifying existence.','wp_crm'), $sql ));
 
 
   // Verify it exists

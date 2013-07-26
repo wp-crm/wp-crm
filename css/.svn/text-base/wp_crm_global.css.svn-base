@@ -319,4 +319,6 @@ div.wp_crm_visualize_results {
   margin: 7px auto;
   text-align: center;
   display:block;
+  height: auto;
+  line-height: 13px;
 }

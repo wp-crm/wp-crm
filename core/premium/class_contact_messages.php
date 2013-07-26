@@ -966,7 +966,7 @@ class class_contact_messages {
           !empty($_REQUEST['email']) ||
             !empty($_REQUEST['name']) ||
               !empty($_REQUEST['url'])) {
-      die(json_encode(array('success' => 'false', 'message' => __('If you see this message, WP-CRM through you were a robot.  Please contact admin if you do not think are you one.','wp_crm'))));
+      die(json_encode(array('success' => 'false', 'message' => __('If you see this message, WP-CRM thought you were a robot.  Please contact admin if you do not think are you one.','wp_crm'))));
     }
 
     $data = $_REQUEST['wp_crm'];
@@ -1195,7 +1195,7 @@ class class_contact_messages {
   <div class="wp_crm_inner_tab">
 
       <p>
-        <?php _e('Use this section to add and configure new contact forms.', 'wp_crm'); ?>
+        <?php _e('Use this section to add and configure new shortcode forms.', 'wp_crm'); ?>
       </p>
      <table id="wp_crm_wp_crm_contact_system_data" class="form-table wp_crm_form_table ud_ui_dynamic_table widefat">
       <thead>
@@ -1320,7 +1320,7 @@ class class_contact_messages {
               <li>
                 <label for="wp_crm_new_contact_role"><?php _e( 'Default role to use for new contacts:', 'wp_crm' ); ?> </label>
                  <select id="wp_crm_new_contact_role" name="wp_crm[configuration][new_contact_role]"><option value=""> - </option><?php wp_dropdown_roles($wp_crm['configuration']['new_contact_role']); ?></select>
-                 <div class="description"><?php _e('WP-CRM creates user profiles, if only temporary, to store inquiries and messages from contact forms.', 'wp_crm'); ?>  </div>
+                 <div class="description"><?php _e('WP-CRM creates user profiles, if only temporary, to store inquiries and messages from shortcode forms.', 'wp_crm'); ?>  </div>
               </li>
             </ul>
           </td>
@@ -1344,7 +1344,7 @@ class class_contact_messages {
   function add_capabilities() {
     global $wp_crm;
 
-    $wp_crm['capabilities']['View Messages'] = __('View messages from contact forms.', 'wp_crm');
+    $wp_crm['capabilities']['View Messages'] = __('View messages from shortcode forms.', 'wp_crm');
 
   }
 

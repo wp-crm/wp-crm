@@ -181,7 +181,8 @@ ul.wp_crm_notification_main_configuration .wp_crm_checkbox_on_left {
 
 #wp_crm_settings_tabs  ul.tabs li a:hover { color: #9D611D; }
 
-#wp_crm_settings_tabs  ul.tabs li.ui-tabs-selected {
+#wp_crm_settings_tabs  ul.tabs li.ui-tabs-selected,
+#wp_crm_settings_tabs  ul.tabs li.ui-state-active {
   height: 26px;
   background: none repeat scroll 0 0 #FFFFFF;
   border-bottom: 1px solid #FFFFFF; }

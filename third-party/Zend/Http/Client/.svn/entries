@@ -2,13 +2,13 @@
 
 dir
 746600
-http://plugins.svn.wordpress.org/wp-crm/tags/0.33.1/third-party/Zend/Http/Client
+http://plugins.svn.wordpress.org/wp-crm/tags/0.33.2/third-party/Zend/Http/Client
 http://plugins.svn.wordpress.org
 
 
 
-2012-12-13T10:35:17.326664Z
-638414
+2012-12-12T17:42:30.023365Z
+637906
 andypotanin
 
 
@@ -35,10 +35,10 @@ file
 
 
 
-2013-07-26T05:36:42.000000Z
+2013-07-26T05:36:46.000000Z
 70b140d44e4fd3a45f78415826c678d1
-2012-12-13T10:35:17.326664Z
-638414
+2012-12-12T17:42:30.023365Z
+637906
 andypotanin
 
 

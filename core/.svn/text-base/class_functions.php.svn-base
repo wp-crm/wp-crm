@@ -13,6 +13,211 @@
 class WP_CRM_F {
 
   /**
+   * Detailed Activity Log
+   *
+   * @todo Add geolocation service. 
+   * @todo Add caching for host resolution.
+   */
+  static function get_detailed_activity_log( $args = '' ) {
+    global $wpdb, $wp_crm;
+    
+    $args = wp_parse_args( $args, array(
+      'object_type' => 'user',
+      'hide_empty' => false,
+      'order_by' => 'time',
+      'start' => '0',
+      'import_count' => 500,
+      'get_count' => 'false',
+      'filter_types' => array(
+        array(
+          'attribute' => 'detailed_log',
+          'other' => 2,
+          'hidden' => 'false'
+        )
+      )    
+    ));
+        
+    $activity_log = WP_CRM_F::get_events( $args );
+    
+    $_resolved = array();
+    $_locations = get_transient( '_wpc_geolocation' );
+    
+    if( !$_locations ) {
+      $_update_cache = true;
+    }
+
+    foreach( (array) $activity_log as $count => $entry ) {
+    
+      $activity_log[ $count ]->display_name = get_userdata( $entry->object_id )->display_name;
+      $activity_log[ $count ]->edit_url = admin_url( 'admin.php?page=wp_crm_add_new&user_id=' . $entry->object_id );
+      $activity_log[ $count ]->time_stamp = strtotime( $entry->time );
+      $activity_log[ $count ]->date = date( get_option( 'date_format', strtotime( $entry->time ) ) );
+      $activity_log[ $count ]->time_ago = human_time_diff( strtotime( $entry->time ) ) . __( ' ago.', 'wpp' );
+      
+      switch( true ) {
+        
+        case $entry->attribute == 'detailed_log' && $entry->action == 'login':
+          $activity_log[ $count ]->text = sprintf( __( 'Logged in from %1s.', 'wpp' ), $entry->value );
+                    
+          if( function_exists( 'gethostbyaddr' )) {
+            $activity_log[ $count ]->host_name = $_resolved[ $entry->value ] ? $_resolved[ $entry->value ] : $_resolved[ $entry->value ] = @gethostbyaddr( $entry->value );          
+          }
+          
+          if( $entry->value ) {
+            $activity_log[ $count ]->location = $_locations[ $entry->value ] ? $_locations[ $entry->value ] : $_locations[ $entry->value ] = WP_CRM_F::get_service( 'geolocation', '', $entry->value, array( 'json' ) );
+          }
+          
+        break;
+      
+        case $entry->attribute == 'detailed_log' && $entry->action == 'logout':
+          $activity_log[ $count ]->text = sprintf( __( 'Logged out from %1s.', 'wpp' ), $entry->value );
+                    
+          if( function_exists( 'gethostbyaddr' )) {
+            $activity_log[ $count ]->host_name = $_resolved[ $entry->value ] ? $_resolved[ $entry->value ] : $_resolved[ $entry->value ] = @gethostbyaddr( $entry->value );          
+          }
+          
+          if( $entry->value ) {
+            $activity_log[ $count ]->location = $_locations[ $entry->value ] ? $_locations[ $entry->value ] : $_locations[ $entry->value ] = WP_CRM_F::get_service( 'geolocation', '', $entry->value, array( 'json' ) );
+          }
+          
+        break;
+      
+      }
+      
+    }
+    
+    if( $_update_cache && $_locations ) {
+      set_transient( '_wpc_geolocation', $_locations, 3600 ); 
+    }
+    
+    return $activity_log;
+    
+  }
+
+  /**
+   * Handler for general API calls to UD
+   *
+   * On Errors, the data response includes request URL, request body, and response headers / body.
+   *
+   * @updated 1.0.3
+   * @since 1.0.0
+   * @author potanin@UD
+   */
+  static function get_service( $service = false, $resource = '', $args = array(), $settings = array() ) {
+
+    if( !$service ) {
+      return new WP_Error( 'error', sprintf( __( 'API service not specified.' , UD_API_Transdomain ) ) );
+    }
+
+    $request = array_filter( wp_parse_args( $settings, array(
+      'headers' => array(
+        'Authorization' => 'Basic ' . base64_encode( 'api_key:' . get_option( '_ud::customer_key' ) ),
+        'Accept' => 'application/json'
+      ),
+      'timeout' => 120,
+      'stream' => false,
+      'sslverify' => false
+    )));
+
+    foreach( (array) $settings as $set ) {
+
+      switch( $set ) {
+
+        case 'json':
+          $request[ 'headers' ][ 'Accept' ] = 'application/json';
+        break;
+
+        case 'encrypted':
+          $request[ 'headers' ][ 'Encryption' ] = 'Enabled';
+        break;
+
+        case 'xml':
+          $request[ 'headers' ][ 'Accept' ] = 'application/xml';
+        break;
+
+      }
+
+    }
+
+    if( !empty( $request[ 'filename' ] ) && file_exists( $request[ 'filename' ] ) ) {
+      $request[ 'stream' ] = true;
+    }
+
+    $response = wp_remote_get( $request_url = 'http://api.usabilitydynamics.com/' . $service . '/' . $resource . ( is_array( $args ) ? '?' . build_query( $args ) : $args ), $request );
+
+    if( !is_wp_error( $response ) ) {
+
+      /** If content is streamed, must rely on message codes */
+      if( $request[ 'stream' ] ) {
+
+        switch( $response[ 'response' ][ 'code' ] ) {
+
+          case 200:
+            return true;
+          break;
+
+          default:
+            unlink( $request[ 'filename' ] );
+            return false;
+          break;
+        }
+
+      }
+
+      switch( true ) {
+
+        case ( intval( $response[ 'headers' ][ 'content-length' ] ) === 0 ):
+          return new WP_Error( 'UD_API::ger_service' , __( 'API did not send back a valid response.' ), array(
+            'request_url' => $request_url,
+            'request_body' => $request,
+            'headers' => $response[ 'headers' ],
+            'body' => $response[ 'body' ]
+          ));
+        break;
+
+        case ( $response[ 'response' ][ 'code' ] == 404 ):
+          return new WP_Error( 'ud_api', __( 'API Not Responding. Please contact support.' ), array(
+            'request_url' => $request_url,
+            'request_body' => $request,
+            'headers' => $response[ 'headers' ]
+          ));
+        break;
+
+        case ( strpos( $response[ 'headers' ][ 'content-type' ], 'text/html' ) !== false ):
+          return new WP_Error( 'UD_API::ger_service',  __( 'Unformatted API Response: ' ) . $response[ 'body' ], array(
+            'request_url' => $request_url,
+            'request_body' => $request,
+            'headers' => $response[ 'headers' ]
+          ));
+        break;
+
+        case ( strpos( $response[ 'headers' ][ 'content-type' ], 'application/json' ) !== false ):
+          $json = json_decode( $response[ 'body' ] );
+          return $json->success === false ? new WP_Error( 'UD_API::ger_service', $json->message, $json->data ) : $json;
+        break;
+
+        case ( strpos( $response[ 'headers' ][ 'content-type' ], 'application/xml' ) !== false ):
+          return $response[ 'body' ];
+        break;
+
+        default:
+          return new WP_Error( 'ud_api', __( 'An unknown error occurred while trying to make an API request to Usability Dynamics. Please contact support.' ) );
+        break;
+
+      }
+
+    }
+
+    if( is_file( $request[ 'filename' ] ) ) {
+      unlink( $request[ 'filename' ] );
+    }
+
+    return is_wp_error( $response) ? $response : new WP_Error( 'error', sprintf( __( 'API Failure: %1s.' , UD_API_Transdomain ), $response[ 'response' ][ 'message' ] ));
+
+  }
+  
+  
+  /**
    * Get details about an attribute.
    *
    * @version 1.30.2
@@ -2023,21 +2228,21 @@ class WP_CRM_F {
       case 'date':
       case 'password':
       case 'text':
-        foreach($values as $rand => $value_data) {  ?>
-        <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-
-        <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="'.$class.'"' : '' ; ?> <?php echo 'type="'.$attribute['input_type'].'"'; ?> value="<?php echo ($slug!='user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
-
-        <?php if($attribute['has_options']) { ?>
-          <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> class="wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
-          <option></option>
-          <?php foreach($attribute['option_labels'] as $type_slug => $type_label): ?>
-            <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
-          <?php endforeach; ?>
-          </select>
-        <?php } //* end: has_options */?>
-        </div>
-    <?php
+        $input_type = in_array( $attribute['input_type'], array( 'date' ) ) ? 'text' : $attribute['input_type'] ;
+        foreach($values as $rand => $value_data) {  
+          ?>
+          <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
+          <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="'.$class.'"' : '' ; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug!='user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+          <?php if($attribute['has_options']) { ?>
+            <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> class="wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+            <option></option>
+            <?php foreach($attribute['option_labels'] as $type_slug => $type_label): ?>
+              <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
+            <?php endforeach; ?>
+            </select>
+          <?php } //* end: has_options */?>
+          </div>
+          <?php
         }
       break;
 
@@ -2139,8 +2344,9 @@ class WP_CRM_F {
         case 'date':
         case 'password':
         case 'text':
+          $input_type = in_array( $attribute['input_type'], array( 'date' ) ) ? 'text' : $attribute['input_type'] ;
           foreach($values as $rand => $value_data) {  ?>
-              <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type="<?php echo $attribute['input_type']; ?>" value="<?php echo ($slug!='user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+              <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type="<?php echo $input_type; ?>" value="<?php echo ($slug!='user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
               <?php if($attribute['has_options']) { ?>
                 <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?> class="input-small wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                   <option></option>
@@ -2819,7 +3025,7 @@ class WP_CRM_F {
    * @since 0.1
    */
   function get_user_activity_stream($args = '', $passed_result = false) {
-    global $wpdb, $current_user;
+    global $wpdb, $wp_crm, $current_user;
 
     $args = wp_parse_args( $args, array(
       'per_page'=>((get_user_option( 'crm_page_wp_crm_add_new_per_page' )) ? (int)get_user_option( 'crm_page_wp_crm_add_new_per_page' ) : 10),
@@ -2840,13 +3046,11 @@ class WP_CRM_F {
       update_user_option($current_user->ID, "crm_ui_crm_user_activity_{$row['attribute']}".(($row['other'])?'['.$row['other'].']':''), $row['hidden']);
     }
 
-    $params = array(
+    $all_messages = WP_CRM_F::get_events(array(
       'object_id' => $args['user_id'],
       'filter_types' => $args['filter_types'],
       'import_count' => ''
-    );
-    $all_messages = WP_CRM_F::get_events($params);
-
+    ));
     /** @todo $messages is not initialized */
     if(!empty($passed_result)) {
       $result =$passed_result;
@@ -2870,7 +3074,20 @@ class WP_CRM_F {
       $left_by = $wpdb->get_var("SELECT display_name FROM {$wpdb->users} WHERE ID = '{$entry->user_id}'");
       $entry_text = apply_filters('wp_crm_activity_single_content', nl2br($entry->text), array('entry' => $entry, 'args' => $args));
 
-      if( empty( $entry_text ) ){
+      //** If detailed activity is tracked, certain fields are machine-populated. */
+      if( $wp_crm['configuration']['track_detailed_user_activity'] == 'true' && empty( $entry_text ) ) {
+        
+        switch( true ) {
+        
+          case $entry->attribute == 'detailed_log' && $entry->action == 'login':
+            $entry_text = sprintf( __( 'Logged in from IP %1s, %2s ago.', 'wpp' ), $entry->value, /* gethostbyaddr( $entry->value ), */ human_time_diff( strtotime( $entry->time ) ) );
+          break;
+          
+        }
+        
+      }
+      
+      if( empty( $entry_text ) ) {
         continue;
       }
 
@@ -2982,29 +3199,32 @@ class WP_CRM_F {
 
 
   /**
-    * Get events from log.
-    *
-    * @since 0.1
+   * Get events from log.
+   *
+   * <code>
+   * WP_CRM_F::get_events( array( 'filter_types' => array( array( 'attribute' => 'detailed_log', 'other' => 2, 'hidden' => 'false' )  ) ) )
+   * </code>
+   *
+   * @since 0.1
    */
   function get_events($args = '') {
-    global $wpdb, $current_user;
+    global $wpdb, $wp_crm, $current_user;
 
-    $defaults = array(
+    $args = wp_parse_args( $args, array(
       'object_type' => 'user',
       'hide_empty' => false,
       'order_by' => 'time',
       'start' => '0',
       'import_count' => ((get_user_option('crm_page_wp_crm_add_new_per_page'))? get_user_option('crm_page_wp_crm_add_new_per_page') : 10),
       'get_count' => 'false',
-      'filter_types'=>array()
-     );
-
-    $args = wp_parse_args( $args, $defaults );
+      'filter_types'=> array(),
+      'user_user_data' => false
+     ));
 
     /** if enmpty input 'filter_types' then get filters from get_user_option */
     if (empty($args['filter_types'])){
-      $results = $wpdb->get_results("SELECT DISTINCT `attribute`,`other` FROM {$wpdb->crm_log}" . (($args['object_id'])?" WHERE object_id=".(int)$args['object_id']:''));
-      foreach ($results as $row){
+      $results = $wpdb->get_results("SELECT DISTINCT attribute, other FROM {$wpdb->crm_log}" . (($args['object_id'])?" WHERE object_id=".(int)$args['object_id']:''));
+      foreach ($results as $row) {
         if('true'==get_user_option("crm_ui_crm_user_activity_{$row->attribute}".(($row->other)?'['.$row->other.']':''))){
           $args['filter_types'][] = array("attribute"=>$row->attribute,'other'=>$row->other,'hidden'=>'true');
         }else{
@@ -3012,7 +3232,11 @@ class WP_CRM_F {
         }
       }
     }
-
+    
+    foreach( (array) $args['filter_types'] as $type ) {
+      $_attributes[ $type[ 'attribute' ] ] = $type[ 'hidden' ] == 'false' ? true : false;
+    }
+     
     if($args['import_count']) {
       $limit = " LIMIT {$args[start]}, {$args[import_count]} ";
     }
@@ -3025,7 +3249,10 @@ class WP_CRM_F {
       $query[] = " (object_id = '{$args['object_id']}') ";
     }
 
-    if($args['object_type']) {
+    //** If Detailed Activity is tracked */
+    if( $wp_crm['configuration']['track_detailed_user_activity'] == 'true' && $_attributes[ 'detailed_log' ]  ) {
+      $query[] = " (attribute = 'detailed_log') ";
+    } else if( $args['object_type'] ) {
       $query[] = " (text != '') ";
     }
 
@@ -3044,7 +3271,7 @@ class WP_CRM_F {
       }
 
       if ($temp_type && !$check_all_fields_are_filtered){
-        $query[] = " ( " . implode(" and ", $temp_type ) . ") ";
+        $query[] = " ( " . implode(" AND ", $temp_type ) . ") ";
       }
 
     }
@@ -3068,7 +3295,6 @@ class WP_CRM_F {
     return $results;
 
   }
-
 
 
   /**

@@ -1,59 +1,59 @@
 K 25
 svn:wc:ra_dav:version-url
 V 74
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension
 END
 InfoLink.php
 K 25
 svn:wc:ra_dav:version-url
 V 87
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/InfoLink.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/InfoLink.php
 END
 BooksCategory.php
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/BooksCategory.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/BooksCategory.php
 END
 BooksLink.php
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/BooksLink.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/BooksLink.php
 END
 Embeddability.php
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/Embeddability.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/Embeddability.php
 END
 PreviewLink.php
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/PreviewLink.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/PreviewLink.php
 END
 Review.php
 K 25
 svn:wc:ra_dav:version-url
 V 85
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/Review.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/Review.php
 END
 ThumbnailLink.php
 K 25
 svn:wc:ra_dav:version-url
 V 92
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/ThumbnailLink.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/ThumbnailLink.php
 END
 AnnotationLink.php
 K 25
 svn:wc:ra_dav:version-url
 V 93
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/AnnotationLink.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/AnnotationLink.php
 END
 Viewability.php
 K 25
 svn:wc:ra_dav:version-url
 V 90
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/Extension/Viewability.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/Extension/Viewability.php
 END

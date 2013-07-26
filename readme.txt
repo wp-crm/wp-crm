@@ -3,8 +3,8 @@ Contributors: Usability Dynamics, andypotanin
 Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: 0.33.1
+Tested up to: 3.5
+Stable tag: 0.33.2
 
 
 == Description ==
@@ -70,6 +70,11 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Initial public release.
 
 == Changelog ==
+
+= 0.33.2 =
+* Added WordPress 3.5 compatibility.
+* Added Detailed Activity log page which displayed when detailed activity tracking is enabled.
+* Updated Russian Localization.
 
 = 0.33.1 =
 * Added ability to create user without email.

@@ -280,6 +280,7 @@ div.wp_crm_advanced_user_actions.wp-tab-panel {
 }
 
 .wp_crm_activity_single td.right p.wp_crm_entry_content  {
+  padding-top: 5px;
   padding-right: 10px;
 }
 

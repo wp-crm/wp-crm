@@ -1,35 +1,35 @@
 K 25
 svn:wc:ra_dav:version-url
 V 64
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books
 END
 VolumeEntry.php
 K 25
 svn:wc:ra_dav:version-url
 V 80
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/VolumeEntry.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/VolumeEntry.php
 END
 VolumeFeed.php
 K 25
 svn:wc:ra_dav:version-url
 V 79
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/VolumeFeed.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/VolumeFeed.php
 END
 CollectionEntry.php
 K 25
 svn:wc:ra_dav:version-url
 V 84
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/CollectionEntry.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/CollectionEntry.php
 END
 VolumeQuery.php
 K 25
 svn:wc:ra_dav:version-url
 V 80
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/VolumeQuery.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/VolumeQuery.php
 END
 CollectionFeed.php
 K 25
 svn:wc:ra_dav:version-url
 V 83
-/!svn/ver/638414/wp-crm/tags/0.33.1/third-party/Zend/Gdata/Books/CollectionFeed.php
+/!svn/ver/637906/wp-crm/tags/0.33.2/third-party/Zend/Gdata/Books/CollectionFeed.php
 END
