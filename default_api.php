@@ -440,7 +440,7 @@ if(!function_exists('wp_crm_send_notification')) {
    * @since 0.1
    */
   function wp_crm_send_notification($action = false, $args = false) {
-    global $wp_crm, $wpdb;
+    global $wp_crm, $wpdb, $_crm_notification;
 
     if(!$action) {
       return false;
@@ -464,6 +464,7 @@ if(!function_exists('wp_crm_send_notification')) {
       return false;
     }
     $result = false;
+
     //** Act upon every notification one at a time */
     foreach($notifications as $notification) {
 
@@ -473,10 +474,23 @@ if(!function_exists('wp_crm_send_notification')) {
         continue;
       }
 
+      $_crm_notification = array(
+        'wp_mail_from' => !empty( $message['send_from'] ) ? $message['send_from'] : '',
+        'wp_mail_from_name' => '',
+      );
+
+      $fn_mail_from = create_function( '$name', 'global $_crm_notification; return $_crm_notification[\'wp_mail_from\'];' );
+      $fn_mail_from_name = create_function( '$name', 'global $_crm_notification; return $_crm_notification[\'wp_mail_from\'];' );
+
+      if( !empty( $message['send_from'] ) ) {
+        add_filter( 'wp_mail_from', $fn_mail_from, 100 );
+        add_filter( 'wp_mail_from_name', $fn_mail_from_name, 100 );
+      }
+
       $headers['From']    = "From: ".$message['send_from'];
       $headers['Bcc']     = "Bcc: ".$message['bcc'];
 
-      add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+      add_filter( 'wp_mail_content_type',create_function('', 'return "text/html"; ' ) );
 
       if($wp_crm['configuration']['do_not_use_nl2br_in_messages'] == 'true') {
         $message['message'] = $message['message'];
@@ -488,10 +502,17 @@ if(!function_exists('wp_crm_send_notification')) {
         $result = true;
       }
 
+      if( !empty( $message['send_from'] ) ) {
+        remove_filter( 'wp_mail_from', $fn_mail_from );
+        remove_filter( 'wp_mail_from_name', $fn_mail_from_name );
+      }
+
     }
+
     return $result;
   }
 } /* wp_crm_send_notification */
+
 
 if(!function_exists('wp_crm_save_user_data')) {
   /**
