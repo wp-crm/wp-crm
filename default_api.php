@@ -494,7 +494,20 @@ if(!function_exists('wp_crm_send_notification')) {
         $message['message'] = nl2br($message['message']);
       }
 
-      if ( wp_mail( $message['to'], $message['subject'], $message['message'], '', ( $args['attachments'] ? $args['attachments'] : false ) ) ){
+      $headers = array();
+      if( !empty( $message['send_from'] ) ) {
+        $headers['From']    = "From: ".$message['send_from'];
+      }
+      if( !empty( $message['bcc'] ) ) {
+        $headers['Bcc']     = "Bcc: ".$message['bcc'];
+      }
+      if( !empty( $message['reply_to_mail'] ) ) {
+        $headers['Reply-To'] = "Reply-To: ".$message['reply_to_mail'];
+      }
+
+      $attachments = isset( $args['attachments'] ) && is_array( $args['attachments'] ) ? $args['attachments'] : array();
+
+      if ( wp_mail( $message['to'], $message['subject'], $message['message'], $headers, $attachments ) ){
         $result = true;
       }
 
