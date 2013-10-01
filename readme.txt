@@ -4,7 +4,7 @@ Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 0.34.2
+Stable tag: 0.35.0
 
 
 == Description ==
@@ -70,6 +70,11 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Initial public release.
 
 == Changelog ==
+
+= 0.35.0 =
+* Added method ( GET, POST ) option to contact forms.
+* Fix into activity stream.
+
 
 = 0.34.2 =
 * Fixed fatal error on new user creation.

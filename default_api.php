@@ -458,7 +458,7 @@ if(!function_exists('wp_crm_send_notification')) {
       return false;
     }
 
-    $notifications = WP_CRM_F::get_trigger_action_notification($action, $args['force']);
+    $notifications = WP_CRM_N::get_trigger_action_notification($action, $args['force']);
 
     if(!$notifications) {
       return false;
@@ -468,27 +468,23 @@ if(!function_exists('wp_crm_send_notification')) {
     //** Act upon every notification one at a time */
     foreach($notifications as $notification) {
 
-      $message = WP_CRM_F::replace_notification_values($notification, $args);
+      $message = WP_CRM_N::replace_notification_values($notification, $args);
 
       if(!$message) {
         continue;
       }
 
+      //** Global Variable which is used by WP_CRM_N::phpmailer_init */
       $_crm_notification = array(
-        'wp_mail_from' => !empty( $message['send_from'] ) ? $message['send_from'] : '',
-        'wp_mail_from_name' => '',
+        'reply_to_mail' => !empty( $message['reply_to_mail'] ) ? $message['reply_to_mail'] : '',
+        'reply_to_name' => !empty( $message['reply_to_name'] ) ? $message['reply_to_name'] : '',
+        'from' => !empty( $message['send_from'] ) ? $message['send_from'] : '',
+        'from_name' => !empty( $message['send_from_name'] ) ? $message['send_from_name'] : '',
+        'bcc' => !empty( $message['bcc'] ) ? $message['bcc'] : '',
       );
 
-      $fn_mail_from = create_function( '$name', 'global $_crm_notification; return $_crm_notification[\'wp_mail_from\'];' );
-      $fn_mail_from_name = create_function( '$name', 'global $_crm_notification; return $_crm_notification[\'wp_mail_from\'];' );
-
-      if( !empty( $message['send_from'] ) ) {
-        add_filter( 'wp_mail_from', $fn_mail_from, 100 );
-        add_filter( 'wp_mail_from_name', $fn_mail_from_name, 100 );
-      }
-
-      $headers['From']    = "From: ".$message['send_from'];
-      $headers['Bcc']     = "Bcc: ".$message['bcc'];
+      //** Sets Reply-To, From, Sender, BCC */
+      add_action( 'phpmailer_init', array( 'WP_CRM_N', 'phpmailer_init' ), 100 );
 
       add_filter( 'wp_mail_content_type',create_function('', 'return "text/html"; ' ) );
 
@@ -498,14 +494,11 @@ if(!function_exists('wp_crm_send_notification')) {
         $message['message'] = nl2br($message['message']);
       }
 
-      if (wp_mail($message['to'], $message['subject'], $message['message'], $headers, ($args['attachments'] ? $args['attachments'] : false))){
+      if ( wp_mail( $message['to'], $message['subject'], $message['message'], '', ( $args['attachments'] ? $args['attachments'] : false ) ) ){
         $result = true;
       }
 
-      if( !empty( $message['send_from'] ) ) {
-        remove_filter( 'wp_mail_from', $fn_mail_from );
-        remove_filter( 'wp_mail_from_name', $fn_mail_from_name );
-      }
+      remove_action( 'phpmailer_init', array( 'WP_CRM_N', 'phpmailer_init' ) );
 
     }
 
