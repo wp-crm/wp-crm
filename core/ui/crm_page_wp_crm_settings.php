@@ -298,17 +298,22 @@ if(empty($wp_crm['data_structure']['attributes'])) {
               </li>
               <li>
                 <label for=""><?php _e('To:', 'wp_crm'); ?></label>
-                <input type="text"  id="to_<?php echo $row_hash; ?>"  class="regular-text"   name="wp_crm[notifications][<?php echo $notification_slug; ?>][to]" value="<?php echo $data['to']; ?>" />
+                <input type="text"  id="to_<?php echo $row_hash; ?>"  class="regular-text crm_to_mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][to]" value="<?php echo $data['to']; ?>" />
              </li>
               <li>
                 <label for=""><?php _e('BCC:', 'wp_crm'); ?></label>
                 <input type="text"  id="bcc_<?php echo $row_hash; ?>"  class="regular-text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][bcc]" value="<?php echo $data['bcc']; ?>"/>
               </li>
               <li>
-                <label for=""><?php _e('Send From:', 'wp_crm'); ?></label>
-                <input type="text"  id="send_from_<?php echo $row_hash; ?>"  class="regular-text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][send_from]" value="<?php echo $data['send_from']; ?>"/>
-               </li>
-
+                <label for=""><?php _e('From:', 'wp_crm'); ?></label>
+                <input type="text"  id="send_from_<?php echo $row_hash; ?>"  class="regular-text crm_mail_m" placeholder="Mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][send_from]" value="<?php echo $data['send_from']; ?>"/>
+                <input type="text"  id="send_from_<?php echo $row_hash; ?>"  class="regular-text crm_mail_n" placeholder="Name" name="wp_crm[notifications][<?php echo $notification_slug; ?>][send_from_name]" value="<?php echo $data['send_from_name']; ?>"/>
+              </li>
+              <li>
+                <label for=""><?php _e('Reply To:', 'wp_crm'); ?></label>
+                <input type="text"  id="reply_to_<?php echo $row_hash; ?>"  class="regular-text crm_mail_m" placeholder="Mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][reply_to_mail]" value="<?php echo $data['reply_to_mail']; ?>"/>
+                <input type="text"  id="reply_to_<?php echo $row_hash; ?>"  class="regular-text crm_mail_n" placeholder="Name" name="wp_crm[notifications][<?php echo $notification_slug; ?>][reply_to_name]" value="<?php echo $data['reply_to_name']; ?>"/>
+              </li>
 
             </ul>
           </td>
