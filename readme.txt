@@ -72,9 +72,9 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 == Changelog ==
 
 = 0.35.0 =
-* Added method ( GET, POST ) option to contact forms.
-* Fix into activity stream.
-
+* Added column sort functionality on overview ('All people') page
+* Fixed activity stream.
+* Improved notification's functionality.
 
 = 0.34.2 =
 * Fixed fatal error on new user creation.
