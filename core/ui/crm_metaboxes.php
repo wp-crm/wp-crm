@@ -64,17 +64,21 @@ class crm_page_wp_crm_add_new {
     global $wpdb;
 
     $user_id = WP_CRM_F::get_first_value($object['ID']);
-    $all_messages = WP_CRM_F::get_events('import_count=&object_id=' . $user_id);
-    $per_page = (get_user_option('crm_page_wp_crm_add_new_per_page')) ? get_user_option('crm_page_wp_crm_add_new_per_page') : 10;
-
-    $params = array(
-      'object_id' => $user_id,
-      'import_count' => $per_page,
-      'hide_empty' => true
-    );
-
-    $limited_messages = WP_CRM_F::get_events($params);
-    $rest_messages = count($all_messages) - count($limited_messages);
+    $all_messages = array();
+    $limited_messages = array();
+    $rest_messages = 0;
+    //** If not to check user id it may cause fatal error */
+    if ( $user_id ) {
+        $all_messages = WP_CRM_F::get_events('import_count=&object_id=' . $user_id);
+        $per_page = (get_user_option('crm_page_wp_crm_add_new_per_page')) ? get_user_option('crm_page_wp_crm_add_new_per_page') : 10;
+        $params = array(
+          'object_id' => $user_id,
+          'import_count' => $per_page,
+          'hide_empty' => true
+        );
+        $limited_messages = WP_CRM_F::get_events($params);
+        $rest_messages = count($all_messages) - count($limited_messages);
+    }
     if (current_user_can('WP-CRM: Add User Messages')) :
       ?>
       <div class="wp_crm_activity_top">
