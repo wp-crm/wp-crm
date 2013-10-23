@@ -496,7 +496,7 @@ class WP_CRM_F {
       }
 
     }
-    
+
 
     /**
      * Disable the standard WordPress password reset e-mail by blanking out the message.
@@ -1008,6 +1008,10 @@ class WP_CRM_F {
             $value = $primary[$meta_key];
           } else {
             $value = get_user_meta($result->ID, $meta_key, true);
+            if ( $value == 'on' ) {
+              $meta_label = $wp_crm['data_structure']['meta_keys'][$wp_crm['data_structure']['full_meta_keys'][$meta_key]];
+              $value = $wp_crm['data_structure']['meta_keys'][$meta_key];
+            }
           }
 
           if(!empty($value)) {
