@@ -26,28 +26,28 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
 /** Plugin Version */
-define('WP_CRM_Version', '0.34.2');
+define( 'WP_CRM_Version', '0.35.0' );
 
 /** Path for Includes */
-define('WP_CRM_Path', untrailingslashit(plugin_dir_path( __FILE__ )));
+define( 'WP_CRM_Path', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 /** Path for front-end links */
-define('WP_CRM_URL', untrailingslashit(plugin_dir_url( __FILE__ )));
+define( 'WP_CRM_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 /** Path for Includes */
-define('WP_CRM_Cache', WP_CONTENT_DIR . '/cache');
+define( 'WP_CRM_Cache', WP_CONTENT_DIR . '/cache' );
 
 /** Path for Includes */
-define('WP_CRM_Templates', WP_CRM_Path . '/templates');
+define( 'WP_CRM_Templates', WP_CRM_Path . '/templates' );
 
 /** Path for Includes */
-define('WP_CRM_Connections', WP_CRM_Path . '/core/connections');
+define( 'WP_CRM_Connections', WP_CRM_Path . '/core/connections' );
 
 /** Path for Includes */
-define('WP_CRM_Third_Party', WP_CRM_Path . '/third-party');
+define( 'WP_CRM_Third_Party', WP_CRM_Path . '/third-party' );
 
 /** Directory path for include_onces of template files  */
-define('WP_CRM_Premium', WP_CRM_Path . '/core/premium');
+define( 'WP_CRM_Premium', WP_CRM_Path . '/core/premium' );
 
 // Global Usability Dynamics / TwinCitiesTech.com, Inc. Functions - customized for WP-CRM
 include_once WP_CRM_Path . '/core/class_ud.php';
@@ -61,18 +61,18 @@ include_once WP_CRM_Path . '/default_api.php';
 /** Loads general functions used by WP-crm */
 include_once WP_CRM_Path . '/core/class_functions.php';
 
- /** Loads all the metaboxes for the crm page */
+/** Loads all the metaboxes for the crm page */
 include_once WP_CRM_Path . '/core/ui/crm_metaboxes.php';
 
 /** Loads all the metaboxes for the crm page */
 include_once WP_CRM_Path . '/core/class_core.php';
 
 //* Register activation hook -> has to be in the main plugin file */
-register_activation_hook(__FILE__,array('WP_CRM_F', 'activation'));
+register_activation_hook( __FILE__, array( 'WP_CRM_F', 'activation' ) );
 
 //* Register activation hook -> has to be in the main plugin file */
-register_deactivation_hook(__FILE__,array('WP_CRM_F', 'deactivation'));
+register_deactivation_hook( __FILE__, array( 'WP_CRM_F', 'deactivation' ) );
 
 //* Initiate the plugin */
-add_action( 'plugins_loaded', create_function('', 'new WP_CRM_Core;'));
+add_action( 'plugins_loaded', create_function( '', 'new WP_CRM_Core;' ) );
 

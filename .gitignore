@@ -1,4 +1,7 @@
 core/premium
+vendor/.
+vendor/*
+
 .svn
 .idea
 .idea/workspace.xml
