@@ -122,6 +122,19 @@ class WPI_WPC {
       "
     )) {
 
+        if ( $have_refunds = $wpdb->get_var("
+      SELECT SUM(value)
+      FROM {$wpdb->prefix}wpi_object_log as log
+      LEFT JOIN {$wpdb->postmeta} as invoice_meta
+      ON log.object_ID = invoice_meta.post_id
+      WHERE action = 'refund'
+      AND meta_value = '{$user_email}'
+      AND meta_key = 'user_email'
+      "
+    ) ) {
+        $have_sales = $have_sales - $have_refunds;
+    }
+
       if(class_exists('WPI_Functions')) {
         if($args['format_number'] == 'true') {
           return WPI_Functions::currency_format($have_sales);
