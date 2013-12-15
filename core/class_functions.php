@@ -497,14 +497,6 @@ class WP_CRM_F {
 
     }
 
-    /**
-     * A callback function for action 'phpmailer_init'
-     * @param type $phpmailer
-     * @author odokienko@UD
-     */
-    function shortcode_form_send_notification($phpmailer){
-      //var_dump($phpmailer);
-    }
 
     /**
      * Disable the standard WordPress password reset e-mail by blanking out the message.
@@ -1016,6 +1008,10 @@ class WP_CRM_F {
             $value = $primary[$meta_key];
           } else {
             $value = get_user_meta($result->ID, $meta_key, true);
+            if ( $value == 'on' ) {
+              $meta_label = $wp_crm['data_structure']['meta_keys'][$wp_crm['data_structure']['full_meta_keys'][$meta_key]];
+              $value = $wp_crm['data_structure']['meta_keys'][$meta_key];
+            }
           }
 
           if(!empty($value)) {
@@ -1771,31 +1767,6 @@ class WP_CRM_F {
 
    }
 
-   /**
-   * Returns notifications for a given trigger action
-   *
-   *
-   * @since 0.1
-   *
-   */
-   function get_trigger_action_notification($action = false, $force = false) {
-    global $wp_crm;
-
-    if(!$action) {
-      return;
-    }
-
-    foreach($wp_crm['notifications'] as $slug => $notification_data){
-      if(is_array($notification_data['fire_on_action']) && in_array($action, $notification_data['fire_on_action']) || $force) {
-        $notifications[$slug] = $notification_data;
-      }
-
-    }
-
-   return $notifications;
-
-   }
-
 
    /**
    * Returns user values in an array by keys set in the WP_CRM meta keys (data tab)
@@ -1832,39 +1803,6 @@ class WP_CRM_F {
 
 
    }
-
-   /**
-   * Replaced notification variables with actual values
-   *
-   *
-   * @since 0.21
-   *
-   */
-   function replace_notification_values($notification_data = false, $replace_with = false) {
-    global $wp_crm;
-
-    if(!is_array($replace_with)) {
-      return;
-    }
-
-    $notification_keys = array_keys($notification_data);
-
-    foreach($replace_with as $key => $value) {
-
-      if(is_array($value)) {
-        $value = WP_CRM_F::get_first_value($value);
-      }
-
-      foreach($notification_data as $n_key => $n_value) {
-        $notification_data[$n_key] = str_replace('[' . $key . ']', $value, $n_value);
-      }
-
-    }
-
-    return $notification_data;
-
-   }
-
 
 
     /**

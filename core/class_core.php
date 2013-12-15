@@ -160,10 +160,6 @@ class WP_CRM_Core {
     add_action( "current_screen", array( 'WP_CRM_Core', "current_screen" ) );
     add_action( "admin_head", array( 'WP_CRM_Core', "admin_head" ) );
 
-    /** phpmailer_init can be used to access phpmailer object which is used by wp_mail function
-     * I planed to use it to add ReplyTo field in message */
-    //add_action('phpmailer_init', array('WP_CRM_F','shortcode_form_send_notification'),1);
-
     //* Init action hook */
     do_action( 'wp_crm_init' );
 

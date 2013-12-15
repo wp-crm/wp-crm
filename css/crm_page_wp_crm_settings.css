@@ -13,7 +13,14 @@ li.wp_crm_advanced_configuration {
 }
 
 ul.wp_crm_notification_main_configuration .wp_crm_checkbox_on_left {
-  padding-left: 80px;
+  
+}
+
+ul.wp_crm_notification_main_configuration .wp_crm_checkbox_on_left input,
+ul.wp_crm_notification_main_configuration .wp_crm_checkbox_on_left label {
+  width: auto !important;
+  float: none !important;
+  display: inline !important;
 }
 
 #wp_crm_notification_messages {
@@ -53,7 +60,20 @@ ul.wp_crm_notification_main_configuration .wp_crm_checkbox_on_left {
 .wp_crm_form_table ul.wp_crm_notification_main_configuration label {
   display: block;
   float: left;
-  width: 80px;
+  width: 25%;
+}
+
+.wp_crm_form_table ul.wp_crm_notification_main_configuration input,
+.wp_crm_form_table ul.wp_crm_notification_main_configuration select {
+  width: 73%;
+}
+
+.wp_crm_form_table ul.wp_crm_notification_main_configuration input.crm_mail_m {
+  width: 45%;
+}
+
+.wp_crm_form_table ul.wp_crm_notification_main_configuration input.crm_mail_n {
+  width: 26%;
 }
 
 #wp_crm_attribute_fields .wp_crm_attribute_col {
