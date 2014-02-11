@@ -2,14 +2,14 @@
 /**
  * UD API Distributable - Common Functions Used in Usability Dynamics, Inc. Products.
  *
- * @copyright Copyright (c) 2010 - 2012, Usability Dynamics, Inc.
+ * @copyright Copyright (c) 2010 - 2014, Usability Dynamics, Inc.
  * @license https://usabilitydynamics.com/services/theme-and-plugin-eula/
  * @link http://api.usabilitydynamics.com/readme/ud_api.txt UD API Changelog
- * @version 1.0.1
  *
+ * @version 1.1
  */
 
-if( class_exists( 'UD_API' ) ) {
+if ( class_exists( 'UD_API' ) ) {
   return;
 }
 
@@ -18,6 +18,7 @@ define( 'UD_API_Transdomain', 'UD_API_Transdomain' );
 /**
  * Used for performing various useful functions applicable to different plugins.
  *
+ * @class UD_API
  * @package UsabilityDynamics
  */
 class UD_API {
@@ -32,7 +33,6 @@ class UD_API {
     $this->__construct();
   }
 
-
   /**
    * Generate prefix based on class calling a function. Requires PHP >=  5.3
    *
@@ -42,13 +42,15 @@ class UD_API {
    * UD_API => ud_
    *
    * @todo Would like a more elegant solution to determining calling class that works in PHP < 5.3 - potanin@UD 6/18/12
+   * @mehtod prefixed
+   * @for UD_API
    * @since 1.0.1
    */
   static function prefixed( $annex = '' ) {
 
-    if( version_compare( phpversion(), 5.3 ) < 0 || !function_exists( 'get_called_class' )) {
-      foreach( debug_backtrace() as $step ) {
-        if( isset( $step[ 'class' ] ) ) {
+    if ( version_compare( phpversion(), 5.3 ) < 0 || !function_exists( 'get_called_class' ) ) {
+      foreach ( debug_backtrace() as $step ) {
+        if ( isset( $step[ 'class' ] ) ) {
           $_called_class = $step[ 'class' ];
           break;
         }
@@ -60,7 +62,6 @@ class UD_API {
     return strtolower( $_called_class == __CLASS__ ? 'ud' : strpos( $_called_class, '_' ) ? reset( explode( '_', $_called_class ) ) : $_called_class ) . '_' . $annex;
 
   }
-
 
   /**
    * Handler for general API calls to UD
@@ -76,30 +77,61 @@ class UD_API {
       'method' => 'POST',
       'timeout' => 60,
       'sslverify' => false
-    ));
+    ) );
 
-    if( !$args[ 'service' ] ) {
-      return new WP_Error( 'error', sprintf( __( 'API service not specified.' , 'wpp' ) ) );
+    if ( !$args[ 'service' ] ) {
+      return new WP_Error( 'error', sprintf( __( 'API service not specified.', UD_API_Transdomain ) ) );
     }
 
-    $response = wp_remote_request( add_query_arg( 'api', get_option('ud_api_key'), trailingslashit( 'http://api.usabilitydynamics.com' ) . trailingslashit( $args[ 'service' ] ) ) , array(
+    $response = wp_remote_request( add_query_arg( 'api', get_option( 'ud_api_key' ), trailingslashit( 'http://api.usabilitydynamics.com' ) . trailingslashit( $args[ 'service' ] ) ), array(
       'method' => $args[ 'method' ],
       'timeout' => $args[ 'timeout' ],
       'sslverify' => $args[ 'sslverify' ],
       'body' => array(
         'args' => $args[ 'args' ]
-    )));
+      ) ) );
 
-    if( is_wp_error( $response ) ) {
+    if ( is_wp_error( $response ) ) {
       return $response;
     }
 
-    if( $response[ 'response' ][ 'code' ] == 200 ) {
+    if ( $response[ 'response' ][ 'code' ] == 200 ) {
       return json_decode( $response[ 'body' ] ) ? json_decode( $response[ 'body' ] ) : $response[ 'body' ];
     } else {
-      return new WP_Error( 'error', sprintf( __( 'API Failure: %1s.' , 'wpp' ), $response[ 'response' ][ 'message' ] ));
+      return new WP_Error( 'error', sprintf( __( 'API Failure: %1s.', UD_API_Transdomain ), $response[ 'response' ][ 'message' ] ) );
     }
 
+  }
+
+
+  /**
+   * Port of jQuery.extend() function.
+   *
+   * @since 1.0.3
+   * @version 0.1
+   */
+  static function extend() {
+    //$arrays = array_reverse( func_get_args() );
+    $arrays = func_get_args();
+    $base = array_shift( $arrays );
+    if( !is_array( $base ) ) $base = empty( $base ) ? array() : array( $base );
+    foreach( (array) $arrays as $append ) {
+      if( !is_array( $append ) ) $append = array( $append );
+      foreach( (array) $append as $key => $value ) {
+        if( !array_key_exists( $key, $base ) and !is_numeric( $key ) ) {
+        $base[ $key ] = $append[ $key ];
+        continue;
+        }
+        if( @is_array( $value ) or @is_array( $base[ $key ] ) ) {
+        $base[ $key ] = self::extend( $base[ $key ], $append[ $key ] );
+        } else if( is_numeric( $key ) ) {
+        if( !in_array( $value, $base ) ) $base[] = $value;
+        } else {
+        $base[ $key ] = $value;
+        }
+      }
+    }
+    return $base;
   }
 
 
@@ -114,7 +146,6 @@ class UD_API {
     return str_replace( '\\', '/', $path );
   }
 
-
   /**
    * Applies trim() function to all values in an array
    *
@@ -123,14 +154,13 @@ class UD_API {
    */
   static function trim_array( $array = array() ) {
 
-    foreach( (array) $array as $key => $value ) {
+    foreach ( (array)$array as $key => $value ) {
       $array[ $key ] = trim( $value );
     }
 
     return $array;
 
   }
-
 
   /**
    * Returns image sizes for a passed image size slug
@@ -142,31 +172,30 @@ class UD_API {
   static function image_sizes( $type = false, $args = '' ) {
     global $_wp_additional_image_sizes;
 
-    $image_sizes = (array) $_wp_additional_image_sizes;
+    $image_sizes = (array)$_wp_additional_image_sizes;
 
     $image_sizes[ 'thumbnail' ] = array(
       'width' => intval( get_option( 'thumbnail_size_w' ) ),
       'height' => intval( get_option( 'thumbnail_size_h' ) )
-   );
+    );
 
     $image_sizes[ 'medium' ] = array(
       'width' => intval( get_option( 'medium_size_w' ) ),
       'height' => intval( get_option( 'medium_size_h' ) )
-   );
+    );
 
     $image_sizes[ 'large' ] = array(
       'width' => intval( get_option( 'large_size_w' ) ),
       'height' => intval( get_option( 'large_size_h' ) )
-   );
+    );
 
-    foreach( (array) $image_sizes as $size => $data ) {
-      $image_sizes[ $size ] = array_filter( (array) $data );
+    foreach ( (array)$image_sizes as $size => $data ) {
+      $image_sizes[ $size ] = array_filter( (array)$data );
     }
 
-    return array_filter( (array) $image_sizes );
+    return array_filter( (array)$image_sizes );
 
   }
-
 
   /**
    * Insert array into an associative array before a specific key
@@ -174,16 +203,16 @@ class UD_API {
    * @source http://stackoverflow.com/questions/6501845/php-need-help-inserting-arrays-into-associative-arrays-at-given-keys
    * @author potanin@UD
    */
-  static function array_insert_before($array, $key, $new) {
-    $keys = array_keys($array);
-    $pos = (int) array_search($key, $keys);
+  static function array_insert_before( $array, $key, $new ) {
+    $array = (array)$array;
+    $keys = array_keys( $array );
+    $pos = (int)array_search( $key, $keys );
     return array_merge(
-        array_slice($array, 0, $pos),
-        $new,
-        array_slice($array, $pos)
-   );
+      array_slice( $array, 0, $pos ),
+      $new,
+      array_slice( $array, $pos )
+    );
   }
-
 
   /**
    * Insert array into an associative array after a specific key
@@ -191,16 +220,16 @@ class UD_API {
    * @source http://stackoverflow.com/questions/6501845/php-need-help-inserting-arrays-into-associative-arrays-at-given-keys
    * @author potanin@UD
    */
-  static function array_insert_after($array, $key, $new) {
-    $keys = array_keys($array);
-    $pos = (int) array_search($key, $keys) + 1;
+  static function array_insert_after( $array, $key, $new ) {
+    $array = (array)$array;
+    $keys = array_keys( $array );
+    $pos = (int)array_search( $key, $keys ) + 1;
     return array_merge(
-        array_slice($array, 0, $pos),
-        $new,
-        array_slice($array, $pos)
-   );
+      array_slice( $array, 0, $pos ),
+      $new,
+      array_slice( $array, $pos )
+    );
   }
-
 
   /**
    * Gracefully Die on Fatal Errors
@@ -211,27 +240,27 @@ class UD_API {
    */
   static function ud_graceful_death( $message, $title = '', $args = array() ) {
     $defaults = array( 'response' => 500 );
-    $r = wp_parse_args($args, $defaults);
+    $r = wp_parse_args( $args, $defaults );
     $backtrace = debug_backtrace();
 
-    if( $backtrace[2]['function'] == 'wp_die' ) {
+    if ( $backtrace[ 2 ][ 'function' ] == 'wp_die' ) {
 
-      switch( $message ) {
+      switch ( $message ) {
 
         case 'You do not have sufficient permissions to access this page.':
           $original_message = $message;
           $message = array();
-          $message[] = '<li class="title">Access Denied</li>';
-          $message[] = '<li class="message">' . $original_message  . '</li>';
-          $message = '<ul>' . implode( (array) $message ) . '</li>';
-        break;
+          $message[ ] = '<li class="title">Access Denied</li>';
+          $message[ ] = '<li class="message">' . $original_message . '</li>';
+          $message = '<ul>' . implode( (array)$message ) . '</li>';
+          break;
 
       }
 
     }
 
     if ( !headers_sent() ) {
-      status_header( $r['response'] );
+      status_header( $r[ 'response' ] );
       nocache_headers();
       header( 'Content-Type: text/html; charset=utf-8' );
     } else {
@@ -239,24 +268,23 @@ class UD_API {
       die();
     }
 
-    if ( empty($title) ) {
-      $title = function_exists('__') ? __('UD Error', UD_API_Transdomain ) : 'UD Error';
+    if ( empty( $title ) ) {
+      $title = function_exists( '__' ) ? __( 'UD Error', UD_API_Transdomain ) : 'UD Error';
     }
 
     $output = array();
-    $output[] = '<!DOCTYPE html>';
-    $output[] = '<!-- Ticket #11289, IE bug fix: always pad the error page with enough characters such that it is greater than 512 bytes, even after gzip compression abcdefghijklmnopqrstuvwxyz1234567890aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz11223344556677889900abacbcbdcdcededfefegfgfhghgihihjijikjkjlklkmlmlnmnmononpopoqpqprqrqsrsrtstsubcbcdcdedefefgfabcadefbghicjkldmnoepqrfstugvwxhyz1i234j567k890laabmbccnddeoeffpgghqhiirjjksklltmmnunoovppqwqrrxsstytuuzvvw0wxx1yyz2z113223434455666777889890091abc2def3ghi4jkl5mno6pqr7stu8vwx9yz11aab2bcc3dd4ee5ff6gg7hh8ii9j0jk1kl2lmm3nnoo4p5pq6qrr7ss8tt9uuvv0wwx1x2yyzz13aba4cbcb5dcdc6dedfef8egf9gfh0ghg1ihi2hji3jik4jkj5lkl6kml7mln8mnm9ono-->';
-    $output[] = '<html xmlns="http://www.w3.org/1999/xhtml" class="graceful_death">';
-    $output[] = '<head>';
-    $output[] = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
-    $output[] = '<title>' . $title . '</title>';
-    $output[] = '<link rel="stylesheet" id="wp-admin-css"  href="' . admin_url( '/css/wp-admin.css' ) . '" type="text/css" media="all" />';
-    $output[] = '</head>' . $message . '</body></html>';
+    $output[ ] = '<!DOCTYPE html>';
+    $output[ ] = '<!-- Ticket #11289, IE bug fix: always pad the error page with enough characters such that it is greater than 512 bytes, even after gzip compression abcdefghijklmnopqrstuvwxyz1234567890aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz11223344556677889900abacbcbdcdcededfefegfgfhghgihihjijikjkjlklkmlmlnmnmononpopoqpqprqrqsrsrtstsubcbcdcdedefefgfabcadefbghicjkldmnoepqrfstugvwxhyz1i234j567k890laabmbccnddeoeffpgghqhiirjjksklltmmnunoovppqwqrrxsstytuuzvvw0wxx1yyz2z113223434455666777889890091abc2def3ghi4jkl5mno6pqr7stu8vwx9yz11aab2bcc3dd4ee5ff6gg7hh8ii9j0jk1kl2lmm3nnoo4p5pq6qrr7ss8tt9uuvv0wwx1x2yyzz13aba4cbcb5dcdc6dedfef8egf9gfh0ghg1ihi2hji3jik4jkj5lkl6kml7mln8mnm9ono-->';
+    $output[ ] = '<html xmlns="http://www.w3.org/1999/xhtml" class="graceful_death">';
+    $output[ ] = '<head>';
+    $output[ ] = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+    $output[ ] = '<title>' . $title . '</title>';
+    $output[ ] = '<link rel="stylesheet" id="wp-admin-css"  href="' . admin_url( '/css/wp-admin.css' ) . '" type="text/css" media="all" />';
+    $output[ ] = '</head>' . $message . '</body></html>';
 
-    die( implode( '', (array) $output ) );
+    die( implode( '', (array)$output ) );
 
   }
-
 
   /**
    * Attemp to convert a plural US word into a singular.
@@ -264,25 +292,24 @@ class UD_API {
    * @todo API Service Candidate since we ideally need a dictionary reference.
    * @author potanin@UD
    */
-  static function depluralize($word) {
+  static function depluralize( $word ) {
     $rules = array( 'ss' => false, 'os' => 'o', 'ies' => 'y', 'xes' => 'x', 'oes' => 'o', 'ies' => 'y', 'ves' => 'f', 's' => '' );
 
-    foreach( array_keys($rules) as $key) {
+    foreach ( array_keys( $rules ) as $key ) {
 
-      if(substr($word, (strlen($key) * -1)) != $key)
+      if ( substr( $word, ( strlen( $key ) * -1 ) ) != $key )
         continue;
 
-      if($key === false)
+      if ( $key === false )
         return $word;
 
-      return substr($word, 0, strlen($word) - strlen($key)) . $rules[$key];
+      return substr( $word, 0, strlen( $word ) - strlen( $key ) ) . $rules[ $key ];
 
     }
 
     return $word;
 
   }
-
 
   /**
    * Convert bytes into the logical unit of measure based on size.
@@ -291,31 +318,30 @@ class UD_API {
    * @since 1.0.0
    * @author potanin@UD
    */
-  static function format_bytes($bytes, $precision = 2) {
+  static function format_bytes( $bytes, $precision = 2 ) {
     $kilobyte = 1024;
     $megabyte = $kilobyte * 1024;
     $gigabyte = $megabyte * 1024;
     $terabyte = $gigabyte * 1024;
 
-    if (($bytes >= 0) && ($bytes < $kilobyte)) {
+    if ( ( $bytes >= 0 ) && ( $bytes < $kilobyte ) ) {
       return $bytes . ' B';
 
-    } elseif (($bytes >= $kilobyte) && ($bytes < $megabyte)) {
-      return round($bytes / $kilobyte, $precision) . ' KB';
+    } elseif ( ( $bytes >= $kilobyte ) && ( $bytes < $megabyte ) ) {
+      return round( $bytes / $kilobyte, $precision ) . ' KB';
 
-    } elseif (($bytes >= $megabyte) && ($bytes < $gigabyte)) {
-      return round($bytes / $megabyte, $precision) . ' MB';
+    } elseif ( ( $bytes >= $megabyte ) && ( $bytes < $gigabyte ) ) {
+      return round( $bytes / $megabyte, $precision ) . ' MB';
 
-    } elseif (($bytes >= $gigabyte) && ($bytes < $terabyte)) {
-      return round($bytes / $gigabyte, $precision) . ' GB';
+    } elseif ( ( $bytes >= $gigabyte ) && ( $bytes < $terabyte ) ) {
+      return round( $bytes / $gigabyte, $precision ) . ' GB';
 
-    } elseif ($bytes >= $terabyte) {
-      return round($bytes / $terabyte, $precision) . ' TB';
+    } elseif ( $bytes >= $terabyte ) {
+      return round( $bytes / $terabyte, $precision ) . ' TB';
     } else {
       return $bytes . ' B';
     }
   }
-
 
   /**
    * Used to enable/disable/print SQL log
@@ -330,30 +356,28 @@ class UD_API {
   static function sql_log( $action = 'attach_filter' ) {
     global $wpdb;
 
-    if( !in_array( $action, array( 'enable', 'disable', 'print_log' ) ) ) {
-      $wpdb->ud_queries[] = array( $action, $wpdb->timer_stop(), $wpdb->get_caller() );
+    if ( !in_array( $action, array( 'enable', 'disable', 'print_log' ) ) ) {
+      $wpdb->ud_queries[ ] = array( $action, $wpdb->timer_stop(), $wpdb->get_caller() );
       return $action;
     }
 
-    if( $action == 'enable' ) {
-      add_filter( 'query', array( 'UD_API', 'sql_log'), 75 );
+    if ( $action == 'enable' ) {
+      add_filter( 'query', array( 'UD_API', 'sql_log' ), 75 );
     }
 
-    if( $action == 'disable' ) {
-      remove_filter( 'query', array(  'UD_API', 'sql_log'), 75 );
+    if ( $action == 'disable' ) {
+      remove_filter( 'query', array( 'UD_API', 'sql_log' ), 75 );
     }
 
-    if( $action == 'print_log' ) {
+    if ( $action == 'print_log' ) {
       $result = array();
-      foreach( (array) $wpdb->ud_queries as $query ) {
-        $result[] = $query[0] ? $query[0] . ' (' .  $query[1] . ')' : $query[2];
+      foreach ( (array)$wpdb->ud_queries as $query ) {
+        $result[ ] = $query[ 0 ] ? $query[ 0 ] . ' (' . $query[ 1 ] . ')' : $query[ 2 ];
       }
       return $result;
     }
 
   }
-
-
 
   /**
    * Helpder function for figuring out if another specific function is a predecesor of current function.
@@ -363,14 +387,13 @@ class UD_API {
    */
   static function _backtrace_function( $function = false ) {
 
-    foreach( debug_backtrace() as $step ) {
-      if( $function && $step[ 'function' ] == $function ) {
+    foreach ( debug_backtrace() as $step ) {
+      if ( $function && $step[ 'function' ] == $function ) {
         return true;
       }
     }
 
   }
-
 
   /**
    * Helpder function for figuring out if a specific file is a predecesor of current file.
@@ -380,14 +403,13 @@ class UD_API {
    */
   static function _backtrace_file( $file = false ) {
 
-    foreach( debug_backtrace() as $step ) {
-      if( $file && basename( $step[ 'file' ] ) == $file ) {
+    foreach ( debug_backtrace() as $step ) {
+      if ( $file && basename( $step[ 'file' ] ) == $file ) {
         return true;
       }
     }
 
   }
-
 
   /**
    * Parse standard WordPress readme file
@@ -396,18 +418,18 @@ class UD_API {
    */
   static function parse_readme( $readme_file = false ) {
 
-    if( !$readme_file || !is_file( $readme_file ) ) {
+    if ( !$readme_file || !is_file( $readme_file ) ) {
       return false;
     }
 
-    $_api_response = UD_API::get_service( array(
+    $_api_response = self::get_service( array(
       'service' => 'parser',
       'args' => array(
         'string' => file_get_contents( $readme_file ),
         'type' => 'readme' )
-    ));
+    ) );
 
-    if( is_wp_error( $_api_response ) ) {
+    if ( is_wp_error( $_api_response ) ) {
       return false;
     } else {
       return is_wp_error( $_api_response ) ? false : $_api_response;
@@ -415,127 +437,109 @@ class UD_API {
 
   }
 
-
   /**
    * Fixed serialized arrays which sometimes get messed up in WordPress
    *
    * @source http://shauninman.com/archive/2008/01/08/recovering_truncated_php_serialized_arrays
    */
-  static function repair_serialized_array($serialized) {
-    $tmp = preg_replace('/^a:\d+:\{/', '', $serialized);
-    return UD_API::repair_serialized_array_callback($tmp); // operates on and whittles down the actual argument
+  static function repair_serialized_array( $serialized ) {
+    $tmp = preg_replace( '/^a:\d+:\{/', '', $serialized );
+    return self::repair_serialized_array_callback( $tmp ); // operates on and whittles down the actual argument
   }
-
 
   /**
    * The recursive function that does all of the heavy lifing. Do not call directly.
    *
    *
    */
-  static function repair_serialized_array_callback(&$broken){
+  static function repair_serialized_array_callback( &$broken ) {
 
-      $data		= array();
-      $index		= null;
-      $len		= strlen($broken);
-      $i			= 0;
+    $data = array();
+    $index = null;
+    $len = strlen( $broken );
+    $i = 0;
 
-      while(strlen($broken)) {
-        $i++;
-        if ($i > $len)
-        {
-          break;
-        }
-
-        if (substr($broken, 0, 1) == '}') // end of array
-        {
-          $broken = substr($broken, 1);
-          return $data;
-        }
-        else
-        {
-          $bite = substr($broken, 0, 2);
-          switch($bite)
-          {
-            case 's:': // key or value
-              $re = '/^s:\d+:"([^\"]*)";/';
-              if (preg_match($re, $broken, $m))
-              {
-                if ($index === null)
-                {
-                  $index = $m[1];
-                }
-                else
-                {
-                  $data[$index] = $m[1];
-                  $index = null;
-                }
-                $broken = preg_replace($re, '', $broken);
-              }
-            break;
-
-            case 'i:': // key or value
-              $re = '/^i:(\d+);/';
-              if (preg_match($re, $broken, $m))
-              {
-                if ($index === null)
-                {
-                  $index = (int) $m[1];
-                }
-                else
-                {
-                  $data[$index] = (int) $m[1];
-                  $index = null;
-                }
-                $broken = preg_replace($re, '', $broken);
-              }
-            break;
-
-            case 'b:': // value only
-              $re = '/^b:[01];/';
-              if (preg_match($re, $broken, $m))
-              {
-                $data[$index] = (bool) $m[1];
-                $index = null;
-                $broken = preg_replace($re, '', $broken);
-              }
-            break;
-
-            case 'a:': // value only
-              $re = '/^a:\d+:\{/';
-              if (preg_match($re, $broken, $m))
-              {
-                $broken			= preg_replace('/^a:\d+:\{/', '', $broken);
-                $data[$index]	= UD_API::repair_serialized_array_callback($broken);
-                $index = null;
-              }
-            break;
-
-            case 'N;': // value only
-              $broken = substr($broken, 2);
-              $data[$index]	= null;
-              $index = null;
-            break;
-          }
-        }
+    while ( strlen( $broken ) ) {
+      $i++;
+      if ( $i > $len ) {
+        break;
       }
 
-      return $data;
+      if ( substr( $broken, 0, 1 ) == '}' ) // end of array
+      {
+        $broken = substr( $broken, 1 );
+        return $data;
+      } else {
+        $bite = substr( $broken, 0, 2 );
+        switch ( $bite ) {
+          case 's:': // key or value
+            $re = '/^s:\d+:"([^\"]*)";/';
+            if ( preg_match( $re, $broken, $m ) ) {
+              if ( $index === null ) {
+                $index = $m[ 1 ];
+              } else {
+                $data[ $index ] = $m[ 1 ];
+                $index = null;
+              }
+              $broken = preg_replace( $re, '', $broken );
+            }
+            break;
+
+          case 'i:': // key or value
+            $re = '/^i:(\d+);/';
+            if ( preg_match( $re, $broken, $m ) ) {
+              if ( $index === null ) {
+                $index = (int)$m[ 1 ];
+              } else {
+                $data[ $index ] = (int)$m[ 1 ];
+                $index = null;
+              }
+              $broken = preg_replace( $re, '', $broken );
+            }
+            break;
+
+          case 'b:': // value only
+            $re = '/^b:[01];/';
+            if ( preg_match( $re, $broken, $m ) ) {
+              $data[ $index ] = (bool)$m[ 1 ];
+              $index = null;
+              $broken = preg_replace( $re, '', $broken );
+            }
+            break;
+
+          case 'a:': // value only
+            $re = '/^a:\d+:\{/';
+            if ( preg_match( $re, $broken, $m ) ) {
+              $broken = preg_replace( '/^a:\d+:\{/', '', $broken );
+              $data[ $index ] = self::repair_serialized_array_callback( $broken );
+              $index = null;
+            }
+            break;
+
+          case 'N;': // value only
+            $broken = substr( $broken, 2 );
+            $data[ $index ] = null;
+            $index = null;
+            break;
+        }
+      }
     }
 
+    return $data;
+  }
 
   /**
    * Determine if an item is in array and return checked
    *
    * @since 0.5.0
    */
-  static function checked_in_array($item, $array) {
+  static function checked_in_array( $item, $array ) {
 
-    if(is_array($array) && in_array($item, $array)) {
+    if ( is_array( $array ) && in_array( $item, $array ) ) {
       echo ' checked="checked" ';
     }
 
   }
-
 
   /**
    * Check if the current WP version is older then given parameter $version.
@@ -543,15 +547,14 @@ class UD_API {
    * @since 1.0.0
    * @author peshkov@UD
    */
-  static function is_older_wp_version ($version = '') {
-    if(empty($version) || (float)$version == 0) return false;
-    $current_version = get_bloginfo('version');
+  static function is_older_wp_version( $version = '' ) {
+    if ( empty( $version ) || (float)$version == 0 ) return false;
+    $current_version = get_bloginfo( 'version' );
     /** Clear version numbers */
-    $current_version = preg_replace("/^([0-9\.]+)-(.)+$/", "$1", $current_version);
-    $version = preg_replace("/^([0-9\.]+)-(.)+$/", "$1", $version);
-    return ((float)$current_version < (float)$version) ? true : false;
+    $current_version = preg_replace( "/^([0-9\.]+)-(.)+$/", "$1", $current_version );
+    $version = preg_replace( "/^([0-9\.]+)-(.)+$/", "$1", $version );
+    return ( (float)$current_version < (float)$version ) ? true : false;
   }
-
 
   /**
    * Determine if any requested template exists and return path to it.
@@ -562,27 +565,40 @@ class UD_API {
    * @author peshkov@UD
    * @version 1.0
    */
-  static function get_template_part( $name , $path = array() ) {
-
+  static function get_template_part( $name, $path = array(), $opts = array() ) {
     $name = (array)$name;
     $template = "";
 
-    foreach($name as $n) {
+    /**
+     * Set default instance.
+     * Template can depend on instance. For example: facebook, PDF, etc.
+     */
+    $instance = apply_filters( "ud::current_instance", "default" );
+
+    $opts = wp_parse_args( $opts, array(
+      'instance' => $instance,
+    ) );
+
+    foreach ( $name as $n ) {
       $n = "{$n}.php";
-      $template = locate_template($n, false);
-      if(empty($template) && !empty($path)) {
-        foreach((array)$path as $p) {
-          if(file_exists($p . "/" . $n)) {
+      $template = locate_template( $n, false );
+      if ( empty( $template ) && !empty( $path ) ) {
+        foreach ( (array)$path as $p ) {
+          if ( file_exists( $p . "/" . $n ) ) {
             $template = $p . "/" . $n;
+            break( 2 );
           }
         }
       }
-      if(!empty($template)) break;
+      if ( !empty( $template ) ) break;
     }
 
-    return !empty($template) ? $template : false;
-  }
+    $template = apply_filters( "ud::template_part::{$opts['instance']}", $template, array( 'name' => $name, 'path' => $path, 'opts' => $opts ) );
 
+    WPP_F::console_log( $template, $instance );
+
+    return !empty( $template ) ? $template : false;
+  }
 
   /**
    * The goal of function is going through specific filters and return (or print) classes.
@@ -603,39 +619,40 @@ class UD_API {
    * @version 0.1
    */
   static function get_css_classes( $args = array() ) {
-
+    $classes = '';
+    $instance = '';
+    $element = '';
+    $return = '';
     //** Set arguments */
-    $args = wp_parse_args((array) $args, array(
+    $args = wp_parse_args( (array)$args, array(
       'classes' => array(),
       'instance' => '',
       'element' => '',
       'return' => false,
-    ));
+    ) );
 
-    extract($args);
+    extract( $args );
 
     //** Cast (set correct types) to avoid issues */
-    if(!is_array($classes)) {
-      $classes = trim($classes);
-      $classes = str_replace(',', ' ', $classes);
-      $classes = explode(' ', $classes);
+    if ( !is_array( $classes ) ) {
+      $classes = trim( $classes );
+      $classes = str_replace( ',', ' ', $classes );
+      $classes = explode( ' ', $classes );
     }
 
-    foreach ($classes as &$c) $c = trim($c);
+    foreach ( $classes as &$c ) $c = trim( $c );
     $instance = (string)$instance;
     $element = (string)$element;
 
     //** Now go through the filters */
-    $classes = apply_filters("$instance::css::$element", $classes, $args);
+    $classes = apply_filters( "$instance::css::$element", $classes, $args );
 
-    if(!$return) {
-      echo implode(" ", (array)$classes);
+    if ( !$return ) {
+      echo implode( " ", (array)$classes );
     }
 
     return $classes;
   }
-
-
 
   /**
    * Return simple array of column tables in a table
@@ -648,18 +665,17 @@ class UD_API {
 
     $table_info = $wpdb->get_results( "SHOW COLUMNS FROM $table" );
 
-    if( empty( $table_info ) ) {
+    if ( empty( $table_info ) ) {
       return array();
     }
 
-    foreach( (array) $table_info as $row ) {
-      $columns[] = $row->Field;
+    foreach ( (array)$table_info as $row ) {
+      $columns[ ] = $row->Field;
     }
 
     return $columns;
 
   }
-
 
   /**
    * Creates a Quick-Access table for post
@@ -671,7 +687,7 @@ class UD_API {
    * @author potanin@UD
    * @version 0.6
    */
-  static function update_qa_table( $table_name = false , $args = false ) {
+  static function update_qa_table( $table_name = false, $args = false ) {
     global $wpdb;
 
     $args = array_filter( wp_parse_args( $args, array(
@@ -680,72 +696,72 @@ class UD_API {
       'attributes' => array(),
       'update' => array(),
       'debug' => false
-   )));
+    ) ) );
 
     $return = array();
 
-    if( $args[ 'debug' ] ) {
+    if ( $args[ 'debug' ] ) {
       self::sql_log( 'enable' );
     }
 
     /* Remove current table */
-    if( $args[ 'drop_current' ] ) {
+    if ( $args[ 'drop_current' ] ) {
       $wpdb->query( "DROP TABLE {$args[table_name]}" );
     }
 
     /* Check if this table exists */
-    if( $wpdb->get_var( "SHOW TABLES LIKE '{$args[table_name]}' " ) != $args[ 'table_name' ] ) {
+    if ( $wpdb->get_var( "SHOW TABLES LIKE '{$args[table_name]}' " ) != $args[ 'table_name' ] ) {
       $wpdb->query( "CREATE TABLE {$args[table_name]} (
         post_id mediumint(9) NOT NULL,
         ud_last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         UNIQUE KEY post_id ( post_id ) ) ENGINE = MyISAM" );
     }
 
-    $args[ 'current_columns' ] = UD_API::get_column_names( $args[ 'table_name' ] );
+    $args[ 'current_columns' ] = self::get_column_names( $args[ 'table_name' ] );
 
     /* Add attributes, if they don't exist, to table */
-    foreach( (array) $args[ 'attributes' ] as $attribute => $type ) {
+    foreach ( (array)$args[ 'attributes' ] as $attribute => $type ) {
 
       $type = is_array( $type ) ? $type[ 'type' ] : $type;
 
-      if( $type  == 'taxonomy' ){
+      if ( $type == 'taxonomy' ) {
         $wpdb->query( "ALTER TABLE {$args[table_name] } ADD {$attribute}_ids VARCHAR( 512 ) NULL DEFAULT NULL, COMMENT '{$type}', ADD FULLTEXT INDEX ( {$attribute}_ids ) ;" );
         $wpdb->query( "ALTER TABLE {$args[table_name] } ADD {$attribute} VARCHAR( 512 ) NULL DEFAULT NULL, COMMENT '{$type}', ADD FULLTEXT INDEX ( {$attribute} )" );
-      }else{
+      } else {
         $wpdb->query( "ALTER TABLE {$args[table_name] } ADD {$attribute} VARCHAR( 512 ) NULL DEFAULT NULL, COMMENT '{$type}', ADD FULLTEXT INDEX ( {$attribute} )" );
       }
 
     }
 
     /* If no update requested, leave */
-    if( !$args[ 'update' ] ) {
+    if ( !$args[ 'update' ] ) {
       return true;
     }
 
     /* Determine update type and initiate updater */
-    foreach( (array) $args[ 'update' ] as $update_type ) {
+    foreach ( (array)$args[ 'update' ] as $update_type ) {
 
-      if( is_numeric( $update_type ) ) {
+      if ( is_numeric( $update_type ) ) {
 
-        $insert_id = UD_API::update_qa_table_item( $update_type, $args );
+        $insert_id = self::update_qa_table_item( $update_type, $args );
 
-        if( !is_wp_error( $insert_id ) ) {
-          $return[ 'updated' ][] = $insert_id;
+        if ( !is_wp_error( $insert_id ) ) {
+          $return[ 'updated' ][ ] = $insert_id;
         } else {
-          $return[ 'error' ][] = $insert_id->get_error_message();
+          $return[ 'error' ][ ] = $insert_id->get_error_message();
         }
 
       }
 
-      if( post_type_exists ( $update_type ) ) {
-        foreach( (object) $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = '{$update_type}' " ) as $post_id ) {
+      if ( post_type_exists( $update_type ) ) {
+        foreach ( (object)$wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = '{$update_type}' " ) as $post_id ) {
 
-          $insert_id = UD_API::update_qa_table_item( $post_id, $args );
+          $insert_id = self::update_qa_table_item( $post_id, $args );
 
-          if( !is_wp_error( $insert_id ) ) {
-            $return[ 'updated' ][] = $insert_id;
+          if ( !is_wp_error( $insert_id ) ) {
+            $return[ 'updated' ][ ] = $insert_id;
           } else {
-            $return[ 'error' ][] = $insert_id->get_error_message();
+            $return[ 'error' ][ ] = $insert_id->get_error_message();
           }
 
         }
@@ -753,7 +769,7 @@ class UD_API {
 
     }
 
-    if( $args[ 'debug' ] ) {
+    if ( $args[ 'debug' ] ) {
       self::sql_log( 'disable' );
       $return[ 'debug' ] = self::sql_log( 'print_log' );
     }
@@ -761,7 +777,6 @@ class UD_API {
     return $return;
 
   }
-
 
   /**
    * Update post data in QA table
@@ -775,62 +790,61 @@ class UD_API {
     $types = array();
 
     /* Organize requested  meta by type */
-    foreach( (array) $args[ 'attributes' ] as $attribute_key => $type ) {
+    foreach ( (array)$args[ 'attributes' ] as $attribute_key => $type ) {
 
       $type = is_array( $type ) ? $type[ 'type' ] : $type;
 
-      $types[ $type ][] = $attribute_key;
-      $types[ $type ] = array_filter( (array) $types[ $type ] );
+      $types[ $type ][ ] = $attribute_key;
+      $types[ $type ] = array_filter( (array)$types[ $type ] );
     }
 
     /* Get Primary Data */
-    if( !empty( $types[ 'primary' ] ) ) {
+    if ( !empty( $types[ 'primary' ] ) ) {
       $insert = $wpdb->get_row( "SELECT ID as post_id, " . implode( ', ', $types[ 'primary' ] ) . " FROM {$wpdb->posts} WHERE ID = {$post_id} ", ARRAY_A );
     }
 
     /* Get Meta Data */
-    if( !empty( $types[ 'post_meta' ] ) ) {
-      foreach( (object) $wpdb->get_results( "SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = {$post_id} AND meta_key IN ( '" . implode( "', '", $types[ 'post_meta' ] ) . "' ); ") as $row ) {
-        $insert[ $row->meta_key ] .= $row->meta_value.',';
+    if ( !empty( $types[ 'post_meta' ] ) ) {
+      foreach ( (object)$wpdb->get_results( "SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = {$post_id} AND meta_key IN ( '" . implode( "', '", $types[ 'post_meta' ] ) . "' ); " ) as $row ) {
+        $insert[ $row->meta_key ] .= $row->meta_value . ',';
       }
       /* Remove leading/trailing commas */
-      foreach( (array) $types[ 'post_meta' ] as $type ){
+      foreach ( (array)$types[ 'post_meta' ] as $type ) {
         $insert[ $type ] = trim( $insert[ $type ], ',' );
       }
     }
 
-    if( !empty( $types[ 'taxonomy' ] ) ) {
-      foreach( (object) $wpdb->get_results( "
+    if ( !empty( $types[ 'taxonomy' ] ) ) {
+      foreach ( (object)$wpdb->get_results( "
       SELECT {$wpdb->term_taxonomy}.term_id, taxonomy, name FROM {$wpdb->terms}
       LEFT JOIN {$wpdb->term_taxonomy} on {$wpdb->terms}.term_id = {$wpdb->term_taxonomy}.term_id
       LEFT JOIN {$wpdb->term_relationships} on {$wpdb->term_relationships}.term_taxonomy_id = {$wpdb->term_taxonomy}.term_taxonomy_id
       WHERE object_id = $post_id AND taxonomy IN ( '" . implode( "', '", $types[ 'taxonomy' ] ) . "' ); " ) as $row ) {
-        $insert[ $row->taxonomy.'_ids' ] .= $row->term_id.',';
-        $insert[ $row->taxonomy ] .= $row->name.',';
+        $insert[ $row->taxonomy . '_ids' ] .= $row->term_id . ',';
+        $insert[ $row->taxonomy ] .= $row->name . ',';
       }
 
       /* Loop again, removing trailing/leading commas */
-      foreach( (array) $types[ 'taxonomy' ] as $taxonomy ){
+      foreach ( (array)$types[ 'taxonomy' ] as $taxonomy ) {
         $insert[ $taxonomy ] = trim( $insert[ $taxonomy ], ',' );
-        $insert[ $taxonomy.'_ids' ] = trim( $insert[ $taxonomy.'_ids' ], ',' );
+        $insert[ $taxonomy . '_ids' ] = trim( $insert[ $taxonomy . '_ids' ], ',' );
       }
     }
 
-    $insert = array_filter( (array) $insert );
+    $insert = array_filter( (array)$insert );
 
-    if( $wpdb->get_var( "SELECT post_id FROM {$args[ 'table_name' ]} WHERE post_id = {$post_id} " ) == $post_id ) {
+    if ( $wpdb->get_var( "SELECT post_id FROM {$args['table_name']} WHERE post_id = {$post_id} " ) == $post_id ) {
       $wpdb->update( $args[ 'table_name' ], $insert, array( 'post_id' => $post_id ) );
       $response = $post_id;
     } else {
-      if( $wpdb->insert( $args[ 'table_name' ], $insert ) ) {
+      if ( $wpdb->insert( $args[ 'table_name' ], $insert ) ) {
         $response = $wpdb->insert_id;
       }
     }
 
-    return $response ? $response : new WP_Error( 'error' , $wpdb->print_error() ? $wpdb->print_error() : __( 'Unknown error.' . $wpdb->last_query ) );
+    return $response ? $response : new WP_Error( 'error', $wpdb->print_error() ? $wpdb->print_error() : __( 'Unknown error.' . $wpdb->last_query ) );
 
   }
-
 
   /**
    * Merges any number of arrays / parameters recursively,
@@ -844,29 +858,28 @@ class UD_API {
    * @source http://us3.php.net/array_merge_recursive
    * @version 0.4
    */
-  static function array_merge_recursive_distinct () {
+  static function array_merge_recursive_distinct() {
     $arrays = func_get_args();
     $base = array_shift( $arrays );
-    if( !is_array( $base ) ) $base = empty( $base ) ? array() : array( $base );
-    foreach( (array) $arrays as $append ) {
-    if( !is_array( $append ) ) $append = array( $append );
-    foreach( (array) $append as $key => $value ) {
-      if( !array_key_exists( $key, $base ) and !is_numeric( $key ) ) {
-      $base[ $key ] = $append[ $key ];
-      continue;
+    if ( !is_array( $base ) ) $base = empty( $base ) ? array() : array( $base );
+    foreach ( (array)$arrays as $append ) {
+      if ( !is_array( $append ) ) $append = empty( $append ) ? array() : array( $append );
+      foreach ( (array)$append as $key => $value ) {
+        if ( !array_key_exists( $key, $base ) and !is_numeric( $key ) ) {
+          $base[ $key ] = $append[ $key ];
+          continue;
+        }
+        if ( @is_array( $value ) && isset( $base[ $key ] ) && isset( $append[ $key ] ) && is_array( $base[ $key ] ) && is_array( $append[ $key ] ) ) {
+          $base[ $key ] = self::array_merge_recursive_distinct( $base[ $key ], $append[ $key ] );
+        } else if ( is_numeric( $key ) ) {
+          if ( !in_array( $value, $base ) ) $base[ ] = $value;
+        } else {
+          $base[ $key ] = $value;
+        }
       }
-      if( @is_array( $value ) or @is_array( $base[ $key ] ) ) {
-      $base[ $key ] = self::array_merge_recursive_distinct( $base[ $key ], $append[ $key ] );
-      } else if( is_numeric( $key ) ) {
-      if( !in_array( $value, $base ) ) $base[] = $value;
-      } else {
-      $base[ $key ] = $value;
-      }
-    }
     }
     return $base;
   }
-
 
   /**
    * Returns a URL to a post object based on passed variable.
@@ -880,20 +893,19 @@ class UD_API {
   static function post_link( $title = false ) {
     global $wpdb;
 
-    if( !$title )
+    if ( !$title )
       return get_bloginfo( 'url' );
 
-    if( is_numeric( $title ) )
+    if ( is_numeric( $title ) )
       return get_permalink( $title );
 
-        if( $id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$title'  AND post_status='publish'" ) )
+    if ( $id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$title'  AND post_status='publish'" ) )
       return get_permalink( $id );
 
-    if( $id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE LOWER(post_title) = '" . strtolower( $title ) . "'   AND post_status='publish'" ) )
+    if ( $id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE LOWER(post_title) = '" . strtolower( $title ) . "'   AND post_status='publish'" ) )
       return get_permalink( $id );
 
   }
-
 
   /**
    * Add an entry to the plugin-specifig log.
@@ -904,42 +916,53 @@ class UD_API {
    * self::log( "Settings updated" );
    *
    */
-  static function log( $message = false , $type = 'default' ) {
+  static function log( $message = false, $args = array() ) {
+    $prefix = '';
+    $type = '';
+    $object = '';
+    $args = wp_parse_args( $args, array(
+      'type' => 'default',
+      'object' => false,
+      'prefix' => 'ud',
+    ) );
+    extract( $args );
+    $log = "{$prefix}_log";
 
-    if( !did_action( 'init' ) ) {
+    if ( !did_action( 'init' ) ) {
       _doing_it_wrong( __FUNCTION__, sprintf( __( 'You cannot call UD_API::log() before the %1$s hook, since the current user is not yet known.' ), 'init' ), '3.4' );
       return false;
     }
 
     $current_user = wp_get_current_user();
 
-    $this_log = get_option( self::prefixed( 'log' ) );
+    $this_log = get_option( $log );
 
-    if( empty( $this_log ) ) {
+    if ( empty( $this_log ) ) {
 
       $this_log = array();
 
       $entry = array(
         'time' => time(),
-        'message' => __( 'Log Started.' , UD_API_Transdomain ),
+        'message' => __( 'Log Started.', UD_API_Transdomain ),
         'user' => $current_user->ID,
         'type' => $type
-     );
+      );
 
     }
 
-    if( $message ) {
+    if ( $message ) {
 
       $entry = array(
         'time' => time(),
         'message' => $message,
         'user' => $type == 'system' ? 'system' : $current_user->ID,
-        'type' => $type
-     );
+        'type' => $type,
+        'object' => $object
+      );
 
     }
 
-    if( !is_array( $entry ) ) {
+    if ( !is_array( $entry ) ) {
       return false;
     }
 
@@ -947,12 +970,11 @@ class UD_API {
 
     $this_log = array_filter( $this_log );
 
-    update_option( self::prefixed( 'log' ), $this_log );
+    update_option( $log, $this_log );
 
     return true;
 
   }
-
 
   /**
    * Used to get the current plugin's log created via UD class
@@ -971,106 +993,118 @@ class UD_API {
    *
    */
   static function get_log( $args = false ) {
-
+    $prefix = '';
     $args = wp_parse_args( $args, array(
-      'limit' => 20
-   ));
+      'limit' => 20,
+      'prefix' => 'ud'
+    ) );
+    extract( $args );
 
-    $this_log = get_option( self::prefixed( 'log' ) );
+    $log = "{$prefix}_log";
+    $this_log = get_option( $log );
 
-    if( empty( $this_log ) ) {
-      $this_log = self::log();
+    if ( empty( $this_log ) ) {
+      $this_log = self::log( false, array( 'prefix' => $prefix ) );
     }
 
-    $entries = (array) get_option( self::prefixed( 'log' ) );
+    $entries = (array)get_option( $log );
 
     $entries = array_reverse( $entries );
 
-    $entries = array_slice($entries, 0, $args[ 'args' ] ? $args[ 'args' ] : 10 );
+    $entries = array_slice( $entries, 0, $args[ 'args' ] ? $args[ 'args' ] : 10 );
 
     return $entries;
 
   }
-
 
   /**
    * Delete UD log for this plugin.
    *
    * @uses update_option()
    */
-  static function delete_log() {
-    delete_option( self::prefixed( 'log' ) );
-  }
+  static function delete_log( $args = array() ) {
+    $prefix = '';
+    $args = wp_parse_args( $args, array(
+      'prefix' => 'ud'
+    ) );
+    extract( $args );
 
+    $log = "{$prefix}_log";
+
+    delete_option( $log );
+  }
 
   /**
    * Creates Admin Menu page for UD Log
-    *
+   *
    * @todo Need to make sure this will work if multiple plugins utilize the UD classes
    * @see function show_log_page
    * @since 1.0
    * @uses add_action() Calls 'admin_menu' hook with an anonymous ( lambda-style ) function which uses add_menu_page to create a UI Log page
    */
   static function add_log_page() {
-    add_action( 'admin_menu', create_function( '', "add_menu_page( __( 'Log' ,UD_API_Transdomain ), __( 'Log',UD_API_Transdomain ), 10, 'ud_log', array( 'UD_API_Transdomain','show_log_page' ) );" ) );
-  }
 
+    if ( did_action( 'admin_menu' ) ) {
+      _doing_it_wrong( __FUNCTION__, sprintf( __( 'You cannot call UD_API::add_log_page() after the %1$s hook.' ), 'init' ), '3.4' );
+      return false;
+    }
+
+    add_action( 'admin_menu', create_function( '', "add_menu_page( __( 'Log' ,UD_API_Transdomain ), __( 'Log',UD_API_Transdomain ), 10, 'ud_log', array( 'UD_API', 'show_log_page' ) );" ) );
+
+  }
 
   /**
    * !DISABLED. Displays the UD UI log page.
    *
    * @todo Add button or link to delete log
    * @todo Add nonce to clear_log functions
-   * @since 1.0
-   * @uses UD_API::delete_log()
-   * @uses UD_API::get_log()
-   * @uses UD_API::nice_time()
-   * @uses add_action() Calls 'admin_menu' hook with an anonymous (lambda-style) function which uses add_menu_page to create a UI Log page
+   * @todo Should be refactored to implement adding LOG tabs for different instances (wpp, wpi, wp-crm). peshkov@UD
+   *
+   * @since 1.0.0
    */
   static function show_log_page() {
 
-    if($_REQUEST['ud_action'] == 'clear_log') {
-      UD_API::delete_log();
+    if ( $_REQUEST[ 'ud_action' ] == 'clear_log' ) {
+      self::delete_log();
     }
 
     $output = array();
 
-    $output[] = '<style type="text/css">.ud_event_row b { background:none repeat scroll 0 0 #F6F7DC; padding:2px 6px;}</style>';
+    $output[ ] = '<style type="text/css">.ud_event_row b { background:none repeat scroll 0 0 #F6F7DC; padding:2px 6px;}</style>';
 
-    $output[] = '<div class="wrap">';
-    $output[] = '<h2>' . __('UD Log Page for','wpp') . get_option( self::prefixed( 'log' ) );
-    $output[] = '<a href="' .  admin_url("admin.php?page=ud_log&ud_action=clear_log") . '" class="button">' . __('Clear Log','wpp') . '</a></h2>';
+    $output[ ] = '<div class="wrap">';
+    $output[ ] = '<h2>' . __( 'Log Page for', UD_API_Transdomain ) . ' ud_log ';
+    $output[ ] = '<a href="' . admin_url( "admin.php?page=ud_log&ud_action=clear_log" ) . '" class="button">' . __( 'Clear Log', UD_API_Transdomain ) . '</a></h2>';
 
-    /*
-    <table class="widefat">
-      <thead>
-      <tr>
-        <th style="width: 150px"><?php _e('Timestamp','wpp') ?></th>
-        <th><?php _e('Type','wpp') ?></th>
-        <th><?php _e('Event','wpp') ?></th>
-        <th><?php _e('User','wpp') ?></th>
-        <th><?php _e('Related Object','wpp') ?></th>
-      </tr>
-      </thead>
+    //die( '<pre>' . print_r( self::get_log() , true ) . '</pre>' );
 
-      <tbody>
-      <?php foreach(UD_API::get_log() as $event): ?>
-      <tr class="ud_event_row">
-        <td><?php echo UD_API::nice_time($event[0]); ?></td>
-        <td><?php echo $event[1]; ?></td>
-        <td><?php echo $event[2]; ?></td>
-        <td><?php $user_data = get_userdata($event[2]); echo $user_data->display_name; ?></td>
-        <td><?php echo $event[4]; ?></td>
-      </tr>
-      <?php endforeach; ?>
-      </tbody>
-    </table>
-    </div>
-    <?php
-    */
+    $output[ ] = '<table class="widefat"><thead><tr>';
+    $output[ ] = '<th style="width: 150px">' . __( 'Timestamp', UD_API_Transdomain ) . '</th>';
+    $output[ ] = '<th>' . __( 'Type', UD_API_Transdomain ) . '</th>';
+    $output[ ] = '<th>' . __( 'Event', UD_API_Transdomain ) . '</th>';
+    $output[ ] = '<th>' . __( 'User', UD_API_Transdomain ) . '</th>';
+    $output[ ] = '<th>' . __( 'Related Object', UD_API_Transdomain ) . '</th>';
+    $output[ ] = '</tr></thead>';
 
-   }
+    $output[ ] = '<tbody>';
 
+    foreach ( (array)self::get_log() as $event ) {
+      $output[ ] = '<tr class="ud_event_row">';
+      $output[ ] = '<td>' . self::nice_time( $event[ 'time' ] ) . '</td>';
+      $output[ ] = '<td>' . $event[ 'type' ] . '</td>';
+      $output[ ] = '<td>' . $event[ 'message' ] . '</td>';
+      $output[ ] = '<td>' . ( is_numeric( $event[ 'user' ] ) ? get_userdata( $event[ 'user' ] )->display_name : __( 'None' ) ) . '</td>';
+      $output[ ] = '<td>' . $event[ 'object' ] . '</td>';
+      $output[ ] = '</tr>';
+    }
+
+    $output[ ] = '</tbody></table>';
+
+    $output[ ] = '</div>';
+
+    echo implode( '', (array)$output );
+
+  }
 
   /**
    * Turns a passed string into a URL slug
@@ -1083,24 +1117,23 @@ class UD_API {
    * @uses add_action() Calls 'admin_menu' hook with an anonymous (lambda-style) function which uses add_menu_page to create a UI Log page
    * @return string
    */
-  static function create_slug($content, $args = false) {
-
+  static function create_slug( $content, $args = false ) {
+    $separator = '';
     $defaults = array(
       'separator' => '-',
       'check_existance' => false
-   );
+    );
 
     extract( wp_parse_args( $args, $defaults ), EXTR_SKIP );
 
-    $content = preg_replace('~[^\\pL0-9_]+~u', $separator, $content); // substitutes anything but letters, numbers and '_' with separator
-    $content = trim($content, $separator);
-    $content = iconv("utf-8", "us-ascii//TRANSLIT", $content); // TRANSLIT does the whole job
-    $content = strtolower($content);
-    $slug = preg_replace('~[^-a-z0-9_]+~', '', $content); // keep only letters, numbers, '_' and separator
+    $content = preg_replace( '~[^\\pL0-9_]+~u', $separator, $content ); // substitutes anything but letters, numbers and '_' with separator
+    $content = trim( $content, $separator );
+    $content = iconv( "utf-8", "us-ascii//TRANSLIT", $content ); // TRANSLIT does the whole job
+    $content = strtolower( $content );
+    $slug = preg_replace( '~[^-a-z0-9_]+~', '', $content ); // keep only letters, numbers, '_' and separator
 
     return $slug;
   }
-
 
   /**
    * Convert a slug to a more readable string
@@ -1109,9 +1142,8 @@ class UD_API {
    * @return string
    */
   static function de_slug( $string ) {
-    return  ucwords( str_replace( "_", " ", $string ) );
+    return ucwords( str_replace( "_", " ", $string ) );
   }
-
 
   /**
    * Returns location information from Google Maps API call
@@ -1120,26 +1152,28 @@ class UD_API {
    * @since 1.0.0
    * @return object
    */
-  static function geo_locate_address($address = false, $localization = "en", $return_obj_on_fail = false, $latlng=false) {
+  static function geo_locate_address( $address = false, $localization = "en", $return_obj_on_fail = false, $latlng = false ) {
 
-    if(!$address && !$latlng) {
+    if ( !$address && !$latlng ) {
       return false;
     }
 
-    if( is_array( $address ) ) {
+    if ( is_array( $address ) ) {
       return false;
     }
+
+    $return = new stdClass();
 
     $address = urlencode( $address );
 
-    $url = str_replace(" ", "+" ,"http://maps.google.com/maps/api/geocode/json?".((is_array($latlng))?"latlng={$latlng['lat']},{$latlng['lng']}":"address={$address}")."&sensor=true&language={$localization}");
+    $url = str_replace( " ", "+", "http://maps.google.com/maps/api/geocode/json?" . ( ( is_array( $latlng ) ) ? "latlng={$latlng['lat']},{$latlng['lng']}" : "address={$address}" ) . "&sensor=true&language={$localization}" );
 
     $obj = ( json_decode( wp_remote_fopen( $url ) ) );
 
-    if( $obj->status != "OK" ) {
+    if ( $obj->status != "OK" ) {
 
       // Return Google result if needed instead of just false
-      if( $return_obj_on_fail ) {
+      if ( $return_obj_on_fail ) {
         return $obj;
       }
 
@@ -1156,50 +1190,50 @@ class UD_API {
     $return->longitude = $geometry->location->lng;
 
     // Cycle through address component objects picking out the needed elements, if they exist
-    foreach( (array) $results_object->address_components as $ac ) {
+    foreach ( (array)$results_object->address_components as $ac ) {
 
       // types is returned as an array, look through all of them
-      foreach( (array) $ac->types as $type ) {
-        switch( $type ){
+      foreach ( (array)$ac->types as $type ) {
+        switch ( $type ) {
 
           case 'street_number':
             $return->street_number = $ac->long_name;
-          break;
+            break;
 
           case 'route':
             $return->route = $ac->long_name;
-          break;
+            break;
 
           case 'locality':
-              $return->city = $ac->long_name;
-          break;
+            $return->city = $ac->long_name;
+            break;
 
           case 'administrative_area_level_3':
-            if( empty( $return->city ) )
-            $return->city = $ac->long_name;
-          break;
+            if ( empty( $return->city ) )
+              $return->city = $ac->long_name;
+            break;
 
           case 'administrative_area_level_2':
             $return->county = $ac->long_name;
-          break;
+            break;
 
           case 'administrative_area_level_1':
             $return->state = $ac->long_name;
             $return->state_code = $ac->short_name;
-          break;
+            break;
 
           case 'country':
             $return->country = $ac->long_name;
             $return->country_code = $ac->short_name;
-          break;
+            break;
 
           case 'postal_code':
             $return->postal_code = $ac->long_name;
-          break;
+            break;
 
           case 'sublocality':
             $return->district = $ac->long_name;
-          break;
+            break;
 
         }
       }
@@ -1209,7 +1243,7 @@ class UD_API {
     $return = apply_filters( 'ud::geo_locate_address', $return, $results_object, $address, $localization );
 
     //** API Callback (Legacy) - If no actions have been registered for the new hook, we support the old one. */
-    if( !has_action( 'ud::geo_locate_address' ) ) {
+    if ( !has_action( 'ud::geo_locate_address' ) ) {
       $return = apply_filters( 'geo_locate_address', $return, $results_object, $address, $localization );
     }
 
@@ -1217,6 +1251,43 @@ class UD_API {
 
   }
 
+  /**
+   * Returns avaliability of Google's Geocoding Service based on time of last returned status OVER_QUERY_LIMIT
+   * @uses const self::blocking_for_new_validation_interval
+   * @uses option ud::geo_locate_address_last_OVER_QUERY_LIMIT
+   * @param type $update used to set option value in time()
+   * @return boolean
+   * @author odokienko@UD
+   */
+  static function available_address_validation( $update = false ) {
+    global $wpdb;
+
+    if ( empty( $update ) ) {
+
+      $last_error = (int)get_option( 'ud::geo_locate_address_last_OVER_QUERY_LIMIT' );
+      if ( !empty( $last_error ) && ( time() - (int)$last_error ) < 2 ) {
+        sleep( 1 );
+      }
+      /*if (!empty($last_error) && (((int)$last_error + self::blocking_for_new_validation_interval ) > time()) ){
+        sleep(1);
+        //return false;
+      }else{
+        //** if last success validation was less than a seccond ago we will wait for 1 seccond
+        $last = $wpdb->get_var("
+          SELECT if(DATE_ADD(FROM_UNIXTIME(pm.meta_value), INTERVAL 1 SECOND) < NOW(), 0, UNIX_TIMESTAMP()-pm.meta_value) LAST
+          FROM {$wpdb->postmeta} pm
+          WHERE pm.meta_key='wpp::last_address_validation'
+          LIMIT 1
+        ");
+        usleep((int)$last);
+      }*/
+    } else {
+      update_option( 'ud::geo_locate_address_last_OVER_QUERY_LIMIT', time() );
+      return false;
+    }
+
+    return true;
+  }
 
   /**
    * Returns date and/or time using the WordPress date or time format, as configured.
@@ -1231,30 +1302,29 @@ class UD_API {
    */
   static function nice_time( $time = false, $args = false ) {
 
-     $args = wp_parse_args( $args, array(
+    $args = wp_parse_args( $args, array(
       'format' => 'date_and_time'
-    ));
+    ) );
 
-    if(!$time) {
+    if ( !$time ) {
       return false;
     }
 
-    if($format == 'date') {
-      return date(get_option('date_format'), $time);
+    if ( $args[ 'format' ] == 'date' ) {
+      return date( get_option( 'date_format' ), $time );
     }
 
-    if($format == 'time') {
-      return date(get_option('time_format'), $time);
+    if ( $args[ 'format' ] == 'time' ) {
+      return date( get_option( 'time_format' ), $time );
     }
 
-    if($format == 'date_and_time') {
-      return date(get_option('date_format'), $time) . " " . date(get_option('time_format'), $time);
+    if ( $args[ 'format' ] == 'date_and_time' ) {
+      return date( get_option( 'date_format' ), $time ) . ' ' . date( get_option( 'time_format' ), $time );
     }
 
     return false;
 
   }
-
 
   /**
    * Depreciated. Displays the numbers of days elapsed between a provided date and today.
@@ -1267,18 +1337,123 @@ class UD_API {
     human_time_diff( $from, $to );
   }
 
-
   /**
    * Depreciated.
    *
    * @deprecated 3.4.0
    * @author potanin@UD
    */
-  static function is_url($url) {
+  static function is_url( $url ) {
     _deprecated_function( __FUNCTION__, '3.4', 'esc_url' );
-    return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
+    return preg_match( '|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url );
   }
 
+  /**
+   * Wrapper function to send notification with WP-CRM or without one
+   * @param mixed $args['user']
+   * @param sting $args['trigger_action']
+   * @param sting $args['data']             aka $notification_data
+   * @param sting $args['crm_log_message']
+   * @param sting $args['subject']          using in email notification
+   * @param sting $args['message']          using in email notification
+   * @uses self::replace_data()
+   * @uses wp_crm_send_notification()
+   * @return boolean false if notification was not sent successfully
+   * @autor odokienko@UD
+   */
+  static function send_notification( $args = array() ) {
+
+    $args = wp_parse_args( $args, array(
+      'ignore_wp_crm' => false,
+      'user' => false,
+      'trigger_action' => false,
+      'data' => array(),
+      'message' => '',
+      'subject' => '',
+      'crm_log_message' => ''
+    ) );
+
+    if ( is_numeric( $args[ 'user' ] ) ) {
+      $args[ 'user' ] = get_user_by( 'id', $args[ 'user' ] );
+    } elseif ( filter_var( $args[ 'user' ], FILTER_VALIDATE_EMAIL ) ) {
+      $args[ 'user' ] = get_user_by( 'email', $args[ 'user' ] );
+    } elseif ( is_string( $args[ 'user' ] ) ) {
+      $args[ 'user' ] = get_user_by( 'login', $args[ 'user' ] );
+    }
+
+    if ( !is_object( $args[ 'user' ] ) || empty( $args[ 'user' ]->data->user_email ) ) {
+      return false;
+    }
+
+    if ( function_exists( 'wp_crm_send_notification' ) &&
+      empty( $args[ 'ignore_wp_crm' ] )
+    ) {
+
+      if ( !empty( $args[ 'crm_log_message' ] ) ) {
+        wp_crm_add_to_user_log( $args[ 'user' ]->ID, self::replace_data( $args[ 'crm_log_message' ], $args[ 'data' ] ) );
+      }
+
+      if ( !empty( $args[ 'trigger_action' ] ) ) {
+        $notifications = WP_CRM_F::get_trigger_action_notification( $args[ 'trigger_action' ] );
+        if ( !empty( $notifications ) ) {
+          return wp_crm_send_notification( $args[ 'trigger_action' ], $args[ 'data' ] );
+        }
+      }
+
+    }
+
+    if ( empty( $args[ 'message' ] ) ) {
+      return false;
+    }
+
+    return wp_mail( $args[ 'user' ]->data->user_email, self::replace_data( $args[ 'subject' ], $args[ 'data' ] ), self::replace_data( $args[ 'message' ], $args[ 'data' ] ) );
+
+  }
+
+  /**
+   * Replace in $str all entries of keys of the given $values
+   * where each key will be rounded by $brackets['left'] and $brackets['right']
+   * with the relevant values of the $values
+   * @param string|array $str
+   * @param array $values
+   * @param array $brackets
+   * @return string|array
+   * @author odokienko@UD
+   */
+  static function replace_data( $str = '', $values = array(), $brackets = array( 'left' => '[', 'right' => ']' ) ) {
+    $values = (array)$values;
+    $replacements = array_keys( $values );
+    array_walk( $replacements, create_function( '&$val', '$val = "' . $brackets[ 'left' ] . '".$val."' . $brackets[ 'right' ] . '";' ) );
+    return str_replace( $replacements, array_values( $values ), $str );
+  }
+
+  /**
+   * Gets complicated html entity e.g. Table and ou|ol
+   * and removes whitespace characters include new line.
+   * we should to do this before use nl2br
+   *
+   * @author odokienko@UD
+   */
+  static function cleanup_extra_whitespace( $content ) {
+
+    $content = preg_replace_callback( '~<(?:table|ul|ol )[^>]*>.*?<\/( ?:table|ul|ol )>~ims', create_function( '$matches', 'return preg_replace(\'~>[\s]+<((?:t[rdh]|li|\/tr|/table|/ul ))~ims\',\'><$1\',$matches[0]);' ), $content );
+
+    return $content;
+  }
+
+  /**
+   * Wrapper for json_encode function.
+   * Emulates JSON_UNESCAPED_UNICODE.
+   *
+   * @param type $arr
+   * @return JSON
+   * @author peshkov@UD
+   */
+  function json_encode( $arr ) {
+    // convmap since 0x80 char codes so it takes all multibyte codes (above ASCII 127). So such characters are being "hidden" from normal json_encoding
+    array_walk_recursive( $arr, create_function( '&$item, $key', 'if (is_string($item)) $item = mb_encode_numericentity($item, array (0x80, 0xffff, 0, 0xffff), "UTF-8");' ) );
+    return mb_decode_numericentity( json_encode( $arr ), array( 0x80, 0xffff, 0, 0xffff ), 'UTF-8' );
+  }
 
 }
 
