@@ -26,15 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
 /** Plugin Version */
-<<<<<<< HEAD
-<<<<<<< HEAD
-define( 'WP_CRM_Version', '0.35.0' );
-=======
-define('WP_CRM_Version', '0.35.0');
->>>>>>> b31f3e37e2b1b2ae7f3401dd1902ea116b968e8f
-=======
 define('WP_CRM_Version', '0.35.1');
->>>>>>> 115c8b7da325824dc875d37e4b953e869e1e3d79
 
 /** Path for Includes */
 define( 'WP_CRM_Path', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
