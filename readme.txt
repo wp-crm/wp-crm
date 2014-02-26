@@ -71,9 +71,10 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 
 == Changelog ==
 
-= 0.35.1 =
+= 0.35.2 =
 * Fixed default role on user creation.
-* Fixed send notification functionality.
+* Fixed general send notification functionality.
+* Fixed notification sending on 'User Registration' event.
 
 = 0.35.1 =
 * Fixed Activity Stream metabox.

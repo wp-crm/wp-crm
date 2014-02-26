@@ -15,6 +15,7 @@ add_filter('wp_crm_display_phone_number', array('wp_crm_default_api', 'wpp_crm_f
 add_filter('wp_crm_display_company', array('wp_crm_default_api', 'wp_crm_display_company'), 0, 4);
 add_filter('wp_crm_display_user_email', array('wp_crm_default_api', 'wp_crm_display_user_email'), 0, 4);
 add_filter('wp_crm_settings_lower', array('wp_crm_default_api', 'wp_crm_add_overview_user_actions'), 0, 10);
+add_action( 'user_register', array( 'wp_crm_default_api', 'maybe_send_user_register_notification' ), 10 );
 
 /**
  * Default WP-CRM API
@@ -149,7 +150,6 @@ class wp_crm_default_api {
    */
   function default_wp_crm_actions($current) {
     $current['new_user_registration'] = __("User Registration", 'wp_crm');
-    $current['support_request'] = __("Support Request", 'wp_crm');
     return $current;
   }
 
@@ -205,6 +205,33 @@ class wp_crm_default_api {
     else
     return $phone;
 
+  }
+  
+  /**
+   * Send notification on new_user_registration's ( new user is registered ) event
+   *
+   * @author peshkov@UD
+   * @since 0.35.2
+   */
+  static function maybe_send_user_register_notification( $user_id ) {
+    $action = 'new_user_registration';
+    if( !is_callable( 'WP_CRM_N', 'get_trigger_action_notification' ) ) {
+      include_once WP_CRM_Path . '/core/notification.php';
+    }
+    $notifications = WP_CRM_N::get_trigger_action_notification( $action );
+    if ( !empty( $notifications ) ) {
+      $userdata = get_userdata( $user_id );
+      if( !empty( $userdata ) ) {
+        wp_crm_send_notification( $action, array(
+          'user_id' => $userdata->ID,
+          'user_login' => $userdata->user_login,
+          'user_email' => $userdata->user_email,
+          'user_url' => $userdata->user_url,
+          'display_name' => $userdata->display_name,
+        ) );
+      }
+    }
+    return $user_id;
   }
 
 
