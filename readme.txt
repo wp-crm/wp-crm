@@ -72,6 +72,10 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 == Changelog ==
 
 = 0.35.1 =
+* Fixed default role on user creation.
+* Fixed send notification functionality.
+
+= 0.35.1 =
 * Fixed Activity Stream metabox.
 * Fixed WP-Invoice connection ("From" notification field).
 * Fixed CSV User Export.

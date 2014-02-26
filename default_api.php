@@ -756,7 +756,7 @@ if(!function_exists('wp_crm_save_user_data')) {
     }
 
     //** Set default role if no role set and this isn't a new user */
-    if(empty($insert_data['role']) && !isset($insert_data['ID'])) {
+    if(empty($insert_data['role']) && empty($insert_data['ID'])) {
       $insert_data['role'] = $args['default_role'];
     }
 
