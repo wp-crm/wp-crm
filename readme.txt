@@ -79,6 +79,7 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Fixed text/textarea/date attributes values with predefined options.
 * Fixed some localization issues related to dynamic values.
 * Updated Portuguese (BR) Localization.
+* Updated Russian (RU) Localization.
 
 = 0.35.1 =
 * Fixed Activity Stream metabox.
