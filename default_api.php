@@ -256,7 +256,8 @@ if(!function_exists('wp_crm_get_value')) {
     $args = wp_parse_args( $args, array(
       'return' => 'value',
       'concat_char' => ', ',
-      'meta_key' => $meta_key
+      'meta_key' => $meta_key,
+      'option_key' => '',
     ));
 
     if(!$user_id) {
@@ -310,19 +311,23 @@ if(!function_exists('wp_crm_get_value')) {
       //** Attribute has options, we return the label of the option */
       if($attribute['has_options']) {
 
-        $args['option_key']= $args['option_key'][0];
-        $args['label'] = $meta_keys[$args['attribute_key'] . '_option_' . $args['option_key']];
-        $args['return_option_label'] = true;
-
         if($attribute['input_type'] == 'text' || $attribute['input_type'] == 'textarea' || $attribute['input_type'] == 'date') {
-
-          if($args['option_key'] == 'default') {
-
-            $args['value'] = get_user_meta($user_id, $args['attribute_key'], true);
-          } else {
-            $args['value'] = get_user_meta($user_id, $args['attribute_key'] . '_option_' . $args['option_key'], true) . ', ' . $args['label'];
+          
+          //** Try to get value by option key. */
+          $option_key = !empty( $args['option_key'] ) ?  $args['option_key'] : ( is_array( $attribute['option_keys'] ) ? key( $attribute['option_keys'] ) : false );
+          if( !empty( $option_key ) ) {
+            $args['value'] = get_user_meta($user_id, $args['attribute_key'] . '_option_' . $option_key, true );
+            if( !empty( $args['value'] ) ) {
+              $args['label'] = $meta_keys[$args['attribute_key'] . '_option_' . $option_key];
+              $args['return_option_label'] = true;
+              $args['value'] .= ', ' . $args['label'];
+            }
           }
-
+          
+          if( empty( $args['value'] ) ) {
+            $args['value'] = WP_CRM_F::get_first_value($user_object[$args['attribute_key']]);
+          }
+          
         } else {
 
           $options = WP_CRM_F::list_options($user_object, $args['attribute_key']);
