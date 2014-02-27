@@ -99,6 +99,9 @@ ul.wp_crm_notification_main_configuration .wp_crm_checkbox_on_left label {
   width: 99%;
 }
 
+#wp_crm_settings_tabs th {
+  padding: 20px 10px;
+}
 #wp_crm_settings_tabs td {
   vertical-align: top;
 }
