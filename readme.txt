@@ -3,7 +3,7 @@ Contributors: Usability Dynamics, andypotanin
 Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 3.0
-Tested up to: 3.7
+Tested up to: 3.8.1
 Stable tag: 0.35.2
 
 
@@ -75,6 +75,7 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Fixed default role on user creation.
 * Fixed general send notification functionality.
 * Fixed notification sending on 'User Registration' event.
+* Added back-end styles compatibility with WordPress 3.8 and higher.
 * Updated Portuguese (BR) Localization.
 
 = 0.35.1 =
