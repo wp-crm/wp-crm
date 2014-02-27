@@ -1212,14 +1212,28 @@ class CRM_UD_F {
   * @since 1.4
   */
   function slug_to_label($slug = false) {
-
-    if(!$slug)
-    return;
-
+    if( !$slug ) {
+      return '';
+    }
+    
+    //** May be use custom label for slug */
+    $label = apply_filters( 'crm::slug_to_label', $slug );
+    if( $label !== $slug ) {
+      return $label;
+    }
+    
+    //** Include the list of translations */
+    //** and try to get value for current slug from this list. */
+    $l10n = array();
+    include WP_CRM_Path . '/l10n.php';
+    if( !empty( $l10n[ $slug ] ) ) {
+      return $l10n[ $slug ];
+    }
+    
     $slug = str_replace("_", " ", $slug);
     $slug = ucwords($slug);
+    
     return $slug;
-
   }
 
 

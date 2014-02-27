@@ -36,7 +36,7 @@
     }
 
     //* Returns columns, hidden, sortable */
-    list( $columns, $hidden ) = $this->get_column_info();
+    list( $columns, $hidden, $sortable ) = $this->get_column_info();
 
     //** Build aoColumns for ajax return */
     $column_count = 0;
@@ -47,9 +47,11 @@
       } else {
         $column_visible = 'true';
       }
+      
+      $column_sortable = isset( $sortable[ $column_slug ] ) ? 'true' : 'false';
 
       $this->aoColumns[] = "{ 'sClass': '{$column_slug} column-{$column_slug}', 'bVisible': {$column_visible}}";
-      $this->aoColumnDefs[] = "{ 'sName': '{$column_slug}', 'aTargets': [{$column_count}]}";
+      $this->aoColumnDefs[] = "{ 'sName': '{$column_slug}', 'aTargets': [{$column_count}], 'bSortable': {$column_sortable}}";
       $this->column_ids[$column_count] = $column_slug;
       $column_count++;
     }

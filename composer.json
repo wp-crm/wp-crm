@@ -1,0 +1,46 @@
+{
+  "name": "usabilitydynamics/wp-crm",
+  "type": "library",
+  "description": "WP-CRM Plugin.",
+  "version": "0.35.0",
+  "homepage": "https://github.com/UsabilityDynamics/wp-crm",
+  "keywords": [
+    "wordpress",
+    "crm"
+  ],
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Andy Potanin",
+      "homepage": "http://usabilitydynamics.com"
+    },
+    {
+      "name": "Maxim Peshkov",
+      "email": "maxim.peshkov@usabilitydynamics.com",
+      "homepage": "http://usabilitydynamics.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Anton Korotkov",
+      "email": "anton.korotkov@usabilitydynamics.com",
+      "homepage": "http://usabilitydynamics.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "oneup/uploader-bundle": "dev-master",
+    "linkorb/jsmin-php": "dev-master",
+    "tecnick.com/tcpdf": "dev-master",
+    "justinrainbow/json-schema": "1.1.*"
+  },
+  "autoload": {
+    "files": [
+      "core/class_bootstrap.php",
+      "core/class_core.php"
+    ]
+  },
+  "config": {
+    "namespace": "Veneer"
+  }
+}

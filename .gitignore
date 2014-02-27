@@ -1,4 +1,7 @@
 core/premium
+vendor/.
+vendor/*
+
 .svn
 .idea
 .idea/workspace.xml
@@ -8,6 +11,7 @@ core/premium
 *.sublime-project
 *.sublime-workspace
 premium
+*.bat
 
 *.seed
 *.log

@@ -96,6 +96,12 @@ class WP_CRM_N {
 
     //** Add From */
     if( !empty( $_crm_notification[ 'from' ] ) ) {
+      //** In some cases ( legacy functionality ) 'from' string can be like: 'John <john@mail.com>'. To prevent the errors we parse and fix it. peshkov@UD */
+      preg_match( '/<(.*)?>/', $_crm_notification[ 'from' ], $matches );
+      if( !empty( $matches ) ) {
+        $_crm_notification[ 'from_name' ] = !empty( $_crm_notification[ 'from_name' ] ) ? $_crm_notification[ 'from_name' ] : trim( str_replace( $matches[ 0 ], '', $_crm_notification[ 'from' ] ) );
+        $_crm_notification[ 'from' ] = $matches[ 1 ];
+      }
       $phpmailer->SetFrom( $_crm_notification[ 'from' ], $_crm_notification[ 'from_name' ], 1 );
     }
 

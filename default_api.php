@@ -15,6 +15,7 @@ add_filter('wp_crm_display_phone_number', array('wp_crm_default_api', 'wpp_crm_f
 add_filter('wp_crm_display_company', array('wp_crm_default_api', 'wp_crm_display_company'), 0, 4);
 add_filter('wp_crm_display_user_email', array('wp_crm_default_api', 'wp_crm_display_user_email'), 0, 4);
 add_filter('wp_crm_settings_lower', array('wp_crm_default_api', 'wp_crm_add_overview_user_actions'), 0, 10);
+add_action( 'user_register', array( 'wp_crm_default_api', 'maybe_send_user_register_notification' ), 10 );
 
 /**
  * Default WP-CRM API
@@ -149,7 +150,6 @@ class wp_crm_default_api {
    */
   function default_wp_crm_actions($current) {
     $current['new_user_registration'] = __("User Registration", 'wp_crm');
-    $current['support_request'] = __("Support Request", 'wp_crm');
     return $current;
   }
 
@@ -206,6 +206,33 @@ class wp_crm_default_api {
     return $phone;
 
   }
+  
+  /**
+   * Send notification on new_user_registration's ( new user is registered ) event
+   *
+   * @author peshkov@UD
+   * @since 0.35.2
+   */
+  static function maybe_send_user_register_notification( $user_id ) {
+    $action = 'new_user_registration';
+    if( !is_callable( 'WP_CRM_N', 'get_trigger_action_notification' ) ) {
+      include_once WP_CRM_Path . '/core/notification.php';
+    }
+    $notifications = WP_CRM_N::get_trigger_action_notification( $action );
+    if ( !empty( $notifications ) ) {
+      $userdata = get_userdata( $user_id );
+      if( !empty( $userdata ) ) {
+        wp_crm_send_notification( $action, array(
+          'user_id' => $userdata->ID,
+          'user_login' => $userdata->user_login,
+          'user_email' => $userdata->user_email,
+          'user_url' => $userdata->user_url,
+          'display_name' => $userdata->display_name,
+        ) );
+      }
+    }
+    return $user_id;
+  }
 
 
 }
@@ -229,7 +256,8 @@ if(!function_exists('wp_crm_get_value')) {
     $args = wp_parse_args( $args, array(
       'return' => 'value',
       'concat_char' => ', ',
-      'meta_key' => $meta_key
+      'meta_key' => $meta_key,
+      'option_key' => '',
     ));
 
     if(!$user_id) {
@@ -283,19 +311,23 @@ if(!function_exists('wp_crm_get_value')) {
       //** Attribute has options, we return the label of the option */
       if($attribute['has_options']) {
 
-        $args['option_key']= $args['option_key'][0];
-        $args['label'] = $meta_keys[$args['attribute_key'] . '_option_' . $args['option_key']];
-        $args['return_option_label'] = true;
-
         if($attribute['input_type'] == 'text' || $attribute['input_type'] == 'textarea' || $attribute['input_type'] == 'date') {
-
-          if($args['option_key'] == 'default') {
-
-            $args['value'] = get_user_meta($user_id, $args['attribute_key'], true);
-          } else {
-            $args['value'] = get_user_meta($user_id, $args['attribute_key'] . '_option_' . $args['option_key'], true) . ', ' . $args['label'];
+          
+          //** Try to get value by option key. */
+          $option_key = !empty( $args['option_key'] ) ?  $args['option_key'] : ( is_array( $attribute['option_keys'] ) ? key( $attribute['option_keys'] ) : false );
+          if( !empty( $option_key ) ) {
+            $args['value'] = get_user_meta($user_id, $args['attribute_key'] . '_option_' . $option_key, true );
+            if( !empty( $args['value'] ) ) {
+              $args['label'] = $meta_keys[$args['attribute_key'] . '_option_' . $option_key];
+              $args['return_option_label'] = true;
+              $args['value'] .= ', ' . $args['label'];
+            }
           }
-
+          
+          if( empty( $args['value'] ) ) {
+            $args['value'] = WP_CRM_F::get_first_value($user_object[$args['attribute_key']]);
+          }
+          
         } else {
 
           $options = WP_CRM_F::list_options($user_object, $args['attribute_key']);
@@ -756,7 +788,7 @@ if(!function_exists('wp_crm_save_user_data')) {
     }
 
     //** Set default role if no role set and this isn't a new user */
-    if(empty($insert_data['role']) && !isset($insert_data['ID'])) {
+    if(empty($insert_data['role']) && empty($insert_data['ID'])) {
       $insert_data['role'] = $args['default_role'];
     }
 
