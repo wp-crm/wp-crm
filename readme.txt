@@ -1,5 +1,5 @@
 === WP-CRM - Customer Relations Management for WordPress ===
-Contributors: Usability Dynamics, andypotanin
+Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, anton-korotkoff, ideric
 Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 3.0
