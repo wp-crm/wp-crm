@@ -72,10 +72,11 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 == Changelog ==
 
 = 0.35.2 =
+* Added back-end styles compatibility with WordPress 3.8 and higher.
 * Fixed default role on user creation.
 * Fixed general send notification functionality.
 * Fixed notification sending on 'User Registration' event.
-* Added back-end styles compatibility with WordPress 3.8 and higher.
+* Fixed text/textarea/date attributes values with predefined options.
 * Updated Portuguese (BR) Localization.
 
 = 0.35.1 =
