@@ -559,11 +559,25 @@ class UD_API {
   /**
    * Determine if any requested template exists and return path to it.
    *
-   * @todo Merge with x_get_template_part() to support $slug and $name, as well as $path.
-   * @name array $name List of requested templates. Will be return the first found
-   * @path array $path [optional]. Method tries to find template in theme, but also it can be found in given list of pathes.
+   * == Usage ==
+   * The function will search through: STYLESHEETPATH, TEMPLATEPATH, and any custom paths you pass as second argument.
+   *
+   * $best_template = UD_API::get_template_part( array(
+   *   'template-ideal-match',
+   *   'template-default',
+   * ), array( PATH_TO_MY_TEMPLATES );
+   *
+   * Note: load_template() extracts $wp_query->query_vars into the loaded template, so to add any global variables to the template, add them to
+   * $wp_query->query_vars prior to calling this function.
+   *
+   * @param mixed $name List of requested templates. Will be return the first found
+   * @param array $path [optional]. Method tries to find template in theme, but also it can be found in given list of pathes.
+   * @param array $opts [optional]. Set of additional params: 
+   *   - string $instance. Template can depend on instance. For example: facebook, PDF, etc. Uses filter: ud::template_part::{instance}
+   *   - boolean $load. if true, rendered HTML will be returned, in other case, only found template's path.
+   * @load boolean [optional]. If true and a template is found, the template will be loaded via load_template() and returned as a string
    * @author peshkov@UD
-   * @version 1.0
+   * @version 1.1
    */
   static function get_template_part( $name, $path = array(), $opts = array() ) {
     $name = (array)$name;
@@ -577,7 +591,11 @@ class UD_API {
 
     $opts = wp_parse_args( $opts, array(
       'instance' => $instance,
+      'load' => false,
     ) );
+    
+    //** Allows to add/change templates storage directory. */
+    $path = apply_filters( "ud::template_part::path", $path, $name, $opts );
 
     foreach ( $name as $n ) {
       $n = "{$n}.php";
@@ -594,8 +612,13 @@ class UD_API {
     }
 
     $template = apply_filters( "ud::template_part::{$opts['instance']}", $template, array( 'name' => $name, 'path' => $path, 'opts' => $opts ) );
-
-    WPP_F::console_log( $template, $instance );
+    
+    //** If match and load was requested, get template and return */
+    if( !empty( $template ) && $opts[ 'load' ] == true ) {
+      ob_start();
+      load_template( $template, false );
+      return ob_get_clean();
+    }
 
     return !empty( $template ) ? $template : false;
   }
