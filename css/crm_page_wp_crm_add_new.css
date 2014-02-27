@@ -628,3 +628,18 @@ tr.wp_crm_user_entry_row.primary input.regular-text:focus,
   margin-right: -466px;
   width: 440px;
 }
+
+/*** WP Version 3.8 and higher ***/
+
+#color-picker .color-option.selected,
+#color-picker .color-option:hover {
+  background: none;
+}
+
+#color-picker .color-option {
+  width: 100%;
+}
+
+#color-picker .color-palette {
+  width: auto;
+}
