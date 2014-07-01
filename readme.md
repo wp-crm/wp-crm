@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/usabilitydynamics/wp-crm.png?label=ready&title=Ready)](http://waffle.io/usabilitydynamics/wp-crm)
+
 This plugin is intended to significantly improve user management, easily create contact forms, and keep track of incoming shortcode form messages.
 
 WordPress already comes with some basic user management functions - WP-CRM expands on those functionalities by allowing you to organize your users using custom attributes, find them using filters, and keep track of correspondence.
