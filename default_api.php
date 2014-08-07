@@ -350,8 +350,6 @@ if(!function_exists('wp_crm_get_value')) {
     if(!$args['return_option_label'] && in_array($args['attribute_key'], $quantifiable_attributes)) {
       if($args['value'] == 'on') {
         $args['value'] = true;
-      } else {
-        $args['value'] = false;
       }
     }
 
