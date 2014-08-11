@@ -2,7 +2,7 @@
   "name": "usabilitydynamics/wp-crm",
   "type": "library",
   "description": "WP-CRM Plugin.",
-  "version": "0.35.0",
+  "version": "0.36.2",
   "homepage": "https://github.com/UsabilityDynamics/wp-crm",
   "keywords": [
     "wordpress",

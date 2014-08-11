@@ -2,8 +2,8 @@
 Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, anton-korotkoff, ideric
 Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
-Requires at least: 3.0
-Tested up to: 3.8.1
+Requires at least: 3.6
+Tested up to: 3.9.2
 Stable tag: 0.36.2
 
 
@@ -72,7 +72,10 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 == Changelog ==
 
 = 0.36.2 =
-* Updated libraries.
+* Fixed showing logs data.
+* Fixed form submitting issue with empty dropdowns and checkboxes.
+* MultiSite support fix.
+* Style fixes.
 
 = 0.36.1 =
 * Updated libraries.
