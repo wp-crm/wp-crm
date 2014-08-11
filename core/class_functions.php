@@ -1397,6 +1397,11 @@ class WP_CRM_F {
           $sort_by = " ORDER BY um.meta_value {$args[ 'sort_order' ]} ";
         }
       }
+      
+      //** Multi site fix */
+      $id = get_current_blog_id();
+      $blog_prefix = $wpdb->get_blog_prefix($id);
+      $where .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$blog_prefix}capabilities' )";
 
       $sql = $select . $join . $where . $sort_by;
 
