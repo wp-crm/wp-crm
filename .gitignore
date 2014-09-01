@@ -12,6 +12,7 @@ vendor/*
 *.sublime-workspace
 premium
 *.bat
+nbproject
 
 *.seed
 *.log
@@ -20,3 +21,4 @@ premium
 *.out
 *.pid
 *.gz
+/nbproject/private/

@@ -355,7 +355,7 @@ class WP_CRM_F {
    * @since 0.21
    *
    */
-  function load_plugin_compatibility() {
+  static function load_plugin_compatibility() {
 
     $asset_directories = array(WP_CRM_Connections);
 
@@ -1035,7 +1035,7 @@ class WP_CRM_F {
 
     $user_id = $user_id ? $user_id : (isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : false);
 
-    if ($manually || ($_GET['page'] == 'wp_crm_add_new' && !empty($user_id))) {
+    if ($manually || ( !empty($_GET['page']) && $_GET['page'] == 'wp_crm_add_new' && !empty($user_id))) {
       $maybe_user = wp_crm_get_user($user_id);
 
       if ($maybe_user) {
@@ -2332,7 +2332,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function settings_action($force_db = false, $args = false) {
+  static function settings_action($force_db = false, $args = false) {
     global $wp_crm;
 
     // Process saving settings
@@ -2664,7 +2664,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function load_premium() {
+  static function load_premium() {
     global $wp_crm;
 
     $default_headers = array(
@@ -2693,7 +2693,8 @@ class WP_CRM_F {
         if ($file == 'index.php')
           continue;
 
-        if (end(explode(".", $file)) == 'php') {
+        $arr = explode(".", $file);
+        if ( end( $arr ) == 'php') {
 
           $plugin_slug = str_replace(array('.php'), '', $file);
 
@@ -2707,7 +2708,7 @@ class WP_CRM_F {
           $wp_crm['installed_features'][$plugin_slug]['description'] = $plugin_data['Description'];
 
           //** Check if the plugin is disabled */
-          if ($wp_crm['installed_features'][$plugin_slug]['disabled'] != 'true') {
+          if ( empty($wp_crm['installed_features'][$plugin_slug]['disabled']) || $wp_crm['installed_features'][$plugin_slug]['disabled'] != 'true' ) {
 
             if (WP_DEBUG) {
               include_once(WP_CRM_Premium . "/" . $file);
@@ -2733,7 +2734,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function activation() {
+  static function activation() {
     WP_CRM_F::maybe_install_tables();
     WP_CRM_F::manual_activation('auto_redirect=false&update_caps=true');
   }
@@ -2745,10 +2746,8 @@ class WP_CRM_F {
    * @uses $wpdb
    *
    */
-  function maybe_install_tables() {
+  static function maybe_install_tables() {
     global $wpdb;
-
-    $sql = array();
 
     if (!$wpdb->crm_log) {
       $wpdb->crm_log = $wpdb->base_prefix . 'crm_log';
@@ -2778,6 +2777,7 @@ class WP_CRM_F {
       other VARCHAR(255),
       UNIQUE KEY id (id)
     );";
+    
     dbDelta($sql);
 
     $sql = "CREATE TABLE {$wpdb->crm_log_meta} (

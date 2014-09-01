@@ -32,7 +32,7 @@ class wp_crm_default_api {
    *
    * @since 0.1
    */
-  function wp_crm_add_overview_user_actions($wp_crm) {
+  static function wp_crm_add_overview_user_actions($wp_crm) {
 
     //** Add Quick Actions */
     if(current_user_can('edit_users')) {
@@ -148,7 +148,7 @@ class wp_crm_default_api {
    *
    * @since 0.1
    */
-  function default_wp_crm_actions($current) {
+  static function default_wp_crm_actions($current) {
     $current['new_user_registration'] = __("User Registration", 'wp_crm');
     return $current;
   }

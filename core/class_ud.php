@@ -623,31 +623,33 @@ class CRM_UD_F {
   * @version 1.4
  **/
 
-  function array_merge_recursive_distinct () {
-   $arrays = func_get_args();
-   $base = array_shift($arrays);
-   if(!is_array($base)) $base = empty($base) ? array() : array($base);
-   foreach($arrays as $append) {
-  if(!is_array($append)) $append = array($append);
-  foreach($append as $key => $value) {
-    if(!array_key_exists($key, $base) and !is_numeric($key)) {
-   $base[$key] = $append[$key];
-   continue;
+  static function array_merge_recursive_distinct() {
+    $arrays = func_get_args();
+    $base = array_shift($arrays);
+    if (!is_array($base))
+      $base = empty($base) ? array() : array($base);
+    foreach ($arrays as $append) {
+      if (!is_array($append))
+        $append = array($append);
+      foreach ($append as $key => $value) {
+        if (!array_key_exists($key, $base) and ! is_numeric($key)) {
+          $base[$key] = $append[$key];
+          continue;
+        }
+        if (is_array($value) or @ is_array($base[$key])) {
+          $base[$key] = CRM_UD_F::array_merge_recursive_distinct($base[$key], $append[$key]);
+        } else if (is_numeric($key)) {
+          if (!in_array($value, $base))
+            $base[] = $value;
+        } else {
+          $base[$key] = $value;
+        }
+      }
     }
-    if(is_array($value) or @is_array($base[$key])) {
-   $base[$key] = CRM_UD_F::array_merge_recursive_distinct($base[$key], $append[$key]);
-    } else if(is_numeric($key)) {
-   if(!in_array($value, $base)) $base[] = $value;
-    } else {
-   $base[$key] = $value;
-    }
+    return $base;
   }
-   }
-   return $base;
- }
 
-
- /**
+    /**
   * Adds a post object to cache.
   *
   * Creates cache tables if not created, and adds an object
@@ -1208,10 +1210,9 @@ class CRM_UD_F {
  /**
   * Convert a string to a url-like slug
   *
-  *
   * @since 1.4
   */
-  function slug_to_label($slug = false) {
+  static function slug_to_label($slug = false) {
     if( !$slug ) {
       return '';
     }
