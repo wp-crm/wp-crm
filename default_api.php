@@ -171,13 +171,12 @@ class wp_crm_default_api {
 
  }
 
-
  /**
    * Format user_email on overview page in the main_view cell and add a new filter to potentially allow e-mails to be sent via CRM
    *
    * @since 0.1
    */
- function wp_crm_display_user_email($current, $user_id, $user_object, $scope) {
+ static function wp_crm_display_user_email($current, $user_id, $user_object, $scope) {
 
   if($scope == 'main_view') {
     return apply_filters('wp_crm_contact_link', " <a href='mailto:{$current}'>{$current}</a>", $user_object);
@@ -186,8 +185,6 @@ class wp_crm_default_api {
   return $current;
 
  }
-
-
 
   /**
    * Converts a string into a readable phone number

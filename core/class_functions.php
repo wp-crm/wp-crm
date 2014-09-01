@@ -670,7 +670,7 @@ class WP_CRM_F {
       <?php
       unset($visible_options);
 
-      if ($wp_crm['data_structure']['attributes'][$key]['has_options']) {
+      if ( !empty($wp_crm['data_structure']['attributes'][$key]['has_options']) ) {
         $visible_options = WP_CRM_F::list_options($user_object, $key);
       } else {
         $visible_options[] = apply_filters('wp_crm_display_' . $key, WP_CRM_F::get_first_value($user_object[$key]), $user_id, $user_object, 'user_card');
@@ -1667,7 +1667,7 @@ class WP_CRM_F {
    * @since 0.1
    *
    */
-  function get_first_value($array = false) {
+  static function get_first_value($array = false) {
 
     if (!$array) {
       return false;

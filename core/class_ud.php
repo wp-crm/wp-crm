@@ -549,14 +549,13 @@ class CRM_UD_F {
 
  }
 
- /**
-  * Get a URL of a page.
-  *
-  *
-  * @version 1.5
- **/
-  function is_url($string) {
-
+  /**
+   * Get a URL of a page.
+   *
+   *
+   * @version 1.5
+  **/
+  static function is_url($string) {
 
     if(is_array($string)) {
       $string = $string[0];
