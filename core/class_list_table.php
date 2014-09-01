@@ -261,7 +261,9 @@
     $style = '';
     foreach ( $this->items as $userid => $user_object ) {
 
-      if($user_object->roles) {
+      $role = '';
+      
+      if( !empty( $user_object->roles ) ) {
         $role = reset( $user_object->roles );
       }
 

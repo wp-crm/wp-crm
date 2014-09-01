@@ -29,7 +29,7 @@ class WP_CRM_Core {
    *
    */
   function WP_CRM_Core() {
-    global $wp_crm, $wp_roles, $wpdb;
+    global $wpdb;
 
     do_action( 'wp_crm_pre_load' );
 
@@ -53,11 +53,11 @@ class WP_CRM_Core {
     //** Hook in lower init */
     add_action( 'init', array( $this, 'init_lower' ), 100 );
 
-    if ( !$wpdb->crm_log ) {
+    if ( empty($wpdb->crm_log) ) {
       $wpdb->crm_log = $wpdb->base_prefix . 'crm_log';
     }
 
-    if ( !$wpdb->crm_log_meta ) {
+    if ( empty($wpdb->crm_log_meta) ) {
       $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
     }
 
@@ -270,7 +270,7 @@ class WP_CRM_Core {
    * @since 0.1
    *
    */
-  function toplevel_page_wp_crm() {
+  static function toplevel_page_wp_crm() {
     add_screen_option( 'layout_columns', array( 'max' => 2, 'default' => 2 ) );
     add_screen_option( 'per_page', array( 'label' => __( 'Users', 'wp_crm' ) ) );
 
@@ -638,7 +638,7 @@ class WP_CRM_Core {
 
     }
 
-    if ( $wp_crm[ 'configuration' ][ 'developer_mode' ] == 'true' ) {
+    if ( !empty($wp_crm[ 'configuration' ][ 'developer_mode' ]) && $wp_crm[ 'configuration' ][ 'developer_mode' ] == 'true' ) {
       echo '<script type="text/javascript">var wp_crm_dev_mode = true;</script>';
     }
 
@@ -651,7 +651,7 @@ class WP_CRM_Core {
    *
    * @since 0.1
    */
-  function overview_columns( $columns = false ) {
+  static function overview_columns( $columns = false ) {
     global $wp_crm;
 
     $columns[ 'wp_crm_user_card' ] = __( 'Information', 'wp_crm' );
@@ -725,7 +725,7 @@ class WP_CRM_Core {
    *
    * @since 0.01
    */
-  function page_loader() {
+  static function page_loader() {
     global $wp_crm, $screen_layout_columns, $current_screen, $wpdb, $crm_messages, $user_ID, $wp_crm_user;
 
     $file_path = WP_CRM_Path . "/core/ui/{$current_screen->base}.php";
@@ -804,7 +804,7 @@ class WP_CRM_Core {
    * @since 0.5
    *
    */
-  function admin_body_class() {
+  static function admin_body_class() {
     global $current_screen, $wp_crm_user, $current_user;
 
     switch ( $current_screen->id ) {
@@ -837,7 +837,7 @@ class WP_CRM_Core {
 
     }
 
-    if ( is_array( $classes ) ) {
+    if ( !empty( $classes ) && is_array( $classes ) ) {
       echo implode( ' ', $classes );
     }
 
@@ -866,7 +866,7 @@ class WP_CRM_Core {
    *
    * @author korotkov@UD
    */
-  function wp_crm_contextual_help( $args = array() ) {
+  static function wp_crm_contextual_help( $args = array() ) {
 
     $defaults = array(
       'contextual_help' => array()

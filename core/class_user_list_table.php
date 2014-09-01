@@ -8,11 +8,53 @@
  */
 class CRM_User_List_Table extends WP_CMR_List_Table {
 
+  /**
+   *
+   * @var type 
+   */
   var $site_id;
+  
+  /**
+   *
+   * @var type 
+   */
   var $aoColumns;
+  
+  /**
+   *
+   * @var type 
+   */
   var $_args;
+  
+  /**
+   *
+   * @var type 
+   */
   var $is_site_users;
-
+  
+  /**
+   *
+   * @var type 
+   */
+  var $aoColumnDefs;
+  
+  /**
+   *
+   * @var type 
+   */
+  var $column_ids;
+  
+  /**
+   *
+   * @var type 
+   */
+  var $user_ids;
+  
+  /**
+   *
+   * @var type 
+   */
+  var $page_user_ids;
 
   /**
    * Setup options mostly.
@@ -168,7 +210,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
    * @since 3.1.0
    * @access public
    */
-  function bulk_actions() {
+  function bulk_actions( $which = '' ) {
     $screen = get_current_screen();
 
     if ( is_null( $this->_actions ) ) {
@@ -193,6 +235,9 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
     echo "\n";
   }
 
+  /**
+   * 
+   */
   function display_rows_or_placeholder() {
 
     if ( $this->has_items() ) {
@@ -210,57 +255,63 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
    * Generate HTML for a single row on the users.php admin panel.
    *
    */
-  function single_row( $user_id) {
-    global $wp_roles, $wp_crm;
+  function single_row($user_id) {
 
-    if(is_object($user_id)) {
+    if (is_object($user_id)) {
       $user_id = $user_id->ID;
     }
 
     $user_object = wp_crm_get_user($user_id);
 
-
-    $r = "<tr id='user-$user_id'$style>";
+    $r = "<tr id='user-$user_id'>";
 
     list( $columns, $hidden ) = $this->get_column_info();
 
-    foreach ( $columns as $column_name => $column_display_name ) {
+    foreach ($columns as $column_name => $column_display_name) {
       $class = "class=\"$column_name column-$column_name\"";
 
       $style = '';
 
-      if ( in_array( $column_name, $hidden ) ) {
+      if (in_array($column_name, $hidden)) {
         $style = ' style="display:none;"';
       }
 
       $attributes = "$class$style";
 
       $r .= "<td {$attributes}>";
-      $single_cell = $this->single_cell($column_name,$user_object, $user_id);
+      $single_cell = $this->single_cell($column_name, $user_object, $user_id);
 
       //** Need to insert some sort of space in there to avoid DataTable error that occures when "null" is returned */
       $ajax_cells[] = ' ' . $single_cell;
       $r .= $single_cell;
       $r .= "</td>";
-
-
     }
+    
     $r .= '</tr>';
 
-
-    if($this->_args['ajax']) {
+    if ($this->_args['ajax']) {
       return $ajax_cells;
     }
 
     return $r;
-    }
+  }
 
-    function single_cell($full_column_name,$user_object, $user_id) {
+  /**
+   * 
+   * @global type $wp_crm
+   * @param type $full_column_name
+   * @param type $user_object
+   * @param type $user_id
+   * @return type
+   */
+  function single_cell($full_column_name, $user_object, $user_id) {
       global $wp_crm;
+      
+      $r = '';
 
       $column_name = str_replace('wp_crm_', '', $full_column_name);
 
-      $this_attribute = $wp_crm['data_structure']['attributes'][$column_name];
+      $this_attribute = !empty($wp_crm['data_structure']['attributes'][$column_name])?$wp_crm['data_structure']['attributes'][$column_name]:false;
 
       switch ( $column_name ) {
 
@@ -296,16 +347,15 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
         default:
 
-        if(is_array($user_object[$column_name]))  {
+        if( is_array( $user_object[ $column_name] ) ) {
           foreach($user_object[$column_name] as $option_slug =>  $values) {
 
-
-            if(($this_attribute['input_type'] == 'text' || $this_attribute['input_type'] == 'date' || $this_attribute['input_type'] == 'textarea') && $this_attribute['has_options']) {
+            if(($this_attribute['input_type'] == 'text' || $this_attribute['input_type'] == 'date' || $this_attribute['input_type'] == 'textarea') && !empty($this_attribute['has_options'])) {
               //** We have a text input with options (dropdown) */
 
               $r .= wp_crm_get_value($column_name, $user_id);
 
-            } elseif($wp_crm['data_structure']['attributes'][$column_name]['has_options']) {
+            } elseif( !empty($wp_crm['data_structure']['attributes'][$column_name]['has_options']) ) {
 
               //** Get label and only show when enabled */
               $visible_options = WP_CRM_F::list_options($user_object, $column_name);

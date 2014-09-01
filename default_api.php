@@ -388,7 +388,7 @@ if(!function_exists('wp_crm_get_user')) {
     global $wp_crm, $wpdb, $current_user;
 
     $args = wp_parse_args( $args, array(
-      'return_type' => 'object'
+      'return_type' => 'array'
     ));
 
     //** Check if user exists */
@@ -417,7 +417,8 @@ if(!function_exists('wp_crm_get_user')) {
           }
         }
 
-        if($data['has_options']) {
+        if( !empty( $data['has_options'] ) ) {
+          
           //** If key has options, we check all meta keys for values */
           foreach($data['option_keys'] as $option_key) {
 
@@ -444,15 +445,11 @@ if(!function_exists('wp_crm_get_user')) {
       }
     }
 
-
-    //* Fix up certain attributes */
-    //$user_data['display_name'][0]['value'] = $user_data['first_name'][0]['value'] . ' ' . $user_data['last_name'][0]['value'];
-
-    if($return_type == 'object') {
+    if( $args['return_type'] == 'object' ) {
       $user_data = (object)$user_data;
     }
 
-    if($return_type == 'array') {
+    if( $args['return_type'] == 'array' ) {
       $user_data = (array)$user_data;
     }
 

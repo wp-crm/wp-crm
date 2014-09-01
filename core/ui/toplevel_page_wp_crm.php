@@ -1,10 +1,10 @@
 <?php
 
-if($_REQUEST['message'] == 'user_deleted') {
+if( !empty($_REQUEST['message']) && $_REQUEST['message'] == 'user_deleted' ) {
   WP_CRM_F::add_message(__('User has been deleted and all associated posts have been trashed.', 'wp_crm'));
 }
 
-if($_REQUEST['message'] == 'plugin_updated') {
+if( !empty($_REQUEST['message']) && $_REQUEST['message'] == 'plugin_updated' ) {
   WP_CRM_F::add_message(__('WP-CRM has been updated, and any premium features your domain qualifies for have been downloaded.', 'wp_crm'));
 }
 

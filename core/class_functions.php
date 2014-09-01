@@ -587,7 +587,7 @@ class WP_CRM_F {
    * @since 0.21
    *
    */
-  function render_user_card($args = false) {
+  static function render_user_card($args = false) {
     global $wp_crm, $current_user;
 
     if (!$args) {
@@ -596,7 +596,7 @@ class WP_CRM_F {
 
     $defaults = array(
         'avatar_width' => 50,
-        'do_not_display_user_avatars' => ($wp_crm['configuration']['do_not_display_user_avatars'] == 'true' ? true : false),
+        'do_not_display_user_avatars' => (!empty($wp_crm['configuration']['do_not_display_user_avatars']) && $wp_crm['configuration']['do_not_display_user_avatars'] == 'true' ? true : false),
         'show_user_actions' => false
     );
 
@@ -609,8 +609,10 @@ class WP_CRM_F {
     }
 
     if ($show_user_actions && is_array($wp_crm['overview_user_actions'])) {
+      
       foreach ($wp_crm['overview_user_actions'] as $action => $data) {
-        if ($data['enable'] == 'true') {
+        
+        if ( !empty($data['enable']) && $data['enable'] == 'true' ) {
 
           $html = $data['label'];
 
@@ -3176,7 +3178,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function print_messages() {
+  static function print_messages() {
     global $wp_crm_messages;
 
     echo '<div class="wp_crm_ajax_update_message"></div>';
@@ -3245,7 +3247,7 @@ class WP_CRM_F {
    * @global array $wp_crm
    * @return boolean
    */
-  function wp_crm_admin_notice() {
+  static function wp_crm_admin_notice() {
     global $current_screen, $wp_crm;
     
     if ($current_screen->id != 'crm_page_wp_crm_settings' || !is_array($wp_crm['data_structure']['attributes'])) {
