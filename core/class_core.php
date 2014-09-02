@@ -546,10 +546,10 @@ class WP_CRM_Core {
     if ( is_object( $current_screen ) && $current_screen->id == 'crm_page_wp_crm_my_profile' ) {
       $called = true;
       if ( empty( $_REQUEST[ 'user_id' ] ) ) {
-        $_GET[ 'user_id' ] = $_REQUEST[ 'user_id' ] = $current_user->id;
+        $_GET[ 'user_id' ] = $_REQUEST[ 'user_id' ] = $current_user->ID;
         
         //** Re-set global $wp_crm_user. It was set earlier on admin_init action. */
-        WP_CRM_F::maybe_load_profile( $current_user->id, true );
+        WP_CRM_F::maybe_load_profile( $current_user->ID, true );
       }
       $_GET[ 'redirect_to' ] = $_REQUEST[ 'redirect_to' ] = urlencode( admin_url( 'admin.php?page=wp_crm_my_profile' ) );
       set_current_screen( 'crm_page_wp_crm_add_new' );

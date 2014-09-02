@@ -2882,7 +2882,7 @@ class WP_CRM_F {
    *
    * @since 0.1
    */
-  function get_user_activity_stream($args = '', $passed_result = false) {
+  static function get_user_activity_stream($args = '', $passed_result = false) {
     global $wpdb, $wp_crm, $current_user;
 
     $args = wp_parse_args($args, array(
@@ -3058,7 +3058,7 @@ class WP_CRM_F {
    *
    * @since 0.1
    */
-  function get_events($args = '') {
+  static function get_events($args = '') {
     global $wpdb, $wp_crm;
 
     $args = wp_parse_args($args, array(
@@ -3088,8 +3088,9 @@ class WP_CRM_F {
       $_attributes[$type['attribute']] = $type['hidden'] == 'false' ? true : false;
     }
 
+    $limit = '';
     if ($args['import_count']) {
-      $limit = " LIMIT {$args[start]}, {$args[import_count]} ";
+      $limit = " LIMIT {$args['start']}, {$args['import_count']} ";
     }
 
     if ($args['object_id']) {
@@ -3101,7 +3102,7 @@ class WP_CRM_F {
     }
 
     //** If Detailed Activity is tracked */
-    if ($wp_crm['configuration']['track_detailed_user_activity'] == 'true' && $_attributes['detailed_log']) {
+    if ( !empty($wp_crm['configuration']['track_detailed_user_activity']) && $wp_crm['configuration']['track_detailed_user_activity'] == 'true' && $_attributes['detailed_log']) {
       $query[] = " (attribute = 'detailed_log') ";
     } else if ($args['object_type']) {
       $query[] = " (text != '') ";
@@ -3130,7 +3131,7 @@ class WP_CRM_F {
     }
 
     if ($args['order_by']) {
-      $order_by = " ORDER BY {$args[order_by]} DESC ";
+      $order_by = " ORDER BY {$args['order_by']} DESC ";
     }
 
     $sql = "SELECT * FROM {$wpdb->crm_log} {$query} {$order_by} {$limit}";

@@ -60,13 +60,13 @@ class crm_page_wp_crm_add_new {
    * @since 0.01
    *
    */
-  function user_activity_history($object) {
-    global $wpdb;
+  static function user_activity_history($object) {
 
-    $user_id = WP_CRM_F::get_first_value($object['ID']);
+    $user_id = WP_CRM_F::get_first_value( !empty($object['ID'])?$object['ID']:array() );
     $all_messages = array();
     $limited_messages = array();
     $rest_messages = 0;
+    $per_page = 10;
     //** If not to check user id it may cause fatal error */
     if ( $user_id ) {
         $all_messages = WP_CRM_F::get_events('import_count=&object_id=' . $user_id);
@@ -223,9 +223,9 @@ class crm_page_wp_crm_add_new {
                 <?php if (current_user_can('edit_users')) { ?>
                   <li class="wp_crm_edit_roles">
                     <label for="wp_crm_role"><?php _e('Capability Role:', 'wp_crm'); ?></label>
-                    <select id="wp_crm_role" <?php echo ($own_profile ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
+                    <select id="wp_crm_role" <?php echo (!empty($own_profile) ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
                       <option value=""></option>
-                  <?php wp_dropdown_roles($object['role']['default'][0]); ?>
+                  <?php wp_dropdown_roles(!empty($object['role']['default'][0])?$object['role']['default'][0]:''); ?>
                     </select>
                   </li>
                 <?php } ?>
@@ -263,9 +263,9 @@ class crm_page_wp_crm_add_new {
           <div id="publishing-action">
             <input type="hidden" value="Publish" id="original_publish" name="original_publish" />
             <?php if (current_user_can('edit_users') || (current_user_can('add_users') && $object['new'])) { ?>
-            <input type="submit" accesskey="p" tabindex="5" value="<?php echo ($object['new'] ? __('Save', 'wpp_crm') : __('Update', 'wpp_crm')); ?>" class="button-primary" id="publish" name="publish" />
+            <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', 'wpp_crm') : __('Update', 'wpp_crm')); ?>" class="button-primary" id="publish" name="publish" />
               <?php } else { ?>
-                <input type="submit" accesskey="p" tabindex="5" value="<?php echo ($object['new'] ? __('Save', 'wpp_crm') : __('Update', 'wpp_crm')); ?>" class="button-primary" id="publish" name="publish" disabled="true">
+                <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', 'wpp_crm') : __('Update', 'wpp_crm')); ?>" class="button-primary" id="publish" name="publish" disabled="true">
               <?php } ?>
           </div>
           <div class="clear"></div>
@@ -274,7 +274,7 @@ class crm_page_wp_crm_add_new {
         <div class="wp_crm_user_actions">
           <ul class="wp_crm_action_list">
             <?php do_action('wp_crm_single_user_actions', $object); ?>
-            <?php if ((current_user_can('remove_users') || current_user_can('delete_users')) && (!$object['new'] && $user_id != $current_user->ID)) { ?>
+            <?php if ((current_user_can('remove_users') || current_user_can('delete_users')) && (empty($object['new']) && $user_id != $current_user->ID)) { ?>
               <li><a href="<?php echo wp_nonce_url("admin.php?wp_crm_action=delete_user&page=wp_crm&user_id={$user_id}", 'wp-crm-delete-user-' . $user_id); ?>" class="submitdelete deletion button"><?php _e('Delete','wp_crm'); ?></a></li>
             <?php } ?>
           </ul>
