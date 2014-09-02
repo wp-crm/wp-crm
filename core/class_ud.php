@@ -37,17 +37,15 @@ class CRM_UD_UI {
  /**
   * Formats phone number for display
   *
-   *
+  *
   * @since 1.0
-   * @param string $phone_number
-   * @return string $phone_number
+  * @param string $phone_number
+  * @return string $phone_number
   */
- function checked_in_array($item, $array) {
-
-    if(is_array($array) && in_array($item, $array))
+ static function checked_in_array($item, $array) {
+    if ( is_array( $array ) && in_array( $item, $array ) ) {
       echo 'checked="checked"';
-
-
+    }
  }
 
  /**
@@ -134,7 +132,7 @@ class CRM_UD_UI {
   * @param bool $checked Option, default is false. Whether checkbox is checked or not.
   * @return string Checkbox input field and hidden field with the opposive value
   */
- function checkbox($args = '', $checked = false) {
+ static function checkbox($args = '', $checked = false) {
   $defaults = array('name' => '', 'id' => false,'class' => false, 'group' => false,'special' => '','value' => 'true', 'label' => false, 'maxlength' => false);
   extract( wp_parse_args( $args, $defaults ), EXTR_SKIP );
 
@@ -178,7 +176,7 @@ class CRM_UD_UI {
   $id     =  ($id ? $id : $class_from_name);
 
   $insert_id    =  ($id ? " id='$id' " : " id='$class_from_name' ");
-  $insert_name  =  ($group_string ? " name='".$group_string."[$name]' " : " name='$name' ");
+  $insert_name  =  (!empty($group_string) ? " name='".$group_string."[$name]' " : " name='$name' ");
   $insert_checked  =  ($checked ? " checked='checked' " : " ");
   $insert_value  =  " value=\"$value\" ";
   $insert_class   =  " class='$class_from_name $class ".'WP_CRM'."checkbox " . ($group ? 'WP_CRM' . $group . '_checkbox' : ''). "' ";
@@ -199,6 +197,8 @@ class CRM_UD_UI {
    break;
 
   }
+  
+  $return = '';
 
   // Print label if one is set
   if($label) $return .= "<label for='$id'>";
@@ -1047,12 +1047,9 @@ class CRM_UD_F {
   * @since 1.3
   * @return string
   */
- function de_slug($string) {
-
-   $string = ucwords(str_replace("_", " ", $string));
-
+ static function de_slug($string) {
+  $string = ucwords(str_replace("_", " ", $string));
   return $string;
-
  }
  /**
   * Returns a JSON response, and dies.

@@ -52,7 +52,7 @@ class wp_crm_default_api {
    *
    * @since 0.1
    */
-  function wpp_crm_card_keys_default($current) {
+  static function wpp_crm_card_keys_default($current) {
     global $wp_crm;
 
     $attribute_keys = array_keys($wp_crm['data_structure']['attributes']);

@@ -107,8 +107,9 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         if(is_array($wp_crm_plugin_settings_nav)) {
           foreach($wp_crm_plugin_settings_nav as $feature_slug => $nav) {
 
-            if($wp_crm['available_features'][$feature_slug]['status'] === 'disabled')
+            if( !empty($wp_crm['available_features'][$feature_slug]['status']) && $wp_crm['available_features'][$feature_slug]['status'] === 'disabled') {
               continue;
+            }
 
             echo "<li><a href='#tab_{$nav['slug']}'>{$nav['title']}</a></li>\n";
           }
@@ -133,32 +134,32 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         <td>
           <ul>
             <li>
-              <input id="replace_default_user_page" value="true" type="checkbox"  <?php checked($wp_crm['configuration']['replace_default_user_page'], 'true'); ?> name="wp_crm[configuration][replace_default_user_page]" />
+              <input id="replace_default_user_page" value="true" type="checkbox"  <?php checked(!empty($wp_crm['configuration']['replace_default_user_page'])?$wp_crm['configuration']['replace_default_user_page']:false, 'true'); ?> name="wp_crm[configuration][replace_default_user_page]" />
               <label for="replace_default_user_page"><?php _e('Replace default WordPress User page with WP-CRM.', 'wp_crm'); ?></label>
             </li>
 
             <li>
-              <input id="allow_account_creation_with_no_email" value="true" type="checkbox"  <?php checked($wp_crm['configuration']['allow_account_creation_with_no_email'], 'true'); ?> name="wp_crm[configuration][allow_account_creation_with_no_email]" />
+              <input id="allow_account_creation_with_no_email" value="true" type="checkbox"  <?php checked(!empty($wp_crm['configuration']['allow_account_creation_with_no_email'])?$wp_crm['configuration']['allow_account_creation_with_no_email']:false, 'true'); ?> name="wp_crm[configuration][allow_account_creation_with_no_email]" />
               <label for="allow_account_creation_with_no_email"><?php _e('Allow user accounts to be created without an e-mail address.', 'wp_crm'); ?></label>
             </li>
 
             <li>
-              <input id="disable_wp_password_reset_email" value="true" type="checkbox"  <?php checked($wp_crm['configuration']['disable_wp_password_reset_email'], 'true'); ?> name="wp_crm[configuration][disable_wp_password_reset_email]" />
+              <input id="disable_wp_password_reset_email" value="true" type="checkbox"  <?php checked(!empty($wp_crm['configuration']['disable_wp_password_reset_email'])?$wp_crm['configuration']['disable_wp_password_reset_email']:false, 'true'); ?> name="wp_crm[configuration][disable_wp_password_reset_email]" />
               <label for="disable_wp_password_reset_email"><?php _e('Disable default WordPress password reset e-mail notification.', 'wp_crm'); ?></label>
             </li>
 
             <li>
-              <input id="wp_crm_do_not_use_nl2br_in_messages" value="true" type="checkbox"  <?php checked($wp_crm['configuration']['do_not_use_nl2br_in_messages'], 'true'); ?> name="wp_crm[configuration][do_not_use_nl2br_in_messages]" />
+              <input id="wp_crm_do_not_use_nl2br_in_messages" value="true" type="checkbox"  <?php checked(!empty($wp_crm['configuration']['do_not_use_nl2br_in_messages'])?$wp_crm['configuration']['do_not_use_nl2br_in_messages']:false, 'true'); ?> name="wp_crm[configuration][do_not_use_nl2br_in_messages]" />
               <label for="wp_crm_do_not_use_nl2br_in_messages"><?php _e('Do not automatically convert line breaks in outgoing contact messages.', 'wp_crm'); ?></label>
             </li>
 
             <li>
-              <input id="wp_crm_track_detailed_user_activity" value="true" type="checkbox"  <?php checked($wp_crm['configuration']['track_detailed_user_activity'], 'true'); ?> name="wp_crm[configuration][track_detailed_user_activity]" />
+              <input id="wp_crm_track_detailed_user_activity" value="true" type="checkbox"  <?php checked(!empty($wp_crm['configuration']['track_detailed_user_activity'])?$wp_crm['configuration']['track_detailed_user_activity']:false, 'true'); ?> name="wp_crm[configuration][track_detailed_user_activity]" />
               <label for="wp_crm_track_detailed_user_activity"><?php _e('Track detailed user activity.', 'wp_crm'); ?></label>
             </li>
 
             <li>
-              <input id="wp_crm_allow_attributes_grouping" value="true" type="checkbox"  <?php checked($wp_crm['configuration']['allow_attributes_grouping'], 'true'); ?> name="wp_crm[configuration][allow_attributes_grouping]" />
+              <input id="wp_crm_allow_attributes_grouping" value="true" type="checkbox"  <?php checked(!empty($wp_crm['configuration']['allow_attributes_grouping'])?$wp_crm['configuration']['allow_attributes_grouping']:false, 'true'); ?> name="wp_crm[configuration][allow_attributes_grouping]" />
               <label for="wp_crm_allow_attributes_grouping"><?php _e('Enable Attribute Grouping.', 'wp_crm'); ?></label>
             </li>
 
@@ -171,12 +172,12 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         <td>
           <ul>
             <li>
-              <input id="wp_crm_standardize_display_name" wrapper="wp_crm_smart_row" toggle_logic="reverse" class="wp_crm_show_advanced" value="true" type="checkbox" <?php checked($wp_crm['configuration']['standardize_display_name'], 'true'); ?> name="wp_crm[configuration][standardize_display_name]" />
+              <input id="wp_crm_standardize_display_name" wrapper="wp_crm_smart_row" toggle_logic="reverse" class="wp_crm_show_advanced" value="true" type="checkbox" <?php checked(!empty($wp_crm['configuration']['standardize_display_name'])?$wp_crm['configuration']['standardize_display_name']:false, 'true'); ?> name="wp_crm[configuration][standardize_display_name]" />
               <label for="wp_crm_standardize_display_name" ><?php _e('Standardize Display Names.', 'wp_crm'); ?></label>
             </li>
             <li class="wp_crm_advanced_configuration">
               <label for="wp_crm_standardize_display_name_rule"><?php _e('Display name components: ', 'wp_crm'); ?></label>
-              <input id="wp_crm_standardize_display_name_rule" class="regular-text wp_crm_force_default" default_value="[user_email]" type="text" value="<?php echo esc_attr($wp_crm['configuration']['display_name_rule']); ?>" name="wp_crm[configuration][display_name_rule]" />
+              <input id="wp_crm_standardize_display_name_rule" class="regular-text wp_crm_force_default" default_value="[user_email]" type="text" value="<?php echo esc_attr( !empty($wp_crm['configuration']['display_name_rule'])?$wp_crm['configuration']['display_name_rule']:''); ?>" name="wp_crm[configuration][display_name_rule]" />
             </li>
           </ul>
         </td>
@@ -209,7 +210,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         <td>
           <ul>
             <li>
-              <input id="do_not_display_user_avatars" value="true" type="checkbox"  <?php checked($wp_crm['configuration']['do_not_display_user_avatars'], 'true'); ?> name="wp_crm[configuration][do_not_display_user_avatars]" />
+              <input id="do_not_display_user_avatars" value="true" type="checkbox"  <?php checked( !empty($wp_crm['configuration']['do_not_display_user_avatars'])?$wp_crm['configuration']['do_not_display_user_avatars']:false, 'true' ); ?> name="wp_crm[configuration][do_not_display_user_avatars]" />
               <label for="do_not_display_user_avatars"><?php _e('Do not display user avatars on overview pages.', 'wp_crm'); ?></label>
             </li>
           </ul>
@@ -224,7 +225,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <select id="wp_crm_primary_user_attribute" name="wp_crm[configuration][primary_user_attribute]">
               <option value=""> - </option>
                 <?php foreach(apply_filters('wp_crm_primary_user_attribute_keys', $wp_crm['data_structure']['attributes']) as $key => $attribute_data) { ?>
-                <option value="<?php echo esc_attr($key); ?>" <?php selected($key, $wp_crm['configuration']['primary_user_attribute']); ?>><?php echo $attribute_data['title']; ?> <?php echo ($attribute_data['quick_description'] ? '(' . $attribute_data['quick_description'] . ')' : ''); ?></option>
+                <option value="<?php echo esc_attr($key); ?>" <?php selected($key, $wp_crm['configuration']['primary_user_attribute']); ?>><?php echo $attribute_data['title']; ?> <?php echo (!empty($attribute_data['quick_description']) ? '(' . $attribute_data['quick_description'] . ')' : ''); ?></option>
             <?php } ?>
             </select>
             </li>
@@ -243,7 +244,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
            <?php foreach(apply_filters('wp_crm_user_card_keys', $wp_crm['data_structure']['attributes']) as $key => $attribute_data): $rand = rand(1000,9999); ?>
             <li>
               <input type="checkbox" value="<?php echo $key; ?>" <?php CRM_UD_UI::checked_in_array($key, $wp_crm['configuration']['overview_table_options']['main_view']); ?> name="wp_crm[configuration][overview_table_options][main_view][]" id="<?php echo $key.$rand; ?>" />
-              <label for="<?php echo $key.$rand; ?>"><?php echo ($attribute_data['title'] ? $attribute_data['title'] : CRM_UD_F::de_slug($key)); ?> <?php echo ($attribute_data['quick_description'] ? '<span class="description">' . $attribute_data['quick_description'] . '</span>' : ''); ?></label>
+              <label for="<?php echo $key.$rand; ?>"><?php echo ($attribute_data['title'] ? $attribute_data['title'] : CRM_UD_F::de_slug($key)); ?> <?php echo (!empty($attribute_data['quick_description']) ? '<span class="description">' . $attribute_data['quick_description'] . '</span>' : ''); ?></label>
             </li>
           <?php endforeach; ?>
           </ul>
@@ -262,7 +263,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <?php foreach($wp_crm['overview_user_actions'] as $action => $data) { if(empty($data['label'])) { continue; } ?>
             <li>
               <input type="hidden" name="wp_crm[overview_user_actions][<?php echo $action; ?>][enable]" value="false" />
-              <input id="wp_crm_overview_user_actions_<?php echo $action; ?>" type="checkbox" name="wp_crm[overview_user_actions][<?php echo $action; ?>][enable]" value="true" <?php checked($wp_crm['overview_user_actions'][$action]['enable'], 'true'); ?> />
+              <input id="wp_crm_overview_user_actions_<?php echo $action; ?>" type="checkbox" name="wp_crm[overview_user_actions][<?php echo $action; ?>][enable]" value="true" <?php checked( !empty($wp_crm['overview_user_actions'][$action]['enable'])?$wp_crm['overview_user_actions'][$action]['enable']:false, 'true'); ?> />
               <label for="wp_crm_overview_user_actions_<?php echo $action; ?>"><?php printf(__('Enable: %1s','wp_crm'), $data['label']); ?></label>
             </li>
             <?php } ?>
@@ -294,25 +295,25 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <ul class="wp_crm_notification_main_configuration">
               <li>
                 <label for=""><?php _e('Subject:', 'wp_crm'); ?></label>
-                <input type="text" id="subject_<?php echo $row_hash; ?>" class="slug_setter regular-text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][subject]" value="<?php echo $data['subject']; ?>" />
+                <input type="text" id="subject_<?php echo $row_hash; ?>" class="slug_setter regular-text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][subject]" value="<?php echo !empty($data['subject'])?$data['subject']:''; ?>" />
               </li>
               <li>
                 <label for=""><?php _e('To:', 'wp_crm'); ?></label>
-                <input type="text"  id="to_<?php echo $row_hash; ?>"  class="regular-text crm_to_mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][to]" value="<?php echo $data['to']; ?>" />
+                <input type="text"  id="to_<?php echo $row_hash; ?>"  class="regular-text crm_to_mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][to]" value="<?php echo !empty($data['to'])?$data['to']:''; ?>" />
              </li>
               <li>
                 <label for=""><?php _e('BCC:', 'wp_crm'); ?></label>
-                <input type="text"  id="bcc_<?php echo $row_hash; ?>"  class="regular-text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][bcc]" value="<?php echo $data['bcc']; ?>"/>
+                <input type="text"  id="bcc_<?php echo $row_hash; ?>"  class="regular-text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][bcc]" value="<?php echo !empty($data['bcc'])?$data['bcc']:''; ?>"/>
               </li>
               <li>
                 <label for=""><?php _e('From:', 'wp_crm'); ?></label>
-                <input type="text"  id="send_from_<?php echo $row_hash; ?>"  class="regular-text crm_mail_m" placeholder="Mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][send_from]" value="<?php echo $data['send_from']; ?>"/>
-                <input type="text"  id="send_from_<?php echo $row_hash; ?>"  class="regular-text crm_mail_n" placeholder="Name" name="wp_crm[notifications][<?php echo $notification_slug; ?>][send_from_name]" value="<?php echo $data['send_from_name']; ?>"/>
+                <input type="text"  id="send_from_<?php echo $row_hash; ?>"  class="regular-text crm_mail_m" placeholder="Mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][send_from]" value="<?php echo !empty($data['send_from'])?$data['send_from']:''; ?>"/>
+                <input type="text"  id="send_from_<?php echo $row_hash; ?>"  class="regular-text crm_mail_n" placeholder="Name" name="wp_crm[notifications][<?php echo $notification_slug; ?>][send_from_name]" value="<?php echo !empty($data['send_from_name'])?$data['send_from_name']:''; ?>"/>
               </li>
               <li>
                 <label for=""><?php _e('Reply To:', 'wp_crm'); ?></label>
-                <input type="text"  id="reply_to_<?php echo $row_hash; ?>"  class="regular-text crm_mail_m" placeholder="Mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][reply_to_mail]" value="<?php echo $data['reply_to_mail']; ?>"/>
-                <input type="text"  id="reply_to_<?php echo $row_hash; ?>"  class="regular-text crm_mail_n" placeholder="Name" name="wp_crm[notifications][<?php echo $notification_slug; ?>][reply_to_name]" value="<?php echo $data['reply_to_name']; ?>"/>
+                <input type="text"  id="reply_to_<?php echo $row_hash; ?>"  class="regular-text crm_mail_m" placeholder="Mail" name="wp_crm[notifications][<?php echo $notification_slug; ?>][reply_to_mail]" value="<?php echo !empty($data['reply_to_mail'])?$data['reply_to_mail']:''; ?>"/>
+                <input type="text"  id="reply_to_<?php echo $row_hash; ?>"  class="regular-text crm_mail_n" placeholder="Name" name="wp_crm[notifications][<?php echo $notification_slug; ?>][reply_to_name]" value="<?php echo !empty($data['reply_to_name'])?$data['reply_to_name']:''; ?>"/>
               </li>
 
             </ul>
@@ -404,7 +405,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
             <li class="wp_crm_advanced_configuration">
               <label><?php _e('Note:','wp_crm'); ?></label>
-               <input type="text" name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][description]" value="<?php echo $data['description']; ?>" />
+               <input type="text" name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][description]" value="<?php echo !empty($data['description'])?$data['description']:''; ?>" />
             </li>
 
             <li class="wp_crm_advanced_configuration">
@@ -423,22 +424,22 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         <td>
         <ul>
           <li>
-            <input id="<?php echo $row_hash; ?>_primary" value="true" type="checkbox"  <?php checked($wp_crm['data_structure']['attributes'][$slug]['primary'], 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][primary]" />
+            <input id="<?php echo $row_hash; ?>_primary" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['primary'])?$wp_crm['data_structure']['attributes'][$slug]['primary']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][primary]" />
             <label for="<?php echo $row_hash; ?>_primary" ><?php _e('Primary', 'wp_crm'); ?></label>
           </li>
 
           <li>
-            <input  id="<?php echo $row_hash; ?>_overview_column"  value="true" type="checkbox"  <?php checked($wp_crm['data_structure']['attributes'][$slug]['overview_column'], 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][overview_column]" />
+            <input  id="<?php echo $row_hash; ?>_overview_column"  value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['overview_column'])?$wp_crm['data_structure']['attributes'][$slug]['overview_column']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][overview_column]" />
             <label for="<?php echo $row_hash; ?>_overview_column" ><?php _e('Overview Column', 'wp_crm'); ?></label>
           </li>
 
           <li class="wp_crm_advanced_configuration">
-            <input id="<?php echo $row_hash; ?>_required" value="true" type="checkbox"  <?php checked($wp_crm['data_structure']['attributes'][$slug]['required'], 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][required]" />
+            <input id="<?php echo $row_hash; ?>_required" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['required'])?$wp_crm['data_structure']['attributes'][$slug]['required']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][required]" />
             <label for="<?php echo $row_hash; ?>_required" ><?php _e('Required', 'wp_crm'); ?></label>
           </li>
 
           <li class="wp_crm_advanced_configuration">
-            <input id="<?php echo $row_hash; ?>_no_edit" value="true" type="checkbox"  <?php checked($wp_crm['data_structure']['attributes'][$slug]['uneditable'], 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][uneditable]" />
+            <input id="<?php echo $row_hash; ?>_no_edit" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['uneditable'])?$wp_crm['data_structure']['attributes'][$slug]['uneditable']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][uneditable]" />
             <label for="<?php echo $row_hash; ?>_no_edit" ><?php _e('Uneditable', 'wp_crm'); ?></label>
           </li>
 
@@ -447,18 +448,6 @@ if(empty($wp_crm['data_structure']['attributes'])) {
                   'data'     => $data,
                   'row_hash' => $row_hash
                 )); ?>
-
-          <?php /*
-          <li>
-              <input  id="<?php echo $row_hash; ?>_allow_multiple"  value="true" type="checkbox"  <?php checked($wp_crm['data_structure']['attributes'][$slug]['allow_multiple'], 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][allow_multiple]" />
-              <label  for="<?php echo $row_hash; ?>_allow_multiple"  ><?php _e('Allow Multiple', 'wp_crm'); ?></label>
-          </li>
-
-          <li>
-              <input  id="<?php echo $row_hash; ?>_autocomplete"  value="true" type="checkbox"  <?php checked($wp_crm['data_structure']['attributes'][$slug]['autocomplete'], 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][autocomplete]" />
-              <label  for="<?php echo $row_hash; ?>_autocomplete"  ><?php _e('Autocomplete Field', 'wp_crm'); ?></label>
-          </li>
-          */ ?>
 
           </ul>
           </td>
@@ -471,7 +460,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
           </td>
 
           <td class='wp_crm_values_col'>
-            <textarea  name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][options]"><?php echo $wp_crm['data_structure']['attributes'][$slug]['options']; ?></textarea>
+            <textarea  name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][options]"><?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['options'])?$wp_crm['data_structure']['attributes'][$slug]['options']:''; ?></textarea>
           </td>
 
           <td><span class="wp_crm_delete_row  button"><?php _e('Delete','wp_crm') ?></span></td>
@@ -519,7 +508,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
          <ul class="wp-tab-panel">
           <?php foreach($wp_crm['data_structure']['attributes'] as $key => $attribute_data) { ?>
           <li>
-            <input <?php CRM_UD_UI::checked_in_array($key, $wp_crm['hidden_attributes'][$role_slug]); ?> id="<?php echo $key; ?>_<?php echo $rand_id; ?>" type="checkbox" name="wp_crm[hidden_attributes][<?php echo $role_slug; ?>][]" value="<?php echo $key; ?>" />
+            <input <?php CRM_UD_UI::checked_in_array($key, !empty($wp_crm['hidden_attributes'][$role_slug])?$wp_crm['hidden_attributes'][$role_slug]:array()); ?> id="<?php echo $key; ?>_<?php echo $rand_id; ?>" type="checkbox" name="wp_crm[hidden_attributes][<?php echo $role_slug; ?>][]" value="<?php echo $key; ?>" />
             <label for="<?php echo $key; ?>_<?php echo $rand_id; ?>"><?php echo $attribute_data['title']; ?></label>
           </li>
           <?php } ?>

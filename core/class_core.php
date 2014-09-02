@@ -370,10 +370,10 @@ class WP_CRM_Core {
    * @since 0.1
    *
    */
-  function crm_page_wp_crm_settings() {
+  static function crm_page_wp_crm_settings() {
 
     //** Download backup of configuration */
-    if ( $_REQUEST[ 'wp_crm_action' ] == 'download-wp_crm-backup'
+    if ( !empty($_REQUEST[ 'wp_crm_action' ]) && $_REQUEST[ 'wp_crm_action' ] == 'download-wp_crm-backup'
       && wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'download-wp_crm-backup' )
     ) {
       global $wp_crm;
