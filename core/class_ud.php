@@ -565,27 +565,26 @@ class CRM_UD_F {
   }
 
 
- /**
-  * Get a URL of a page.
-  *
-  *
-  * @version 1.5
- **/
- function objectToArray($object) {
+    /**
+     * Get a URL of a page.
+     *
+     *
+     * @version 1.5
+     * */
+    static function objectToArray($object) {
 
-    if(!is_object( $object ) && !is_array( $object )) {
-    return $object;
-   }
+      if (!is_object($object) && !is_array($object)) {
+        return $object;
+      }
 
-    if(is_object($object) ) {
-   $object = get_object_vars( $object );
+      if (is_object($object)) {
+        $object = get_object_vars($object);
+      }
+
+      return array_map(array('CRM_UD_F', 'objectToArray'), $object);
     }
 
-    return array_map(array('CRM_UD_F' , 'objectToArray'), $object );
-  }
-
-
- /**
+    /**
   * Get a URL of a page.
   *
   *

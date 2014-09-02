@@ -2527,7 +2527,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function check_plugin_updates() {
+  static function check_plugin_updates() {
     echo WP_CRM_F::feature_check(true);
   }
 
@@ -2605,7 +2605,7 @@ class WP_CRM_F {
       update_option('wp_crm_settings', $wp_crm_settings);
     }
 
-    if ($response->features == 'eligible' && $wp_crm['configuration']['disable_automatic_feature_update'] != 'true') {
+    if ($response->features == 'eligible' && !empty($wp_crm['configuration']['disable_automatic_feature_update']) && $wp_crm['configuration']['disable_automatic_feature_update'] != 'true') {
 
       //** Try to create directory if it doesn't exist */
       if (!is_dir(WP_CRM_Premium)) {
@@ -2653,7 +2653,7 @@ class WP_CRM_F {
     //** Update settings */
     WP_CRM_F::settings_action(true);
 
-    if ($return && $wp_crm['configuration']['disable_automatic_feature_update'] == 'true') {
+    if ($return && !empty($wp_crm['configuration']['disable_automatic_feature_update']) && $wp_crm['configuration']['disable_automatic_feature_update'] == 'true') {
       return __('Update ran successfully but no features were downloaded because the setting is disabled.', 'wp_crm');
     } elseif ($return) {
       return __('Update ran successfully.', 'wp_crm');
