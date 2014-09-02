@@ -188,7 +188,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
     ?>
   <p class="search-box">
-    <input type="text" id="<?php echo $input_id ?>" name="wp_crm_search[search_string]" value="<?php echo $_REQUEST['wp_crm_search']['search_string'] ?>" />
+    <input type="text" id="<?php echo $input_id ?>" name="wp_crm_search[search_string]" value="<?php echo !empty($_REQUEST['wp_crm_search']['search_string'])?$_REQUEST['wp_crm_search']['search_string']:''; ?>" />
   </p>
   <?php
   }
@@ -401,7 +401,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
         $views = $this->get_views();
         $views = apply_filters( 'views_' . $screen->id, $views );
 
-        $search = $_REQUEST['wp_crm_search'];
+        $search = !empty($_REQUEST['wp_crm_search'])?$_REQUEST['wp_crm_search']:array();
 
         if (empty($views)) {
           return;
@@ -444,7 +444,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
                   $filterable_keys_display[] = "
                       <li class='wp_crm_checkbox_filter'>
-                      <input ". (is_array($search[$main_key]) && in_array($option_slug, $search[$main_key]) ? "checked" : "") ." type='checkbox' name=wp_crm_search[{$main_key}][] value='$option_slug' class='{$option_slug}_class' id='wp_crm_filterable_key_{$option_full_key}' />
+                      <input ". ( !empty($search[$main_key]) && is_array($search[$main_key]) && in_array($option_slug, $search[$main_key]) ? "checked" : "") ." type='checkbox' name=wp_crm_search[{$main_key}][] value='$option_slug' class='{$option_slug}_class' id='wp_crm_filterable_key_{$option_full_key}' />
                       <label for='wp_crm_filterable_key_{$option_full_key}'>{$option_label}</label>
                       </li>";
                 }
@@ -459,7 +459,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
               }
 
-              if (count($options) > 0){
+              if ( isset($options) && count( $options ) > 0 ) {
                   $filterable_keys_display[] = '</div>';
               }
 
@@ -490,7 +490,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
     unset($users_of_blog);
 
     $current_role = false;
-    $role = $_REQUEST['role'];
+    $role = !empty($_REQUEST['role'])?$_REQUEST['role']:'';
     $class = empty($role) ? ' checked="checked"' : '';
     $role_links = array();
 

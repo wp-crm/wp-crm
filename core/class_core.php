@@ -76,7 +76,7 @@ class WP_CRM_Core {
    *
    */
   function init() {
-    global $wpdb, $wp_crm, $wp_roles;
+    global $wp_crm;
 
     if ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' ) {
       $current_user = wp_get_current_user();
@@ -235,7 +235,7 @@ class WP_CRM_Core {
    *
    */
   function template_redirect() {
-    global $post, $wp, $wp_query, $wp_styles;
+    global $post;
 
     if ( !strpos( $post->post_content, "wp_crm_form" ) ) {
       return;
@@ -255,9 +255,8 @@ class WP_CRM_Core {
    *
    */
   function wp_print_styles() {
-    global $post, $wp, $wp_query, $wp_styles;
 
-    // Load theme-specific stylesheet if it exists
+    //** Load theme-specific stylesheet if it exists */
     wp_enqueue_script( 'jquery' );
     wp_enqueue_style( 'wp-crm-theme-specific' );
     wp_enqueue_style( 'wp-crm-default-styles' );
@@ -293,7 +292,7 @@ class WP_CRM_Core {
    *
    */
   function crm_page_traditional_user_page() {
-    global $wp_crm, $current_screen, $hook_suffix, $typenow, $taxnow;
+    global $wp_crm, $current_screen;
 
     /* If avatar-delection redirection originated from CRM profile, we muts return there */
     if ( $_GET[ 'delete_avatar' ] == 'true' && strpos( $_SERVER[ 'HTTP_REFERER' ], 'admin.php?page=wp_crm_add_new' ) ) {
@@ -334,14 +333,11 @@ class WP_CRM_Core {
    * @since 0.22
    *
    */
-  function crm_page_wp_crm_add_new() {
+  static function crm_page_wp_crm_add_new() {
     global $wp_crm;
 
-    //Something wrong with this function. Looks like Metaboxed now had been made in another way. odokienko@UD
-    //WP_CRM_F::crm_profile_page_metaboxes();
-
     //** If we are on 'crm_page_wp_crm_add_new' screen - render metaboxes for groups */
-    if ( $wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ] == 'true' ) {
+    if ( !empty($wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ]) && $wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ] == 'true' ) {
       WP_CRM_F::grouped_metaboxes();
     }
 
@@ -442,7 +438,8 @@ class WP_CRM_Core {
    *
    */
   static function admin_init() {
-    global $wp_rewrite, $wp_roles, $wp_crm, $wpdb, $current_user;
+    global $wp_crm, $wpdb, $current_user;
+    
     //** Check if current page is profile page, and load global variable */
     WP_CRM_F::maybe_load_profile();
 
@@ -451,12 +448,14 @@ class WP_CRM_Core {
     //** Add overview table rows. Static because admin_menu is not loaded on ajax calls. */
     add_filter( "manage_toplevel_page_wp_crm_columns", array( 'WP_CRM_Core', "overview_columns" ) );
 
-    add_action( 'admin_print_scripts-' . $wp_crm[ 'system' ][ 'pages' ][ 'settings' ], create_function( '', "wp_enqueue_script('jquery-ui-tabs');wp_enqueue_script('jquery-cookie');" ) );
-
+    if ( !empty( $wp_crm[ 'system' ][ 'pages' ][ 'settings' ] ) ) {
+      add_action( 'admin_print_scripts-' . $wp_crm[ 'system' ][ 'pages' ][ 'settings' ], create_function( '', "wp_enqueue_script('jquery-ui-tabs');wp_enqueue_script('jquery-cookie');" ) );
+    }
+    
     add_action( 'load-crm_page_wp_crm_add_new', array( 'WP_CRM_Core', 'wp_crm_save_user_data' ) );
 
     // Add metaboxes
-    if ( is_array( $wp_crm[ 'system' ][ 'pages' ] ) ) {
+    if ( !empty($wp_crm[ 'system' ][ 'pages' ]) && is_array( $wp_crm[ 'system' ][ 'pages' ] ) ) {
 
       $sidebar_boxes = array( 'special_actions' );
 
@@ -501,6 +500,7 @@ class WP_CRM_Core {
           $user_id = $_REQUEST[ 'user_id' ];
 
           if ( wp_verify_nonce( $_wpnonce, 'wp-crm-delete-user-' . $user_id ) ) {
+            
             //** Get IDs of users posts */
             $post_ids = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_author = %d", $user_id ) );
 
@@ -575,9 +575,9 @@ class WP_CRM_Core {
    * @since 0.01
    *
    */
-  function wp_crm_save_user_data() {
+  static function wp_crm_save_user_data() {
 
-    if ( wp_verify_nonce( $_REQUEST[ 'wp_crm_update_user' ], 'wp_crm_update_user' ) ) {
+    if ( !empty($_REQUEST[ 'wp_crm_update_user' ]) && wp_verify_nonce( $_REQUEST[ 'wp_crm_update_user' ], 'wp_crm_update_user' ) ) {
       $args = $_REQUEST[ 'wp_crm' ][ 'args' ];
 
       $user_data = $_REQUEST[ 'wp_crm' ][ 'user_data' ];

@@ -691,7 +691,7 @@ class WP_CRM_F {
     <?php } ?>
       </ul>
 
-      <?php if (is_array($user_actions)) {
+      <?php if ( !empty($user_actions) && is_array( $user_actions ) ) {
         echo '<ul class="wp_crm_user_row_actions">' . implode('<li class="wp_crm_divider"> | </li>', $user_actions) . '</ul>';
       } ?>
     </div>
@@ -827,7 +827,7 @@ class WP_CRM_F {
    * @since 0.19
    *
    */
-  function get_quantifiable_attributes() {
+  static function get_quantifiable_attributes() {
     global $wp_crm;
 
     if ($cache = wp_cache_get('wp_crm_quantifiable_attributes')) {
@@ -1961,8 +1961,8 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function user_input_field($slug, $values = false, $attribute = false, $user_object = false, $args = '') {
-    global $wp_crm, $wpdb;
+  static function user_input_field($slug, $values = false, $attribute = false, $user_object = false, $args = '') {
+    global $wp_crm;
 
     //* Only supported in WP 3.3+ and is here to ensure the scripts are loaded */
     wp_enqueue_script('wp_crm_profile_editor');
@@ -2005,7 +2005,7 @@ class WP_CRM_F {
           $rand_id = rand(10000, 99999);
           $loop_ready_values[$rand_id]['value'] = $single_value;
           $loop_ready_values[$rand_id]['option'] = $type_slug;
-          $loop_ready_values[$rand_id]['label'] = $attribute['option_labels'][$type_slug];
+          $loop_ready_values[$rand_id]['label'] = !empty($attribute['option_labels'][$type_slug])?$attribute['option_labels'][$type_slug]:'';
         }
       }
     }
@@ -2020,7 +2020,7 @@ class WP_CRM_F {
           $loop_ready_values[$rand_id]['option'] = $option_key;
           $loop_ready_values[$rand_id]['label'] = $option_label;
 
-          if ($values[$option_key] && (in_array('on', $values[$option_key]) || in_array('true', $values[$option_key]))) {
+          if ( !empty($values[$option_key]) && $values[$option_key] && (in_array('on', $values[$option_key]) || in_array('true', $values[$option_key]))) {
             $loop_ready_values[$rand_id]['enabled'] = true;
           }
         }
@@ -2079,11 +2079,11 @@ class WP_CRM_F {
       $class[] = 'wp_crm_password';
     }
 
-    if ($attribute['allow_multiple'] == 'true') {
+    if ( !empty($attribute['allow_multiple']) && $attribute['allow_multiple'] == 'true') {
       $class[] = 'allow_multiple';
     }
 
-    if ($attribute['required'] == 'true') {
+    if ( !empty($attribute['required']) && $attribute['required'] == 'true') {
       $class[] = 'wp_crm_required_field';
     }
 
@@ -2091,15 +2091,15 @@ class WP_CRM_F {
       $class[] = 'email_validated';
     }
 
-    if ($attribute['has_options']) {
+    if (!empty($attribute['has_options'])) {
       $class[] = 'has_options';
     }
 
-    if ($attribute['uneditable'] == 'true') {
+    if ( !empty($attribute['uneditable']) && $attribute['uneditable'] == 'true' ) {
       $class[] = 'wp_crm_attribute_uneditable';
     }
 
-    if ($wp_crm['configuration']['standardize_display_name'] == 'true' && $slug == 'display_name') {
+    if ( !empty($wp_crm['configuration']['standardize_display_name']) && $wp_crm['configuration']['standardize_display_name'] == 'true' && $slug == 'display_name') {
       $class[] = 'wp_crm_attribute_uneditable';
       $class[] = 'wp_crm_standardized_name';
     }
@@ -2126,9 +2126,9 @@ class WP_CRM_F {
           foreach ($values as $rand => $value_data) {
             ?>
               <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-                <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
-            <?php if ($attribute['has_options']) { ?>
-                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> class="wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+            <?php if ( !empty($attribute['has_options']) ) { ?>
+                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> class="wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                     <option></option>
               <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                       <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2145,10 +2145,10 @@ class WP_CRM_F {
             ?>
               <div class="wp_crm_input_wrap" random_hash="<?php echo $rand; ?>" >
 
-                <textarea  wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>"><?php echo $value_data['value']; ?></textarea>
+                <textarea  wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>"><?php echo $value_data['value']; ?></textarea>
 
-            <?php if ($attribute['has_options']) { ?>
-                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?>  random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+            <?php if ( !empty($attribute['has_options']) ) { ?>
+                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo !empty($tabindex)?$tabindex:''; ?>  random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                     <option></option>
               <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                       <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2170,7 +2170,7 @@ class WP_CRM_F {
                     <li option_meta_value="<?php echo esc_attr($value_data['option']); ?>" >
                       <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />
                       <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
-                      <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
+                      <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
                       <label for="wpi_checkbox_<?php echo $rand; ?>"><?php echo $value_data['label']; ?></label>
                     </li>
             <?php } ?>
@@ -2311,7 +2311,7 @@ class WP_CRM_F {
     $content = ob_get_contents();
     ob_end_clean();
 
-    $content = apply_filters('wp_crm_user_input_field', $content, $slug, $value);
+    $content = apply_filters('wp_crm_user_input_field', $content, $slug);
 
     return $content;
   }
@@ -2813,10 +2813,10 @@ class WP_CRM_F {
    * @author odokienko@UD
    */
 
-  function crm_screen_options() {
+  static function crm_screen_options() {
     global $current_screen, $wpdb;
 
-    $user_filter = (is_numeric($_REQUEST['user_id'])) ? " object_id={$_REQUEST['user_id']} " : '1';
+    $user_filter = ( !empty($_REQUEST['user_id']) && is_numeric( $_REQUEST['user_id'] ) ) ? " object_id={$_REQUEST['user_id']} " : '1';
 
     $output = '';
 

@@ -6,9 +6,9 @@ if(!empty($wp_crm['data_structure']) && is_array($wp_crm['data_structure']['attr
   $attribute_keys = array();
 }
 
-if($_REQUEST['message'] == 'created') {
+if( !empty( $_REQUEST['message'] ) && $_REQUEST['message'] == 'created' ) {
   WP_CRM_F::add_message(__('Profile created.', 'wp_crm'));
-}elseif($_REQUEST['message'] == 'updated') {
+} elseif ( !empty( $_REQUEST['message'] ) && $_REQUEST['message'] == 'updated' ) {
   WP_CRM_F::add_message(__('Profile updated.', 'wp_crm'));
 }
 
@@ -27,11 +27,11 @@ if($wp_crm_user)  {
 }
 
 $wp_crm_js = array(
-  'user_id' => is_numeric($user_id) ? $user_id : false,
+  'user_id' => (isset($user_id) && is_numeric( $user_id )) ? $user_id : false,
   'hidden_attributes' => !empty( $wp_crm['hidden_attributes'] ) ? $wp_crm['hidden_attributes'] : array()
 );
 
-if($wp_crm['configuration']['standardize_display_name'] == 'true' && !empty($wp_crm['configuration']['display_name_rule'])) {
+if( !empty($wp_crm['configuration']['standardize_display_name']) && $wp_crm['configuration']['standardize_display_name'] == 'true' && !empty($wp_crm['configuration']['display_name_rule'])) {
   $wp_crm_js['standardize_display_name'] = true;
   $wp_crm_js['display_name_rule'] = $wp_crm['configuration']['display_name_rule'];
 }
@@ -47,8 +47,8 @@ if(is_array($wp_crm_js)) {
   <h2 class="wp_crm_page_title"><?php echo $title; ?></h2>
   <?php WP_CRM_F::print_messages(); ?>
 
-  <form enctype="multipart/form-data"  name="crm_user" action="admin.php?page=wp_crm_add_new<?php echo ($user_id ? "&user_id=$user_id" : ''); ?><?php echo !empty($redirect_to) ? "&redirect_to={$redirect_to}" : ""; ?>" method="post" id="crm_user">
-  <input type="hidden" id="user_id" name="wp_crm[user_data][user_id][0][value]" value="<?php echo $user_id; ?>" />
+  <form enctype="multipart/form-data"  name="crm_user" action="admin.php?page=wp_crm_add_new<?php echo (isset($user_id) ? "&user_id=$user_id" : ''); ?><?php echo !empty($redirect_to) ? "&redirect_to={$redirect_to}" : ""; ?>" method="post" id="crm_user">
+  <input type="hidden" id="user_id" name="wp_crm[user_data][user_id][0][value]" value="<?php echo isset($user_id)?$user_id:''; ?>" />
   <?php
   wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false );
   wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
