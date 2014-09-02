@@ -2354,13 +2354,14 @@ class WP_CRM_F {
       $wp_crm_settings = apply_filters('wp_crm_settings_save', $_REQUEST['wp_crm'], $wp_crm);
 
       // Prevent removal of featured settings configurations if they are not present
-      if ($wp_crm['configuration']['feature_settings'])
+      if ( !empty($wp_crm['configuration']['feature_settings']) ) {
         foreach ($wp_crm['configuration']['feature_settings'] as $feature_type => $preserved_settings) {
 
           if (empty($_REQUEST['wp_crm']['configuration']['feature_settings'][$feature_type])) {
             $wp_crm_settings['configuration']['feature_settings'][$feature_type] = $preserved_settings;
           }
         }
+      }
 
       //* Regenerate possible meta keys */
       $wp_crm_settings['data_structure'] = WP_CRM_F::build_meta_keys($wp_crm_settings);
@@ -2484,11 +2485,10 @@ class WP_CRM_F {
    * @return array
    * @author odokienko@UD
    */
-  function wp_crm_settings_save_email_required($new_settings, $old_settings) {
+  static function wp_crm_settings_save_email_required($new_settings, $old_settings) {
 
     if (!empty($new_settings['data_structure']['attributes']['user_email'])) {
-
-      $new_settings['data_structure']['attributes']['user_email']['required'] = ($new_settings['configuration']['allow_account_creation_with_no_email'] == 'true') ? 'false' : 'true';
+      $new_settings['data_structure']['attributes']['user_email']['required'] = ( !empty($new_settings['configuration']['allow_account_creation_with_no_email']) && $new_settings['configuration']['allow_account_creation_with_no_email'] == 'true') ? 'false' : 'true';
     }
 
     return $new_settings;
@@ -3163,7 +3163,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function add_message($message, $type = 'good') {
+  static function add_message($message, $type = 'good') {
     global $wp_crm_messages;
     
     if (!is_array($wp_crm_messages)) {
