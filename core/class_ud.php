@@ -1014,34 +1014,32 @@ class CRM_UD_F {
   add_action('admin_menu', create_function('', "add_menu_page(__('Log','wp_crm'), __('Log','wp_crm'), 10, 'ud_log', array('CRM_UD_UI','show_log_page'));"));
  }
 
- /**
-  * Turns a passed string into a URL slug
-   *
-   * Argument 'check_existance' will make the function check if the slug is used by a WordPress post
-    *
-  * @param string $content
-  * @param string $args Optional list of arguments to overwrite the defaults.
-  * @since 1.0
-  * @uses add_action() Calls 'admin_menu' hook with an anonymous (lambda-style) function which uses add_menu_page to create a UI Log page
-  * @return string
-  */
- function create_slug($content, $args = false) {
+   /**
+     * Turns a passed string into a URL slug
+     *
+     * Argument 'check_existance' will make the function check if the slug is used by a WordPress post
+     *
+     * @param string $content
+     * @param string $args Optional list of arguments to overwrite the defaults.
+     * @since 1.0
+     * @uses add_action() Calls 'admin_menu' hook with an anonymous (lambda-style) function which uses add_menu_page to create a UI Log page
+     * @return string
+     */
+    static function create_slug($content, $args = false) {
+      $defaults = array('check_existance' => false);
+      extract(wp_parse_args($args, $defaults), EXTR_SKIP);
 
-   $defaults = array('check_existance' => false);
-  extract( wp_parse_args( $args, $defaults ), EXTR_SKIP );
+      $content = trim($content);
+      $content = preg_replace('~[^\\pL0-9_]+~u', '_', $content); // substitutes anything but letters, numbers and '_' with separator
+      $content = trim($content, "-");
+      $content = iconv("utf-8", "us-ascii//TRANSLIT", $content); // TRANSLIT does the whole job
+      $content = strtolower($content);
+      $slug = preg_replace('~[^-a-z0-9_]+~', '', $content); // keep only letters, numbers, '_' and separator
 
-  $content = trim($content);
-  $content = preg_replace('~[^\\pL0-9_]+~u', '_', $content); // substitutes anything but letters, numbers and '_' with separator
-  $content = trim($content, "-");
-  $content = iconv("utf-8", "us-ascii//TRANSLIT", $content); // TRANSLIT does the whole job
-  $content = strtolower($content);
-  $slug = preg_replace('~[^-a-z0-9_]+~', '', $content); // keep only letters, numbers, '_' and separator
+      return $slug;
+    }
 
-  return $slug;
-
- }
-
- /**
+    /**
   * Convert a slug to a more readable string
    *
   * @since 1.3

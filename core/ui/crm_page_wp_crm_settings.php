@@ -653,7 +653,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
       <div class="wp_crm_settings_block">
         <input value="" type="hidden" name="wp_crm[configuration][developer_mode]" />
-        <input id="wp_crm_enable_developer_mode" value="true" type="checkbox" <?php checked($wp_crm['configuration']['developer_mode'], 'true'); ?> name="wp_crm[configuration][developer_mode]" />
+        <input id="wp_crm_enable_developer_mode" value="true" type="checkbox" <?php checked(!empty($wp_crm['configuration']['developer_mode'])?$wp_crm['configuration']['developer_mode']:false, 'true'); ?> name="wp_crm[configuration][developer_mode]" />
         <label for="wp_crm_enable_developer_mode"><?php _e("Enable developer mode and start displaying additional information in the console log.", 'wp_crm'); ?></label>
       </div>
 

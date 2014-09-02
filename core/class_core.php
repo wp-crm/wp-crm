@@ -850,7 +850,7 @@ class WP_CRM_Core {
    * @since 0.60
    *
    */
-  function plugin_action_links( $links, $file ) {
+  static function plugin_action_links( $links, $file ) {
 
     if ( $file == 'wp-crm/wp-crm.php' ) {
       $settings_link = '<a href="' . admin_url( "admin.php?page=wp_crm_settings" ) . '">' . __( 'Settings', 'wp_crm' ) . '</a>';

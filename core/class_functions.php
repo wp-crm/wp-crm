@@ -2751,11 +2751,11 @@ class WP_CRM_F {
   static function maybe_install_tables() {
     global $wpdb;
 
-    if (!$wpdb->crm_log) {
+    if ( empty($wpdb->crm_log) ) {
       $wpdb->crm_log = $wpdb->base_prefix . 'crm_log';
     }
 
-    if (!$wpdb->crm_log_meta) {
+    if ( empty($wpdb->crm_log_meta) ) {
       $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
     }
 
@@ -3151,7 +3151,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function deactivation() {
+  static function deactivation() {
     $timestamp = wp_next_scheduled('wp_crm_premium_feature_check');
     wp_unschedule_event($timestamp, 'wp_crm_premium_feature_check');
     wp_clear_scheduled_hook('wp_crm_premium_feature_check');
