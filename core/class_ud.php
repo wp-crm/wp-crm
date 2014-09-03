@@ -513,7 +513,12 @@ if(!class_exists('CRM_UD_F')):
 
 class CRM_UD_F {
 
-  function shuffle_assoc(&$array) {
+  /**
+   * 
+   * @param type $array
+   * @return boolean
+   */
+  static function shuffle_assoc(&$array) {
     $keys = array_keys($array);
 
     shuffle($keys);
@@ -527,27 +532,27 @@ class CRM_UD_F {
     return true;
   }
 
- function get_column_names($table) {
-  global $wpdb;
+  /**
+   * 
+   * @global type $wpdb
+   * @param type $table
+   * @return type
+   */
+  function get_column_names($table) {
+    global $wpdb;
 
-  $table_info = $wpdb->get_results("SHOW COLUMNS FROM $table");
+    $table_info = $wpdb->get_results("SHOW COLUMNS FROM $table");
 
+    if (empty($table_info)) {
+      return;
+    }
 
-  if(empty($table_info))
-   return;
+    foreach ($table_info as $row) {
 
-
-  foreach($table_info as $row) {
-
-   $columns[] = $row->Field;
+      $columns[] = $row->Field;
+    }
+    return $columns;
   }
-
-
-  return $columns;
-
-
-
- }
 
   /**
    * Get a URL of a page.

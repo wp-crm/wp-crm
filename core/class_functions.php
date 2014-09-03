@@ -709,7 +709,7 @@ class WP_CRM_F {
    * @since 0.19
    *
    */
-  function visualize_results($filters) {
+  static function visualize_results($filters) {
     global $wpdb;
 
     parse_str($filters, $filters);
@@ -801,8 +801,6 @@ class WP_CRM_F {
               height: 310,
               legend: 'bottom'
             });
-
-
           }
     <?php } ?>
       </script>
@@ -813,7 +811,6 @@ class WP_CRM_F {
           <div id="wp_crm_attribute_<?php echo $attribute_slug; ?>_chart" class="wp_crm_visualization_graph"></div>
         </div>
     <?php } ?>
-
 
     </div>
 
@@ -1128,12 +1125,12 @@ class WP_CRM_F {
 
           $this_attribute = $wp_crm['data_structure']['attributes'][$short_key];
 
-          if ($this_attribute['has_options'] && $full_key == $short_key) {
+          if ( !empty( $this_attribute['has_options'] ) && $full_key == $short_key) {
             continue;
           }
 
           //** 50/50 we put something into here, unless required or stored in main user table */
-          if (in_array($short_key, $main_keys) || (mt_rand(0, 1) == 1 && $this_attribute['required'] != 'true')) {
+          if (in_array($short_key, $main_keys) || (mt_rand(0, 1) == 1 && !empty($this_attribute['required']) && $this_attribute['required'] != 'true')) {
             continue;
           }
 
@@ -1142,6 +1139,9 @@ class WP_CRM_F {
             case 'textarea':
 
               while ($i <= mt_rand(15, 100)) {
+                if ( empty( $meta_data[$full_key] ) ) {
+                  $meta_data[$full_key] = '';
+                }
                 $meta_data[$full_key] .= $words[array_rand($words, 1)] . ' ';
                 $i++;
               }
@@ -1154,6 +1154,9 @@ class WP_CRM_F {
             case 'text':
 
               while ($i <= mt_rand(3, 7)) {
+                if ( empty( $meta_data[$full_key] ) ) {
+                  $meta_data[$full_key] = '';
+                }
                 $meta_data[$full_key] .= $words[array_rand($words, 1)] . ' ';
                 $i++;
               }
@@ -1177,6 +1180,8 @@ class WP_CRM_F {
               break;
           }
         }
+        
+        $user_data['user_pass'] = NULL;
 
         $user_id = wp_insert_user($user_data);
 
@@ -1213,7 +1218,7 @@ class WP_CRM_F {
 
 
           //** Delete e-mails from some users */
-          if ($wp_crm['configuration']['allow_account_creation_with_no_email'] == 'true' && mt_rand(0, 10) > 7) {
+          if (!empty($wp_crm['configuration']['allow_account_creation_with_no_email']) && $wp_crm['configuration']['allow_account_creation_with_no_email'] == 'true' && mt_rand(0, 10) > 7) {
             $wpdb->update($wpdb->users, array('user_email' => ''), array('ID' => $user_id));
           }
         } else {
@@ -1514,8 +1519,10 @@ class WP_CRM_F {
    * @since 0.1
    *
    */
-  function show_user_meta_report($user_id = false) {
+  static function show_user_meta_report($user_id = false) {
     global $wpdb;
+    
+    $user_specific_query = '';
 
     if ($user_id = intval($user_id)) {
       $user_specific_query = " AND user_id = '$user_id' ";
@@ -1528,7 +1535,6 @@ class WP_CRM_F {
     $meta_keys = $wpdb->get_col("SELECT DISTINCT(meta_key) FROM {$wpdb->usermeta} WHERE (meta_key NOT LIKE '{$excluded_keys}%') GROUP BY meta_key");
 
     foreach ($meta_keys as $key) {
-
 
       if (!$typical_options = $wpdb->get_col("SELECT DISTINCT(meta_value) FROM {$wpdb->usermeta} WHERE meta_key = '$key'  AND meta_value != '' $user_specific_query LIMIT 0, 3 ")) {
         continue;
@@ -1650,11 +1656,9 @@ class WP_CRM_F {
   /**
    * Delete WP-CRM related user things
    *
-   *
    * @since 0.1
-   *
    */
-  function deleted_user($object_id) {
+  static function deleted_user($object_id) {
     global $wpdb;
 
     $wpdb->query("DELETE FROM {$wpdb->crm_log} WHERE object_type = 'user' AND object_id = {$object_id}");
@@ -2848,7 +2852,7 @@ class WP_CRM_F {
    * @version 1.0
    * @author odokienko@UD
    */
-  function wp_crm_entry_type_label($attr, $entity) {
+  static function wp_crm_entry_type_label($attr, $entity) {
 
     switch ($attr) {
       case "note":
@@ -2935,7 +2939,7 @@ class WP_CRM_F {
       $entry_text = apply_filters('wp_crm_activity_single_content', nl2br($entry->text), array('entry' => $entry, 'args' => $args));
 
       //** If detailed activity is tracked, certain fields are machine-populated. */
-      if ($wp_crm['configuration']['track_detailed_user_activity'] == 'true' && empty($entry_text)) {
+      if (!empty($wp_crm['configuration']['track_detailed_user_activity']) && $wp_crm['configuration']['track_detailed_user_activity'] == 'true' && empty($entry_text)) {
 
         switch (true) {
 
@@ -2992,7 +2996,7 @@ class WP_CRM_F {
    *
    * @since 0.1
    */
-  function insert_event($args = '') {
+  static function insert_event($args = '') {
     global $wpdb, $current_user;
 
     $defaults = array(
@@ -3025,17 +3029,17 @@ class WP_CRM_F {
 
     //** Insert event. We double-check $wpdb->crm_log exists in case this function is called very early */
     $wpdb->insert($wpdb->crm_log ? $wpdb->crm_log : $wpdb->base_prefix . 'crm_log', array(
-        'object_id' => $args['object_id'],
-        'object_type' => $args['object_type'],
-        'user_id' => $args['user_id'],
-        'attribute' => $args['attribute'],
-        'action' => $args['action'],
-        'value' => $args['value'],
-        'email_from' => $args['email_from'],
-        'email_to' => $args['email_to'],
-        'text' => $args['text'],
-        'other' => $args['other'],
-        'time' => $args['time']
+        'object_id' => isset($args['object_id'])?$args['object_id']:'',
+        'object_type' => isset($args['object_type'])?$args['object_type']:'',
+        'user_id' => isset($args['user_id'])?$args['user_id']:'',
+        'attribute' => isset($args['attribute'])?$args['attribute']:'',
+        'action' => isset($args['action'])?$args['attribute']:'',
+        'value' => isset($args['value'])?$args['value']:'',
+        'email_from' => isset($args['email_from'])?$args['email_from']:'',
+        'email_to' => isset($args['email_to'])?$args['email_to']:'',
+        'text' => isset($args['text'])?$args['text']:'',
+        'other' => isset($args['other'])?$args['other']:'',
+        'time' => isset($args['time'])?$args['time']:''
     ));
 
     if ($args['ajax'] == 'true') {

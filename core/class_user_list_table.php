@@ -163,7 +163,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
       $this_chunk = ($this->_args['iDisplayStart'] / $this->_args['per_page']);
 
       //** Get page items */
-      $this->items = $this->item_pages[$this_chunk];
+      $this->items = !empty($this->item_pages[$this_chunk])?$this->item_pages[$this_chunk]:array();
 
       if(is_array($this->items)) {
         foreach($this->items as $object) {
