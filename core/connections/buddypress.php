@@ -71,7 +71,7 @@ class WPC_BuddyPress {
    *
    * @author potanin@UD
    */
-  function wp_crm_settings_lower($wp_crm) {
+  static function wp_crm_settings_lower($wp_crm) {
     $wp_crm['overview_user_actions']['buddypress_profile']['label'] = __('BuddyPress Profile Link','wp_crm');
     return $wp_crm;
   }
@@ -82,7 +82,7 @@ class WPC_BuddyPress {
    *
    * @author potanin@UD
    */
-  function wp_crm_user_action($action) {
+  static function wp_crm_user_action($action) {
     if($action['action'] != 'buddypress_profile') {
       return $action;
     }

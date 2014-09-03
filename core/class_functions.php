@@ -421,7 +421,7 @@ class WP_CRM_F {
    * @since 0.30.3
    * @author potanin@UD
    */
-  function retrieve_password($user_login) {
+  static function retrieve_password($user_login) {
     global $wp_crm, $wpdb;
 
     if ($wp_crm['configuration']['disable_wp_password_reset_email'] != 'true') {
@@ -1248,7 +1248,15 @@ class WP_CRM_F {
     }
   }
 
-  function edit_profile_url($url, $user, $scheme) {
+  /**
+   * 
+   * @global array $wp_crm
+   * @param type $url
+   * @param type $user
+   * @param type $scheme
+   * @return type
+   */
+  static function edit_profile_url($url, $user, $scheme) {
     global $wp_crm;
 
     if ($wp_crm['configuration']['replace_default_user_page'] == 'true' && current_user_can('edit_users')) {
@@ -2804,7 +2812,7 @@ class WP_CRM_F {
    * @return $value|false
    * @author odokienko@UD
    */
-  function crm_set_option($status = false, $option = false, $value = false) {
+  static function crm_set_option($status = false, $option = false, $value = false) {
     if ($status || !$option) {
       return false;
     } elseif ('crm_page_wp_crm_add_new_per_page' == $option) {
@@ -3233,7 +3241,7 @@ class WP_CRM_F {
    * @param array $current
    * @return array
    */
-  function wpi_user_information($current) {
+  static function wpi_user_information($current) {
 
     $current = array_reverse($current);
     if (empty($current['last_name'])) {
@@ -3438,7 +3446,7 @@ class WP_CRM_F {
    * @return string
    * @author korotkov@ud
    */
-  function custom_metabox_class($current) {
+  static function custom_metabox_class($current) {
     $current[] = 'custom_group';
     return $current;
   }
@@ -3517,7 +3525,7 @@ class WP_CRM_F {
    * @return array
    * @author korotkov@ud
    */
-  function filter_primary_metabox($attributes) {
+  static function filter_primary_metabox($attributes) {
     global $wp_crm;
 
     if ( !empty( $attributes ) && is_array( $attributes ) ) {

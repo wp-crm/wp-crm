@@ -85,8 +85,7 @@ class WPI_WPC {
    * @param type $data
    * @return type
    */
-  function wp_crm_overview_cell($current, $data) {
-    global $wpdb;
+  static function wp_crm_overview_cell($current, $data) {
 
     if ($data['column_name'] != 'wpi_sales') {
       return $current;
@@ -104,7 +103,7 @@ class WPI_WPC {
    * @param type $current
    * @return string
    */
-  function wp_crm_overview_columns($current) {
+  static function wp_crm_overview_columns($current) {
     $current['wpi_sales']['title'] = __('Sales', 'wp_crm');
     $current['wpi_sales']['overview_column'] = 'true';
     return $current;

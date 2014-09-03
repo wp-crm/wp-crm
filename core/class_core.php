@@ -561,7 +561,7 @@ class WP_CRM_Core {
    *
    * @author Reid Williams
    */
-  function admin_user_info_links( $links, $current_user ) {
+  static function admin_user_info_links( $links, $current_user ) {
     $links[ 8 ] = '<a href="admin.php?page=wp_crm_add_new&user_id=' . $current_user->ID . '" title="' . esc_attr__( 'Edit your profile', 'wp_crm' ) . '">' . __( 'Your Profile', 'wp_crm' ) . '</a>';
     return $links;
   }
