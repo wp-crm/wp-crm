@@ -15,7 +15,7 @@ add_filter('wp_crm_display_phone_number', array('wp_crm_default_api', 'wpp_crm_f
 add_filter('wp_crm_display_company', array('wp_crm_default_api', 'wp_crm_display_company'), 0, 4);
 add_filter('wp_crm_display_user_email', array('wp_crm_default_api', 'wp_crm_display_user_email'), 0, 4);
 add_filter('wp_crm_settings_lower', array('wp_crm_default_api', 'wp_crm_add_overview_user_actions'), 0, 10);
-add_action( 'user_register', array( 'wp_crm_default_api', 'maybe_send_user_register_notification' ), 10 );
+add_action('user_register', array( 'wp_crm_default_api', 'maybe_send_user_register_notification' ), 10 );
 
 /**
  * Default WP-CRM API

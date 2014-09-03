@@ -3273,7 +3273,7 @@ class WP_CRM_F {
    * @param array $args
    * @author korotkov@ud
    */
-  function attribute_grouping_options($args) {
+  static function attribute_grouping_options($args) {
     global $wp_crm;
 
     $defaults = array();
@@ -3303,7 +3303,7 @@ class WP_CRM_F {
    * @global array $wp_crm
    * @author korotkov@ud
    */
-  function add_grouping_settings() {
+  static function add_grouping_settings() {
     global $wp_crm;
 
     ob_start();

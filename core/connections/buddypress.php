@@ -19,8 +19,7 @@ class WPC_BuddyPress {
    * @action init (5)
    * @author potanin@UD
    */
-  function init() {
-
+  static function init() {
 
     if( class_exists( 'BP_XProfile_Group' ) ) {
 
@@ -45,6 +44,7 @@ class WPC_BuddyPress {
       //* Adds 'View CRM Profile' link to frontend profile */
       add_action('bp_member_header_actions', array('WPC_BuddyPress','add_crm_button' ));
 
+      //** Save profile data */
       add_action('wp_crm_before_save_user_data', array('WPC_BuddyPress','bp_save_profile_data' ));
     }
 
@@ -57,7 +57,7 @@ class WPC_BuddyPress {
    *
    * @author potanin@UD
    */
-  function bp_init() {
+  static function bp_init() {
 
     WP_CRM_F::console_log(sprintf(__('Executing: %1s.', 'wp_crm'), 'WPC_BuddyPress::bb_init()'));
     add_filter('wp_crm_settings_lower', array('WPC_BuddyPress','wp_crm_settings_lower'));
@@ -98,7 +98,7 @@ class WPC_BuddyPress {
    * @global array $wp_crm
    * @author korotkov@UD
    */
-  function bp_profile_fields() {
+  static function bp_profile_fields() {
     global $wp_crm;
     add_meta_box( 'bp_profile_fields', apply_filters('wp_crm_add_new_bp_metabox_title', __('BuddyPress Profile Fields', 'wp_crm')), array(__CLASS__,'bp_profile_fields_metabox'), $wp_crm['system']['pages']['add_new'], 'normal', 'default');
   }
@@ -110,7 +110,7 @@ class WPC_BuddyPress {
    * @global object $profile_template
    * @author korotkov@UD
    */
-  function bp_profile_add_fields() {
+  static function bp_profile_add_fields() {
     global $wp_crm, $profile_template;
 
     //** Loop through CRM attrs */
@@ -136,7 +136,7 @@ class WPC_BuddyPress {
    * @global object $current_user
    * @author korotkov@UD
    */
-  function bp_after_profile_field_content() {
+  static function bp_after_profile_field_content() {
     //** If we are going to edit profile */
     if ( bp_is_current_action( 'edit' ) ) {
       global $profile_template, $current_user;
@@ -193,7 +193,7 @@ class WPC_BuddyPress {
    * @param array $errors
    * @author korotkov@UD
    */
-  function bp_profile_updated( $user_id, $posted_field_ids, $errors ) {
+  static function bp_profile_updated( $user_id, $posted_field_ids, $errors ) {
     global $current_user, $bp;
 
     if(is_admin()) return;
@@ -248,7 +248,7 @@ class WPC_BuddyPress {
    * @param array $args
    * @author korotkov@UD
    */
-  function bp_wp_crm_attribute_advanced( $args ) {
+  static function bp_wp_crm_attribute_advanced( $args ) {
     global $wp_crm;
 
     $defaults = array();
@@ -465,7 +465,7 @@ class WPC_BuddyPress {
    *
    * @author peshkov@UD
    */
-  function add_crm_button() {
+  static function add_crm_button() {
     global $bp;
 
     if(current_user_can('manage_options')) {
@@ -484,7 +484,7 @@ class WPC_BuddyPress {
    * @param array $data. Request (POST,GET)
    * @author peshkov@UD
    */
-  function bp_save_profile_data($data) {
+  static function bp_save_profile_data($data) {
     global $bp;
 
     if(empty($data['bp']) || empty($data['user_id'])) return;

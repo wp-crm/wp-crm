@@ -76,7 +76,7 @@ class WP_CRM_N {
    * @author peshkov@UD
    * @version 1.0
    */
-  function phpmailer_init( $phpmailer ) {
+  static function phpmailer_init( $phpmailer ) {
     global $_crm_notification;
 
     $_crm_notification = wp_parse_args( $_crm_notification, array(

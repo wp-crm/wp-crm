@@ -253,7 +253,7 @@ class WP_CRM_Core {
    * @since 0.1
    *
    */
-  function wp_print_styles() {
+  static function wp_print_styles() {
 
     //** Load theme-specific stylesheet if it exists */
     wp_enqueue_script( 'jquery' );
@@ -290,7 +290,7 @@ class WP_CRM_Core {
    * @since 0.22
    *
    */
-  function crm_page_traditional_user_page() {
+  static function crm_page_traditional_user_page() {
     global $wp_crm, $current_screen;
 
     /* If avatar-delection redirection originated from CRM profile, we muts return there */
