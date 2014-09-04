@@ -1291,7 +1291,7 @@ if (!class_exists('CRM_UD_F')):
      * @param type $target
      * @return type
      */
-    function parse_urls($text, $maxurl_len = 35, $target = '_self') {
+    static function parse_urls($text, $maxurl_len = 35, $target = '_self') {
       if (preg_match_all('/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'<>\,\!]+)/si', $text, $urls)) {
         $offset1 = ceil(0.65 * $maxurl_len) - 2;
         $offset2 = ceil(0.30 * $maxurl_len) - 1;

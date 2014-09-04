@@ -212,7 +212,7 @@ class WP_CRM_F {
    *
    * @version 1.30.2
    */
-  function get_attribute($attribute = false) {
+  static function get_attribute($attribute = false) {
     global $wp_crm;
 
     if (!$attribute) {
@@ -262,7 +262,7 @@ class WP_CRM_F {
    *
    * @version 1.17.3
    */
-  function force_script_inclusion($handle = false) {
+  static function force_script_inclusion($handle = false) {
     global $wp_scripts;
 
     //** WP 3.3+ allows inline wp_enqueue_script(). Yay. */
@@ -560,7 +560,7 @@ class WP_CRM_F {
    * @since 0.21
    *
    */
-  function check_data_field($key = false, $value = false) {
+  static function check_data_field($key = false, $value = false) {
     global $wpdb;
 
     if (!$key || !$value) {
@@ -1055,9 +1055,10 @@ class WP_CRM_F {
   static function list_options($user_object, $column_name, $args = '') {
     global $wp_crm;
 
-    if (!is_array($user_object[$column_name])) {
+    if ( empty( $user_object[ $column_name ] ) || !is_array( $user_object[ $column_name ] ) ) {
       return;
     }
+    
     foreach ($user_object[$column_name] as $option_type_slug => $option_type_values) {
 
       foreach ($option_type_values as $single_option_value) {
@@ -2257,7 +2258,7 @@ class WP_CRM_F {
           foreach ($values as $rand => $value_data) {
             ?>
             <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
-            <?php if ($attribute['has_options']) { ?>
+            <?php if ( !empty($attribute['has_options']) ) { ?>
               <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?> class="input-small wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                 <option></option>
               <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
@@ -2272,7 +2273,7 @@ class WP_CRM_F {
         case 'textarea': foreach ($values as $rand => $value_data) {
             ?>
             <textarea wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>"><?php echo $value_data['value']; ?></textarea>
-              <?php if ($attribute['has_options']) { ?>
+              <?php if ( !empty($attribute['has_options']) && $attribute['has_options'] ) { ?>
               <select class="input-small" wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?>  random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                 <option></option>
                 <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
@@ -2350,7 +2351,7 @@ class WP_CRM_F {
     global $wp_crm;
 
     // Process saving settings
-    if (isset($_REQUEST['wp_crm']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'wp_crm_setting_save')) {
+    if ( isset( $_REQUEST['wp_crm'] ) && !empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'wp_crm_setting_save' ) ) {
 
       // Handle backup
       if ($backup_file = $_FILES['wp_crm']['tmp_name']['settings_from_backup']) {

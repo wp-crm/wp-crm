@@ -15,6 +15,8 @@ class WP_CMR_List_Table extends WP_List_Table {
   var $aoColumnDefs;
   
   var $column_ids;
+  
+  var $is_site_users;
 
   /**
    * Setup options mostly.
@@ -387,6 +389,8 @@ class WP_CMR_List_Table extends WP_List_Table {
   function single_cell($full_column_name, $object, $object_id) {
 
     $object = (array) $object;
+    
+    $r = '';
 
     $column_name = str_replace('wp_crm_', '', $full_column_name);
 

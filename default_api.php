@@ -288,7 +288,7 @@ if (!function_exists('wp_crm_get_value')) {
     } else {
 
       //** Attribute has options, we return the label of the option */
-      if ($attribute['has_options']) {
+      if ( !empty( $attribute['has_options'] ) ) {
 
         if ($attribute['input_type'] == 'text' || $attribute['input_type'] == 'textarea' || $attribute['input_type'] == 'date') {
 
@@ -304,7 +304,7 @@ if (!function_exists('wp_crm_get_value')) {
           }
 
           if (empty($args['value'])) {
-            $args['value'] = WP_CRM_F::get_first_value($user_object[$args['attribute_key']]);
+            $args['value'] = WP_CRM_F::get_first_value( !empty($user_object[$args['attribute_key']])?$user_object[$args['attribute_key']]:array() );
           }
         } else {
 
@@ -316,13 +316,13 @@ if (!function_exists('wp_crm_get_value')) {
         }
       } else {
 
-        $args['value'] = WP_CRM_F::get_first_value($user_object[$args['attribute_key']]);
+        $args['value'] = WP_CRM_F::get_first_value( !empty($user_object[ $args[ 'attribute_key' ] ])?$user_object[ $args[ 'attribute_key' ] ]:array() );
       }
     }
 
     //** Check if this should be a boolean response */
-    if (!$args['return_option_label'] && in_array($args['attribute_key'], $quantifiable_attributes)) {
-      if ($args['value'] == 'on') {
+    if ( ( empty($args['return_option_label']) || !$args['return_option_label'] ) && in_array( $args['attribute_key'], $quantifiable_attributes ) ) {
+      if ( !empty( $args['value'] ) && $args['value'] == 'on') {
         $args['value'] = true;
       }
     }
@@ -330,7 +330,7 @@ if (!function_exists('wp_crm_get_value')) {
     switch ($args['return']) {
 
       case 'value':
-        $result = $args['value'];
+        $result = !empty($args['value'])?$args['value']:'';
         break;
 
       case 'detail':
@@ -457,7 +457,7 @@ if (!function_exists('wp_crm_send_notification')) {
       return false;
     }
 
-    $notifications = WP_CRM_N::get_trigger_action_notification($action, $args['force']);
+    $notifications = WP_CRM_N::get_trigger_action_notification( $action, !empty($args['force'])?$args['force']:'' );
 
     if (!$notifications) {
       return false;
@@ -487,7 +487,7 @@ if (!function_exists('wp_crm_send_notification')) {
 
       add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
 
-      if ($wp_crm['configuration']['do_not_use_nl2br_in_messages'] == 'true') {
+      if ( !empty($wp_crm['configuration']['do_not_use_nl2br_in_messages']) && $wp_crm['configuration']['do_not_use_nl2br_in_messages'] == 'true' ) {
         $message['message'] = $message['message'];
       } else {
         $message['message'] = nl2br($message['message']);

@@ -21,8 +21,7 @@ class WP_CRM_N {
    * @since 0.21
    *
    */
-  function replace_notification_values( $notification_data = false, $replace_with = false ) {
-    global $wp_crm;
+  static function replace_notification_values( $notification_data = false, $replace_with = false ) {
 
     if(!is_array($replace_with)) {
       return;
