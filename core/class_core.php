@@ -147,8 +147,8 @@ class WP_CRM_Core {
     add_action( 'wp_ajax_wp_crm_check_plugin_updates', create_function( "", '  die(WP_CRM_F::check_plugin_updates());' ) );
     add_action( "wp_ajax_wp_crm_user_object", create_function( '', ' echo "CRM Object Report: \n" . print_r(wp_crm_get_user($_REQUEST["user_id"]), true) . "\nRaw Meta Report: \n" .  print_r(WP_CRM_F::show_user_meta_report($_REQUEST["user_id"]), true); ' ) );
     add_action( "wp_ajax_wp_crm_show_meta_report", create_function( '', ' die(print_r(WP_CRM_F::show_user_meta_report(), true)); ' ) );
-    add_action( "wp_ajax_wp_crm_get_user_activity_stream", create_function( '', ' die(WP_CRM_F::get_user_activity_stream(array("user_id"=>$_REQUEST[user_id],"per_page"=>$_REQUEST[per_page],"more_per_page"=>$_REQUEST[more_per_page],"filter_types"=>$_REQUEST[filter_types]))); ' ) );
-    add_action( "wp_ajax_wp_crm_insert_activity_message", create_function( '', ' die(WP_CRM_F::insert_event("time={$_REQUEST[time]}&attribute=".((!empty($_REQUEST[message_type]))?$_REQUEST[message_type]:"note")."&object_id={$_REQUEST[user_id]}&text={$_REQUEST[content]}&ajax=true")); ' ) );
+    add_action( "wp_ajax_wp_crm_get_user_activity_stream", create_function( '', ' die(WP_CRM_F::get_user_activity_stream(array("user_id"=>$_REQUEST["user_id"],"per_page"=>$_REQUEST["per_page"],"more_per_page"=>$_REQUEST["more_per_page"],"filter_types"=>$_REQUEST["filter_types"]))); ' ) );
+    add_action( "wp_ajax_wp_crm_insert_activity_message", create_function( '', ' die(WP_CRM_F::insert_event("time={$_REQUEST["time"]}&attribute=".((!empty($_REQUEST["message_type"]))?$_REQUEST["message_type"]:"note")."&object_id={$_REQUEST["user_id"]}&text={$_REQUEST["content"]}&ajax=true")); ' ) );
     add_action( "wp_ajax_wp_crm_get_notification_template", create_function( '', '  die(WP_CRM_F::get_notification_template($_REQUEST["template_slug"])); ' ) );
     add_action( "wp_ajax_wp_crm_do_fake_users", create_function( '', '$_REQUEST[\'number\']=isset($_REQUEST[\'number\'])?$_REQUEST[\'number\']:""; die(WP_CRM_F::do_fake_users("number={$_REQUEST[\'number\']}&do_what={$_REQUEST[\'do_what\']}")); ' ) );
     add_action( "wp_ajax_wp_crm_list_table", create_function( '', ' die(WP_CRM_F::ajax_table_rows());  ' ) );
@@ -577,7 +577,7 @@ class WP_CRM_Core {
   static function wp_crm_save_user_data() {
 
     if ( !empty($_REQUEST[ 'wp_crm_update_user' ]) && wp_verify_nonce( $_REQUEST[ 'wp_crm_update_user' ], 'wp_crm_update_user' ) ) {
-      $args = $_REQUEST[ 'wp_crm' ][ 'args' ];
+      $args = !empty($_REQUEST[ 'wp_crm' ][ 'args' ])?$_REQUEST[ 'wp_crm' ][ 'args' ]:array();
 
       $user_data = $_REQUEST[ 'wp_crm' ][ 'user_data' ];
 

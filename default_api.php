@@ -637,7 +637,7 @@ if (!function_exists('wp_crm_save_user_data')) {
         //** If the attribute is a meta key created  by WP-CRM, we store it here */
         if (in_array($meta_key, $wp_user_meta_data)) {
 
-          switch ($wp_crm['data_structure']['attributes'][$meta_key]['input_type']) {
+          switch ( !empty($wp_crm['data_structure']['attributes'][$meta_key]['input_type'])?$wp_crm['data_structure']['attributes'][$meta_key]['input_type']:'' ) {
 
             case 'checkbox':
               if (!empty($data['option']) && $data['value'] == 'on') {
@@ -677,7 +677,7 @@ if (!function_exists('wp_crm_save_user_data')) {
                 }
               }
 
-              if ($wp_crm['data_structure']['attributes'][$meta_key]['has_options']) {
+              if ( !empty( $wp_crm['data_structure']['attributes'][$meta_key]['has_options'] ) ) {
                 $full_meta_key = $wp_crm['data_structure']['attributes'][$meta_key]['option_keys'][$data['option']];
 
                 if (empty($full_meta_key)) {
@@ -721,7 +721,7 @@ if (!function_exists('wp_crm_save_user_data')) {
     }
 
     //** Set user_login from user_email or a guessed value if this is a new usr and user_login is not passed */
-    if ($new_user && empty($insert_data['user_login'])) {
+    if ( !empty( $new_user ) && empty( $insert_data['user_login'] ) ) {
       //** Try getting it from e-mail address */
       if (!empty($insert_data['user_email'])) {
         $insert_data['user_login'] = $insert_data['user_email'];
@@ -808,7 +808,7 @@ if (!function_exists('wp_crm_save_user_data')) {
         }
 
         //** Delete old option meta keys for this meta_key  */
-        if ($wp_crm['data_structure']['attributes'][$meta_key]['has_options']) {
+        if ( !empty( $wp_crm['data_structure']['attributes'][$meta_key]['has_options'] ) ) {
           //** Delete "holder" meta key (this may not be necessary */
           delete_user_meta($user_id, $meta_key);
           foreach ($wp_crm['data_structure']['attributes'][$meta_key]['option_keys'] as $old_meta_key) {
@@ -821,7 +821,8 @@ if (!function_exists('wp_crm_save_user_data')) {
          * we have to remove it from usermeta on using admin user edit page, because
          * when attribute is not checked it's not set here (in funstion's params), so we MUSTN'T store t anymore.
          * peshkov@UD
-         */ elseif (isset($args['admin_save_action']) && $wp_crm['data_structure']['attributes'][$meta_key]['input_type'] == 'checkbox') {
+         */ 
+        elseif ( isset( $args['admin_save_action'] ) && !empty($wp_crm['data_structure']['attributes'][$meta_key]['input_type']) && $wp_crm['data_structure']['attributes'][$meta_key]['input_type'] == 'checkbox') {
           delete_user_meta($user_id, $meta_key);
         }
       }
@@ -841,7 +842,7 @@ if (!function_exists('wp_crm_save_user_data')) {
         $wpdb->update($wpdb->users, array('display_name' => $display_name), array('ID' => $user_id));
       }
 
-      if ($new_user) {
+      if ( !empty( $new_user ) ) {
         if ($args['use_global_messages'] == 'true') {
           WP_CRM_F::add_message(__('New user added.', 'wp_crm'));
         }
@@ -859,11 +860,12 @@ if (!function_exists('wp_crm_save_user_data')) {
       );
 
       // Don't redirect if data was passed
-      if ($args['no_redirect'] != 'true') {
-        if (!empty($_REQUEST['redirect_to']))
+      if ( $args['no_redirect'] != 'true' ) {
+        if ( !empty( $_REQUEST['redirect_to'] ) ) {
           $url = urldecode($_REQUEST['redirect_to']) . "&message=updated";
-        else
-          $url = admin_url("admin.php?page=wp_crm_add_new&user_id=$user_id&message=" . ($new_user ? 'created' : 'updated'));
+        } else {
+          $url = admin_url("admin.php?page=wp_crm_add_new&user_id=$user_id&message=" . (!empty($new_user) ? 'created' : 'updated'));
+        }
         wp_redirect($url);
       }
     } else {

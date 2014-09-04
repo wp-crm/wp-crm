@@ -1563,7 +1563,7 @@ class WP_CRM_F {
    * @since 0.1
    *
    */
-  function quick_action($array = false) {
+  static function quick_action($array = false) {
     global $wpdb;
 
     $action = (!empty($_REQUEST['wp_crm_quick_action']) ? $_REQUEST['wp_crm_quick_action'] : false);
@@ -1652,8 +1652,6 @@ class WP_CRM_F {
 
         break;
     }
-
-
 
     if (is_array($return)) {
       return json_encode($return);
@@ -2291,7 +2289,7 @@ class WP_CRM_F {
             <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />
             <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
             <label class="checkbox" for="wpi_checkbox_<?php echo $rand; ?>">
-              <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
+              <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
               <?php echo $value_data['label']; ?>
             </label>
             <?php
