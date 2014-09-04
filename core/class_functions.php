@@ -2910,9 +2910,11 @@ class WP_CRM_F {
     if (empty($args['user_id'])) {
       return;
     }
-
-    foreach ((array) $args['filter_types'] as $row) {
-      update_user_option($current_user->ID, "crm_ui_crm_user_activity_{$row['attribute']}" . (($row['other']) ? '[' . $row['other'] . ']' : ''), $row['hidden']);
+    
+    if ( !empty( $args['filter_types'] ) && is_array( $args['filter_types'] ) ) {
+      foreach ( $args['filter_types'] as $row ) {
+        update_user_option($current_user->ID, "crm_ui_crm_user_activity_{$row['attribute']}" . (($row['other']) ? '[' . $row['other'] . ']' : ''), $row['hidden']);
+      }
     }
 
     $params = array(
@@ -3015,11 +3017,7 @@ class WP_CRM_F {
         'time' => date('Y-m-d H:i:s')
     );
 
-    if (is_array($args)) {
-      $args = array_merge($defaults, $args);
-    } else {
-      $args = wp_parse_args($args, $defaults);
-    }
+    $args = wp_parse_args($args, $defaults);
 
     //** Convert time - just in case */
     if (empty($args['time'])) {
@@ -3095,8 +3093,10 @@ class WP_CRM_F {
       }
     }
 
-    foreach ((array) $args['filter_types'] as $type) {
-      $_attributes[$type['attribute']] = $type['hidden'] == 'false' ? true : false;
+    if ( !empty( $args['filter_types'] ) && is_array( $args['filter_types'] ) ) {
+      foreach ($args['filter_types'] as $type) {
+        $_attributes[$type['attribute']] = $type['hidden'] == 'false' ? true : false;
+      }
     }
 
     $limit = '';

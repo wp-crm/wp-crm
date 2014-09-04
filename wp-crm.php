@@ -70,6 +70,9 @@ include_once WP_CRM_Path . '/core/ui/crm_metaboxes.php';
 /** Loads all the metaboxes for the crm page */
 include_once WP_CRM_Path . '/core/class_core.php';
 
+/** Ajax Handlers */
+include_once WP_CRM_Path . '/core/class_ajax.php';
+
 //* Register activation hook -> has to be in the main plugin file */
 register_activation_hook( __FILE__, array( 'WP_CRM_F', 'activation' ) );
 
