@@ -251,8 +251,7 @@ class WP_CRM_F {
    *
    * @version 1.17.3
    */
-  function track_detailed_user_activity() {
-
+  static function track_detailed_user_activity() {
     add_action('password_reset', create_function('$user', '  WP_CRM_F::insert_event(array("object_id"=> $user->ID, "attribute" => "detailed_log", "other" => 5, "action" => "password_reset")); '));
     add_action('wp_login', create_function('$user_login', ' $user = get_userdatabylogin($user_login);  WP_CRM_F::insert_event(array("object_id"=> $user->ID, "attribute" => "detailed_log", "other" => 2, "action" => "login")); '));
   }
@@ -3294,7 +3293,7 @@ class WP_CRM_F {
         <select class="wp_crm_group" name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][group]">
           <option value="0"><?php _e('Primary Information', 'wp_crm'); ?></option>
       <?php foreach ($wp_crm['data_structure']['attribute_groups'] as $group_key => $group_object): ?>
-            <option value="<?php echo $group_key; ?>"<?php echo $wp_crm['data_structure']['attributes'][$slug]['group'] == $group_key ? ' selected="selected"' : ''; ?>><?php echo $group_object['title']; ?></option>
+            <option value="<?php echo $group_key; ?>"<?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['group']) && $wp_crm['data_structure']['attributes'][$slug]['group'] == $group_key ? ' selected="selected"' : ''; ?>><?php echo $group_object['title']; ?></option>
       <?php endforeach; ?>
         </select>
       </li>

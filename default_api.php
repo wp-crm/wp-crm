@@ -782,7 +782,7 @@ if (!function_exists('wp_crm_save_user_data')) {
       $insert_data['display_name'] = $insert_data['user_email'];
     }
 
-    if ($new_user) {
+    if ( !empty( $new_user ) ) {
       $user_id = wp_insert_user($insert_data);
 
       //** If multisite - assign user to blog */
