@@ -28,13 +28,13 @@
         <td class="user"><a href="<?php echo $row->edit_url ?>"><?php echo $row->display_name ?></a></td>
         <td class="activity"><?php echo $row->text ?></td>
         <td class="location">
-        <?php if( $row->location ) { ?>
+        <?php if( !empty( $row->location ) ) { ?>
         <a href="<?php echo add_query_arg( array( 'q' => $row->location->latitude . ',' . $row->location->longitude, 'z' => 7 ),  'https://maps.google.com/' ); ?>" target="_blank">
           <?php echo implode( ', ', array_filter( array(  $row->location->city, $row->location->region_code, $row->location->country_name ) ) ); ?>
         </a>
         <?php } else { ?>-<?php } ?>        
         </td>
-        <td class="detail"><?php echo $row->host_name ?></td>
+        <td class="detail"><?php echo !empty( $row->host_name )?$row->host_name:''; ?></td>
         <td class="time"><?php echo ( time() - $row->time_stamp < 432000 ) ? $activity_log[ $count ]->time_ago : $row->date; ?></td>
       </tr>
     <?php } ?>

@@ -1058,6 +1058,8 @@ class WP_CRM_F {
       return;
     }
     
+    $return = array();
+    
     foreach ($user_object[$column_name] as $option_type_slug => $option_type_values) {
 
       foreach ($option_type_values as $single_option_value) {
@@ -3099,15 +3101,15 @@ class WP_CRM_F {
     }
 
     $limit = '';
-    if ($args['import_count']) {
+    if ( !empty( $args['import_count'] ) ) {
       $limit = " LIMIT {$args['start']}, {$args['import_count']} ";
     }
 
-    if ($args['object_id']) {
+    if ( !empty( $args['object_id'] ) ) {
       $query[] = " (object_id = '{$args['object_id']}') ";
     }
 
-    if ($args['hide_empty']) {
+    if ( !empty( $args['hide_empty'] ) ) {
       $query[] = " (object_id = '{$args['object_id']}') ";
     }
 
@@ -3394,7 +3396,7 @@ class WP_CRM_F {
    * @global array $wp_crm
    * @return null ?
    */
-  function grouped_metaboxes() {
+  static function grouped_metaboxes() {
     global $current_screen, $wp_crm;
 
     //** If no groups yet */
@@ -3458,7 +3460,7 @@ class WP_CRM_F {
    * @author korotkov@ud
    * @todo Maybe we can use crm_page_wp_crm_add_new::primary_information function for this because they are similar
    */
-  function custom_group_metabox($post, $metabox) {
+  static function custom_group_metabox($post, $metabox) {
     global $wp_crm;
     
     if (empty($metabox['args']['fields']) && !is_array($metabox['args']['fields'])) {
@@ -3476,11 +3478,11 @@ class WP_CRM_F {
             $row_classes[] = (@$attribute['has_options'] ? 'wp_crm_has_options' : 'wp_crm_no_options');
             $row_classes[] = (@$attribute['required'] == 'true' ? 'wp_crm_required_field' : '');
             $row_classes[] = (@$attribute['primary'] == 'true' ? 'primary' : 'not_primary');
-            $row_classes[] = ((is_array($wp_crm['hidden_attributes'][$user_role]) && in_array($slug, $wp_crm['hidden_attributes'][$user_role])) ? 'hidden' : '');
+            $row_classes[] = ((!empty($wp_crm['hidden_attributes'][$user_role]) && is_array($wp_crm['hidden_attributes'][$user_role]) && in_array($slug, $wp_crm['hidden_attributes'][$user_role])) ? 'hidden' : '');
             $row_classes[] = 'wp_crm_user_entry_row';
             $row_classes[] = "wp_crm_{$slug}_row";
 
-            $continue = apply_filters("wp_crm_before_{$field}_frontend", array('continue' => false, 'values' => $post[$slug], 'attribute' => $attribute, 'args' => $metabox['args']));
+            $continue = apply_filters("wp_crm_before_{$slug}_frontend", array('continue' => false, 'values' => $post[$slug], 'attribute' => $attribute, 'args' => $metabox['args']));
             if ($continue['continue']) {
               continue;
             };
@@ -3508,7 +3510,7 @@ class WP_CRM_F {
         </td>
         </tr>
         <?php
-        do_action("wp_crm_after_{$slug}", array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
+        do_action("wp_crm_after_{$slug}", array('values' => !empty($values)?$values:false, 'attribute' => $attribute, 'user_object' => !empty($user_object)?$user_object:false, 'args' => !empty($args)?$args:array() ));
       endforeach;
       ?>
     <?php endif; ?>
