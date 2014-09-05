@@ -3,9 +3,8 @@ Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, anton-ko
 Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 3.6
-Tested up to: 3.9.2
-Stable tag: 0.36.2
-
+Tested up to: 4.0
+Stable tag: 0.36.3
 
 == Description ==
 
@@ -70,6 +69,13 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Initial public release.
 
 == Changelog ==
+
+= 0.36.3 =
+* WordPress 4.0 compatibility.
+* Fixed CSV export.
+* Localization updated.
+* Fixed Warnings and Notices.
+* General code cleanup.
 
 = 0.36.2 =
 * Fixed showing logs data.
