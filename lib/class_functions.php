@@ -1911,7 +1911,7 @@ class WP_CRM_F {
     include_once WP_CRM_Path . '/action_hooks.php';
 
     //** Add capabilities */
-    if (($args['update_caps'] == 'true') && (is_array($wp_crm['capabilities']) && $wp_roles)) {
+    if (($args['update_caps'] == 'true') && (!empty($wp_crm['capabilities']) && is_array($wp_crm['capabilities']) && $wp_roles)) {
       if (is_array($wp_crm['capabilities'])) {
         foreach ($wp_crm['capabilities'] as $capability => $description) {
           $wp_roles->add_cap('administrator', 'WP-CRM: ' . $capability, true);

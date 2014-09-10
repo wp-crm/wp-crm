@@ -92,8 +92,11 @@ namespace UsabilityDynamics\WPC {
        *
        */
       public function activate() {
-        WP_CRM_F::maybe_install_tables();
-        WP_CRM_F::manual_activation('auto_redirect=false&update_caps=true');
+        if ( !class_exists('\WP_CRM_F') ) {
+          include_once WP_CRM_Path . '/lib/class_functions.php';
+        }
+        \WP_CRM_F::maybe_install_tables();
+        \WP_CRM_F::manual_activation('auto_redirect=false&update_caps=true');
       }
       
       /**
