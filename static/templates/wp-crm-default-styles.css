@@ -1,0 +1,48 @@
+/*
+ * Default WP-CRM Front-End Styles
+ *
+ */
+
+ @import url("../css/jquery-ui-1.8.20.custom.css");
+
+ ul.wp_crm_contact_form,
+ ul.wp_crm_contact_form ul,
+ ul.wp_crm_contact_form li  {
+  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+ }
+
+ ul.wp_crm_contact_form input.regular-text.wp_crm_input_error {
+    border: 1px solid red;
+ }
+
+ ul.wp_crm_contact_form .input_div.has_options input {
+  /*
+  display: table-cell;
+  width: auto;
+  margin-right: 10px;
+  */
+ }
+
+ ul.wp_crm_contact_form .input_div.has_options .wp_crm_input_options {
+  /*
+  display: table-cell;
+  */
+ }
+
+.uploadifyQueue {
+  margin-top: 10px;
+}
+
+.uploadifyQueueItem {
+  background: none repeat scroll 0 0 #E4E4E4;
+  border: 1px solid #BABABA;
+  margin-top: 3px;
+}
+
+.uploadifyQueueItem div.cancel{
+  float: left;
+  margin: 3px 6px 0 1px;
+}

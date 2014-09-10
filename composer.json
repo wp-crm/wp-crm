@@ -1,46 +1,30 @@
 {
   "name": "usabilitydynamics/wp-crm",
-  "type": "library",
-  "description": "WP-CRM Plugin.",
-  "version": "0.36.2",
-  "homepage": "https://github.com/UsabilityDynamics/wp-crm",
-  "keywords": [
-    "wordpress",
-    "crm"
-  ],
-  "license": "MIT",
+  "version": "1.0.0",
+  "type": "plugin",
   "minimum-stability": "dev",
-  "authors": [
+  "homepage": "http://github.com/UsabilityDynamics/wp-crm",
+  "author": {
+    "name": "UsabilityDynamics, Inc.",
+    "url": "https://usabilitydynamics.com/"
+  },
+  "repositories": [
     {
-      "name": "Andy Potanin",
-      "homepage": "http://usabilitydynamics.com"
-    },
-    {
-      "name": "Maxim Peshkov",
-      "email": "maxim.peshkov@usabilitydynamics.com",
-      "homepage": "http://usabilitydynamics.com",
-      "role": "Developer"
-    },
-    {
-      "name": "Anton Korotkov",
-      "email": "anton.korotkov@usabilitydynamics.com",
-      "homepage": "http://usabilitydynamics.com",
-      "role": "Developer"
+      "type": "composer",
+      "url": "http://repository.usabilitydynamics.com"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UsabilityDynamics/wp-crm.git"
+  },
   "require": {
-    "oneup/uploader-bundle": "dev-master",
-    "linkorb/jsmin-php": "dev-master",
-    "tecnick.com/tcpdf": "dev-master",
-    "justinrainbow/json-schema": "1.1.*"
+    "php": ">=5.3",
+    "usabilitydynamics/lib-settings": "master",
+    "usabilitydynamics/lib-wp-bootstrap": "master",
+    "usabilitydynamics/lib-ud-api-client": "master"
   },
   "autoload": {
-    "files": [
-      "core/class_bootstrap.php",
-      "core/class_core.php"
-    ]
-  },
-  "config": {
-    "namespace": "Veneer"
+    "classmap": [ "lib/classes" ]
   }
 }
