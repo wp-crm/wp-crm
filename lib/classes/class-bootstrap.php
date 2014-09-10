@@ -41,28 +41,28 @@ namespace UsabilityDynamics\WPC {
         if( !$this->has_errors() ) {
         
           /** Functions - customized for WP-CRM */
-          include_once WP_CRM_Path . '/core/class_ud.php';
+          include_once WP_CRM_Path . '/lib/class_ud.php';
 
           /** Loads built-in plugin metadata and allows for third-party modification to hook into the filters. Has to be include_onced here to run after template functions.php */
           include_once WP_CRM_Path . '/action_hooks.php';
 
           /** Defaults filters and hooks */
-          include_once WP_CRM_Path . '/default_api.php';
+          include_once WP_CRM_Path . '/lib/class_default_api.php';
 
           /** Loads notification functions used by WP-crm */
-          include_once WP_CRM_Path . '/core/notification.php';
+          include_once WP_CRM_Path . '/lib/class_notification.php';
 
           /** Loads general functions used by WP-crm */
-          include_once WP_CRM_Path . '/core/class_functions.php';
+          include_once WP_CRM_Path . '/lib/class_functions.php';
 
           /** Loads all the metaboxes for the crm page */
-          include_once WP_CRM_Path . '/core/ui/crm_metaboxes.php';
+          include_once WP_CRM_Path . '/lib/ui/crm_metaboxes.php';
 
           /** Loads all the metaboxes for the crm page */
-          include_once WP_CRM_Path . '/core/class_core.php';
+          include_once WP_CRM_Path . '/lib/class_core.php';
 
           /** Ajax Handlers */
-          include_once WP_CRM_Path . '/core/class_ajax.php';
+          include_once WP_CRM_Path . '/lib/class_ajax.php';
           
           //** Initiate the plugin */
           $this->core = new \WP_CRM_Core();
@@ -100,11 +100,7 @@ namespace UsabilityDynamics\WPC {
        * Plugin Deactivation
        *
        */
-      public function deactivate() {
-        $timestamp = wp_next_scheduled('wp_crm_premium_feature_check');
-        wp_unschedule_event($timestamp, 'wp_crm_premium_feature_check');
-        wp_clear_scheduled_hook('wp_crm_premium_feature_check');
-      }
+      public function deactivate() {}
 
     }
 

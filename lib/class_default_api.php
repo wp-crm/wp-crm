@@ -198,7 +198,7 @@ class wp_crm_default_api {
   static function maybe_send_user_register_notification($user_id) {
     $action = 'new_user_registration';
     if (!is_callable('WP_CRM_N', 'get_trigger_action_notification')) {
-      include_once WP_CRM_Path . '/core/notification.php';
+      include_once WP_CRM_Path . '/lib/class_notification.php';
     }
     $notifications = WP_CRM_N::get_trigger_action_notification($action);
     if (!empty($notifications)) {

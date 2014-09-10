@@ -53,22 +53,17 @@ if( !function_exists( 'ud_get_wp_crm' ) ) {
 
   /** Path for Includes */
   if ( !defined( 'WP_CRM_Templates' ) ) {
-    define( 'WP_CRM_Templates', WP_CRM_Path . '/templates' );
+    define( 'WP_CRM_Templates', WP_CRM_Path . '/static/templates' );
   }
 
   /** Path for Includes */
   if ( !defined( 'WP_CRM_Connections' ) ) {
-    define( 'WP_CRM_Connections', WP_CRM_Path . '/core/connections' );
+    define( 'WP_CRM_Connections', WP_CRM_Path . '/lib/connections' );
   }
 
   /** Path for Includes */
   if ( !defined( 'WP_CRM_Third_Party' ) ) {
     define( 'WP_CRM_Third_Party', WP_CRM_Path . '/third-party' );
-  }
-
-  /** Directory path for include_onces of template files  */
-  if ( !defined( 'WP_CRM_Premium' ) ) {
-    define( 'WP_CRM_Premium', WP_CRM_Path . '/core/premium' );
   }
   
   /**

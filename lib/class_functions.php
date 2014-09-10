@@ -1396,7 +1396,7 @@ class WP_CRM_F {
   static function ajax_table_rows($wp_settings = false) {
     global $wp_crm;
 
-    include WP_CRM_Path . '/core/class_user_list_table.php';
+    include WP_CRM_Path . '/lib/class_user_list_table.php';
 
     //** Get the paramters we care about */
     $sEcho = $_REQUEST['sEcho'];
@@ -1878,8 +1878,6 @@ class WP_CRM_F {
    * Run manually when a version mismatch is detected.
    *
    * Called in admin_init and on activation hook.
-   *
-   * @todo Need a better way of handling adding capabilities since this function is not activated when premium features are added.
    * @since 0.1
    *
    */
@@ -1902,19 +1900,8 @@ class WP_CRM_F {
         WP_CRM_F::handle_update($installed_ver);
       }
 
-      // Unschedule event
-      $timestamp = wp_next_scheduled('wp_crm_premium_feature_check');
-      wp_unschedule_event($timestamp, 'wp_crm_premium_feature_check');
-      wp_clear_scheduled_hook('wp_crm_premium_feature_check');
-
-      // Schedule event
-      wp_schedule_event(time(), 'daily', 'wp_crm_premium_feature_check');
-
       // Update option to latest version so this isn't run on next admin page load
       update_option("wp_crm_version", WP_CRM_Version);
-
-      //** Get premium features on activation */
-      @WP_CRM_F::feature_check();
 
       $args['update_caps'] = 'true';
       //$args['auto_redirect'] = 'true';
@@ -2569,180 +2556,6 @@ class WP_CRM_F {
   }
 
   /**
-   * Checks for updates against TwinCitiesTech.com Server
-   *
-   * @since 0.01
-   */
-  static function feature_check($return = false) {
-    global $wp_crm;
-
-    $blogname = get_bloginfo('url');
-    $blogname = urlencode(str_replace(array('http://', 'https://'), '', $blogname));
-    $system = 'wp_crm';
-    $wp_crm_version = get_option("wp_crm_version");
-
-    $check_url = "http://updates.usabilitydynamics.com/?system=$system&site=$blogname&system_version=$wp_crm_version";
-    $response = @wp_remote_get($check_url);
-
-    if (!$response) {
-      return;
-    }
-
-    if (is_object($response) && !empty($response->errors)) {
-
-      foreach ($response->errors as $update_errrors) {
-        $error_string .= implode(",", $update_errrors);
-        CRM_UD_F::log("Feature Update Error: " . $error_string);
-      }
-
-      if ($return) {
-        return sprintf(__('An error occurred during premium feature check: <b> %s </b>.', 'wp_crm'), $error_string);
-      }
-
-      return;
-    }
-    
-    if ($response['response']['code'] != '200') {
-      return;
-    }
-
-    $response = @json_decode($response['body']);
-
-    if (is_object($response->available_features)) {
-
-      $response->available_features = CRM_UD_F::objectToArray($response->available_features);
-
-      $wp_crm_settings = get_option('wp_crm_settings');
-      $wp_crm_settings['available_features'] = CRM_UD_F::objectToArray($response->available_features);
-      update_option('wp_crm_settings', $wp_crm_settings);
-    }
-
-    if ($response->features == 'eligible' && !empty($wp_crm['configuration']['disable_automatic_feature_update']) && $wp_crm['configuration']['disable_automatic_feature_update'] != 'true') {
-
-      //** Try to create directory if it doesn't exist */
-      if (!is_dir(WP_CRM_Premium)) {
-        @mkdir(WP_CRM_Premium, 0755);
-      }
-
-      //** Save code */
-      if (is_dir(WP_CRM_Premium) && is_object($response->code)) {
-        foreach ($response->code as $code) {
-
-          $filename = $code->filename;
-          $php_code = $code->code;
-          $version = $code->version;
-
-          $default_headers = array(
-              'Name' => __('Feature Name', 'wp_crm'),
-              'Version' => __('Version', 'wp_crm'),
-              'Description' => __('Description', 'wp_crm')
-          );
-
-          $current_file = @get_file_data(WP_CRM_Premium . "/" . $filename, $default_headers, 'plugin');
-
-          if (@version_compare($current_file['Version'], $version) == '-1') {
-            $this_file = WP_CRM_Premium . "/" . $filename;
-            $fh = @fopen($this_file, 'w');
-            if ($fh) {
-              fwrite($fh, $php_code);
-              fclose($fh);
-
-              if ( $current_file['Version'] ) {
-                CRM_UD_F::log(sprintf(__('WP-CRM Premium Feature: %s updated to version %s from %s.', 'wp_crm'), $code->name, $version, $current_file['Version']));
-              } else {
-                CRM_UD_F::log(sprintf(__('WP-CRM Premium Feature: %s updated to version %s.', 'wp_crm'), $code->name, $version));
-              }
-
-              $updated_features[] = $code->name;
-            }
-          } else {
-            
-          }
-        }
-      }
-    }
-
-    //** Update settings */
-    WP_CRM_F::settings_action(true);
-
-    if ($return && !empty($wp_crm['configuration']['disable_automatic_feature_update']) && $wp_crm['configuration']['disable_automatic_feature_update'] == 'true') {
-      return __('Update ran successfully but no features were downloaded because the setting is disabled.', 'wp_crm');
-    } elseif ($return) {
-      return __('Update ran successfully.', 'wp_crm');
-    }
-  }
-
-  /**
-   * Check for premium features and load them
-   *
-   * @since 0.01
-   *
-   */
-  static function load_premium() {
-    global $wp_crm;
-
-    $default_headers = array(
-        'Name' => __('Name', 'wp_crm'),
-        'Version' => __('Version', 'wp_crm'),
-        'Description' => __('Description', 'wp_crm')
-    );
-
-    if (!is_dir(WP_CRM_Premium)) {
-      return;
-    }
-
-    if ($premium_dir = opendir(WP_CRM_Premium)) {
-
-      if (file_exists(WP_CRM_Premium . "/index.php")) {
-
-        if (WP_DEBUG) {
-          include_once(WP_CRM_Premium . "/index.php");
-        } else {
-          @include_once(WP_CRM_Premium . "/index.php");
-        }
-      }
-
-      while (false !== ($file = readdir($premium_dir))) {
-
-        if ($file == 'index.php')
-          continue;
-
-        $arr = explode(".", $file);
-        if ( end( $arr ) == 'php') {
-
-          $plugin_slug = str_replace(array('.php'), '', $file);
-
-          if (WP_DEBUG) {
-            $plugin_data = get_file_data(WP_CRM_Premium . "/" . $file, $default_headers, 'plugin');
-          } else {
-            $plugin_data = @get_file_data(WP_CRM_Premium . "/" . $file, $default_headers, 'plugin');
-          }
-          $wp_crm['installed_features'][$plugin_slug]['name'] = $plugin_data['Name'];
-          $wp_crm['installed_features'][$plugin_slug]['version'] = $plugin_data['Version'];
-          $wp_crm['installed_features'][$plugin_slug]['description'] = $plugin_data['Description'];
-
-          //** Check if the plugin is disabled */
-          if ( empty($wp_crm['installed_features'][$plugin_slug]['disabled']) || $wp_crm['installed_features'][$plugin_slug]['disabled'] != 'true' ) {
-
-            if (WP_DEBUG) {
-              include_once(WP_CRM_Premium . "/" . $file);
-            } else {
-              @include_once(WP_CRM_Premium . "/" . $file);
-            }
-
-            //** Disable plugin if class does not exists - file is empty */
-            if (!class_exists($plugin_slug)) {
-              unset($wp_crm['installed_features'][$plugin_slug]);
-            }
-
-            $wp_crm['installed_features'][$plugin_slug]['disabled'] = 'false';
-          }
-        }
-      }
-    }
-  }
-
-  /**
    * Installs tables and runs WP_CRM_F::manual_activation() which actually handles the upgrades
    *
    * @since 0.01
@@ -3155,18 +2968,6 @@ class WP_CRM_F {
     }
 
     return $results;
-  }
-
-  /**
-   * Dectivate plugin, stop crons.
-   *
-   * @since 0.01
-   *
-   */
-  static function deactivation() {
-    $timestamp = wp_next_scheduled('wp_crm_premium_feature_check');
-    wp_unschedule_event($timestamp, 'wp_crm_premium_feature_check');
-    wp_clear_scheduled_hook('wp_crm_premium_feature_check');
   }
 
   /**

@@ -21,8 +21,6 @@ class WP_CRM_Core {
   /**
    * First function of WP_CRM_Core to be loaded, called by: plugins_loaded hook.
    *
-   * Load premium features.
-   *
    * @since 0.01
    *
    * @uses $wp_crm WP-CRM configuration array
@@ -37,9 +35,6 @@ class WP_CRM_Core {
 
     //* Process settings updates */
     WP_CRM_F::settings_action();
-
-    //* Load premium features */
-    WP_CRM_F::load_premium();
 
     // Load third-party plugin load_plugin_compatibility */
     WP_CRM_F::load_plugin_compatibility();
@@ -68,7 +63,6 @@ class WP_CRM_Core {
    *
    * Register scripts.
    * Register styles.
-   * Load premium features.
    *
    * @since 0.01
    *
@@ -86,7 +80,7 @@ class WP_CRM_Core {
       add_filter( 'edit_profile_url', array( 'WP_CRM_F', 'edit_profile_url' ), 10, 3 );
     }
     /** Loads all the class for handling all plugin tables */
-    include_once WP_CRM_Path . '/core/class_list_table.php';
+    include_once WP_CRM_Path . '/lib/class_list_table.php';
 
     if ( !empty($wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ]) && $wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ] == 'true' ) {
       WP_CRM_F::track_detailed_user_activity();
@@ -131,7 +125,7 @@ class WP_CRM_Core {
     add_filter( 'plugin_action_links', array( 'WP_CRM_Core', 'plugin_action_links' ), 10, 2 );
 
     // Setup pages and overview columns
-    add_action( "admin_menu", array( 'WP_CRM_Core', "admin_menu" ), 100 );
+    add_action( "admin_menu", array( 'WP_CRM_Core', "admin_menu" ) );
 
     add_filter( "retrieve_password_message", array( 'WP_CRM_F', "retrieve_password_message" ) );
 
@@ -221,9 +215,6 @@ class WP_CRM_Core {
     $wp_crm[ 'notification_actions' ] = apply_filters( 'wp_crm_notification_actions', !empty($wp_crm[ 'notification_actions' ])?$wp_crm[ 'notification_actions' ]:array() );
 
     $wp_crm = apply_filters( 'wp_crm_settings_lower', $wp_crm );
-
-    //** Check premium feature availability */
-    add_action( 'wp_crm_premium_feature_check', array( 'WP_CRM_F', 'feature_check' ) );
   }
 
   /**
@@ -726,7 +717,7 @@ class WP_CRM_Core {
   static function page_loader() {
     global $wp_crm, $screen_layout_columns, $current_screen, $wpdb, $crm_messages, $user_ID, $wp_crm_user;
 
-    $file_path = WP_CRM_Path . "/core/ui/{$current_screen->base}.php";
+    $file_path = WP_CRM_Path . "/lib/ui/{$current_screen->base}.php";
 
     if ( file_exists( $file_path ) ) {
       include $file_path;

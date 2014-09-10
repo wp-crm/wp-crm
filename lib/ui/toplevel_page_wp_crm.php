@@ -5,10 +5,10 @@ if( !empty($_REQUEST['message']) && $_REQUEST['message'] == 'user_deleted' ) {
 }
 
 if( !empty($_REQUEST['message']) && $_REQUEST['message'] == 'plugin_updated' ) {
-  WP_CRM_F::add_message(__('WP-CRM has been updated, and any premium features your domain qualifies for have been downloaded.', 'wp_crm'));
+  WP_CRM_F::add_message(__('WP-CRM has been updated.', 'wp_crm'));
 }
 
-include WP_CRM_Path . '/core/class_user_list_table.php';
+include WP_CRM_Path . '/lib/class_user_list_table.php';
 
 $wp_list_table = new CRM_User_List_Table("per_page=25");
 $wp_list_table->prepare_items();

@@ -1,6 +1,6 @@
 {
   "screen": {
-    "parent": "wp-crm",
+    "parent": "wp_crm",
     "title": "Licenses"
   }
 }
