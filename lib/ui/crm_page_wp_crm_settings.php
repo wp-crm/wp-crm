@@ -332,7 +332,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
               ?>
                 <li>
-                  <input type="checkbox" id="action_<?php echo $action_hash; ?>" <?php CRM_UD_UI::checked_in_array($action_slug, $data['fire_on_action']); ?> name="wp_crm[notifications][<?php echo $notification_slug; ?>][fire_on_action][]"  value="<?php echo $action_slug; ?>" class="wp_crm_trigger_action" />
+                  <input type="checkbox" id="action_<?php echo $action_hash; ?>" <?php CRM_UD_UI::checked_in_array($action_slug, !empty($data['fire_on_action'])?$data['fire_on_action']:array() ); ?> name="wp_crm[notifications][<?php echo $notification_slug; ?>][fire_on_action][]"  value="<?php echo $action_slug; ?>" class="wp_crm_trigger_action" />
                   <label for="action_<?php echo $action_hash; ?>" ><?php echo $action_title; ?></label>
                 </li>
               <?php } ?>

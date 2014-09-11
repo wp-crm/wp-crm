@@ -2927,7 +2927,7 @@ class WP_CRM_F {
     }
 
     //** If Detailed Activity is tracked */
-    if ( !empty($wp_crm['configuration']['track_detailed_user_activity']) && $wp_crm['configuration']['track_detailed_user_activity'] == 'true' && $_attributes['detailed_log']) {
+    if ( !empty($wp_crm['configuration']['track_detailed_user_activity']) && $wp_crm['configuration']['track_detailed_user_activity'] == 'true' && !empty($_attributes['detailed_log']) ) {
       $query[] = " (attribute = 'detailed_log') ";
     } else if ($args['object_type']) {
       $query[] = " (text != '') ";

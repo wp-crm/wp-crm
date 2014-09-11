@@ -246,7 +246,7 @@ class crm_page_wp_crm_add_new {
           <div class="wp_crm_user_api_actions">
         <?php
             add_filter('wpi_user_information', array('WP_CRM_F', 'wpi_user_information'));
-            if ($own_profile) {
+            if ( !empty( $own_profile ) ) {
               do_action('show_user_profile', $profileuser);
             } else {
               do_action('edit_user_profile', $profileuser);
