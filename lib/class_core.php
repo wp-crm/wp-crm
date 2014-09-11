@@ -91,25 +91,25 @@ class WP_CRM_Core {
     wp_register_script( 'swfobject', WP_CRM_URL . '/third-party/swfobject.js', array( 'jquery' ) );
     wp_register_script( 'jquery-uploadify', WP_CRM_URL . '/third-party/uploadify/jquery.uploadify.v2.1.4.min.js', array( 'jquery', 'swfobject' ) );
     wp_register_script( 'wp-crm-data-tables', WP_CRM_URL . '/third-party/dataTables/jquery.dataTables.min.js', array( 'jquery' ) );
-    wp_register_script( 'wp_crm_global', WP_CRM_URL . '/js/wp_crm_global.js', array( 'jquery' ), WP_CRM_Version, true );
-    wp_register_script( 'wp_crm_profile_editor', WP_CRM_URL . '/js/wp_crm_profile_editor.js', array( 'wp_crm_global' ), WP_CRM_Version, true );
+    wp_register_script( 'wp_crm_global', WP_CRM_URL . '/static/js/wp_crm_global.js', array( 'jquery' ), WP_CRM_Version, true );
+    wp_register_script( 'wp_crm_profile_editor', WP_CRM_URL . '/static/js/wp_crm_profile_editor.js', array( 'wp_crm_global' ), WP_CRM_Version, true );
 
     // Find and register theme-specific style if a custom wp_properties.css does not exist in theme
     $theme_slug = get_option( 'stylesheet' );
     if ( file_exists( WP_CRM_Templates . "/theme-specific/{$theme_slug}.css" ) ) {
-      wp_register_style( 'wp-crm-theme-specific', WP_CRM_URL . "/templates/theme-specific/{$theme_slug}.css", array( 'wp-crm-default-styles' ), WP_CRM_Version );
+      wp_register_style( 'wp-crm-theme-specific', WP_CRM_URL . "/static/templates/theme-specific/{$theme_slug}.css", array( 'wp-crm-default-styles' ), WP_CRM_Version );
     }
 
     //** Load default styles */
-    if ( file_exists( WP_CRM_Path . "/templates/wp-crm-default-styles.css" ) ) {
-      wp_register_style( 'wp-crm-default-styles', WP_CRM_URL . "/templates/wp-crm-default-styles.css", array(), WP_CRM_Version );
+    if ( file_exists( WP_CRM_Templates . "/wp-crm-default-styles.css" ) ) {
+      wp_register_style( 'wp-crm-default-styles', WP_CRM_URL . "/static/templates/wp-crm-default-styles.css", array(), WP_CRM_Version );
     }
 
-    if ( file_exists( WP_CRM_Path . "/css/wp_crm_global.css" ) ) {
-      wp_register_style( 'wp_crm_global', WP_CRM_URL . "/css/wp_crm_global.css", array(), WP_CRM_Version );
+    if ( file_exists( WP_CRM_Path . "/static/css/wp_crm_global.css" ) ) {
+      wp_register_style( 'wp_crm_global', WP_CRM_URL . "/static/css/wp_crm_global.css", array(), WP_CRM_Version );
     }
 
-    wp_register_style( 'wp-crm-data-tables', WP_CRM_URL . "/css/crm-data-tables.css", array(), WP_CRM_Version );
+    wp_register_style( 'wp-crm-data-tables', WP_CRM_URL . "/static/css/crm-data-tables.css", array(), WP_CRM_Version );
 
     //** Attribute grouping options */
     if ( !empty($wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ]) && $wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ] == 'true' ) {
@@ -773,13 +773,13 @@ class WP_CRM_Core {
     wp_enqueue_style( 'wp_crm_global' );
 
     //** Automatically insert styles sheet if one exists with $current_screen->ID name */
-    if ( file_exists( WP_CRM_Path . "/css/{$current_screen->id}.css" ) ) {
-      wp_enqueue_style( $current_screen->id . '-style', WP_CRM_URL . "/css/{$current_screen->id}.css", array(), WP_CRM_Version, 'screen' );
+    if ( file_exists( WP_CRM_Path . "/static/css/{$current_screen->id}.css" ) ) {
+      wp_enqueue_style( $current_screen->id . '-style', WP_CRM_URL . "/static/css/{$current_screen->id}.css", array(), WP_CRM_Version, 'screen' );
     }
 
     //** Automatically insert JS sheet if one exists with $current_screen->ID name */
-    if ( file_exists( WP_CRM_Path . "/js/{$current_screen->id}.js" ) ) {
-      wp_enqueue_script( $current_screen->id . '-js', WP_CRM_URL . "/js/{$current_screen->id}.js", array( 'jquery' ), WP_CRM_Version, 'wp_crm_global' );
+    if ( file_exists( WP_CRM_Path . "/static/js/{$current_screen->id}.js" ) ) {
+      wp_enqueue_script( $current_screen->id . '-js', WP_CRM_URL . "/static/js/{$current_screen->id}.js", array( 'jquery' ), WP_CRM_Version, 'wp_crm_global' );
     }
 
   }

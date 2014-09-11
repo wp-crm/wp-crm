@@ -15,6 +15,8 @@
  */
 $wp_crm_db = get_option('wp_crm_settings');
 
+global $wp_crm;
+
 $wp_crm['version'] = '0.1';
 
 $wp_crm['configuration'] = array(
