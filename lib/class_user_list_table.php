@@ -347,7 +347,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
 
         default:
 
-        if( is_array( $user_object[ $column_name] ) ) {
+        if( !empty( $user_object[ $column_name] ) && is_array( $user_object[ $column_name] ) ) {
           foreach($user_object[$column_name] as $option_slug =>  $values) {
 
             if(($this_attribute['input_type'] == 'text' || $this_attribute['input_type'] == 'date' || $this_attribute['input_type'] == 'textarea') && !empty($this_attribute['has_options'])) {
@@ -369,7 +369,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
           }
         }
 
-        if(is_array($visible_options)) {
+        if( !empty( $visible_options ) && is_array( $visible_options ) ) {
           foreach($visible_options as $key => $single_value) {
             $visible_options[$key] = nl2br($single_value);
           }

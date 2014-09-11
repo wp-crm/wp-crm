@@ -46,7 +46,7 @@ class WPI_WPC {
    * 
    * @global type $wp_crm_user
    */
-  function wp_crm_metaboxes() {
+  static function wp_crm_metaboxes() {
     global $wp_crm_user;
 
     if ($wp_crm_user['has_invoices']) {
@@ -116,7 +116,7 @@ class WPI_WPC {
    * @param type $args
    * @return boolean
    */
-  function get_user_worth($user_id, $args = "") {
+  static function get_user_worth($user_id, $args = "") {
     global $wpdb;
 
     $defaults = array(
