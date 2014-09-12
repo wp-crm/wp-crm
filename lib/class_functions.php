@@ -60,7 +60,7 @@ class WP_CRM_F {
           $activity_log[$count]->text = sprintf(__('Logged in from %1s.', 'wpp'), $entry->value);
 
           if (function_exists('gethostbyaddr')) {
-            $activity_log[$count]->host_name = $_resolved[$entry->value] ? $_resolved[$entry->value] : $_resolved[$entry->value] = @gethostbyaddr($entry->value);
+            $activity_log[$count]->host_name = !empty($_resolved[$entry->value]) ? $_resolved[$entry->value] : $_resolved[$entry->value] = @gethostbyaddr($entry->value);
           }
 
           if ($entry->value) {
@@ -84,7 +84,7 @@ class WP_CRM_F {
       }
     }
 
-    if ($_update_cache && $_locations) {
+    if (!empty($_update_cache) && !empty($_locations)) {
       set_transient('_wpc_geolocation', $_locations, 3600);
     }
 
@@ -253,7 +253,7 @@ class WP_CRM_F {
    */
   static function track_detailed_user_activity() {
     add_action('password_reset', create_function('$user', '  WP_CRM_F::insert_event(array("object_id"=> $user->ID, "attribute" => "detailed_log", "other" => 5, "action" => "password_reset")); '));
-    add_action('wp_login', create_function('$user_login', ' $user = get_userdatabylogin($user_login);  WP_CRM_F::insert_event(array("object_id"=> $user->ID, "attribute" => "detailed_log", "other" => 2, "action" => "login")); '));
+    add_action('wp_login', create_function('$user_login', ' $user = get_user_by("login", $user_login);  WP_CRM_F::insert_event(array("object_id"=> $user->ID, "attribute" => "detailed_log", "other" => 2, "action" => "login")); '));
   }
 
   /**
@@ -2852,7 +2852,7 @@ class WP_CRM_F {
         'object_type' => isset($args['object_type'])?$args['object_type']:'',
         'user_id' => isset($args['user_id'])?$args['user_id']:'',
         'attribute' => isset($args['attribute'])?$args['attribute']:'',
-        'action' => isset($args['action'])?$args['attribute']:'',
+        'action' => isset($args['action'])?$args['action']:'',
         'value' => isset($args['value'])?$args['value']:'',
         'email_from' => isset($args['email_from'])?$args['email_from']:'',
         'email_to' => isset($args['email_to'])?$args['email_to']:'',

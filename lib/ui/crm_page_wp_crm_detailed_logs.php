@@ -28,7 +28,7 @@
         <td class="user"><a href="<?php echo $row->edit_url ?>"><?php echo $row->display_name ?></a></td>
         <td class="activity"><?php echo $row->text ?></td>
         <td class="location">
-        <?php if( !empty( $row->location ) ) { ?>
+        <?php if( !empty( $row->location ) && !is_wp_error($row->location) ) { ?>
         <a href="<?php echo add_query_arg( array( 'q' => $row->location->latitude . ',' . $row->location->longitude, 'z' => 7 ),  'https://maps.google.com/' ); ?>" target="_blank">
           <?php echo implode( ', ', array_filter( array(  $row->location->city, $row->location->region_code, $row->location->country_name ) ) ); ?>
         </a>
