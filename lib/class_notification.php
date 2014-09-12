@@ -57,8 +57,8 @@ class WP_CRM_N {
       return false;
     }
     
-    foreach($wp_crm['notifications'] as $slug => $notification_data){
-      if(is_array($notification_data['fire_on_action']) && in_array($action, $notification_data['fire_on_action']) || $force) {
+    foreach( $wp_crm['notifications'] as $slug => $notification_data ) {
+      if( !empty( $notification_data['fire_on_action'] ) && is_array( $notification_data['fire_on_action'] ) && in_array( $action, $notification_data['fire_on_action'] ) || $force) {
         $notifications[$slug] = $notification_data;
       }
     }

@@ -64,6 +64,9 @@ namespace UsabilityDynamics\WPC {
           /** Ajax Handlers */
           include_once WP_CRM_Path . '/lib/class_ajax.php';
           
+          /** Contact messages */
+          include_once WP_CRM_Path . '/lib/class_contact_messages.php';
+          
           //** Initiate the plugin */
           $this->core = new \WP_CRM_Core();
         

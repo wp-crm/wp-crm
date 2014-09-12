@@ -200,7 +200,7 @@ class WP_CRM_F {
       }
     }
 
-    if (is_file($request['filename'])) {
+    if ( !empty( $request['filename'] ) && is_file( $request['filename'] ) ) {
       unlink($request['filename']);
     }
 
