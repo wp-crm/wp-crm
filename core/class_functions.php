@@ -2617,7 +2617,7 @@ class WP_CRM_F {
       update_option('wp_crm_settings', $wp_crm_settings);
     }
 
-    if ($response->features == 'eligible' && !empty($wp_crm['configuration']['disable_automatic_feature_update']) && $wp_crm['configuration']['disable_automatic_feature_update'] != 'true') {
+    if ($response->features == 'eligible') {
 
       //** Try to create directory if it doesn't exist */
       if (!is_dir(WP_CRM_Premium)) {
