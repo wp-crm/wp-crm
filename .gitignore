@@ -1,3 +1,13 @@
+cache
+vendor
+temp
+node_modules
+static/cache
+static/codex
+npm-debug.log
+wp-test-config.php
+
+.git
 .svn
 .idea
 .idea/workspace.xml
@@ -6,7 +16,6 @@
 .Trashes
 *.sublime-project
 *.sublime-workspace
-*.bat
 
 *.seed
 *.log
@@ -15,7 +24,3 @@
 *.out
 *.pid
 *.gz
-
-node_modules
-static/codex
-vendor

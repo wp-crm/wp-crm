@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "plugin",
   "minimum-stability": "dev",
-  "homepage": "http://github.com/UsabilityDynamics/wp-crm",
+  "homepage": "https://usabilitydynamics.com/products/wp-crm/",
   "author": {
     "name": "UsabilityDynamics, Inc.",
-    "url": "https://usabilitydynamics.com/"
+    "url": "https://usabilitydynamics.com"
   },
   "repositories": [
     {
@@ -16,15 +16,50 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/UsabilityDynamics/wp-crm.git"
+    "url": "https://github.com/usabilitydynamics/wp-crm.git"
   },
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-settings": "master",
     "usabilitydynamics/lib-wp-bootstrap": "master",
     "usabilitydynamics/lib-ud-api-client": "master"
   },
+  "require-dev": {
+    "usabilitydynamics/lib-wp-phpunit": "master",
+    "codeclimate/php-test-reporter": "dev-master"
+  },
   "autoload": {
     "classmap": [ "lib/classes" ]
+  },
+  "archive": {
+    "exclude": [
+      "node_modules",
+      ".gitignore",
+      "test",
+      "circle.yml",
+      "composer.lock",
+      "gruntfile.js",
+      "package.json"
+    ]
+  },
+  "extra": {
+    "schemas": {
+      "dependencies" : {
+        "modules": {
+          "usabilitydynamics/lib-utility": {
+            "\\UsabilityDynamics\\Utility": "0.3.4"
+          }
+        },
+        "plugins": []
+      },
+      "licenses" : {
+        "client" : {
+          "screen": {
+            "parent": "wp_crm",
+            "title": "Licenses"
+          }
+        },
+        "product" : false
+      }
+    }
   }
 }
