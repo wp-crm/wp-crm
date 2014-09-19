@@ -80,36 +80,37 @@ class WP_CRM_Core {
       add_filter( 'edit_profile_url', array( 'WP_CRM_F', 'edit_profile_url' ), 10, 3 );
     }
     /** Loads all the class for handling all plugin tables */
-    include_once WP_CRM_Path . '/lib/class_list_table.php';
+    
+    include_once ud_get_wp_crm()->path( 'lib/class_list_table.php', 'dir' );
 
     if ( !empty($wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ]) && $wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ] == 'true' ) {
       WP_CRM_F::track_detailed_user_activity();
     }
 
     wp_register_script( 'google-jsapi', 'https://www.google.com/jsapi' );
-    wp_register_script( 'jquery-cookie', WP_CRM_URL . '/third-party/jquery.smookie.js', array( 'jquery' ), '1.7.3' );
-    wp_register_script( 'swfobject', WP_CRM_URL . '/third-party/swfobject.js', array( 'jquery' ) );
-    wp_register_script( 'jquery-uploadify', WP_CRM_URL . '/third-party/uploadify/jquery.uploadify.v2.1.4.min.js', array( 'jquery', 'swfobject' ) );
-    wp_register_script( 'wp-crm-data-tables', WP_CRM_URL . '/third-party/dataTables/jquery.dataTables.min.js', array( 'jquery' ) );
-    wp_register_script( 'wp_crm_global', WP_CRM_URL . '/static/js/wp_crm_global.js', array( 'jquery' ), WP_CRM_Version, true );
-    wp_register_script( 'wp_crm_profile_editor', WP_CRM_URL . '/static/js/wp_crm_profile_editor.js', array( 'wp_crm_global' ), WP_CRM_Version, true );
+    wp_register_script( 'jquery-cookie', ud_get_wp_crm()->path( 'lib/third-party/jquery.smookie.js', 'url' ), array( 'jquery' ), '1.7.3' );
+    wp_register_script( 'swfobject', ud_get_wp_crm()->path( 'lib/third-party/swfobject.js', 'url' ), array( 'jquery' ) );
+    wp_register_script( 'jquery-uploadify', ud_get_wp_crm()->path( 'lib/third-party/uploadify/jquery.uploadify.v2.1.4.min.js', 'url' ), array( 'jquery', 'swfobject' ) );
+    wp_register_script( 'wp-crm-data-tables', ud_get_wp_crm()->path( 'lib/third-party/dataTables/jquery.dataTables.min.js', 'url' ), array( 'jquery' ) );
+    wp_register_script( 'wp_crm_global', ud_get_wp_crm()->path( 'static/scripts/wp_crm_global.js', 'url' ), array( 'jquery' ), WP_CRM_Version, true );
+    wp_register_script( 'wp_crm_profile_editor', ud_get_wp_crm()->path( 'static/scripts/wp_crm_profile_editor.js', 'url' ), array( 'wp_crm_global' ), WP_CRM_Version, true );
 
     // Find and register theme-specific style if a custom wp_properties.css does not exist in theme
     $theme_slug = get_option( 'stylesheet' );
-    if ( file_exists( WP_CRM_Templates . "/theme-specific/{$theme_slug}.css" ) ) {
-      wp_register_style( 'wp-crm-theme-specific', WP_CRM_URL . "/static/templates/theme-specific/{$theme_slug}.css", array( 'wp-crm-default-styles' ), WP_CRM_Version );
+    if ( file_exists( ud_get_wp_crm()->path( "static/views/theme-specific/{$theme_slug}.css", 'dir' ) ) ) {
+      wp_register_style( 'wp-crm-theme-specific', ud_get_wp_crm()->path( "static/views/theme-specific/{$theme_slug}.css", 'url' ), array( 'wp-crm-default-styles' ), WP_CRM_Version );
     }
 
     //** Load default styles */
-    if ( file_exists( WP_CRM_Templates . "/wp-crm-default-styles.css" ) ) {
-      wp_register_style( 'wp-crm-default-styles', WP_CRM_URL . "/static/templates/wp-crm-default-styles.css", array(), WP_CRM_Version );
+    if ( file_exists( ud_get_wp_crm()->path( "static/views/wp-crm-default-styles.css", 'dir' ) ) ) {
+      wp_register_style( 'wp-crm-default-styles', ud_get_wp_crm()->path( "static/views/wp-crm-default-styles.css", 'url' ), array(), WP_CRM_Version );
     }
 
-    if ( file_exists( WP_CRM_Path . "/static/css/wp_crm_global.css" ) ) {
-      wp_register_style( 'wp_crm_global', WP_CRM_URL . "/static/css/wp_crm_global.css", array(), WP_CRM_Version );
+    if ( file_exists( ud_get_wp_crm()->path( 'static/styles/wp_crm_global.css', 'dir' ) ) ) {
+      wp_register_style( 'wp_crm_global', ud_get_wp_crm()->path( 'static/styles/wp_crm_global.css', 'url' ), array(), WP_CRM_Version );
     }
 
-    wp_register_style( 'wp-crm-data-tables', WP_CRM_URL . "/static/css/crm-data-tables.css", array(), WP_CRM_Version );
+    wp_register_style( 'wp-crm-data-tables', ud_get_wp_crm()->path( "static/styles/crm-data-tables.css", 'url' ), array(), WP_CRM_Version );
 
     //** Attribute grouping options */
     if ( !empty($wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ]) && $wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ] == 'true' ) {
@@ -183,7 +184,7 @@ class WP_CRM_Core {
   function init_upper() {
     $locale = apply_filters( 'wp_crm_locale', get_locale() );
     $mofile = sprintf( 'wp_crm-%s.mo', $locale );
-    $mofile_local = WP_CRM_Path . '/langs/' . $mofile;
+    $mofile_local = ud_get_wp_crm()->path( 'static/languages/'.$mofile, 'dir' );
     $mofile_global = WP_LANG_DIR . '/wp_crm/' . $mofile;
 
     if ( file_exists( $mofile_local ) ) {
@@ -717,7 +718,7 @@ class WP_CRM_Core {
   static function page_loader() {
     global $wp_crm, $screen_layout_columns, $current_screen, $wpdb, $crm_messages, $user_ID, $wp_crm_user;
 
-    $file_path = WP_CRM_Path . "/lib/ui/{$current_screen->base}.php";
+    $file_path = ud_get_wp_crm()->path( "lib/ui/{$current_screen->base}.php", 'dir' );
 
     if ( file_exists( $file_path ) ) {
       include $file_path;
@@ -773,13 +774,13 @@ class WP_CRM_Core {
     wp_enqueue_style( 'wp_crm_global' );
 
     //** Automatically insert styles sheet if one exists with $current_screen->ID name */
-    if ( file_exists( WP_CRM_Path . "/static/css/{$current_screen->id}.css" ) ) {
-      wp_enqueue_style( $current_screen->id . '-style', WP_CRM_URL . "/static/css/{$current_screen->id}.css", array(), WP_CRM_Version, 'screen' );
+    if ( file_exists( ud_get_wp_crm()->path( "static/styles/{$current_screen->id}.css", 'dir' ) ) ) {
+      wp_enqueue_style( $current_screen->id . '-style', ud_get_wp_crm()->path( "static/styles/{$current_screen->id}.css", 'url' ), array(), WP_CRM_Version, 'screen' );
     }
 
     //** Automatically insert JS sheet if one exists with $current_screen->ID name */
-    if ( file_exists( WP_CRM_Path . "/static/js/{$current_screen->id}.js" ) ) {
-      wp_enqueue_script( $current_screen->id . '-js', WP_CRM_URL . "/static/js/{$current_screen->id}.js", array( 'jquery' ), WP_CRM_Version, 'wp_crm_global' );
+    if ( file_exists( ud_get_wp_crm()->path( "static/scripts/{$current_screen->id}.js", 'dir' ) ) ) {
+      wp_enqueue_script( $current_screen->id . '-js', ud_get_wp_crm()->path( "static/scripts/{$current_screen->id}.js", 'url' ), array( 'jquery' ), WP_CRM_Version, 'wp_crm_global' );
     }
 
   }

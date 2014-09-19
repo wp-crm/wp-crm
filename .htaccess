@@ -5,12 +5,9 @@
 
 # Security
 <IfModule mod_rewrite.c>
-  RewriteRule ^lib/(.*)$ /index.php [L]
   RewriteRule ^node_modules/(.*)$ /index.php [L]
   RewriteRule ^static/scripts/src/(.*)$ /index.php [L]
   RewriteRule ^static/styles/src/(.*)$ /index.php [L]
-  RewriteRule ^static/views/(.*)$ /index.php [L]
-  RewriteRule ^static/schemas/(.*)$ /index.php [L]
   RewriteRule ^static/cache/(.*)$ /index.php [L]
   RewriteRule ^composer.json$ /index.php [L]
   RewriteRule ^composer.lock$ /index.php [L]

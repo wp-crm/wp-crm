@@ -356,7 +356,7 @@ class WP_CRM_F {
    */
   static function load_plugin_compatibility() {
 
-    $asset_directories = array(WP_CRM_Connections);
+    $asset_directories = array( ud_get_wp_crm()->path( "lib/connections", 'dir' ) );
 
     //** Load any existing assets for active plugins */
     foreach (wp_get_active_and_valid_plugins() as $plugin_path) {
@@ -1396,7 +1396,7 @@ class WP_CRM_F {
   static function ajax_table_rows($wp_settings = false) {
     global $wp_crm;
 
-    include WP_CRM_Path . '/lib/class_user_list_table.php';
+    include ud_get_wp_crm()->path( "lib/class_user_list_table.php", 'dir' );
 
     //** Get the paramters we care about */
     $sEcho = $_REQUEST['sEcho'];
@@ -1908,7 +1908,7 @@ class WP_CRM_F {
     }
 
     //** load this here to get the capabilities */
-    include_once WP_CRM_Path . '/action_hooks.php';
+    include_once ud_get_wp_crm()->path( "action_hooks.php", 'dir' );
 
     //** Add capabilities */
     if (($args['update_caps'] == 'true') && (!empty($wp_crm['capabilities']) && is_array($wp_crm['capabilities']) && $wp_roles)) {

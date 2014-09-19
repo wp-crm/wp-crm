@@ -12,6 +12,16 @@
  *
  */
 
+/** Plugin Version */
+if ( !defined( 'WP_CRM_Version' ) ) {
+  define('WP_CRM_Version', '1.0.0');
+}
+
+/** Path for Includes */
+if ( !defined( 'WP_CRM_Cache' ) ) {
+  define( 'WP_CRM_Cache', WP_CONTENT_DIR . '/cache' );
+}
+
 if( !function_exists( 'ud_get_wp_crm' ) ) {
 
   /**

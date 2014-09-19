@@ -8,7 +8,7 @@ if( !empty($_REQUEST['message']) && $_REQUEST['message'] == 'plugin_updated' ) {
   WP_CRM_F::add_message(__('WP-CRM has been updated.', 'wp_crm'));
 }
 
-include WP_CRM_Path . '/lib/class_user_list_table.php';
+include ud_get_wp_crm()->path( "lib/class_user_list_table.php", 'dir' );
 
 $wp_list_table = new CRM_User_List_Table("per_page=25");
 $wp_list_table->prepare_items();

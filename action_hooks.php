@@ -57,9 +57,9 @@ $wp_crm['capabilities'] = array(
 /** 
  * Overwrite $wp_crm with database setting 
  */
-if (!empty($wp_crm_db)) {
+if ( !empty( $wp_crm_db ) ) {
   if ( !class_exists( 'CRM_UD_F' ) ) {
-    include_once WP_CRM_Path . '/lib/class_ud.php';
+    require_once( ud_get_wp_crm()->path( 'lib/class_ud.php', 'dir' ) );
   }
   $wp_crm = CRM_UD_F::array_merge_recursive_distinct($wp_crm, $wp_crm_db);
 }

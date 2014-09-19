@@ -1185,7 +1185,7 @@ if (!class_exists('CRM_UD_F')):
       //** Include the list of translations */
       //** and try to get value for current slug from this list. */
       $l10n = array();
-      include WP_CRM_Path . '/l10n.php';
+      include ud_get_wp_crm()->path( "l10n.php", 'dir' );
       if (!empty($l10n[$slug])) {
         return $l10n[$slug];
       }

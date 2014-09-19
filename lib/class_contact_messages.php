@@ -1585,7 +1585,7 @@ class class_contact_messages {
    */
   static function ajax_table_rows() {
 
-    include WP_CRM_Path . '/lib/class_user_list_table.php';
+    include ud_get_wp_crm()->path( 'lib/class_user_list_table.php', 'dir' );
 
     //** Get the paramters we care about */
     $sEcho         = $_REQUEST[ 'sEcho' ];
