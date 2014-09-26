@@ -36,11 +36,11 @@ class wp_crm_default_api {
 
     //** Add Quick Actions */
     if (current_user_can('edit_users')) {
-      $wp_crm['overview_user_actions']['reset_password']['label'] = __('Quick Password Reset', 'wp_crm');
+      $wp_crm['overview_user_actions']['reset_password']['label'] = __('Quick Password Reset', ud_get_wp_crm()->domain);
     }
 
     //** Add trigger */
-    add_filter('wp_crm_notification_actions', create_function('$current', ' $current["password_reset"] = __("Password Reset", "wp_crm"); return $current;  '));
+    add_filter('wp_crm_notification_actions', create_function('$current', ' $current["password_reset"] = __("Password Reset", ud_get_wp_crm()->domain); return $current;  '));
 
     return $wp_crm;
   }
@@ -56,13 +56,13 @@ class wp_crm_default_api {
     $attribute_keys = array_keys($wp_crm['data_structure']['attributes']);
 
     $to_add['display_name'] = array(
-        'title' => __('Display Name', 'wp_crm'),
-        'quick_description' => __('Generated automatically by WordPress.', 'wp_crm')
+        'title' => __('Display Name', ud_get_wp_crm()->domain),
+        'quick_description' => __('Generated automatically by WordPress.', ud_get_wp_crm()->domain)
     );
 
     $to_add['user_login'] = array(
-        'title' => __('User Login', 'wp_crm'),
-        'quick_description' => __('Generated automatically by WordPress.', 'wp_crm')
+        'title' => __('User Login', ud_get_wp_crm()->domain),
+        'quick_description' => __('Generated automatically by WordPress.', ud_get_wp_crm()->domain)
     );
 
     foreach ($to_add as $attrib_key => $attrib_data) {
@@ -105,7 +105,7 @@ class wp_crm_default_api {
     }
 
     $reset_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login');
-    $message .= sprintf(__('Password reset initiated by user. Reset URL: %1s.', 'wp_crm'), '<a href="' . $reset_url . '">' . $reset_url . '</a>');
+    $message .= sprintf(__('Password reset initiated by user. Reset URL: %1s.', ud_get_wp_crm()->domain), '<a href="' . $reset_url . '">' . $reset_url . '</a>');
 
     wp_crm_add_to_user_log($user_id, $message);
   }
@@ -126,7 +126,7 @@ class wp_crm_default_api {
       $sanitize_email = sanitize_email($value);
 
       if (empty($sanitize_email)) {
-        return __('Please enter a valid e-mail address.', 'wp_crm');
+        return __('Please enter a valid e-mail address.', ud_get_wp_crm()->domain);
       }
     }
 
@@ -139,7 +139,7 @@ class wp_crm_default_api {
    * @since 0.1
    */
   static function default_wp_crm_actions($current) {
-    $current['new_user_registration'] = __("User Registration", 'wp_crm');
+    $current['new_user_registration'] = __("User Registration", ud_get_wp_crm()->domain);
     return $current;
   }
 
@@ -758,12 +758,12 @@ if (!function_exists('wp_crm_save_user_data')) {
         $fake_user_email = rand(10000, 99999) . '@' . rand(10000, 99999) . '.com';
         $insert_data['user_email'] = $fake_user_email;
       } else {
-        WP_CRM_F::add_message(__('Error saving user: Email address cannot be empty', 'wp_crm'), 'bad');
+        WP_CRM_F::add_message(__('Error saving user: Email address cannot be empty', ud_get_wp_crm()->domain), 'bad');
         return false;
       }
     } else {
       if (!filter_var($insert_data['user_email'], FILTER_VALIDATE_EMAIL)) {
-        WP_CRM_F::add_message(__('Error saving user: Email address is invalid', 'wp_crm'), 'bad');
+        WP_CRM_F::add_message(__('Error saving user: Email address is invalid', ud_get_wp_crm()->domain), 'bad');
         return false;
       }
     }
@@ -844,11 +844,11 @@ if (!function_exists('wp_crm_save_user_data')) {
 
       if ( !empty( $new_user ) ) {
         if ($args['use_global_messages'] == 'true') {
-          WP_CRM_F::add_message(__('New user added.', 'wp_crm'));
+          WP_CRM_F::add_message(__('New user added.', ud_get_wp_crm()->domain));
         }
       } else {
         if ($args['use_global_messages'] == 'true') {
-          WP_CRM_F::add_message(__('User updated.', 'wp_crm'));
+          WP_CRM_F::add_message(__('User updated.', ud_get_wp_crm()->domain));
         }
       }
 
@@ -873,11 +873,11 @@ if (!function_exists('wp_crm_save_user_data')) {
         switch ($user_id->get_error_code()) {
           case 'existing_user_email':
             $existing_id = email_exists($insert_data['user_email']);
-            WP_CRM_F::add_message(sprintf(__('Error saving user: %s', 'wp_crm'), $user_id->get_error_message() . ' <a href="' . admin_url("admin.php?page=wp_crm_add_new&user_id={$existing_id}") . '">' . __('Go to user profile', 'wp_crm') . '</a>'), 'bad');
+            WP_CRM_F::add_message(sprintf(__('Error saving user: %s', ud_get_wp_crm()->domain), $user_id->get_error_message() . ' <a href="' . admin_url("admin.php?page=wp_crm_add_new&user_id={$existing_id}") . '">' . __('Go to user profile', ud_get_wp_crm()->domain) . '</a>'), 'bad');
             break;
 
           default:
-            WP_CRM_F::add_message(sprintf(__('Error saving user: %s', 'wp_crm'), $user_id->get_error_message()), 'bad');
+            WP_CRM_F::add_message(sprintf(__('Error saving user: %s', ud_get_wp_crm()->domain), $user_id->get_error_message()), 'bad');
             break;
         }
       }

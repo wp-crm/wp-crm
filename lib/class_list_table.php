@@ -314,7 +314,7 @@ class WP_CMR_List_Table extends WP_List_Table {
 
     //** DataTables expects a set number of columns */
     $result[0] = '';
-    $result[1] = __('Nothing found.', 'wp_crm');
+    $result[1] = __('Nothing found.', ud_get_wp_crm()->domain);
 
     if (count($result) < $this->_args['iColumns']) {
 

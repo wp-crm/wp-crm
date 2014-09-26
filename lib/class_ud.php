@@ -722,7 +722,7 @@ if (!class_exists('CRM_UD_F')):
       if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name)
         return true;
 
-      CRM_UD_F::log(__("Cache table does not exist. Attempting to create:", 'wp_crm'));
+      CRM_UD_F::log(__("Cache table does not exist. Attempting to create:", ud_get_wp_crm()->domain));
 
       // Table does not exist, make it
       $sql = "CREATE TABLE " . $table_name . " (
@@ -735,16 +735,16 @@ if (!class_exists('CRM_UD_F')):
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($sql);
 
-      CRM_UD_F::log(sprintf(__('SQL Ran: %s , verifying existence.', 'wp_crm'), $sql));
+      CRM_UD_F::log(sprintf(__('SQL Ran: %s , verifying existence.', ud_get_wp_crm()->domain), $sql));
 
 
       // Verify it exists
       if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
-        CRM_UD_F::log(__("Table created and exists.", 'wp_crm'));
+        CRM_UD_F::log(__("Table created and exists.", ud_get_wp_crm()->domain));
         return true;
       }
 
-      CRM_UD_F::log(__("Table not created.", 'wp_crm'));
+      CRM_UD_F::log(__("Table not created.", ud_get_wp_crm()->domain));
 
       // Something went terribly wrong
       return false;
@@ -805,7 +805,7 @@ if (!class_exists('CRM_UD_F')):
       // If no session log created yet, create one
       if (!is_array($this_log)) {
         $this_log = array();
-        array_push($this_log, array(time(), __("Log Started.", 'wp_crm')));
+        array_push($this_log, array(time(), __("Log Started.", ud_get_wp_crm()->domain)));
       }
 
       // Insert event into session
@@ -842,7 +842,7 @@ if (!class_exists('CRM_UD_F')):
       // If no session log created yet, create one
       if (!is_array($this_log)) {
         $this_log = array();
-        array_push($this_log, array(time(), __("Log Started.", 'wp_crm')));
+        array_push($this_log, array(time(), __("Log Started.", ud_get_wp_crm()->domain)));
       }
       update_option($log_name, $this_log);
 
@@ -933,11 +933,11 @@ if (!class_exists('CRM_UD_F')):
         return $days;
 
       if ($days == 0)
-        __('Today', 'wp_crm');
+        __('Today', ud_get_wp_crm()->domain);
       elseif ($days == 1) {
-        return($future ? __("Tomorrow ", 'wp_crm') : __("Yesterday ", 'wp_crm'));
+        return($future ? __("Tomorrow ", ud_get_wp_crm()->domain) : __("Yesterday ", ud_get_wp_crm()->domain));
       } elseif ($days > 1 && $days <= 6) {
-        return ($future ? sprintf(__(" in %d days ", 'wp_crm'), $days) : sprintf(__("%d days ago", 'wp_crm'), $days));
+        return ($future ? sprintf(__(" in %d days ", ud_get_wp_crm()->domain), $days) : sprintf(__("%d days ago", ud_get_wp_crm()->domain), $days));
       } elseif ($days > 6) {
         return date(get_option('date_format'), strtotime($date1));
       }
@@ -987,7 +987,7 @@ if (!class_exists('CRM_UD_F')):
      * @uses add_action() Calls 'admin_menu' hook with an anonymous (lambda-style) function which uses add_menu_page to create a UI Log page
      */
     function add_log_page() {
-      add_action('admin_menu', create_function('', "add_menu_page(__('Log','wp_crm'), __('Log','wp_crm'), 10, 'ud_log', array('CRM_UD_UI','show_log_page'));"));
+      add_action('admin_menu', create_function('', "add_menu_page(__('Log',ud_get_wp_crm()->domain), __('Log',ud_get_wp_crm()->domain), 10, 'ud_log', array('CRM_UD_UI','show_log_page'));"));
     }
 
     /**
@@ -1051,7 +1051,7 @@ if (!class_exists('CRM_UD_F')):
           'message' => $message);
 
       // Log in database
-      CRM_UD_F::log(__("Automatically logged failed JSON response: ", 'wp_crm') . $message);
+      CRM_UD_F::log(__("Automatically logged failed JSON response: ", ud_get_wp_crm()->domain) . $message);
 
       echo json_encode($return);
       die();
@@ -1160,9 +1160,9 @@ if (!class_exists('CRM_UD_F')):
       $minutes_ago = round((time() - $time) / 60);
 
       if ($minutes_ago > 60) {
-        return sprintf(__('%s hours ago', 'wp_crm'), round($minutes_ago / 60));
+        return sprintf(__('%s hours ago', ud_get_wp_crm()->domain), round($minutes_ago / 60));
       } else {
-        return sprintf(__('%s minutes ago', 'wp_crm'), $minutes_ago);
+        return sprintf(__('%s minutes ago', ud_get_wp_crm()->domain), $minutes_ago);
       }
     }
 

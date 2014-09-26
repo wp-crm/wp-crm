@@ -1,11 +1,11 @@
 <?php
 
 if( !empty($_REQUEST['message']) && $_REQUEST['message'] == 'user_deleted' ) {
-  WP_CRM_F::add_message(__('User has been deleted and all associated posts have been trashed.', 'wp_crm'));
+  WP_CRM_F::add_message(__('User has been deleted and all associated posts have been trashed.', ud_get_wp_crm()->domain));
 }
 
 if( !empty($_REQUEST['message']) && $_REQUEST['message'] == 'plugin_updated' ) {
-  WP_CRM_F::add_message(__('WP-CRM has been updated.', 'wp_crm'));
+  WP_CRM_F::add_message(__('WP-CRM has been updated.', ud_get_wp_crm()->domain));
 }
 
 include ud_get_wp_crm()->path( "lib/class_user_list_table.php", 'dir' );

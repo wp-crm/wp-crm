@@ -104,7 +104,7 @@ class WPI_WPC {
    * @return string
    */
   static function wp_crm_overview_columns($current) {
-    $current['wpi_sales']['title'] = __('Sales', 'wp_crm');
+    $current['wpi_sales']['title'] = __('Sales', ud_get_wp_crm()->domain);
     $current['wpi_sales']['overview_column'] = 'true';
     return $current;
   }

@@ -26,7 +26,7 @@ class toplevel_page_wp_crm {
     <div class="major-publishing-actions">
 
       <div class="publishing-action">
-        <?php submit_button(__('Filter Results','wp_crm'), 'button', false, false, array('id' => 'search-submit')); ?>
+        <?php submit_button(__('Filter Results',ud_get_wp_crm()->domain), 'button', false, false, array('id' => 'search-submit')); ?>
       </div>
       <br class="clear" />
     </div>
@@ -126,7 +126,7 @@ class crm_page_wp_crm_add_new {
     </table>
 
     <div class="wp_crm_stream_status wp_crm_load_more_stream" limited_messages="<?php echo count($limited_messages); ?>" all_messages="<?php echo count($all_messages); ?>"  per_page="<?php echo (((!empty($stream->per_page)) ? $stream->per_page : $per_page)); ?>" <?php if (empty($rest_messages)) { ?>style="display:none;" <?php } ?>>
-        <span class="wp_crm_counts"><?php printf(__('Showing <span class="current_count">%1s</span> messages of <span class="total_count">%2s</span>. Load <span class="more_count">%3s</span> more.', 'wp_crm'), count($limited_messages), count($all_messages), (($rest_messages>=$per_page)) ? $per_page : $rest_messages); ?>&nbsp;<img class="loading" src="<?php echo ud_get_wp_crm()->path( "static/styles/images/ajax-loader-arrows.gif", 'url' ); ?>" height="16" width="16" style="margin: 0pt auto; display:none" alt="<?php _e("loading", 'wp_crm');?>"/></span>
+        <span class="wp_crm_counts"><?php printf(__('Showing <span class="current_count">%1s</span> messages of <span class="total_count">%2s</span>. Load <span class="more_count">%3s</span> more.', ud_get_wp_crm()->domain), count($limited_messages), count($all_messages), (($rest_messages>=$per_page)) ? $per_page : $rest_messages); ?>&nbsp;<img class="loading" src="<?php echo ud_get_wp_crm()->path( "static/styles/images/ajax-loader-arrows.gif", 'url' ); ?>" height="16" width="16" style="margin: 0pt auto; display:none" alt="<?php _e("loading", 'wp_crm');?>"/></span>
     </div>
     <?php
   }
@@ -263,9 +263,9 @@ class crm_page_wp_crm_add_new {
           <div id="publishing-action">
             <input type="hidden" value="Publish" id="original_publish" name="original_publish" />
             <?php if (current_user_can('edit_users') || (current_user_can('add_users') && $object['new'])) { ?>
-            <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', 'wpp_crm') : __('Update', 'wpp_crm')); ?>" class="button-primary" id="publish" name="publish" />
+            <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', ud_get_wp_crm()->domain) : __('Update', ud_get_wp_crm()->domain)); ?>" class="button-primary" id="publish" name="publish" />
               <?php } else { ?>
-                <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', 'wpp_crm') : __('Update', 'wpp_crm')); ?>" class="button-primary" id="publish" name="publish" disabled="true">
+                <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', ud_get_wp_crm()->domain) : __('Update', ud_get_wp_crm()->domain)); ?>" class="button-primary" id="publish" name="publish" disabled="true">
               <?php } ?>
           </div>
           <div class="clear"></div>

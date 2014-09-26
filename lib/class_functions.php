@@ -52,12 +52,12 @@ class WP_CRM_F {
       $activity_log[$count]->edit_url = admin_url('admin.php?page=wp_crm_add_new&user_id=' . $entry->object_id);
       $activity_log[$count]->time_stamp = strtotime($entry->time);
       $activity_log[$count]->date = date(get_option('date_format', strtotime($entry->time)));
-      $activity_log[$count]->time_ago = human_time_diff(strtotime($entry->time)) . __(' ago.', 'wpp');
+      $activity_log[$count]->time_ago = human_time_diff(strtotime($entry->time)) . __(' ago.', ud_get_wp_crm()->domain);
 
       switch (true) {
 
         case $entry->attribute == 'detailed_log' && $entry->action == 'login':
-          $activity_log[$count]->text = sprintf(__('Logged in from %1s.', 'wpp'), $entry->value);
+          $activity_log[$count]->text = sprintf(__('Logged in from %1s.', ud_get_wp_crm()->domain), $entry->value);
 
           if (function_exists('gethostbyaddr')) {
             $activity_log[$count]->host_name = !empty($_resolved[$entry->value]) ? $_resolved[$entry->value] : $_resolved[$entry->value] = @gethostbyaddr($entry->value);
@@ -70,7 +70,7 @@ class WP_CRM_F {
           break;
 
         case $entry->attribute == 'detailed_log' && $entry->action == 'logout':
-          $activity_log[$count]->text = sprintf(__('Logged out from %1s.', 'wpp'), $entry->value);
+          $activity_log[$count]->text = sprintf(__('Logged out from %1s.', ud_get_wp_crm()->domain), $entry->value);
 
           if (function_exists('gethostbyaddr')) {
             $activity_log[$count]->host_name = $_resolved[$entry->value] ? $_resolved[$entry->value] : $_resolved[$entry->value] = @gethostbyaddr($entry->value);
@@ -103,7 +103,7 @@ class WP_CRM_F {
   static function get_service($service = false, $resource = '', $args = array(), $settings = array()) {
 
     if (!$service) {
-      return new WP_Error('error', sprintf(__('API service not specified.', UD_API_Transdomain)));
+      return new WP_Error('error', sprintf(__('API service not specified.', ud_get_wp_crm()->domain)));
     }
 
     $request = array_filter(wp_parse_args($settings, array(
@@ -161,7 +161,7 @@ class WP_CRM_F {
       switch (true) {
 
         case ( intval($response['headers']['content-length']) === 0 ):
-          return new WP_Error('UD_API::ger_service', __('API did not send back a valid response.'), array(
+          return new WP_Error('UD_API::ger_service', __('API did not send back a valid response.', ud_get_wp_crm()->domain), array(
               'request_url' => $request_url,
               'request_body' => $request,
               'headers' => $response['headers'],
@@ -170,7 +170,7 @@ class WP_CRM_F {
           break;
 
         case ( $response['response']['code'] == 404 ):
-          return new WP_Error('ud_api', __('API Not Responding. Please contact support.'), array(
+          return new WP_Error('ud_api', __('API Not Responding. Please contact support.', ud_get_wp_crm()->domain), array(
               'request_url' => $request_url,
               'request_body' => $request,
               'headers' => $response['headers']
@@ -178,7 +178,7 @@ class WP_CRM_F {
           break;
 
         case ( strpos($response['headers']['content-type'], 'text/html') !== false ):
-          return new WP_Error('UD_API::ger_service', __('Unformatted API Response: ') . $response['body'], array(
+          return new WP_Error('UD_API::ger_service', __('Unformatted API Response: ', ud_get_wp_crm()->domain) . $response['body'], array(
               'request_url' => $request_url,
               'request_body' => $request,
               'headers' => $response['headers']
@@ -195,7 +195,7 @@ class WP_CRM_F {
           break;
 
         default:
-          return new WP_Error('ud_api', __('An unknown error occurred while trying to make an API request to Usability Dynamics. Please contact support.'));
+          return new WP_Error('ud_api', __('An unknown error occurred while trying to make an API request to Usability Dynamics. Please contact support.', ud_get_wp_crm()->domain));
           break;
       }
     }
@@ -204,7 +204,7 @@ class WP_CRM_F {
       unlink($request['filename']);
     }
 
-    return is_wp_error($response) ? $response : new WP_Error('error', sprintf(__('API Failure: %1s.', UD_API_Transdomain), $response['response']['message']));
+    return is_wp_error($response) ? $response : new WP_Error('error', sprintf(__('API Failure: %1s.', ud_get_wp_crm()->domain), $response['response']['message']));
   }
 
   /**
@@ -332,17 +332,12 @@ class WP_CRM_F {
 
     //** All profiles */
     if (count($wp_filter['personal_options'])) {
-      add_meta_box('wp_crm_personal_options', __('Personal Options', 'wp_crm'), array('WP_CRM_F', 'personal_options'), 'crm_page_wp_crm_add_new', 'normal', 'default');
+      add_meta_box('wp_crm_personal_options', __('Personal Options', ud_get_wp_crm()->domain), array('WP_CRM_F', 'personal_options'), 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
 
     //** Non-self profile */
     if (!$own_profile && count($wp_filter['edit_user_profile'])) {
-      add_meta_box('wp_crm_edit_self_profile', __('Additional Settings', 'wp_crm'), array('WP_CRM_F', 'edit_user_profile'), 'crm_page_wp_crm_add_new', 'normal', 'default');
-    }
-
-    //** Self Profile  - Included into Special Actions box */
-    if ($own_profile && (count($wp_filter['show_user_profile']) || count($wp_filter['profile_personal_options']))) {
-      //add_meta_box( 'wp_crm_edit_user_profile',  __('Additional Settings', 'wp_crm') , function($object) {  do_action('edit_user_profile'); do_action('profile_personal_options'); }, 'crm_page_wp_crm_add_new', 'normal', 'default');
+      add_meta_box('wp_crm_edit_self_profile', __('Additional Settings', ud_get_wp_crm()->domain), array('WP_CRM_F', 'edit_user_profile'), 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
   }
 
@@ -456,9 +451,9 @@ class WP_CRM_F {
       $notification_info['reset_url'] = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login');
 
       if (!wp_crm_send_notification('password_reset', $notification_info)) {
-        wp_crm_add_to_user_log($user_id, __('User attempted to reset password, but reset email could not be sent.', 'wp_crm'));
+        wp_crm_add_to_user_log($user_id, __('User attempted to reset password, but reset email could not be sent.', ud_get_wp_crm()->domain));
       } else {
-        wp_crm_add_to_user_log($user_id, __('Password reset initiated by user, email sent with a password reset link.', 'wp_crm'));
+        wp_crm_add_to_user_log($user_id, __('Password reset initiated by user, email sent with a password reset link.', ud_get_wp_crm()->domain));
       }
     }
   }
@@ -532,7 +527,7 @@ class WP_CRM_F {
 
   function check_email_for_duplicates($email, $user_id) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      return __("Invalid email", 'wp_crm');
+      return __("Invalid email", ud_get_wp_crm()->domain);
     }
 
     $id = email_exists($email);
@@ -547,7 +542,7 @@ class WP_CRM_F {
             ($id != $user_id) /* or we've found duplicate not for current user_id */
             )
     ) {
-      return __("Email already exists", 'wp_crm');
+      return __("Email already exists", ud_get_wp_crm()->domain);
     }
 
     return false;
@@ -754,14 +749,14 @@ class WP_CRM_F {
         $unaccounted_for = count($user_ids) - array_sum($data[$attribute_slug]['counts']);
         if ($unaccounted_for > 0) {
           $data[$attribute_slug]['counts']['unaccounted_for'] = $unaccounted_for;
-          $data[$attribute_slug]['labels']['unaccounted_for'] = __('Unaccounted', 'wp_crm');
+          $data[$attribute_slug]['labels']['unaccounted_for'] = __('Unaccounted', ud_get_wp_crm()->domain);
         }
       }
     }
 
 
     if (empty($data)) {
-      die('<div class="wp_crm_visualize_results no_data">' . __('There is not enough quantifiable data to generate any graphs.', 'wp_crm') . '</div>');
+      die('<div class="wp_crm_visualize_results no_data">' . __('There is not enough quantifiable data to generate any graphs.', ud_get_wp_crm()->domain) . '</div>');
     }
     ?>
     <div class="wp_crm_visualize_results">
@@ -913,7 +908,7 @@ class WP_CRM_F {
       return json_encode($wp_crm['notifications'][$slug]);
       ;
     } else {
-      return json_encode(array('error' => __('Notification template not found.', 'wp_crm')));
+      return json_encode(array('error' => __('Notification template not found.', ud_get_wp_crm()->domain)));
     }
   }
 
@@ -1245,7 +1240,7 @@ class WP_CRM_F {
         $deleted_user = count($deleted_user);
         echo "Fake users found. Deleted {$deleted_user} fake user(s)";
       } else {
-        echo __('No fake users found.', 'wp_crm');
+        echo __('No fake users found.', ud_get_wp_crm()->domain);
       }
     }
   }
@@ -1588,7 +1583,7 @@ class WP_CRM_F {
             $wpdb->update($wpdb->users, array('user_activation_key' => $reset_key), array('user_login' => $user_login));
           }
 
-          wp_crm_add_to_user_log($object_id, __('Password reset. A random password has been generated for user by system.', 'wp_crm'));
+          wp_crm_add_to_user_log($object_id, __('Password reset. A random password has been generated for user by system.', ud_get_wp_crm()->domain));
 
           $args['user_login'] = $user_login;
           $args['user_email'] = $user_email;
@@ -1611,7 +1606,7 @@ class WP_CRM_F {
 
         $wpdb->update($wpdb->crm_log, array('value' => 'archived'), array('id' => $object_id));
         $return['success'] = 'true';
-        $return['message'] = __('Message archived.', 'wp_crm');
+        $return['message'] = __('Message archived.', ud_get_wp_crm()->domain);
         $return['action'] = 'hide_element';
 
         break;
@@ -1623,7 +1618,7 @@ class WP_CRM_F {
 
         if ($wpdb->query("DELETE FROM {$wpdb->crm_log} WHERE id = {$object_id}")) {
           $return['success'] = 'true';
-          $return['message'] = __('Message deleted.', 'wp_crm');
+          $return['message'] = __('Message deleted.', ud_get_wp_crm()->domain);
           $return['action'] = 'hide_element';
         }
 
@@ -1639,7 +1634,7 @@ class WP_CRM_F {
           }
 
           $return['success'] = 'true';
-          $return['message'] = __('Sender trashed.', 'wp_crm');
+          $return['message'] = __('Sender trashed.', ud_get_wp_crm()->domain);
           $return['action'] = 'hide_element';
         }
 
@@ -2434,22 +2429,22 @@ class WP_CRM_F {
         $wp_crm['configuration']['default_sender_email'] = "CRM <$assumed_email>";
         $wp_crm['configuration']['primary_user_attribute'] = 'display_name';
 
-        $wp_crm['wp_crm_contact_system_data']['example_form']['title'] = __('Example Shortcode Form', 'wp_crm');
+        $wp_crm['wp_crm_contact_system_data']['example_form']['title'] = __('Example Shortcode Form', ud_get_wp_crm()->domain);
         $wp_crm['wp_crm_contact_system_data']['example_form']['full_shortcode'] = '[wp_crm_form form=example_contact_form]';
         $wp_crm['wp_crm_contact_system_data']['example_form']['current_form_slug'] = 'example_contact_form';
         $wp_crm['wp_crm_contact_system_data']['example_form']['message_field'] = 'on';
         $wp_crm['wp_crm_contact_system_data']['example_form']['fields'] = array('display_name', 'user_email', 'company', 'phone_number');
 
-        $wp_crm['notifications']['example']['subject'] = __('Thank your for your message!', 'wp_crm');
+        $wp_crm['notifications']['example']['subject'] = __('Thank your for your message!', ud_get_wp_crm()->domain);
         $wp_crm['notifications']['example']['to'] = '[user_email]';
         $wp_crm['notifications']['example']['send_from'] = $assumed_email;
-        $wp_crm['notifications']['example']['message'] = __("Hello [display_name],\nThank you, your message has been received.", 'wp_crm');
+        $wp_crm['notifications']['example']['message'] = __("Hello [display_name],\nThank you, your message has been received.", ud_get_wp_crm()->domain);
         $wp_crm['notifications']['example']['fire_on_action'] = array('example_form');
 
-        $wp_crm['notifications']['message_notification']['subject'] = __('Message from Website', 'wp_crm');
+        $wp_crm['notifications']['message_notification']['subject'] = __('Message from Website', ud_get_wp_crm()->domain);
         $wp_crm['notifications']['message_notification']['to'] = get_bloginfo('admin_email');
         $wp_crm['notifications']['message_notification']['send_from'] = $assumed_email;
-        $wp_crm['notifications']['message_notification']['message'] = __("Shortcode Form: [trigger_action]\nSender Name: [display_name]\nSender Email: [user_email]\nMessage: [message_content]", 'wp_crm');
+        $wp_crm['notifications']['message_notification']['message'] = __("Shortcode Form: [trigger_action]\nSender Name: [display_name]\nSender Email: [user_email]\nMessage: [message_content]", ud_get_wp_crm()->domain);
         $wp_crm['notifications']['message_notification']['fire_on_action'] = array('example_form');
 
         $wp_crm['data_structure'] = WP_CRM_F::build_meta_keys($wp_crm);
@@ -2658,7 +2653,7 @@ class WP_CRM_F {
         }
 
         if (!empty($output)) {
-          $output = '<div id="crm_user_activity_filter"><h5>' . __('Show in User Activity History', 'wp_crm') . '</h5>' . implode('', (array) $output) . '</div>';
+          $output = '<div id="crm_user_activity_filter"><h5>' . __('Show in User Activity History', ud_get_wp_crm()->domain) . '</h5>' . implode('', (array) $output) . '</div>';
         }
 
         break;
@@ -2677,25 +2672,25 @@ class WP_CRM_F {
 
     switch ($attr) {
       case "note":
-        $attr = __("Note", 'wp_crm');
+        $attr = __("Note", ud_get_wp_crm()->domain);
         break;
       case "general_message":
-        $attr = __("General Message", 'wp_crm');
+        $attr = __("General Message", ud_get_wp_crm()->domain);
         break;
       case "phone_call":
-        $attr = __("Phone Call", 'wp_crm');
+        $attr = __("Phone Call", ud_get_wp_crm()->domain);
         break;
       case "meeting":
-        $attr = __("Meeting", 'wp_crm');
+        $attr = __("Meeting", ud_get_wp_crm()->domain);
         break;
       case "file":
-        $attr = __("File", 'wp_crm');
+        $attr = __("File", ud_get_wp_crm()->domain);
         break;
       case "detailed_log":
-        $attr = __("Detailed Log", 'wp_crm');
+        $attr = __("Detailed Log", ud_get_wp_crm()->domain);
         break;
       case "contact_form_message":
-        $attr = sprintf(__('Shortcode Form Message %1s.', 'wp_crm'), $entity->other);
+        $attr = sprintf(__('Shortcode Form Message %1s.', ud_get_wp_crm()->domain), $entity->other);
         break;
     }
 
@@ -2767,7 +2762,7 @@ class WP_CRM_F {
         switch (true) {
 
           case $entry->attribute == 'detailed_log' && $entry->action == 'login':
-            $entry_text = sprintf(__('Logged in from IP %1s, %2s ago.', 'wpp'), $entry->value, /* gethostbyaddr( $entry->value ), */ human_time_diff(strtotime($entry->time)));
+            $entry_text = sprintf(__('Logged in from IP %1s, %2s ago.', ud_get_wp_crm()->domain), $entry->value, /* gethostbyaddr( $entry->value ), */ human_time_diff(strtotime($entry->time)));
             break;
         }
       }
@@ -3046,10 +3041,10 @@ class WP_CRM_F {
 
     $current = array_reverse($current);
     if (empty($current['last_name'])) {
-      $current['last_name'] = __('Last Name', 'wp_crm');
+      $current['last_name'] = __('Last Name', ud_get_wp_crm()->domain);
     }
     if (empty($current['first_name'])) {
-      $current['first_name'] = __('First Name', 'wp_crm');
+      $current['first_name'] = __('First Name', ud_get_wp_crm()->domain);
     }
 
     return array_reverse($current);
@@ -3071,7 +3066,7 @@ class WP_CRM_F {
     $required_fields = apply_filters('wp_crm_requires_fields', array('user_email'));
     foreach ($required_fields as $field) {
       if (!array_key_exists($field, $wp_crm['data_structure']['attributes'])) {
-        WP_CRM_F::add_message(sprintf(__('Warning: there is no field with slug \'%s\' in list of user attributes on Data tab!', 'wp_crm'), $field), 'bad');
+        WP_CRM_F::add_message(sprintf(__('Warning: there is no field with slug \'%s\' in list of user attributes on Data tab!', ud_get_wp_crm()->domain), $field), 'bad');
       }
     }
   }

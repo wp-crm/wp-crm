@@ -59,7 +59,7 @@ class WPC_BuddyPress {
    */
   static function bp_init() {
 
-    WP_CRM_F::console_log(sprintf(__('Executing: %1s.', 'wp_crm'), 'WPC_BuddyPress::bb_init()'));
+    WP_CRM_F::console_log(sprintf(__('Executing: %1s.', ud_get_wp_crm()->domain), 'WPC_BuddyPress::bb_init()'));
     add_filter('wp_crm_settings_lower', array('WPC_BuddyPress','wp_crm_settings_lower'));
     add_filter('wp_crm_user_action', array('WPC_BuddyPress','wp_crm_user_action'));
 
@@ -72,7 +72,7 @@ class WPC_BuddyPress {
    * @author potanin@UD
    */
   static function wp_crm_settings_lower($wp_crm) {
-    $wp_crm['overview_user_actions']['buddypress_profile']['label'] = __('BuddyPress Profile Link','wp_crm');
+    $wp_crm['overview_user_actions']['buddypress_profile']['label'] = __('BuddyPress Profile Link',ud_get_wp_crm()->domain);
     return $wp_crm;
   }
 
@@ -87,7 +87,7 @@ class WPC_BuddyPress {
       return $action;
     }
 
-    $action['html'] = sprintf(__('<a href="%1s">BuddyPress Profile</a>', 'wp_crm'), bp_core_get_userlink( $action['user_id'], false, true));
+    $action['html'] = sprintf(__('<a href="%1s">BuddyPress Profile</a>', ud_get_wp_crm()->domain), bp_core_get_userlink( $action['user_id'], false, true));
 
     return $action;
   }
@@ -100,7 +100,7 @@ class WPC_BuddyPress {
    */
   static function bp_profile_fields() {
     global $wp_crm;
-    add_meta_box( 'bp_profile_fields', apply_filters('wp_crm_add_new_bp_metabox_title', __('BuddyPress Profile Fields', 'wp_crm')), array(__CLASS__,'bp_profile_fields_metabox'), $wp_crm['system']['pages']['add_new'], 'normal', 'default');
+    add_meta_box( 'bp_profile_fields', apply_filters('wp_crm_add_new_bp_metabox_title', __('BuddyPress Profile Fields', ud_get_wp_crm()->domain)), array(__CLASS__,'bp_profile_fields_metabox'), $wp_crm['system']['pages']['add_new'], 'normal', 'default');
   }
 
   /**
@@ -231,9 +231,9 @@ class WPC_BuddyPress {
         //** Looks like user_nicename was changed so redirect to the new profile's URL. */
         $user_domain = str_replace($bp->displayed_user->userdata->user_nicename, $user_nicename, $user_domain);
         if ( $errors ) {
-          bp_core_add_message( __( 'There was a problem updating some of your profile information, please try again.', 'wp_crm' ), 'error' );
+          bp_core_add_message( __( 'There was a problem updating some of your profile information, please try again.', ud_get_wp_crm()->domain ), 'error' );
         } else {
-          bp_core_add_message( __( 'Changes saved.', 'wp_crm' ) );
+          bp_core_add_message( __( 'Changes saved.', ud_get_wp_crm()->domain ) );
         }
         //* Redirect back to the edit screen to display the updates and message */
         bp_core_redirect( trailingslashit( $user_domain . $bp->profile->slug . '/edit/group/' . bp_action_variable( 1 ) ) );
@@ -530,7 +530,7 @@ class WPC_BuddyPress {
 
     //** There are errors */
     if ( $errors ) {
-      WP_CRM_F::add_message(__('Please make sure you fill in all required Buddypress fields in this profile field group before saving.', 'wp_crm'), 'bad');
+      WP_CRM_F::add_message(__('Please make sure you fill in all required Buddypress fields in this profile field group before saving.', ud_get_wp_crm()->domain), 'bad');
     //** No errors */
     } else {
       //** Now we've checked for required fields, lets save the values. */
@@ -546,7 +546,7 @@ class WPC_BuddyPress {
 
       //** Set the feedback message if we have error */
       if ( $errors ) {
-        WP_CRM_F::add_message(__( 'There was a problem updating some of Buddypress profile information, please try again.', 'wp_crm' ), 'bad');
+        WP_CRM_F::add_message(__( 'There was a problem updating some of Buddypress profile information, please try again.', ud_get_wp_crm()->domain ), 'bad');
       }
     }
   }

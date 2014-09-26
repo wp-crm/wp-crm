@@ -7,9 +7,9 @@ if(!empty($wp_crm['data_structure']) && is_array($wp_crm['data_structure']['attr
 }
 
 if( !empty( $_REQUEST['message'] ) && $_REQUEST['message'] == 'created' ) {
-  WP_CRM_F::add_message(__('Profile created.', 'wp_crm'));
+  WP_CRM_F::add_message(__('Profile created.', ud_get_wp_crm()->domain));
 } elseif ( !empty( $_REQUEST['message'] ) && $_REQUEST['message'] == 'updated' ) {
-  WP_CRM_F::add_message(__('Profile updated.', 'wp_crm'));
+  WP_CRM_F::add_message(__('Profile updated.', ud_get_wp_crm()->domain));
 }
 
 /** Set GET param redirect_to. After user saving server will redirect to the current screen (redirect_to is current_screen ID). */
@@ -23,7 +23,7 @@ if($wp_crm_user)  {
   $object = array();
   $object['new'] = true;
   $object['user_role']['default'][0] = get_option('default_role');
-  $title = __('Add New Person', 'wp_crm');
+  $title = __('Add New Person', ud_get_wp_crm()->domain);
 }
 
 $wp_crm_js = array(

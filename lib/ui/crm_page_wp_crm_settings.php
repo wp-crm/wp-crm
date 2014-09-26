@@ -186,7 +186,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <li>
             <input id="wp_crm_default_email" class="regular-text" type="text" value="<?php echo esc_attr($wp_crm['configuration']['default_sender_email']); ?>" name="wp_crm[configuration][default_sender_email]" />
             <label for="wp_crm_default_email"><?php _e('Default sender e-mail address.', 'wp_crm'); ?></label>
-            <div class="description"><?php printf(__('If you are not using SMTP, it is advisable to use a @%s email address to avoid being spammed.', 'wp_crm'), $_SERVER['HTTP_HOST']); ?></div>
+            <div class="description"><?php printf(__('If you are not using SMTP, it is advisable to use a @%s email address to avoid being spammed.', ud_get_wp_crm()->domain), $_SERVER['HTTP_HOST']); ?></div>
             </li>
           </ul>
         </td>
@@ -260,7 +260,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <li>
               <input type="hidden" name="wp_crm[overview_user_actions][<?php echo $action; ?>][enable]" value="false" />
               <input id="wp_crm_overview_user_actions_<?php echo $action; ?>" type="checkbox" name="wp_crm[overview_user_actions][<?php echo $action; ?>][enable]" value="true" <?php checked( !empty($wp_crm['overview_user_actions'][$action]['enable'])?$wp_crm['overview_user_actions'][$action]['enable']:false, 'true'); ?> />
-              <label for="wp_crm_overview_user_actions_<?php echo $action; ?>"><?php printf(__('Enable: %1s','wp_crm'), $data['label']); ?></label>
+              <label for="wp_crm_overview_user_actions_<?php echo $action; ?>"><?php printf(__('Enable: %1s',ud_get_wp_crm()->domain), $data['label']); ?></label>
             </li>
             <?php } ?>
           </ul>

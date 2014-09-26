@@ -12,10 +12,10 @@
 $l10n = array(
 
   // Meta boxes Titles
-  'actions' => __( 'Actions', 'wp_crm' ),
-  'user_activity_history' => __( 'User Activity History', 'wp_crm' ),
-  'primary_information' => __( 'Primary Information', 'wp_crm' ),
-  'special_actions' => __( 'Special Actions', 'wp_crm' ),
+  'actions' => __( 'Actions', ud_get_wp_crm()->domain ),
+  'user_activity_history' => __( 'User Activity History', ud_get_wp_crm()->domain ),
+  'primary_information' => __( 'Primary Information', ud_get_wp_crm()->domain ),
+  'special_actions' => __( 'Special Actions', ud_get_wp_crm()->domain ),
 
 );
 

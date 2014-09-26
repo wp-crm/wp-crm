@@ -139,7 +139,7 @@ class WPC_BB_Press {
    * @return string
    */
   static function wp_crm_overview_columns($current) {
-    $current['forum_participation']['title'] = __('Forum Participation', 'wp_crm');
+    $current['forum_participation']['title'] = __('Forum Participation', ud_get_wp_crm()->domain);
     $current['forum_participation']['overview_column'] = 'true';
     return $current;
   }
