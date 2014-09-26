@@ -509,7 +509,7 @@ class WP_CRM_F {
    * @since 0.21
    *
    */
-  function get_user_email($user_id = false, $args = false) {
+  static function get_user_email($user_id = false, $args = false) {
     global $wpdb;
 
     $args = wp_parse_args($args, array(''));
@@ -525,6 +525,12 @@ class WP_CRM_F {
     return false;
   }
 
+  /**
+   * 
+   * @param type $email
+   * @param type $user_id
+   * @return boolean|string
+   */
   function check_email_for_duplicates($email, $user_id) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       return __("Invalid email", ud_get_wp_crm()->domain);
@@ -1710,7 +1716,7 @@ class WP_CRM_F {
    * @since 0.16
    *
    */
-  function get_user_replacable_values($user_id = false) {
+  static function get_user_replacable_values($user_id = false) {
     global $wp_crm, $wpdb;
 
     $meta_keys = $wp_crm['data_structure']['meta_keys'];
