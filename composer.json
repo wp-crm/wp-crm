@@ -53,6 +53,7 @@
       },
       "licenses" : {
         "client" : {
+          "products": "https://usabilitydynamics.com/products.json",
           "screen": {
             "parent": "wp_crm",
             "title": "Licenses"
