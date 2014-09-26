@@ -2781,7 +2781,7 @@ class WP_CRM_F {
       <?php if ($entry_type): ?><li class="entry_type"><?php echo $entry_type; ?> </li><?php endif; ?>
       <?php if ($left_by): ?><li class="by_user">by <?php echo $left_by; ?> </li><?php endif; ?>
               <li class="wp_crm_log_actions">
-                <span verify_action="true" instant_hide="true" class="wp_crm_message_quick_action wp_crm_subtle_link" object_id="<?php echo $entry->id; ?>" wp_crm_action="delete_log_entry"><?php _e('Delete', 'wp_crm'); ?></span>
+                <span verify_action="true" instant_hide="true" class="wp_crm_message_quick_action wp_crm_subtle_link" object_id="<?php echo $entry->id; ?>" wp_crm_action="delete_log_entry"><?php _e('Delete', ud_get_wp_crm()->domain); ?></span>
               </li>
             </ul>
           </div>
@@ -3087,9 +3087,9 @@ class WP_CRM_F {
       ob_start();
       ?>
       <li>
-        <label><?php _e('Group:', 'wp_crm'); ?></label>
+        <label><?php _e('Group:', ud_get_wp_crm()->domain); ?></label>
         <select class="wp_crm_group" name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][group]">
-          <option value="0"><?php _e('Primary Information', 'wp_crm'); ?></option>
+          <option value="0"><?php _e('Primary Information', ud_get_wp_crm()->domain); ?></option>
       <?php foreach ($wp_crm['data_structure']['attribute_groups'] as $group_key => $group_object): ?>
             <option value="<?php echo $group_key; ?>"<?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['group']) && $wp_crm['data_structure']['attributes'][$slug]['group'] == $group_key ? ' selected="selected"' : ''; ?>><?php echo $group_object['title']; ?></option>
       <?php endforeach; ?>
@@ -3113,23 +3113,23 @@ class WP_CRM_F {
     ob_start();
     ?>
     <tr>
-      <th><?php _e('Attributes Groups', 'wp_crm'); ?></th>
+      <th><?php _e('Attributes Groups', ud_get_wp_crm()->domain); ?></th>
       <td>
         <table id="wp_crm_attribute_groups" class="ud_ui_dynamic_table widefat">
           <thead>
             <tr>
-              <th class="wp_crm_name_col"><?php _e('Group Name', 'wp_crm'); ?></th>
-              <th class="wp_crm_metabox_col"><?php _e('Metabox Title', 'wp_crm'); ?></th>
-              <th class="wp_crm_delete_col"><?php _e('Actions', 'wp_crm'); ?></th>
+              <th class="wp_crm_name_col"><?php _e('Group Name', ud_get_wp_crm()->domain); ?></th>
+              <th class="wp_crm_metabox_col"><?php _e('Metabox Title', ud_get_wp_crm()->domain); ?></th>
+              <th class="wp_crm_delete_col"><?php _e('Actions', ud_get_wp_crm()->domain); ?></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <input readonly="readonly" type="text" value="<?php _e('Primary Information', 'wp_crm'); ?>" />
+                <input readonly="readonly" type="text" value="<?php _e('Primary Information', ud_get_wp_crm()->domain); ?>" />
               </td>
               <td>
-                <input readonly="readonly" type="text" value="<?php _e('Primary Information', 'wp_crm'); ?>" />
+                <input readonly="readonly" type="text" value="<?php _e('Primary Information', ud_get_wp_crm()->domain); ?>" />
               </td>
               <td>
               </td>
@@ -3147,7 +3147,7 @@ class WP_CRM_F {
                     <input style="display:none;" type="text" class="slug" readonly="readonly" value="<?php echo $slug; ?>" />
                   </td>
                   <td>
-                    <span class="wp_crm_delete_row  button"><?php _e('Delete', 'wp_crm') ?></span>
+                    <span class="wp_crm_delete_row  button"><?php _e('Delete', ud_get_wp_crm()->domain) ?></span>
                   </td>
                 </tr>
         <?php
@@ -3163,7 +3163,7 @@ class WP_CRM_F {
                   <input style="display:none;" type="text" class="slug" readonly="readonly" value="sample" />
                 </td>
                 <td>
-                  <span class="wp_crm_delete_row  button"><?php _e('Delete', 'wp_crm') ?></span>
+                  <span class="wp_crm_delete_row  button"><?php _e('Delete', ud_get_wp_crm()->domain) ?></span>
                 </td>
               </tr>
     <?php
@@ -3173,7 +3173,7 @@ class WP_CRM_F {
           <tfoot>
             <tr>
               <td colspan="3">
-                <input type="button" class="wp_crm_add_row button-secondary" value="<?php _e('Add Row', 'wp_crm') ?>" />
+                <input type="button" class="wp_crm_add_row button-secondary" value="<?php _e('Add Row', ud_get_wp_crm()->domain) ?>" />
               </td>
             </tr>
           </tfoot>

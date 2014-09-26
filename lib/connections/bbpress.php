@@ -96,9 +96,9 @@ class WPC_BB_Press {
     global $wp_crm_user;
     ?>
     <ul>
-      <li><?php _e('Posts', 'wp_crm'); ?>: <?php echo count($wp_crm_user['total_posts']); ?></li>
-      <li><?php _e('Last Week', 'wp_crm'); ?>: <?php echo count($wp_crm_user['last_week']); ?></li>
-      <li><?php _e('Last Two Weeks', 'wp_crm'); ?>: <?php echo count($wp_crm_user['last_two_weeks']); ?></li>
+      <li><?php _e('Posts', ud_get_wp_crm()->domain); ?>: <?php echo count($wp_crm_user['total_posts']); ?></li>
+      <li><?php _e('Last Week', ud_get_wp_crm()->domain); ?>: <?php echo count($wp_crm_user['last_week']); ?></li>
+      <li><?php _e('Last Two Weeks', ud_get_wp_crm()->domain); ?>: <?php echo count($wp_crm_user['last_two_weeks']); ?></li>
     </ul>
     <?php
   }
@@ -121,9 +121,9 @@ class WPC_BB_Press {
       ob_start();
       ?>
       <ul>
-        <li><?php _e('Posts', 'wp_crm'); ?>: <?php echo count($bb_data['total_posts']); ?></li>
-        <li><?php _e('Last Week', 'wp_crm'); ?>: <?php echo count($bb_data['last_week']); ?></li>
-        <li><?php _e('Last Two Weeks', 'wp_crm'); ?>: <?php echo count($bb_data['last_two_weeks']); ?></li>
+        <li><?php _e('Posts', ud_get_wp_crm()->domain); ?>: <?php echo count($bb_data['total_posts']); ?></li>
+        <li><?php _e('Last Week', ud_get_wp_crm()->domain); ?>: <?php echo count($bb_data['last_week']); ?></li>
+        <li><?php _e('Last Two Weeks', ud_get_wp_crm()->domain); ?>: <?php echo count($bb_data['last_two_weeks']); ?></li>
       </ul>
       <?php
       $echo = ob_get_contents();

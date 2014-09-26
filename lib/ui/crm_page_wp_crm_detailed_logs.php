@@ -10,16 +10,16 @@
 ?>
 
 <div class="wrap">
-<h2><?php _e('Activity Logs','wp_crm'); ?></h2>
+<h2><?php _e('Activity Logs',ud_get_wp_crm()->domain); ?></h2>
 
 <table class="wp_crm_activity_log widefat">
   <thead>
     <tr>
-      <th class="user"><?php _e( 'User', 'wp_crm' ); ?></th>
-      <th class="activity"><?php _e( 'Activity', 'wp_crm' ); ?></th>
-      <th class="location"><?php _e( 'Location', 'wp_crm' ); ?></th>
-      <th class="detail"><?php _e( 'ISP', 'wp_crm' ); ?></th>
-      <th class="time"><?php _e( 'Time', 'wp_crm' ); ?></th>
+      <th class="user"><?php _e( 'User', ud_get_wp_crm()->domain ); ?></th>
+      <th class="activity"><?php _e( 'Activity', ud_get_wp_crm()->domain ); ?></th>
+      <th class="location"><?php _e( 'Location', ud_get_wp_crm()->domain ); ?></th>
+      <th class="detail"><?php _e( 'ISP', ud_get_wp_crm()->domain ); ?></th>
+      <th class="time"><?php _e( 'Time', ud_get_wp_crm()->domain ); ?></th>
     </tr>
   </thead>
   <tbody>
@@ -42,11 +42,11 @@
   </tbody>
   <tfoot>
     <tr>
-      <th class="user"><?php _e( 'User', 'wp_crm' ); ?></th>
-      <th class="activity"><?php _e( 'Activity', 'wp_crm' ); ?></th>
-      <th class="location"><?php _e( 'Location', 'wp_crm' ); ?></th>
-      <th class="detail"><?php _e( 'ISP', 'wp_crm' ); ?></th>
-      <th class="time"><?php _e( 'Time', 'wp_crm' ); ?></th>
+      <th class="user"><?php _e( 'User', ud_get_wp_crm()->domain ); ?></th>
+      <th class="activity"><?php _e( 'Activity', ud_get_wp_crm()->domain ); ?></th>
+      <th class="location"><?php _e( 'Location', ud_get_wp_crm()->domain ); ?></th>
+      <th class="detail"><?php _e( 'ISP', ud_get_wp_crm()->domain ); ?></th>
+      <th class="time"><?php _e( 'Time', ud_get_wp_crm()->domain ); ?></th>
     </tr>  
   </tfoot>
 </table>

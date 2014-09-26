@@ -259,9 +259,9 @@ class WPC_BuddyPress {
     ?>
     <?php ob_start(); ?>
       <li class="wp_crm_advanced_configuration">
-        <label title="<?php _e('BuddyPress Profile Group', 'wp_crm'); ?>"><?php _e('BP Group:', 'wp_crm'); ?></label>
+        <label title="<?php _e('BuddyPress Profile Group', ud_get_wp_crm()->domain); ?>"><?php _e('BP Group:', ud_get_wp_crm()->domain); ?></label>
         <select class="wp_crm_bp_group" name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][bp_group]">
-          <option value="0"><?php _e(' - ', 'wp_crm'); ?></option>
+          <option value="0"><?php _e(' - ', ud_get_wp_crm()->domain); ?></option>
           <?php foreach ($bp_groups as $key => $group_object): ?>
           <option value="<?php echo $group_object->id; ?>"<?php echo $wp_crm['data_structure']['attributes'][$slug]['bp_group'] == $group_object->id ? ' selected="selected"' : ''; ?>><?php echo $group_object->name; ?></option>
           <?php endforeach; ?>
@@ -406,7 +406,7 @@ class WPC_BuddyPress {
           <?php bp_the_profile_field_options(); ?>
         </select>
         <?php if ( !bp_get_the_profile_field_is_required() ) : ?>
-          <a class="bp-clear-value" href="javascript:bp_clear_profile_field( '<?php echo $input_type; ?>' );"><?php _e( 'Clear', 'wp_crm' ); ?></a>
+          <a class="bp-clear-value" href="javascript:bp_clear_profile_field( '<?php echo $input_type; ?>' );"><?php _e( 'Clear', ud_get_wp_crm()->domain ); ?></a>
         <?php endif; ?>
         </div>
         <?php
@@ -420,7 +420,7 @@ class WPC_BuddyPress {
         echo $options;
         ?>
         <?php if ( !bp_get_the_profile_field_is_required() ) : ?>
-          <a class="bp-clear-value" href="javascript:bp_clear_profile_field( '<?php bp_the_profile_field_input_name(); ?>' );"><?php _e( 'Clear', 'wp_crm' ); ?></a>
+          <a class="bp-clear-value" href="javascript:bp_clear_profile_field( '<?php bp_the_profile_field_input_name(); ?>' );"><?php _e( 'Clear', ud_get_wp_crm()->domain ); ?></a>
         <?php endif; ?>
         </div>
         <?php
@@ -471,7 +471,7 @@ class WPC_BuddyPress {
     if(current_user_can('manage_options')) {
     ?>
     <div id="view_crm_profile" class="btn">
-      <a target="_blank" href="<?php echo admin_url("admin.php?page=wp_crm_add_new&user_id={$bp->displayed_user->id}"); ?>"><?php _e('View CRM Profile', 'wp_crm'); ?></a>
+      <a target="_blank" href="<?php echo admin_url("admin.php?page=wp_crm_add_new&user_id={$bp->displayed_user->id}"); ?>"><?php _e('View CRM Profile', ud_get_wp_crm()->domain); ?></a>
     </div>
     <?php
     }

@@ -451,17 +451,17 @@ if (!class_exists('CRM_UD_UI')):
         </style>
 
         <div class="wrap">
-        <h2><?php _e('UD Log Page for', 'wp_crm') ?> get_option('<?php echo 'WP_CRM' . 'log'; ?>');
-          <a href="<?php echo admin_url("admin.php?page=ud_log&ud_action=clear_log"); ?>" class="button"><?php _e('Clear Log', 'wp_crm') ?></a>
+        <h2><?php _e('UD Log Page for', ud_get_wp_crm()->domain) ?> get_option('<?php echo 'WP_CRM' . 'log'; ?>');
+          <a href="<?php echo admin_url("admin.php?page=ud_log&ud_action=clear_log"); ?>" class="button"><?php _e('Clear Log', ud_get_wp_crm()->domain) ?></a>
         </h2>
 
 
         <table class="widefat">
           <thead>
             <tr>
-              <th style="width: 150px"><?php _e('Timestamp', 'wp_crm') ?></th>
-              <th><?php _e('Event', 'wp_crm') ?></th>
-              <th><?php _e('User', 'wp_crm') ?></th>
+              <th style="width: 150px"><?php _e('Timestamp', ud_get_wp_crm()->domain) ?></th>
+              <th><?php _e('Event', ud_get_wp_crm()->domain) ?></th>
+              <th><?php _e('User', ud_get_wp_crm()->domain) ?></th>
             </tr>
           </thead>
 
