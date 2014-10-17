@@ -2182,7 +2182,7 @@ class WP_CRM_F {
               ?>
                 <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />
                 <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
-                <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
+                <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
               <?php
             }
           }
@@ -2193,7 +2193,7 @@ class WP_CRM_F {
             ?>
               <div class="wp_crm_input_wrap wp_dropdown_input"  random_hash="<?php echo $rand; ?>" >
 
-                <select class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+                <select class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                   <option value=""></option>
             <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                     <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2213,23 +2213,6 @@ class WP_CRM_F {
       //** API Access for data after the field *'
       do_action("wp_crm_after_{$slug}_input", array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
       ?>
-
-      <?php /* if($attribute['autocomplete'] == 'true'): ?>
-        <script type="text/javascript">
-        <?php
-        // get data
-        $values = $wpdb->get_col("SELECT DISTINCT(meta_value) FROM {$wpdb->usermeta} WHERE meta_key = '{$slug}'");
-        if(!empty($values)) {
-        ?>
-        var <?php echo $slug; ?>_autocomplete_vars = ["<?php echo implode('","', $values); ?>"];
-        jQuery(document).ready(function() {
-        jQuery("input.wp_crm_<?php echo $slug; ?>_field").click(function() {
-        var input = jQuery(this);
-        input.autocomplete({source: <?php echo $slug; ?>_autocomplete_vars, appendTo: jQuery(input).parents('.input_div')});
-        });
-        });
-        </script>
-        <?php } endif; /* autocomplete */ ?>
 
       </div>
       <?php
