@@ -912,7 +912,6 @@ class WP_CRM_F {
 
     if (!empty($wp_crm['notifications'][$slug])) {
       return json_encode($wp_crm['notifications'][$slug]);
-      ;
     } else {
       return json_encode(array('error' => __('Notification template not found.', ud_get_wp_crm()->domain)));
     }
