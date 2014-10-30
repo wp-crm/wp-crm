@@ -1,7 +1,6 @@
 {
   "name": "usabilitydynamics/wp-crm",
-  "version": "1.0.0",
-  "type": "plugin",
+  "type": "wordpress-plugin",
   "minimum-stability": "dev",
   "homepage": "https://usabilitydynamics.com/products/wp-crm/",
   "author": {
@@ -20,8 +19,8 @@
   },
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-wp-bootstrap": "master",
-    "usabilitydynamics/lib-ud-api-client": "master"
+    "usabilitydynamics/lib-wp-bootstrap": "*",
+    "usabilitydynamics/lib-ud-api-client": "*"
   },
   "require-dev": {
     "usabilitydynamics/lib-wp-phpunit": "master",
@@ -56,7 +55,8 @@
           "products": "https://usabilitydynamics.com/products.json",
           "screen": {
             "parent": "wp_crm",
-            "title": "Licenses"
+			"page_title": "l10n.licenses_page_title",
+            "menu_title": "l10n.licenses_menu_title"
           }
         },
         "product" : false

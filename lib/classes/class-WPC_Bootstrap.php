@@ -8,7 +8,7 @@ namespace UsabilityDynamics\WPC {
 
   if( !class_exists( 'UsabilityDynamics\WPC\WPC_Bootstrap' ) ) {
 
-    final class WPC_Bootstrap extends \UsabilityDynamics\WP\Bootstrap {
+    final class WPC_Bootstrap extends \UsabilityDynamics\WP\Bootstrap_Plugin {
       
       /**
        * Singleton Instance Reference.
@@ -24,11 +24,6 @@ namespace UsabilityDynamics\WPC {
        * Instantaite class.
        */
       public function init() {
-        //** Be sure we do not have errors. Do not initialize plugin if we have them. */
-        if( $this->has_errors() ) {
-          return null;
-        }
-        
         /** Functions - customized for WP-CRM */
         include_once ud_get_wp_crm()->path( "lib/class_ud.php", 'dir' );
 
@@ -58,6 +53,19 @@ namespace UsabilityDynamics\WPC {
 
         //** Initiate the plugin */
         $this->core = new \WP_CRM_Core();
+      }
+      
+      /**
+       * Return localization's list.
+       *
+       * @author peshkov@UD
+       * @return array
+       */
+      public function get_localization() {
+        return apply_filters( 'wpc::get_localization', array(
+          'licenses_menu_title' => __( 'Add-ons', $this->domain ),
+          'licenses_page_title' => __( 'WP-CRM Add-ons Manager', $this->domain ),
+        ) );
       }
       
       /**
