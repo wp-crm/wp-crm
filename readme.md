@@ -1,15 +1,15 @@
-[![Stories in Ready](https://badge.waffle.io/usabilitydynamics/wp-crm.png?label=ready&title=Ready)](http://waffle.io/usabilitydynamics/wp-crm)
+### WP-CRM Plugin
 
 This plugin is intended to significantly improve user management, easily create contact forms, and keep track of incoming shortcode form messages.
 
-WordPress already comes with some basic user management functions - WP-CRM expands on those functionalities by allowing you to organize your users using custom attributes, find them using filters, and keep track of correspondence.
-
-Your WP control panel can effectively be used to manage all your customers, vendors, partners, affiliates, etc.
-
-### Features
-* Excellent user organization, filtering and editing.
-* Ability to easily add new user data attributes (i.e. Company Name).
-* Dynamic charts representing attributes with quantifiable data.
-* Shortcode Form Creation and Contact Message Management.
-* User CSV Exporting.*
-* User activity and note tracking.
+***
+[![Issues - Bug](https://badge.waffle.io/usabilitydynamics/wp-crm.png?label=bug&title=Bugs)](http://waffle.io/usabilitydynamics/wp-crm)
+[![Issues - Backlog](https://badge.waffle.io/usabilitydynamics/wp-crm.png?label=backlog&title=Backlog)](http://waffle.io/usabilitydynamics/wp-crm/)
+[![Issues - Active](https://badge.waffle.io/usabilitydynamics/wp-crm.png?label=in progress&title=Active)](http://waffle.io/usabilitydynamics/wp-crm/)
+***
+[![Dependency Status](https://gemnasium.com/usabilitydynamics/wp-crm.svg)](https://gemnasium.com/usabilitydynamics/wp-crm)
+[![Scrutinizer Quality](http://img.shields.io/scrutinizer/g/usabilitydynamics/wp-crm.svg)](https://scrutinizer-ci.com/g/usabilitydynamics/wp-crm)
+[![Scrutinizer Coverage](http://img.shields.io/scrutinizer/coverage/g/usabilitydynamics/wp-crm.svg)](https://scrutinizer-ci.com/g/usabilitydynamics/wp-crm)
+[![Packagist Vesion](http://img.shields.io/packagist/v/usabilitydynamics/wp-crm.svg)](https://packagist.org/packages/usabilitydynamics/wp-crm)
+[![CircleCI](https://circleci.com/gh/usabilitydynamics/wp-crm.png)](https://circleci.com/gh/usabilitydynamics/wp-crm)
+***
