@@ -82,9 +82,6 @@
             "usabilitydynamics/lib-utility": "~0.3"
         },
         "type": "library",
-        "extra": {
-            "installer-name": "lib-wp-bootstrap"
-        },
         "installation-source": "source",
         "autoload": {
             "classmap": [
@@ -119,9 +116,6 @@
             "php": ">=5.3"
         },
         "type": "library",
-        "extra": {
-            "installer-name": "lib-ud-api-client"
-        },
         "installation-source": "source",
         "autoload": {
             "classmap": [
