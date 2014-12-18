@@ -43,11 +43,7 @@
   "extra": {
     "schemas": {
       "dependencies" : {
-        "modules": {
-          "usabilitydynamics/lib-utility": {
-            "\\UsabilityDynamics\\Utility": "0.3.4"
-          }
-        },
+        "modules": {},
         "plugins": []
       },
       "licenses" : {
