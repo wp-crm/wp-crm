@@ -81,12 +81,12 @@ namespace UsabilityDynamics\UD_API {
         if( $this->type == 'theme' ) {
           $screens =array_filter( array(
             'licenses' => __( 'License', $this->domain ),
-            //'more_products' => !empty( $args[ 'products' ] ) ? __( 'More Products', $this->domain ) : false,
+            'more_products' => false,
           ) );
         } elseif ( $this->type == 'plugin' ) {
           $screens =array_filter( array(
             'licenses' => __( 'Licenses', $this->domain ),
-            'more_products' => !empty( $args[ 'products' ] ) ? __( 'More Products', $this->domain ) : false,
+            'more_products' => __( 'More Products', $this->domain ),
           ) );
         }
         
@@ -120,8 +120,7 @@ namespace UsabilityDynamics\UD_API {
         }
         
         //** Add Licenses page */
-        $menu_hook = is_multisite() ? 'network_admin_menu' : 'admin_menu';
-        add_action( $menu_hook, array( $this, 'register_licenses_screen' ), 100 );
+        add_action( 'admin_menu', array( $this, 'register_licenses_screen' ), 100 );
         
         //** Admin Notices Filter */
         add_filter( 'ud:errors:admin_notices', array( $this, 'maybe_remove_notices' ) );
@@ -160,7 +159,7 @@ namespace UsabilityDynamics\UD_API {
         $licenses_link = isset( $screen[ 'parent' ] ) && ( strpos( $screen[ 'parent' ], '?' ) !== false || strpos( $screen[ 'parent' ], '.php' ) !== false ) ? $screen[ 'parent' ] : 'admin.php';
         $licenses_link = add_query_arg( array(
           'page' => $this->menu_slug,
-        ), network_admin_url( $licenses_link ) );
+        ), admin_url( $licenses_link ) );
         
         update_option( $this->token . '-url', $licenses_link );
         
@@ -230,8 +229,7 @@ namespace UsabilityDynamics\UD_API {
        */
       public function process_request () {
       
-        $notices_hook = is_multisite() ? 'network_admin_notices' : 'admin_notices';
-        add_action( $notices_hook, array( $this, 'admin_notices' ) );
+        add_action( 'admin_notices', array( $this, 'admin_notices' ) );
       
         $supported_actions = array( 'activate-products', 'deactivate-product' );
         if ( !isset( $_REQUEST['action'] ) || !in_array( $_REQUEST['action'], $supported_actions ) || !check_admin_referer( 'bulk-' . 'licenses' ) ) {
@@ -463,7 +461,7 @@ namespace UsabilityDynamics\UD_API {
                 $activation_email = isset( $data[1] ) ? $data[1] : '';
               }
               //echo "<pre>"; print_r( $v ); echo "</pre>"; //die();
-              if( !empty( $api_key ) && !empty( $activation_email ) ) {
+              if( !empty( $api_key ) ) {
                 new Update_Checker( array(
                   'type' => $this->type,
                   'upgrade_url' => $this->api_url,
@@ -601,10 +599,7 @@ namespace UsabilityDynamics\UD_API {
         $trnst = get_transient( $this->token . "-more-a" );
         //** If we do not have cache ( transient ), do request to get the list of all available products */
         if( !$trnst || !is_array( $trnst ) ) {
-          $target_url = !empty( $this->args[ 'products' ] ) ? $this->args[ 'products' ] : false;
-          if( !$target_url ) {
-            return $more_products;
-          }
+          $target_url = $this->api_url . 'products.json';
           $request = wp_remote_get( $target_url );
           if( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
             return $more_products;
@@ -629,10 +624,15 @@ namespace UsabilityDynamics\UD_API {
                   'type' => 'plugin',
                   'product_id' => '',
                   'referrer' => false,
+                  'requires' => false,
+                  'tested' => false,
                   'order' => 10,
                 ) );
-                if( !empty( $product[ 'referrer' ] ) && $product[ 'referrer' ] == $this->name ) {
-                  $more_products[] = $product;
+                if( !empty( $product[ 'referrer' ] ) ) {
+                  $product[ 'referrer' ] = !is_array( $product[ 'referrer' ] ) ? explode( ',', $product[ 'referrer' ] ) : $product[ 'referrer' ];
+                  if( in_array( $this->name, $product[ 'referrer' ] ) ) {
+                    $more_products[] = $product;
+                  }
                 }
               }
               //** Sort the list */

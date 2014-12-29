@@ -41,6 +41,9 @@
     ]
   },
   "extra": {
+    "splashes": {
+      "install": "static/splashes/install.php"
+    },
     "schemas": {
       "dependencies" : {
         "modules": {
@@ -52,10 +55,9 @@
       },
       "licenses" : {
         "client" : {
-          "products": "https://usabilitydynamics.com/products.json",
           "screen": {
             "parent": "wp_crm",
-			"page_title": "l10n.licenses_page_title",
+			      "page_title": "l10n.licenses_page_title",
             "menu_title": "l10n.licenses_menu_title"
           }
         },
