@@ -1,8 +1,8 @@
 {
-  "name": "usabilitydynamics/wp-crm",
+  "name": "wp-crm/wp-crm",
   "type": "wordpress-plugin",
   "minimum-stability": "dev",
-  "homepage": "https://usabilitydynamics.com/products/wp-crm/",
+  "homepage": "https://usabilitydynamics.com/product/wp-crm/",
   "author": {
     "name": "UsabilityDynamics, Inc.",
     "url": "https://usabilitydynamics.com"
