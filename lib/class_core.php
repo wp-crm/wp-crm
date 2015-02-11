@@ -828,7 +828,7 @@ class WP_CRM_Core {
     }
 
     if ( !empty( $classes ) && is_array( $classes ) ) {
-      echo implode( ' ', $classes );
+      return implode( ' ', $classes );
     }
 
   }
