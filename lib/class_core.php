@@ -762,6 +762,7 @@ class WP_CRM_Core {
         wp_enqueue_script( 'jquery-ui-widget' );
         wp_enqueue_script( 'jquery-ui-sortable' );
         wp_enqueue_script( 'jquery-ui-mouse' );
+        wp_enqueue_script( 'ace', ud_get_wp_crm()->path( 'lib/third-party/ace/ace.js', 'url' ) );
 
         break;
       default:

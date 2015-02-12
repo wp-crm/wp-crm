@@ -29,6 +29,13 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
 ?>
 
+<style type="text/css" media="screen">
+  .ace_editor { 
+    height: 200px;
+    margin: 0;
+  }
+</style>
+
  <script type="text/javascript">
 
   /* Build trigger action argument array */
@@ -51,7 +58,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
           jQuery(message).insertAfter("h2");
         });
     });
-
+    
   });
 
 
@@ -315,10 +322,17 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             </ul>
           </td>
           <td>
-            <textarea name="wp_crm[notifications][<?php echo $notification_slug; ?>][message]"/><?php echo htmlentities($data['message']); ?></textarea>
-              <div class="wp_crm_trigger_action_arguments">
-              <?php ?>
-              </div>
+            <textarea class="html-editor" id="editor_notification_<?php echo $notification_slug; ?>_text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][message]"/><?php echo $data['message']; ?></textarea>
+            <div id="editor_notification_<?php echo $notification_slug; ?>"></div>
+            <script>
+              var editor_notification_<?php echo $notification_slug; ?> = ace.edit("editor_notification_<?php echo $notification_slug; ?>");
+              var textarea_<?php echo $notification_slug; ?> = jQuery('#editor_notification_<?php echo $notification_slug; ?>_text').hide();
+              editor_notification_<?php echo $notification_slug; ?>.getSession().setValue(textarea_<?php echo $notification_slug; ?>.val());
+              editor_notification_<?php echo $notification_slug; ?>.getSession().setMode("ace/mode/html");
+              editor_notification_<?php echo $notification_slug; ?>.getSession().on('change', function(){
+                textarea_<?php echo $notification_slug; ?>.val(editor_notification_<?php echo $notification_slug; ?>.getSession().getValue());
+              });
+            </script>
           </td>
           <td class="wp_crm_settings_col">
 

@@ -121,8 +121,9 @@ jQuery( document ).ready( function() {
     // Blank out all values
     jQuery( "input[type=text]", added_row ).val( '' );
     jQuery( "input[type=checkbox]", added_row ).attr( 'checked', false );
-    jQuery( "textarea", added_row ).val( '' );
+    jQuery( "textarea", added_row ).val( '' ).show();
     jQuery( "select", added_row ).val( '' );
+    jQuery( ".ace_editor", added_row ).remove();
 
     // Unset 'new_row' attribute
     jQuery( added_row ).attr( 'new_row', 'true' );

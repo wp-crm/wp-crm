@@ -174,7 +174,8 @@ jQuery(document).ready(function() {
         }), jQuery(cloned).appendTo(table);
         var added_row = jQuery(".wp_crm_dynamic_table_row:last", table);
         jQuery(added_row).show(), jQuery("input[type=text]", added_row).val(""), jQuery("input[type=checkbox]", added_row).attr("checked", !1), 
-        jQuery("textarea", added_row).val(""), jQuery("select", added_row).val(""), jQuery(added_row).attr("new_row", "true"), 
+        jQuery("textarea", added_row).val("").show(), jQuery("select", added_row).val(""), 
+        jQuery(".ace_editor", added_row).remove(), jQuery(added_row).attr("new_row", "true"), 
         jQuery(".slug_setter", added_row).focus();
     }), jQuery(".wp_crm_dynamic_table_row[new_row=true] input.slug_setter").live("change", function() {
         var this_row = jQuery(this).parents("tr.wp_crm_dynamic_table_row"), old_slug = jQuery(this_row).attr("slug"), new_slug = jQuery(this).val(), new_slug = wp_crm_create_slug(new_slug);
