@@ -315,7 +315,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             </ul>
           </td>
           <td>
-              <textarea name="wp_crm[notifications][<?php echo $notification_slug; ?>][message]"/><?php echo $data['message']; ?></textarea>
+            <textarea name="wp_crm[notifications][<?php echo $notification_slug; ?>][message]"/><?php echo htmlentities($data['message']); ?></textarea>
               <div class="wp_crm_trigger_action_arguments">
               <?php ?>
               </div>
@@ -551,7 +551,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
       <div class="wp_crm_settings_block">
         <?php _e('Look up the <b>$wp_crm</b> global settings array. This array stores all the default settings, which are overwritten by database settings, and custom filters.',ud_get_wp_crm()->domain) ?>
         <input type="button" value="<?php _e('Show $wp_crm',ud_get_wp_crm()->domain) ?>" id="wp_crm_show_settings_array"> <span id="wp_crm_show_settings_array_cancel" class="wp_crm_link hidden"><?php _e('Cancel',ud_get_wp_crm()->domain) ?></span>
-        <pre id="wp_crm_show_settings_array_result" class="wp_crm_class_pre hidden"><?php print_r($wp_crm); ?></pre>
+        <pre id="wp_crm_show_settings_array_result" class="wp_crm_class_pre hidden"><?php echo htmlentities( print_r( $wp_crm, 1 ) ); ?></pre>
       </div>
 
 
