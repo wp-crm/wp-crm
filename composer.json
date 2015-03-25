@@ -20,7 +20,7 @@
   "require": {
     "php": ">=5.3",
     "usabilitydynamics/lib-wp-bootstrap": "*",
-    "usabilitydynamics/lib-ud-api-client": "*"
+    "usabilitydynamics/lib-ud-api-client": "1.0.3"
   },
   "require-dev": {
     "usabilitydynamics/lib-wp-phpunit": "master",
@@ -46,11 +46,7 @@
     },
     "schemas": {
       "dependencies" : {
-        "modules": {
-          "usabilitydynamics/lib-utility": {
-            "\\UsabilityDynamics\\Utility": "0.3.4"
-          }
-        },
+        "modules": {},
         "plugins": []
       },
       "licenses" : {
