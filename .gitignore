@@ -1,6 +1,8 @@
 core/premium
 vendor/.
 vendor/*
+composer.lock
+node_modules
 
 .svn
 .idea
