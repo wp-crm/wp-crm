@@ -48,7 +48,7 @@ namespace UsabilityDynamics\UD_API {
         $this->type = isset( $args[ 'type' ] ) ? trim( $args[ 'type' ] ) : false;
         $this->activation_email = isset( $args[ 'activation_email' ] ) && $args[ 'activation_email' ] ? true : false;
         $this->name = isset( $args[ 'name' ] ) ? trim( $args[ 'name' ] ) : false;
-        $this->slug = sanitize_key( $this->name );
+        $this->slug = isset( $args[ 'slug' ] ) ? trim( $args[ 'slug' ] ) : sanitize_key( $this->name );
         $this->domain = isset( $args[ 'domain' ] ) ? trim( $args[ 'domain' ] ) : false;
         
         /**

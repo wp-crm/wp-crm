@@ -80,7 +80,8 @@ namespace UsabilityDynamics\UD_API {
             //** WTF? How it could be? */
             wp_die( 'Are you cheating?' );
           }
-          $referrer_key = sanitize_key( $this->referrer );
+          $referrer_key = strtolower( $this->referrer );
+          $referrer_key = preg_replace( '/[^a-z0-9_\-\/]/', '', $referrer_key );
           $_ud_queued_updates[ $referrer_key ] = isset( $_ud_queued_updates[ $referrer_key ] ) ? $_ud_queued_updates[ $referrer_key ] : array();
           $_ud_queued_updates[ $referrer_key ][] = $product; 
         }

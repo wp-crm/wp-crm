@@ -65,7 +65,7 @@ namespace UsabilityDynamics\UD_API {
         //echo "<pre>"; print_r( $args ); echo "</pre>"; die();
         
         //** Set UD API URL. Can be defined custom one in wp-config.php */
-        $this->api_url = defined( 'UD_API_URL' ) ? trailingslashit( UD_API_URL ) : 'http://usabilitydynamics.com/';
+        $this->api_url = defined( 'UD_API_URL' ) ? trailingslashit( UD_API_URL ) : 'https://www.usabilitydynamics.com/';
         
         //** Don't ever change this, as it will mess with the data stored of which products are activated, etc. */
         $this->token = 'udl_' . $this->slug;
@@ -98,7 +98,7 @@ namespace UsabilityDynamics\UD_API {
         
         $path = wp_normalize_path( dirname( dirname( __DIR__ ) ) );
         $this->screens_path = trailingslashit( $path . '/static/templates' );
-        if( $this->type == 'theme' ) {
+        if( $this->type == 'theme' && strpos( $path, wp_normalize_path( WP_PLUGIN_DIR ) ) === false ) {
           $root_path = wp_normalize_path( get_template_directory() );
           $this->assets_url = trailingslashit( get_template_directory_uri() . str_replace( $root_path, '', $path ) . '/static' );
         } else {
@@ -125,6 +125,7 @@ namespace UsabilityDynamics\UD_API {
         //** Admin Notices Filter */
         add_filter( 'ud:errors:admin_notices', array( $this, 'maybe_remove_notices' ) );
         add_filter( 'ud:messages:admin_notices', array( $this, 'maybe_remove_notices' ) );
+        add_filter( 'ud:warnings:admin_notices', array( $this, 'maybe_remove_notices' ) );
       }
       
       /**
@@ -197,10 +198,9 @@ namespace UsabilityDynamics\UD_API {
       public function settings_screen () {
         
         $this->ui->get_header();
-        
+
         $screen = $this->ui->get_current_screen();
-        $this->ensure_keys_are_actually_active();
-        
+
         switch ( $screen ) {
           //** Products screen. */
           case 'more_products':
@@ -210,12 +210,10 @@ namespace UsabilityDynamics\UD_API {
           //** Licenses screen. */
           case 'licenses':
           default:
+            $this->ensure_keys_are_actually_active();
             $this->installed_products = $this->get_detected_products();
             $this->pending_products = $this->get_pending_products();
-            
             require_once( $this->screens_path . 'screen-manage-' . $this->type . '.php' );
-            
-            
           break;
         }
 
@@ -312,7 +310,7 @@ namespace UsabilityDynamics\UD_API {
         if ( 0 < count( $already_active ) ) {
           foreach ( $already_active as $k => $v ) {
             //** Only look through activated plugins */
-            if( !key_exists( $k, $products ) ) {
+            if( !array_key_exists( $k, $products ) ) {
               continue;
             }
             $deactivate = true;
@@ -630,7 +628,7 @@ namespace UsabilityDynamics\UD_API {
                 ) );
                 if( !empty( $product[ 'referrer' ] ) ) {
                   $product[ 'referrer' ] = !is_array( $product[ 'referrer' ] ) ? explode( ',', $product[ 'referrer' ] ) : $product[ 'referrer' ];
-                  if( in_array( $this->name, $product[ 'referrer' ] ) ) {
+                  if( in_array( $this->slug, $product[ 'referrer' ] ) ) {
                     $more_products[] = $product;
                   }
                 }
@@ -728,7 +726,7 @@ namespace UsabilityDynamics\UD_API {
                 $message = sprintf( __( '%s License is not active.', $this->domain ), $v['product_name'] );
               }
               if( !empty( $v[ 'errors_callback' ] ) && is_callable( $v[ 'errors_callback' ] ) ) {
-                call_user_func( $v[ 'errors_callback' ], $message );
+                call_user_func_array( $v[ 'errors_callback' ], array( $message, 'warning' ) );
               } else {
                 $messages[] = $message;
               }
