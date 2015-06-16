@@ -672,7 +672,7 @@ class WP_CRM_Core {
     $position = ( ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && current_user_can( 'manage_options' ) ) ? '70' : '33' );
 
     /** Setup main overview page */
-    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), '', $position );
+    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
 
     //* Setup child pages (first one is used to be loaded in place of 'CRM' */
     $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] = add_submenu_page( 'wp_crm', __( 'All People', ud_get_wp_crm()->domain ), __( 'All People', ud_get_wp_crm()->domain ), 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ) );
