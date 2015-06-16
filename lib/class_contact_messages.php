@@ -1369,10 +1369,7 @@ class class_contact_messages {
   static function admin_menu() {
     global $wp_crm;
 
-    //** Check how many message exist */
-    $new_message_count = count( class_contact_messages::get_messages() );
-
-    $wp_crm[ 'pages' ][ 'contact_messages' ][ 'overview' ] = add_submenu_page( 'wp_crm', 'Messages', 'Messages' . ( $new_message_count ? ' (' . $new_message_count . ')' : '' ), 'WP-CRM: View Messages', 'wp_crm_contact_messages', array( 'class_contact_messages', 'page_loader' ), '', 30 );
+    $wp_crm[ 'pages' ][ 'contact_messages' ][ 'overview' ] = add_submenu_page( 'wp_crm', 'Messages', 'Messages', 'WP-CRM: View Messages', 'wp_crm_contact_messages', array( 'class_contact_messages', 'page_loader' ), '', 30 );
 
     // Add columns to overview page
     add_filter( "manage_{$wp_crm[ 'pages' ][ 'contact_messages' ]['overview']}_columns", array( 'class_contact_messages', "overview_columns" ) );
