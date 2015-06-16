@@ -228,7 +228,7 @@ class WP_CRM_Core {
   static function template_redirect() {
     global $post;
 
-    if ( !strpos( $post->post_content, "wp_crm_form" ) ) {
+    if (  !empty($post) && !strpos( $post->post_content, "wp_crm_form" ) ) {
       return;
     }
 
