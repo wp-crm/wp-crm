@@ -2,7 +2,7 @@ var wp_crm_quick_reports = [];
 
 google.load("visualization", "1", {
     packages: [ "corechart" ]
-}), jQuery(document).bind("wp_crm_user_results", function() {}), jQuery(document).ready(function() {
+}), jQuery(document).bind("wp_crm_user_results", function(data) {}), jQuery(document).ready(function() {
     jQuery("#wp_crm_text_search").focus(), jQuery(".wp_crm_user_row_actions .wp_crm_user_action[action=reset_password]").live("click", function() {
         var this_button = this, user_id = jQuery(this).attr("user_id"), user_card_wrapper = jQuery(this).closest(".user_card_inner_wrapper"), user_primary = jQuery("li.primary", user_card_wrapper).html();
         jQuery.ajax({

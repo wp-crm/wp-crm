@@ -53,7 +53,7 @@ jQuery(document).ready(function() {
         }, function(result) {
             jQuery(".wp_crm_class_pre", settings_block).show(), jQuery(".wp_crm_class_pre", settings_block).text(result);
         });
-    }), jQuery("form#wp_crm_settings").submit(function() {
+    }), jQuery("form#wp_crm_settings").submit(function(form) {
         var error_field = {
             object: !1,
             tab_index: !1

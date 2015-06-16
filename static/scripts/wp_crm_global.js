@@ -33,13 +33,13 @@ function wp_crm_refresh_random_keys(element) {
 }
 
 function wp_crm_update_activity_stream(params) {
-    var obj = jQuery("#crm_user_activity_filter :input").first(), parent = jQuery(obj).closest("#crm_user_activity_filter"), msglist = jQuery(".wp_crm_stream_status.wp_crm_load_more_stream"), filter_types_visible = jQuery.map(jQuery(":input", parent).filter(":checked"), function(e) {
+    var obj = jQuery("#crm_user_activity_filter :input").first(), parent = jQuery(obj).closest("#crm_user_activity_filter"), msglist = jQuery(".wp_crm_stream_status.wp_crm_load_more_stream"), filter_types_visible = jQuery.map(jQuery(":input", parent).filter(":checked"), function(e, i) {
         return obj = {
             attribute: jQuery(e).attr("attribute"),
             other: jQuery(e).attr("other"),
             hidden: !1
         };
-    }), filter_types_hidden = jQuery.map(jQuery(":input", parent).filter(":not( :checked )"), function(e) {
+    }), filter_types_hidden = jQuery.map(jQuery(":input", parent).filter(":not( :checked )"), function(e, i) {
         return obj = {
             attribute: jQuery(e).attr("attribute"),
             other: jQuery(e).attr("other"),
@@ -186,14 +186,14 @@ jQuery(document).ready(function() {
                 new_slug += rand;
             }
             jQuery(".slug", this_row).val(new_slug), jQuery(this_row).attr("slug", new_slug), 
-            jQuery("input,select,textarea", this_row).each(function() {
+            jQuery("input,select,textarea", this_row).each(function(element) {
                 var old_name = jQuery(this).attr("name");
                 if ("undefined" != typeof old_name) {
                     var new_name = old_name.replace(old_slug, new_slug);
                     if (jQuery(this).attr("id")) var old_id = jQuery(this).attr("id"), new_id = old_id.replace(old_slug, new_slug);
                     jQuery(this).attr("name", new_name), jQuery(this).attr("id", new_id);
                 }
-            }), jQuery("label", this_row).each(function() {
+            }), jQuery("label", this_row).each(function(element) {
                 if (jQuery(this).attr("for")) {
                     var old_for = jQuery(this).attr("for"), new_for = old_for.replace(old_slug, new_slug);
                     jQuery(this).attr("for", new_for);
@@ -212,7 +212,7 @@ jQuery(document).ready(function() {
     }), jQuery(".wpp_crm_filter_section_title").click(function() {
         var parent = jQuery(this).parents(".wp_crm_overview_filters");
         jQuery(" .wp_crm_checkbox_filter", parent).slideToggle("fast", function() {
-            jQuery(".wpp_crm_filter_show", parent).html("none" == jQuery(this).css("display") ? "Show" : "Hide");
+            "none" == jQuery(this).css("display") ? jQuery(".wpp_crm_filter_show", parent).html("Show") : jQuery(".wpp_crm_filter_show", parent).html("Hide");
         });
     });
 }), jQuery(".wp_crm_load_more_stream").live("click", function() {

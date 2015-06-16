@@ -58,21 +58,12 @@ if(is_array($wp_crm_js)) {
   <?php if(!CRM_UD_F::is_older_wp_version('3.4')) : ?>
   <div id="poststuff" class="crm-wp-v34">
     <div id="post-body" class="metabox-holder <?php echo 2 == $screen_layout_columns ? 'columns-2' : 'columns-1'; ?>">
-      <div id="post-body-content">
-        <div class="wp_crm_secondary_ajax_result"></div>
-      </div>
       <div id="postbox-container-1" class="postbox-container">
-        <div id="side-sortables" class="meta-box-sortables ui-sortable">
-          <?php do_meta_boxes($current_screen->id, 'side', $object); ?>
-        </div>
+        <?php do_meta_boxes($current_screen->id, 'side', $object); ?>
       </div>
       <div id="postbox-container-2" class="postbox-container">
-        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
-          <?php do_meta_boxes($current_screen->id, 'normal', $object); ?>
-        </div>
-        <div id="advanced-sortables" class="meta-box-sortables ui-sortable">
-          <?php do_meta_boxes($current_screen->id, 'advanced', $object); ?>
-        </div>
+        <?php do_meta_boxes($current_screen->id, 'normal', $object); ?>
+        <?php do_meta_boxes($current_screen->id, 'advanced', $object); ?>
       </div>
     </div>
   </div><!-- /poststuff -->
@@ -83,7 +74,6 @@ if(is_array($wp_crm_js)) {
   </div>
   <div id="post-body">
   <div id="post-body-content">
-  <div class="wp_crm_secondary_ajax_result"></div>
   <?php do_meta_boxes($current_screen->id, 'normal', $object); ?>
   <?php do_meta_boxes($current_screen->id, 'advanced', $object); ?>
   </div>
