@@ -531,7 +531,7 @@ class WP_CRM_F {
    * @param type $user_id
    * @return boolean|string
    */
-  function check_email_for_duplicates($email, $user_id) {
+  static function check_email_for_duplicates($email, $user_id) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       return __("Invalid email", ud_get_wp_crm()->domain);
     }

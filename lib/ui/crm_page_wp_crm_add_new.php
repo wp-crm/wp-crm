@@ -43,7 +43,6 @@ if(is_array($wp_crm_js)) {
 ?>
 <div class="wp_crm_profile_wrapper wrap">
   <div class="wp_crm_ajax_result"></div>
-  <?php screen_icon(); ?>
   <h2 class="wp_crm_page_title"><?php echo $title; ?></h2>
   <?php WP_CRM_F::print_messages(); ?>
 

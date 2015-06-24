@@ -79,8 +79,8 @@ class WP_CRM_Core {
       }
       add_filter( 'edit_profile_url', array( 'WP_CRM_F', 'edit_profile_url' ), 10, 3 );
     }
+
     /** Loads all the class for handling all plugin tables */
-    
     include_once ud_get_wp_crm()->path( 'lib/class_list_table.php', 'dir' );
 
     if ( !empty($wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ]) && $wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ] == 'true' ) {
