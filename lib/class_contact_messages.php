@@ -1042,7 +1042,7 @@ class class_contact_messages {
     }
 
     $check_fields = array();
-    if( $confirmed_form_data[ 'do_not_check_user_email' ] != 'on' ) {
+    if( !empty($confirmed_form_data[ 'do_not_check_user_email' ]) && $confirmed_form_data[ 'do_not_check_user_email' ] != 'on' ) {
       $check_fields[ ] = 'user_email';
     }
 
@@ -1146,7 +1146,7 @@ class class_contact_messages {
 
     $message = WP_CRM_F::get_first_value( $_REQUEST[ 'wp_crm' ][ 'user_data' ][ 'message_field' ] );
 
-    if( $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' && empty( $message ) ) {
+    if( !empty($confirmed_form_data[ 'notify_with_blank_message' ]) && $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' && empty( $message ) ) {
       //** No message submitted */
     } else {
 

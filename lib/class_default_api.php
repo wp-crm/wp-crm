@@ -677,7 +677,7 @@ if (!function_exists('wp_crm_save_user_data')) {
                 }
               }
 
-              if ( !empty( $wp_crm['data_structure']['attributes'][$meta_key]['has_options'] ) ) {
+              if ( !empty( $wp_crm['data_structure']['attributes'][$meta_key]['has_options'] ) && !empty($wp_crm['data_structure']['attributes'][$meta_key]['option_keys'][$data['option']]) ) {
                 $full_meta_key = $wp_crm['data_structure']['attributes'][$meta_key]['option_keys'][$data['option']];
 
                 if (empty($full_meta_key)) {
