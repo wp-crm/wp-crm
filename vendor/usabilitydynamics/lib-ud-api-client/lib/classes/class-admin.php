@@ -126,6 +126,13 @@ namespace UsabilityDynamics\UD_API {
         add_filter( 'ud:errors:admin_notices', array( $this, 'maybe_remove_notices' ) );
         add_filter( 'ud:messages:admin_notices', array( $this, 'maybe_remove_notices' ) );
         add_filter( 'ud:warnings:admin_notices', array( $this, 'maybe_remove_notices' ) );
+
+        /**
+         * May be add additional information about available add-ons
+         * for legacy users ( who purchased any deprecated premium feature )
+         */
+        add_action( 'ud::bootstrap::upgrade_notice::additional_info', array( $this, 'maybe_add_info_to_upgrade_notice' ), 10, 2 );
+
       }
       
       /**
@@ -647,8 +654,12 @@ namespace UsabilityDynamics\UD_API {
         //** There is not check condition for 'theme' */
         if( !empty( $more_products ) ) {
           $reference_list = $this->get_product_reference_list();
-          if( !empty( $reference_list ) && is_array( $reference_list ) ) {
-            foreach( $more_products as $k => $product ) {
+          foreach( $more_products as $k => $product ) {
+            if( $this->slug == $product[ 'product_id' ] ) {
+              unset( $more_products[ $k ] );
+              continue;
+            }
+            if( !empty( $reference_list ) && is_array( $reference_list ) ) {
               foreach( $reference_list as $reference ) {
                 if( $reference[ 'product_id' ] == $product[ 'product_id' ] ) {
                   unset( $more_products[ $k ] );
@@ -736,6 +747,12 @@ namespace UsabilityDynamics\UD_API {
         if( !empty( $messages ) ) {
           $this->messages = $messages;
         }
+
+        /**
+         * We also ping UD server once per 24h
+         * for getting any specific information.
+         */
+        $this->maybe_ping_ud();
       }
       
       /**
@@ -834,6 +851,178 @@ namespace UsabilityDynamics\UD_API {
           }
         }        
         
+      }
+
+      /**
+       * May be add additional information about available add-ons
+       * for legacy users ( who purchased any deprecated premium feature )
+       * to Product's Upgrade Notice
+       *
+       * @param string $referrer
+       * @param array $vars
+       */
+      public function maybe_add_info_to_upgrade_notice( $referrer, $vars ) {
+        if( $referrer->slug != $this->referrer_slug ) {
+          return;
+        }
+
+        $transient = sanitize_key( 'ud_legacy_features_' . $this->slug );
+        $response = get_transient( $transient );
+
+        if ( false === $response || empty( $response ) ) {
+
+          $detected_products = array();
+
+          foreach( $this->get_detected_plugins() as $product ) {
+            $detected_products[ $product[ 'product_id' ] ] = array(
+              'version' => $product[ 'product_version' ],
+              'status' => $product[ 'product_status' ],
+              'product_id' => $product[ 'product_id' ],
+            );
+          }
+
+          $response = $this->api->upgrade_notice( apply_filters( 'ud:upgrade_notice:request:args', array(
+            'product_id' => $this->slug,
+            'detected_products' => base64_encode( json_encode( $detected_products ) ),
+          ), $this->slug ) );
+
+          if ( false !== $response && empty( $response[ 'error' ] ) ) {
+            set_transient( $transient, json_encode($response), HOUR_IN_SECONDS );
+          }
+
+        } else {
+          $response = json_decode( $response, true );
+        }
+
+        if ( false !== $response && empty( $response[ 'error' ] ) && !empty( $response[ 'message' ] ) ) {
+          $message = @base64_decode( $response[ 'message' ] );
+          echo apply_filters( 'ud::upgrade_notice::response::admin_notice', $message, $this->slug, $response );
+        }
+      }
+
+      /**
+       * Ping UD server once per 24h to get any specific information.
+       *
+       * Maybe render Admin Notice from UD server.
+       *
+       */
+      private function maybe_ping_ud() {
+
+        /**
+         * May be dismiss notice from UD server
+         */
+        if( !empty( $_REQUEST[ 'dismiss_ud_notice' ] ) ) {
+          set_transient( $_REQUEST[ 'dismiss_ud_notice' ], 1 );
+          if( !empty( $_SERVER[ 'HTTP_REFERER' ] ) ) {
+            wp_redirect( $_SERVER[ 'HTTP_REFERER' ] );
+          } else {
+            wp_redirect( admin_url( 'index.php' ) );
+          }
+          exit;
+        }
+
+        $cache = true;
+
+        $transient = sanitize_key( 'ud_ping_' . $this->slug );
+        $response = get_transient( $transient );
+
+        if ( false === $response || empty( $response ) ) {
+
+          $cache = false;
+
+          $detected_products = array();
+
+          foreach( $this->get_detected_plugins() as $product ) {
+            $detected_products[ $product[ 'product_id' ] ] = array(
+              'version' => $product[ 'product_version' ],
+              'status' => $product[ 'product_status' ],
+              'product_id' => $product[ 'product_id' ],
+            );
+          }
+
+          $response = $this->api->ping( array(
+            'product_id' => $this->slug,
+            'detected_products' => base64_encode( json_encode( $detected_products ) ),
+          ) );
+
+          if ( false !== $response && empty( $response[ 'error' ] ) ) {
+            set_transient( $transient, json_encode($response), 24 * HOUR_IN_SECONDS );
+          }
+
+        } else {
+          $response = json_decode( $response, true );
+        }
+
+        if ( false !== $response && empty( $response[ 'error' ] ) ) {
+
+          /**
+           * Here we can take care about response.
+           *
+           * @param string $this->slug ( product_id )
+           * @param array $response
+           * @param bool $cache got from cache or not
+           */
+          $this->ping_response = apply_filters( 'ud::ping::response', $response, $this->slug, $cache );
+
+          /**
+           * Render Admin Notice from UD server.
+           */
+          if( !empty( $this->ping_response[ 'message' ] ) ) {
+            global $_ud_ping_notices;
+
+            if( !isset( $_ud_ping_notices ) || !is_array( $_ud_ping_notices ) ) {
+              $_ud_ping_notices = array();
+            }
+
+            $notice = $this->ping_response[ 'message' ];
+
+            /** Determine if notice dismissed */
+            if( get_transient( md5( $notice ) ) ) {
+              return;
+            }
+
+            if( in_array( $notice, $_ud_ping_notices ) ) {
+              return;
+            }
+
+            array_push( $_ud_ping_notices, $this->ping_response[ 'message' ] );
+
+            if( !has_action( 'admin_notices', array( __CLASS__, 'ping_admin_notices' ) ) ) {
+              add_action( 'admin_notices', array( __CLASS__, 'ping_admin_notices' ) );
+              add_filter( 'ud::ping::response::admin_notice::icon', array( $this, 'get_admin_notice_icon' ) );
+            }
+
+          }
+
+        }
+
+      }
+
+      public function get_admin_notice_icon() {
+        return $this->assets_url . 'images/ud.png';
+      }
+
+      /**
+       * Render Notices from UD server
+       *
+       */
+      static public function ping_admin_notices() {
+        global $_ud_ping_notices;
+
+        if( !isset( $_ud_ping_notices ) || !is_array( $_ud_ping_notices ) ) {
+          return;
+        }
+
+        foreach( $_ud_ping_notices as $notice ) {
+          $dismiss_url = admin_url( 'index.php' ) . '?dismiss_ud_notice=' . md5( $notice );
+          $notice = @base64_decode( $notice );
+          $notice = apply_filters( 'ud::ping::response::admin_notice', $notice );
+          if( !empty( $notice ) ) {
+            $icon = apply_filters( 'ud::ping::response::admin_notice::icon', false );
+            require( dirname( dirname( __DIR__ ) ) . '/static/templates/admin-notice.php' );
+          }
+        }
+
       }
       
     }

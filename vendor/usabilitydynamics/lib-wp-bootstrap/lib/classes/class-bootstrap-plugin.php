@@ -137,16 +137,34 @@ namespace UsabilityDynamics\WP {
             ) );
             $class::$instance = new $class( $args );
             //** Register activation hook */
-            register_activation_hook( $dbt[0]['file'], array( $class::$instance, 'activate' ) );
+            register_activation_hook( $dbt[0]['file'], array( $class::$instance, '_activate' ) );
             //** Register activation hook */
-            register_deactivation_hook( $dbt[0]['file'], array( $class::$instance, 'deactivate' ) );
+            register_deactivation_hook( $dbt[0]['file'], array( $class::$instance, '_deactivate' ) );
           } else {
             $class::$instance = new $class( $args );
           }
         }
         return $class::$instance;
       }
-      
+
+      /**
+       * Plugin Activation
+       * Internal method. Use activate() instead
+       */
+      public function _activate() {
+        delete_option( sanitize_key( 'dismiss_' . $this->slug . '_' . str_replace( '.', '_', $this->args['version'] ) . '_notice' ) );
+        $this->activate();
+      }
+
+      /**
+       * Plugin Deactivation
+       * Internal method. Use deactivate() instead
+       */
+      public function _deactivate() {
+        delete_option( sanitize_key( 'dismiss_' . $this->slug . '_' . str_replace( '.', '_', $this->args['version'] ) . '_notice' ) );
+        $this->deactivate();
+      }
+
       /**
        * Plugin Activation
        * Redeclare the method in child class!

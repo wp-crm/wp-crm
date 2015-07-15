@@ -1,4 +1,4 @@
-(function($) {
+(function($, s) {
 
 	/**
 	 *
@@ -248,6 +248,8 @@
 				$( 'select', filter).on('change', function(e) {
 					list.change_filter();
 				});
+
+        $(document).trigger( 'wplt_initialized', [filter, list] );
 			},
 
 			/**
@@ -327,6 +329,12 @@
 			 * @param    object    data The data to pass through AJAX
 			 */
 			update: function( type, data ) {
+
+				if( !$( '.wplt-spinner', el).length > 0 ) {
+					el.append( '<div class="wplt-spinner"><img src="' + s.spinner_url + '" alt="" title=""/></div>' );
+				}
+				$( '.wplt-spinner', el).show();
+
 				$.ajax({
 					// /wp-admin/admin-ajax.php
 					url: ajaxurl,
@@ -335,6 +343,8 @@
 					data: list.data( data ),
 					// Handle the successful result
 					success: function( r ) {
+
+						$( '.wplt-spinner', el).hide();
 
 						if( typeof r !== 'object' ) {
 							alert( 'Invalid response from server' );
@@ -432,4 +442,4 @@
 		return instance;
 	};
 
-})(jQuery);
+})(jQuery, __wplt);
