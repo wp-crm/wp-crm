@@ -123,6 +123,12 @@ module.exports = function build( grunt ) {
       }
     },
 
+    'json-minify': {
+      build: {
+        files: 'composer.json'
+      }
+    },
+
     clean: {
       update: [
         "composer.lock"
