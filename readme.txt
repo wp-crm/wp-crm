@@ -2,9 +2,9 @@
 Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, anton-korotkoff, ideric
 Donate link: http://usabilitydynamics.com/products/wp-crm/
 Tags: CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
-Requires at least: 3.6
-Tested up to: 4.0
-Stable tag: 0.36.3
+Requires at least: 4.0
+Tested up to: 4.2.2
+Stable tag: 1.0.0
 
 == Description ==
 
@@ -69,6 +69,15 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Initial public release.
 
 == Changelog ==
+
+= 1.0.0 =
+* Changed plugin initialization functionality.
+* Added Composer ( dependency manager ) modules and moved some functionality to composer modules ( vendors ).
+* Moved premium features to separate plugins.
+* Cleaned up functionality of plugin.
+* Refactored file structure of plugin.
+* Refactored 'View All' page.
+* Fixed Warnings and Notices.
 
 = 0.36.3 =
 * WordPress 4.0 compatibility.
