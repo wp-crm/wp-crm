@@ -5,4 +5,6 @@
 * Cleaned up functionality of plugin.
 * Refactored file structure of plugin.
 * Refactored 'View All' page.
+* Fixed performance issue.
+* Fixed user profile page UI.
 * Fixed Warnings and Notices.
