@@ -77,6 +77,8 @@ Visit CRM -> Settings and click on the "Data" tab.  There you will  be able to a
 * Cleaned up functionality of plugin.
 * Refactored file structure of plugin.
 * Refactored 'View All' page.
+* Fixed performance issue.
+* Fixed user profile page UI.
 * Fixed Warnings and Notices.
 
 = 0.36.3 =
