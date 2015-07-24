@@ -546,6 +546,8 @@ class class_contact_messages {
       return;
     }
 
+    $form_slug = isset( $a[ 'form_slug' ] ) ? $a[ 'form_slug' ] : $a[ 'form' ];
+
     //** Find form based on name */
     foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $this_slug => $form_data ) {
 
@@ -613,6 +615,10 @@ class class_contact_messages {
 
     extract( $form_settings );
 
+    if( !isset( $form_slug ) || !isset( $wp_crm[ 'wp_crm_contact_system_data' ][ $form_slug ] ) ) {
+      return;
+    }
+
     $form = wp_parse_args( $wp_crm[ 'wp_crm_contact_system_data' ][ $form_slug ], array(
       'request_method' => 'GET',
     ) );
@@ -629,7 +635,7 @@ class class_contact_messages {
     $wpc_form_id = 'wpc_' . $wp_crm_nonce . '_form';
 
     //** Load user object if passed */
-    if( $use_current_user == 'true' ) {
+    if( isset( $use_current_user ) && $use_current_user == 'true' ) {
       $current_user = wp_get_current_user();
 
       if( 0 == $current_user->ID ) {
@@ -639,7 +645,7 @@ class class_contact_messages {
       }
     }
 
-    if( $require_login_for_existing_users ) {
+    if( isset( $require_login_for_existing_users ) && $require_login_for_existing_users ) {
       //** Get array of fields that must be checked to verify if user already exists */
       $check_fields = apply_filters( 'wp_crm_distinct_user_fields', array( 'user_email' ) );
     }
