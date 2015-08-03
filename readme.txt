@@ -1,5 +1,5 @@
 === WP-CRM - Customer Relations Management for WordPress ===
-Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Korotkoff, ideric
+Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Korotkoff, ideric, MariaKravchenko
 Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
@@ -77,6 +77,7 @@ For additional help, please reference the contextual help dropdowns the differen
 = 1.0.0 =
 * Changed plugin initialization functionality.
 * Added Composer ( dependency manager ) modules and moved some functionality to composer modules ( vendors ).
+* Added doing WP-CRM Settings backup on upgrade to new version. Get information about backup: get_option('wp_crm_settings_backup');
 * Moved premium features to separate plugins.
 * Cleaned up functionality of plugin.
 * Refactored file structure of plugin.
