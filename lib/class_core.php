@@ -88,7 +88,7 @@ class WP_CRM_Core {
     }
 
     wp_register_script( 'google-jsapi', 'https://www.google.com/jsapi' );
-    wp_register_script( 'jquery-cookie', ud_get_wp_crm()->path( 'lib/third-party/jquery.smookie.js', 'url' ), array( 'jquery' ), '1.7.3' );
+    wp_register_script( 'wp-crm-jquery-cookie', ud_get_wp_crm()->path( 'lib/third-party/jquery.smookie.js', 'url' ), array( 'jquery' ), '1.7.3' );
     wp_register_script( 'swfobject', ud_get_wp_crm()->path( 'lib/third-party/swfobject.js', 'url' ), array( 'jquery' ) );
     wp_register_script( 'jquery-uploadify', ud_get_wp_crm()->path( 'lib/third-party/uploadify/jquery.uploadify.v2.1.4.min.js', 'url' ), array( 'jquery', 'swfobject' ) );
     wp_register_script( 'wp-crm-data-tables', ud_get_wp_crm()->path( 'lib/third-party/dataTables/jquery.dataTables.min.js', 'url' ), array( 'jquery' ) );
@@ -439,7 +439,7 @@ class WP_CRM_Core {
     add_filter( "manage_toplevel_page_wp_crm_columns", array( 'WP_CRM_Core', "overview_columns" ) );
 
     if ( !empty( $wp_crm[ 'system' ][ 'pages' ][ 'settings' ] ) ) {
-      add_action( 'admin_print_scripts-' . $wp_crm[ 'system' ][ 'pages' ][ 'settings' ], create_function( '', "wp_enqueue_script('jquery-ui-tabs');wp_enqueue_script('jquery-cookie');" ) );
+      add_action( 'admin_print_scripts-' . $wp_crm[ 'system' ][ 'pages' ][ 'settings' ], create_function( '', "wp_enqueue_script('jquery-ui-tabs');wp_enqueue_script('wp-crm-jquery-cookie');" ) );
     }
     
     add_action( 'load-crm_page_wp_crm_add_new', array( 'WP_CRM_Core', 'wp_crm_save_user_data' ) );
