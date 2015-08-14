@@ -998,7 +998,7 @@ class class_contact_messages {
       die( json_encode( array( 'success' => 'false', 'message' => __( 'If you see this message, WP-CRM thought you were a robot.  Please contact admin if you do not think are you one.', ud_get_wp_crm()->domain ) ) ) );
     }
 
-    $data       = $_REQUEST[ 'wp_crm' ];
+    $data       = apply_filters( 'wpc_process_crm_message_data', $_REQUEST[ 'wp_crm' ] );
     $crm_action = !empty($_REQUEST[ 'crm_action' ])?$_REQUEST[ 'crm_action' ]:'';
 
     if( empty( $data ) ) {
