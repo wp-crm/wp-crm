@@ -1150,7 +1150,7 @@ class class_contact_messages {
 
     }
 
-    $message = WP_CRM_F::get_first_value( $_REQUEST[ 'wp_crm' ][ 'user_data' ][ 'message_field' ] );
+    $message = WP_CRM_F::get_first_value( !empty($_REQUEST[ 'wp_crm' ][ 'user_data' ][ 'message_field' ])?$_REQUEST[ 'wp_crm' ][ 'user_data' ][ 'message_field' ]:'' );
 
     if( !empty($confirmed_form_data[ 'notify_with_blank_message' ]) && $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' && empty( $message ) ) {
       //** No message submitted */

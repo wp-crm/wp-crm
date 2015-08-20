@@ -808,23 +808,27 @@ if (!function_exists('wp_crm_save_user_data')) {
         }
 
         //** Delete old option meta keys for this meta_key  */
-        if ( !empty( $wp_crm['data_structure']['attributes'][$meta_key]['has_options'] ) ) {
+        if (!empty($wp_crm['data_structure']['attributes'][$meta_key]['has_options'])) {
           //** Delete "holder" meta key (this may not be necessary */
           delete_user_meta($user_id, $meta_key);
           foreach ($wp_crm['data_structure']['attributes'][$meta_key]['option_keys'] as $old_meta_key) {
             //** Delete individual long (optional) meta keys */
-            delete_user_meta($user_id, $old_meta_key);
+            if ( !empty( $user_data[$meta_key] ) ) {
+              delete_user_meta($user_id, $old_meta_key);
+            }
           }
         }
+
         /**
          * If attribute is just CHECKBOX (input type) and it doesn't store any predefined values
          * we have to remove it from usermeta on using admin user edit page, because
          * when attribute is not checked it's not set here (in funstion's params), so we MUSTN'T store t anymore.
          * peshkov@UD
-         */ 
-        elseif ( isset( $args['admin_save_action'] ) && !empty($wp_crm['data_structure']['attributes'][$meta_key]['input_type']) && $wp_crm['data_structure']['attributes'][$meta_key]['input_type'] == 'checkbox') {
+         */
+        elseif (isset($args['admin_save_action']) && !empty($wp_crm['data_structure']['attributes'][$meta_key]['input_type']) && $wp_crm['data_structure']['attributes'][$meta_key]['input_type'] == 'checkbox') {
           delete_user_meta($user_id, $meta_key);
         }
+
       }
 
       //** Add meta values */
