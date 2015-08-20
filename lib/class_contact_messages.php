@@ -704,7 +704,7 @@ class class_contact_messages {
       $tabindex++;
     } ?>
 
-    <?php if( $form[ 'message_field' ] == 'on' ) { ?>
+    <?php if( !empty($form[ 'message_field' ]) && $form[ 'message_field' ] == 'on' ) { ?>
       <li class="wp_crm_form_element wp_crm_message_field ">
     <div class="control-group">
       <label class="control-label wp_crm_input_label">&nbsp;</label>
@@ -1133,7 +1133,7 @@ class class_contact_messages {
     ) ) );
     
     if( !$user_data ) {
-      if( $confirmed_form_data[ 'message_field' ] == 'on' ) {
+      if( !empty($confirmed_form_data[ 'message_field' ]) && $confirmed_form_data[ 'message_field' ] == 'on' ) {
         //** If contact form includes a message, notify that message could not be sent */
         die( json_encode( array( 'success' => 'false', 'message' => __( 'Message could not be sent. Please make sure you have entered your information properly.', ud_get_wp_crm()->domain ) ) ) );
       } else {
