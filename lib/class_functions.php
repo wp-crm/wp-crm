@@ -635,7 +635,7 @@ class WP_CRM_F {
     }
 
     //** Get selected attributes from Settings page */
-    $user_card_attributes = $wp_crm['configuration']['overview_table_options']['main_view'];
+    $user_card_attributes = !empty($wp_crm['configuration']['overview_table_options']['main_view'])?$wp_crm['configuration']['overview_table_options']['main_view']:false;
 
     //** Load Default user card values to avoid having blank user cards */
     if (!is_array($user_card_attributes)) {
