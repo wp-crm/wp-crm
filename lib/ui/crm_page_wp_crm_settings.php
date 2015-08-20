@@ -246,7 +246,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
           <ul>
            <?php foreach(apply_filters('wp_crm_user_card_keys', $wp_crm['data_structure']['attributes']) as $key => $attribute_data): $rand = rand(1000,9999); ?>
             <li>
-              <input type="checkbox" value="<?php echo $key; ?>" <?php CRM_UD_UI::checked_in_array($key, $wp_crm['configuration']['overview_table_options']['main_view']); ?> name="wp_crm[configuration][overview_table_options][main_view][]" id="<?php echo $key.$rand; ?>" />
+              <input type="checkbox" value="<?php echo $key; ?>" <?php CRM_UD_UI::checked_in_array($key, !empty($wp_crm['configuration']['overview_table_options']['main_view'])?$wp_crm['configuration']['overview_table_options']['main_view']:''); ?> name="wp_crm[configuration][overview_table_options][main_view][]" id="<?php echo $key.$rand; ?>" />
               <label for="<?php echo $key.$rand; ?>"><?php echo ($attribute_data['title'] ? $attribute_data['title'] : CRM_UD_F::de_slug($key)); ?> <?php echo (!empty($attribute_data['quick_description']) ? '<span class="description">' . $attribute_data['quick_description'] . '</span>' : ''); ?></label>
             </li>
           <?php endforeach; ?>
