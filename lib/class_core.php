@@ -798,6 +798,8 @@ class WP_CRM_Core {
   static function admin_body_class() {
     global $current_screen, $wp_crm_user, $current_user;
 
+    $classes = array();
+
     switch ( $current_screen->id ) {
 
       case 'toplevel_page_wp_crm':
