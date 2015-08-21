@@ -58,10 +58,11 @@ For additional help, please reference the contextual help dropdowns the differen
 == Screenshots ==
 
 1. Main view and filter
-2. User editing
-3. Incoming shortcode forms overview
-4. Example of the Shortcode Form in action
-5. Graphs and charts.
+2. Manage user fields
+3. Manage shortcode forms
+4. Manage notifications
+5. List of messages received
+6. Edit user page
 
 == Upgrade Notice ==
 
