@@ -1,3 +1,8 @@
+#### 1.0.2 ( September 1, 2015 )
+* Fixed the bug when UsabilityDynamics Admin Notices could not be dismissed.
+* Fixed warnings and notices.
+* Fixed localizations.
+
 #### 1.0.1 ( August 21, 2015 )
 * Fixed incorrect behaviour on custom 'Install Plugins' page after depended plugins ( Add-ons ) activation.
 * Fixed the way of widgets initialization. Compatibility with WordPress 4.3 and higher.
