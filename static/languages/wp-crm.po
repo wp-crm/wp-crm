@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP-CRM\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-26 14:16+0200\n"
-"PO-Revision-Date: 2014-09-26 14:16+0200\n"
+"POT-Creation-Date: 2015-09-01 13:01+0300\n"
+"PO-Revision-Date: 2015-09-01 13:01+0300\n"
 "Last-Translator: rotcod <denys.kostin@usabilitydynamics.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -11,11 +11,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: ../../\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Generator: Poedit 1.8.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: /.git\n"
+"X-Poedit-SearchPathExcluded-0: .git\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
 
 #: action_hooks.php:33
 msgid "Single Line Text"
@@ -81,7 +84,7 @@ msgid ""
 "first place."
 msgstr ""
 
-#: l10n.php:15 lib/class_functions.php:3128
+#: l10n.php:15 lib/class_functions.php:3111
 msgid "Actions"
 msgstr ""
 
@@ -89,8 +92,8 @@ msgstr ""
 msgid "User Activity History"
 msgstr ""
 
-#: l10n.php:17 lib/class_functions.php:3097 lib/class_functions.php:3134
-#: lib/class_functions.php:3137
+#: l10n.php:17 lib/class_functions.php:3080 lib/class_functions.php:3117
+#: lib/class_functions.php:3120
 msgid "Primary Information"
 msgstr ""
 
@@ -107,7 +110,6 @@ msgid "Message trashed."
 msgstr ""
 
 #: lib/class_contact_messages.php:183
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:383
 msgid "Status"
 msgstr ""
 
@@ -135,7 +137,7 @@ msgstr ""
 msgid "Visualize Contact Data"
 msgstr ""
 
-#: lib/class_contact_messages.php:285 lib/class_functions.php:764
+#: lib/class_contact_messages.php:285 lib/class_functions.php:765
 msgid "There is not enough quantifiable data to generate any graphs."
 msgstr ""
 
@@ -185,113 +187,113 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: lib/class_contact_messages.php:825 lib/class_ud.php:400
+#: lib/class_contact_messages.php:831 lib/class_ud.php:400
 msgid "Processing..."
 msgstr ""
 
-#: lib/class_contact_messages.php:907
+#: lib/class_contact_messages.php:913
 msgid "A server error occurred while trying to process the form."
 msgstr ""
 
-#: lib/class_contact_messages.php:992
+#: lib/class_contact_messages.php:998
 msgid ""
 "If you see this message, WP-CRM thought you were a robot.  Please contact "
 "admin if you do not think are you one."
 msgstr ""
 
-#: lib/class_contact_messages.php:1005 lib/class_contact_messages.php:1030
+#: lib/class_contact_messages.php:1011 lib/class_contact_messages.php:1036
 msgid "Form could not be submitted."
 msgstr ""
 
-#: lib/class_contact_messages.php:1083
+#: lib/class_contact_messages.php:1089
 #, php-format
 msgid "%1s cannot be empty."
 msgstr ""
 
-#: lib/class_contact_messages.php:1094
+#: lib/class_contact_messages.php:1100
 #, php-format
 msgid "This %1s belongs to a registered user, please login."
 msgstr ""
 
-#: lib/class_contact_messages.php:1115 lib/class_contact_messages.php:1135
+#: lib/class_contact_messages.php:1121 lib/class_contact_messages.php:1141
 msgid ""
 "Form could not be submitted. Please make sure you have entered your "
 "information properly."
 msgstr ""
 
-#: lib/class_contact_messages.php:1132
+#: lib/class_contact_messages.php:1138
 msgid ""
 "Message could not be sent. Please make sure you have entered your "
 "information properly."
 msgstr ""
 
-#: lib/class_contact_messages.php:1154
+#: lib/class_contact_messages.php:1160
 msgid " -- No message. -- "
 msgstr ""
 
-#: lib/class_contact_messages.php:1232
+#: lib/class_contact_messages.php:1238
 msgid "Use this section to add and configure new shortcode forms."
 msgstr ""
 
-#: lib/class_contact_messages.php:1237
+#: lib/class_contact_messages.php:1243
 msgid "Form Settings"
 msgstr ""
 
-#: lib/class_contact_messages.php:1238
+#: lib/class_contact_messages.php:1244
 msgid "Fields"
 msgstr ""
 
-#: lib/class_contact_messages.php:1248 lib/ui/crm_page_wp_crm_settings.php:396
+#: lib/class_contact_messages.php:1254 lib/ui/crm_page_wp_crm_settings.php:410
 msgid "Title:"
 msgstr ""
 
-#: lib/class_contact_messages.php:1253
+#: lib/class_contact_messages.php:1259
 msgid "Shortcode:"
 msgstr ""
 
-#: lib/class_contact_messages.php:1259
+#: lib/class_contact_messages.php:1265
 msgid "Role:"
 msgstr ""
 
-#: lib/class_contact_messages.php:1264
+#: lib/class_contact_messages.php:1270
 msgid "If new user created, assign this role."
 msgstr ""
 
-#: lib/class_contact_messages.php:1268
+#: lib/class_contact_messages.php:1274
 msgid "Method:"
 msgstr ""
 
-#: lib/class_contact_messages.php:1273
+#: lib/class_contact_messages.php:1279
 msgid "Form request method."
 msgstr ""
 
-#: lib/class_contact_messages.php:1278
+#: lib/class_contact_messages.php:1284
 msgid "Display textarea for custom message."
 msgstr ""
 
-#: lib/class_contact_messages.php:1283
+#: lib/class_contact_messages.php:1289
 msgid "Send message notification even if no message is submitted."
 msgstr ""
 
-#: lib/class_contact_messages.php:1288
+#: lib/class_contact_messages.php:1294
 msgid "Do not require users with existing accounts to sign in first."
 msgstr ""
 
-#: lib/class_contact_messages.php:1313 lib/class_functions.php:2789
-#: lib/class_functions.php:3155 lib/class_functions.php:3171
+#: lib/class_contact_messages.php:1319 lib/class_functions.php:2772
+#: lib/class_functions.php:3138 lib/class_functions.php:3154
 #: lib/class_user_list_table.php:525 lib/ui/crm_metaboxes.php:278
-#: lib/ui/crm_page_wp_crm_settings.php:344
-#: lib/ui/crm_page_wp_crm_settings.php:462
+#: lib/ui/crm_page_wp_crm_settings.php:358
+#: lib/ui/crm_page_wp_crm_settings.php:476
 msgid "Delete"
 msgstr ""
 
-#: lib/class_contact_messages.php:1321 lib/class_functions.php:3181
-#: lib/ui/crm_page_wp_crm_settings.php:352
-#: lib/ui/crm_page_wp_crm_settings.php:471
+#: lib/class_contact_messages.php:1327 lib/class_functions.php:3164
+#: lib/ui/crm_page_wp_crm_settings.php:366
+#: lib/ui/crm_page_wp_crm_settings.php:485
 msgid "Add Row"
 msgstr ""
 
-#: lib/class_contact_messages.php:1327
+#: lib/class_contact_messages.php:1333
 msgid ""
 "To see list of variables you can use in wp_crm_contact_system_data open up "
 "the \"Help\" tab and view the user data structure.  Any variable you see in "
@@ -299,7 +301,7 @@ msgid ""
 "body. Example: [user_email] would include the recipient's e-mail."
 msgstr ""
 
-#: lib/class_contact_messages.php:1328 lib/ui/crm_page_wp_crm_settings.php:360
+#: lib/class_contact_messages.php:1334 lib/ui/crm_page_wp_crm_settings.php:374
 msgid ""
 "To add notification actions use the <b>wp_crm_notification_actions</b> "
 "filter, then call the action within <b>wp_crm_send_notification()</b> "
@@ -307,33 +309,33 @@ msgid ""
 "off."
 msgstr ""
 
-#: lib/class_contact_messages.php:1332
+#: lib/class_contact_messages.php:1338
 msgid "Options"
 msgstr ""
 
-#: lib/class_contact_messages.php:1337
+#: lib/class_contact_messages.php:1343
 msgid "Default role to use for new contacts:"
 msgstr ""
 
-#: lib/class_contact_messages.php:1339
+#: lib/class_contact_messages.php:1345
 msgid ""
 "WP-CRM creates user profiles, if only temporary, to store inquiries and "
 "messages from shortcode forms."
 msgstr ""
 
-#: lib/class_contact_messages.php:1360
+#: lib/class_contact_messages.php:1366
 msgid "View messages from shortcode forms."
 msgstr ""
 
-#: lib/class_contact_messages.php:1389 lib/ui/crm_page_wp_crm_settings.php:282
+#: lib/class_contact_messages.php:1392 lib/ui/crm_page_wp_crm_settings.php:289
 msgid "Message"
 msgstr ""
 
-#: lib/class_contact_messages.php:1390
+#: lib/class_contact_messages.php:1393
 msgid "Sender"
 msgstr ""
 
-#: lib/class_contact_messages.php:1453
+#: lib/class_contact_messages.php:1456
 msgid "Contact Messages"
 msgstr ""
 
@@ -368,7 +370,7 @@ msgid ""
 "the Settings page."
 msgstr ""
 
-#: lib/class_core.php:339 lib/ui/crm_page_wp_crm_settings.php:102
+#: lib/class_core.php:339 lib/ui/crm_page_wp_crm_settings.php:109
 msgid "Notifications"
 msgstr ""
 
@@ -400,7 +402,7 @@ msgid ""
 "unapplicable attributes on profile editing pages."
 msgstr ""
 
-#: lib/class_core.php:390 lib/ui/crm_page_wp_crm_settings.php:383
+#: lib/class_core.php:390 lib/ui/crm_page_wp_crm_settings.php:397
 msgid "Predefined Values"
 msgstr ""
 
@@ -481,7 +483,7 @@ msgstr ""
 msgid "<b>Important</b>: user's email attribute should have slug 'user_email'."
 msgstr ""
 
-#: lib/class_core.php:410 lib/ui/crm_page_wp_crm_settings.php:167
+#: lib/class_core.php:410 lib/ui/crm_page_wp_crm_settings.php:174
 msgid "Automation"
 msgstr ""
 
@@ -532,8 +534,8 @@ msgstr ""
 msgid "My Profile"
 msgstr ""
 
-#: lib/class_core.php:682 lib/class_core.php:846
-#: lib/ui/crm_page_wp_crm_settings.php:381
+#: lib/class_core.php:682 lib/class_core.php:849
+#: lib/ui/crm_page_wp_crm_settings.php:395
 msgid "Settings"
 msgstr ""
 
@@ -541,31 +543,31 @@ msgstr ""
 msgid "Activity Logs"
 msgstr ""
 
-#: lib/class_core.php:887
+#: lib/class_core.php:890
 msgid "For more information:"
 msgstr ""
 
-#: lib/class_core.php:888
+#: lib/class_core.php:891
 msgid "WP-CRM Product Page"
 msgstr ""
 
-#: lib/class_core.php:889
+#: lib/class_core.php:892
 msgid "WP-CRM Forums"
 msgstr ""
 
-#: lib/class_core.php:896
+#: lib/class_core.php:899
 msgid "Please upgrade Wordpress to the latest version for detailed help."
 msgstr ""
 
-#: lib/class_core.php:896
+#: lib/class_core.php:899
 msgid "Or visit"
 msgstr ""
 
-#: lib/class_core.php:896
+#: lib/class_core.php:899
 msgid "WP-CRM Help Page"
 msgstr ""
 
-#: lib/class_core.php:896
+#: lib/class_core.php:899
 msgid "on UsabilityDynamics.com"
 msgstr ""
 
@@ -606,20 +608,20 @@ msgstr ""
 msgid "Error saving user: Email address is invalid"
 msgstr ""
 
-#: lib/class_default_api.php:847
+#: lib/class_default_api.php:851
 msgid "New user added."
 msgstr ""
 
-#: lib/class_default_api.php:851
+#: lib/class_default_api.php:855
 msgid "User updated."
 msgstr ""
 
-#: lib/class_default_api.php:876 lib/class_default_api.php:880
+#: lib/class_default_api.php:880 lib/class_default_api.php:884
 #, php-format
 msgid "Error saving user: %s"
 msgstr ""
 
-#: lib/class_default_api.php:876
+#: lib/class_default_api.php:880
 msgid "Go to user profile"
 msgstr ""
 
@@ -672,24 +674,24 @@ msgstr ""
 msgid "Additional Settings"
 msgstr ""
 
-#: lib/class_functions.php:459
+#: lib/class_functions.php:454
 msgid "User attempted to reset password, but reset email could not be sent."
 msgstr ""
 
-#: lib/class_functions.php:461
+#: lib/class_functions.php:456
 msgid ""
 "Password reset initiated by user, email sent with a password reset link."
 msgstr ""
 
-#: lib/class_functions.php:535
+#: lib/class_functions.php:536
 msgid "Invalid email"
 msgstr ""
 
-#: lib/class_functions.php:550
+#: lib/class_functions.php:551
 msgid "Email already exists"
 msgstr ""
 
-#: lib/class_functions.php:757
+#: lib/class_functions.php:758
 msgid "Unaccounted"
 msgstr ""
 
@@ -718,25 +720,25 @@ msgstr ""
 msgid "Sender trashed."
 msgstr ""
 
-#: lib/class_functions.php:2437
+#: lib/class_functions.php:2420
 msgid "Example Shortcode Form"
 msgstr ""
 
-#: lib/class_functions.php:2443
+#: lib/class_functions.php:2426
 msgid "Thank your for your message!"
 msgstr ""
 
-#: lib/class_functions.php:2446
+#: lib/class_functions.php:2429
 msgid ""
 "Hello [display_name],\n"
 "Thank you, your message has been received."
 msgstr ""
 
-#: lib/class_functions.php:2449
+#: lib/class_functions.php:2432
 msgid "Message from Website"
 msgstr ""
 
-#: lib/class_functions.php:2452
+#: lib/class_functions.php:2435
 msgid ""
 "Shortcode Form: [trigger_action]\n"
 "Sender Name: [display_name]\n"
@@ -744,80 +746,80 @@ msgid ""
 "Message: [message_content]"
 msgstr ""
 
-#: lib/class_functions.php:2661
+#: lib/class_functions.php:2644
 msgid "Show in User Activity History"
 msgstr ""
 
-#: lib/class_functions.php:2680
+#: lib/class_functions.php:2663
 msgid "Note"
 msgstr ""
 
-#: lib/class_functions.php:2683
+#: lib/class_functions.php:2666
 msgid "General Message"
 msgstr ""
 
-#: lib/class_functions.php:2686
+#: lib/class_functions.php:2669
 msgid "Phone Call"
 msgstr ""
 
-#: lib/class_functions.php:2689
+#: lib/class_functions.php:2672
 msgid "Meeting"
 msgstr ""
 
-#: lib/class_functions.php:2692
+#: lib/class_functions.php:2675
 msgid "File"
 msgstr ""
 
-#: lib/class_functions.php:2695
+#: lib/class_functions.php:2678
 msgid "Detailed Log"
 msgstr ""
 
-#: lib/class_functions.php:2698
+#: lib/class_functions.php:2681
 #, php-format
 msgid "Shortcode Form Message %1s."
 msgstr ""
 
-#: lib/class_functions.php:2770
+#: lib/class_functions.php:2753
 #, php-format
 msgid "Logged in from IP %1s, %2s ago."
 msgstr ""
 
-#: lib/class_functions.php:3049
+#: lib/class_functions.php:3032
 msgid "Last Name"
 msgstr ""
 
-#: lib/class_functions.php:3052
+#: lib/class_functions.php:3035
 msgid "First Name"
 msgstr ""
 
-#: lib/class_functions.php:3074
+#: lib/class_functions.php:3057
 #, php-format
 msgid ""
 "Warning: there is no field with slug '%s' in list of user attributes on Data "
 "tab!"
 msgstr ""
 
-#: lib/class_functions.php:3095
+#: lib/class_functions.php:3078
 msgid "Group:"
 msgstr ""
 
-#: lib/class_functions.php:3121
+#: lib/class_functions.php:3104
 msgid "Attributes Groups"
 msgstr ""
 
-#: lib/class_functions.php:3126
+#: lib/class_functions.php:3109
 msgid "Group Name"
 msgstr ""
 
-#: lib/class_functions.php:3127
+#: lib/class_functions.php:3110
 msgid "Metabox Title"
 msgstr ""
 
-#: lib/class_functions.php:3309 lib/ui/crm_metaboxes.php:173
+#: lib/class_functions.php:3292 lib/ui/crm_metaboxes.php:173
 msgid "Add Another"
 msgstr ""
 
-#: lib/class_list_table.php:317
+#: lib/class_list_table.php:332
 msgid "Nothing found."
 msgstr ""
 
@@ -826,23 +828,19 @@ msgid "UD Log Page for"
 msgstr ""
 
 #: lib/class_ud.php:455
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2043
 msgid "Clear Log"
 msgstr ""
 
 #: lib/class_ud.php:462
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2046
 msgid "Timestamp"
 msgstr ""
 
 #: lib/class_ud.php:463
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2048
 msgid "Event"
 msgstr ""
 
 #: lib/class_ud.php:464 lib/ui/crm_page_wp_crm_detailed_logs.php:18
 #: lib/ui/crm_page_wp_crm_detailed_logs.php:45
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2049
 msgid "User"
 msgstr ""
 
@@ -864,7 +862,6 @@ msgid "Table not created."
 msgstr ""
 
 #: lib/class_ud.php:808 lib/class_ud.php:845
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:1547
 msgid "Log Started."
 msgstr ""
 
@@ -928,6 +925,14 @@ msgstr ""
 
 #: lib/class_user_list_table.php:522
 msgid "Remove"
+msgstr ""
+
+#: lib/classes/class-WPC_Bootstrap.php:66
+msgid "Add-ons"
+msgstr ""
+
+#: lib/classes/class-WPC_Bootstrap.php:67
+msgid "WP-CRM Add-ons Manager"
 msgstr ""
 
 #: lib/connections/bbpress.php:99 lib/connections/bbpress.php:124
@@ -1121,162 +1126,162 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:89
+#: lib/ui/crm_page_wp_crm_settings.php:96
 msgid "CRM Settings"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:98
+#: lib/ui/crm_page_wp_crm_settings.php:105
 msgid "Main"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:99
+#: lib/ui/crm_page_wp_crm_settings.php:106
 msgid "UI"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:100
+#: lib/ui/crm_page_wp_crm_settings.php:107
 msgid "Data"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:101
+#: lib/ui/crm_page_wp_crm_settings.php:108
 msgid "Roles"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:119
+#: lib/ui/crm_page_wp_crm_settings.php:126
 msgid "Help"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:128
-#: lib/ui/crm_page_wp_crm_settings.php:372
+#: lib/ui/crm_page_wp_crm_settings.php:135
+#: lib/ui/crm_page_wp_crm_settings.php:386
 msgid "General Settings"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:134
+#: lib/ui/crm_page_wp_crm_settings.php:141
 msgid "Replace default WordPress User page with WP-CRM."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:139
+#: lib/ui/crm_page_wp_crm_settings.php:146
 msgid "Allow user accounts to be created without an e-mail address."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:144
+#: lib/ui/crm_page_wp_crm_settings.php:151
 msgid "Disable default WordPress password reset e-mail notification."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:149
+#: lib/ui/crm_page_wp_crm_settings.php:156
 msgid "Do not automatically convert line breaks in outgoing contact messages."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:154
+#: lib/ui/crm_page_wp_crm_settings.php:161
 msgid "Track detailed user activity."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:159
+#: lib/ui/crm_page_wp_crm_settings.php:166
 msgid "Enable Attribute Grouping."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:172
+#: lib/ui/crm_page_wp_crm_settings.php:179
 msgid "Standardize Display Names."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:175
+#: lib/ui/crm_page_wp_crm_settings.php:182
 msgid "Display name components: "
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:183
+#: lib/ui/crm_page_wp_crm_settings.php:190
 msgid "Email Settings"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:188
+#: lib/ui/crm_page_wp_crm_settings.php:195
 msgid "Default sender e-mail address."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:189
+#: lib/ui/crm_page_wp_crm_settings.php:196
 #, php-format
 msgid ""
 "If you are not using SMTP, it is advisable to use a @%s email address to "
 "avoid being spammed."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:205
+#: lib/ui/crm_page_wp_crm_settings.php:212
 msgid "General UI Settings"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:210
+#: lib/ui/crm_page_wp_crm_settings.php:217
 msgid "Do not display user avatars on overview pages."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:217
+#: lib/ui/crm_page_wp_crm_settings.php:224
 msgid "Primary User Identifier"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:234
+#: lib/ui/crm_page_wp_crm_settings.php:241
 msgid "Overview Page User Card"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:235
+#: lib/ui/crm_page_wp_crm_settings.php:242
 msgid "User data to be displayed in the <b>Information</b> column."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:254
+#: lib/ui/crm_page_wp_crm_settings.php:261
 msgid "Quick User Actions"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:255
+#: lib/ui/crm_page_wp_crm_settings.php:262
 msgid ""
 "User-specific actions that can be initiated from the user overview page."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:263
+#: lib/ui/crm_page_wp_crm_settings.php:270
 #, php-format
 msgid "Enable: %1s"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:276
+#: lib/ui/crm_page_wp_crm_settings.php:283
 msgid ""
 "This tab allows you to create and modify your notifications.  Notifications "
 "can be assigned to various events, such as new user registration, general "
 "contact messages, etc."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:281
+#: lib/ui/crm_page_wp_crm_settings.php:288
 msgid "Message Header"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:283
+#: lib/ui/crm_page_wp_crm_settings.php:290
 msgid "Trigger Actions"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:293
+#: lib/ui/crm_page_wp_crm_settings.php:300
 msgid "Subject:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:297
+#: lib/ui/crm_page_wp_crm_settings.php:304
 msgid "To:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:301
+#: lib/ui/crm_page_wp_crm_settings.php:308
 msgid "BCC:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:305
+#: lib/ui/crm_page_wp_crm_settings.php:312
 msgid "From:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:310
+#: lib/ui/crm_page_wp_crm_settings.php:317
 msgid "Reply To:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:341
+#: lib/ui/crm_page_wp_crm_settings.php:355
 msgid "You do not have any notification actions yet. "
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:358
+#: lib/ui/crm_page_wp_crm_settings.php:372
 msgid ""
 "For the <b>Send From</b> value enter an e-mailed address or a name and e-"
 "mail using the folloiwng format: John Smith <john.smith@gmail.com>"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:359
+#: lib/ui/crm_page_wp_crm_settings.php:373
 msgid ""
 "To see list of variables you can use in notifications open up the \"Help\" "
 "tab and view the user data structure.  Any variable you see in there can be "
@@ -1284,147 +1289,146 @@ msgid ""
 "Example: [user_email] would include the recipient's e-mail."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:380
+#: lib/ui/crm_page_wp_crm_settings.php:394
 msgid "Attribute"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:382
+#: lib/ui/crm_page_wp_crm_settings.php:396
 msgid "Input Type"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:403
+#: lib/ui/crm_page_wp_crm_settings.php:417
 msgid "Note:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:408
+#: lib/ui/crm_page_wp_crm_settings.php:422
 msgid "Slug:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:415
+#: lib/ui/crm_page_wp_crm_settings.php:429
 msgid "Toggle Advanced"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:424
+#: lib/ui/crm_page_wp_crm_settings.php:438
 msgid "Primary"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:429
+#: lib/ui/crm_page_wp_crm_settings.php:443
 msgid "Overview Column"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:434
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:166
+#: lib/ui/crm_page_wp_crm_settings.php:448
 msgid "Required"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:439
+#: lib/ui/crm_page_wp_crm_settings.php:453
 msgid "Uneditable"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:486
+#: lib/ui/crm_page_wp_crm_settings.php:500
 msgid "User Roles"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:492
+#: lib/ui/crm_page_wp_crm_settings.php:506
 msgid "Role"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:493
+#: lib/ui/crm_page_wp_crm_settings.php:507
 msgid "Hidden Attributes"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:494
+#: lib/ui/crm_page_wp_crm_settings.php:508
 msgid "Capabilities"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:522
+#: lib/ui/crm_page_wp_crm_settings.php:536
 msgid "No capabilities found for role."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:552
+#: lib/ui/crm_page_wp_crm_settings.php:566
 msgid ""
 "Look up the <b>$wp_crm</b> global settings array. This array stores all the "
 "default settings, which are overwritten by database settings, and custom "
 "filters."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:553
+#: lib/ui/crm_page_wp_crm_settings.php:567
 msgid "Show $wp_crm"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:553
-#: lib/ui/crm_page_wp_crm_settings.php:560
-#: lib/ui/crm_page_wp_crm_settings.php:572
-#: lib/ui/crm_page_wp_crm_settings.php:579
+#: lib/ui/crm_page_wp_crm_settings.php:567
+#: lib/ui/crm_page_wp_crm_settings.php:574
+#: lib/ui/crm_page_wp_crm_settings.php:586
+#: lib/ui/crm_page_wp_crm_settings.php:593
 msgid "Cancel"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:559
+#: lib/ui/crm_page_wp_crm_settings.php:573
 msgid "Show user data structure:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:560
+#: lib/ui/crm_page_wp_crm_settings.php:574
 msgid "Show WP_CRM_F::user_object_structure()"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:561
+#: lib/ui/crm_page_wp_crm_settings.php:575
 msgid "All possible meta keys:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:563
+#: lib/ui/crm_page_wp_crm_settings.php:577
 msgid "Root Only:"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:569
+#: lib/ui/crm_page_wp_crm_settings.php:583
 msgid "Lookup a user object by its ID."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:571
+#: lib/ui/crm_page_wp_crm_settings.php:585
 msgid "Load User"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:577
+#: lib/ui/crm_page_wp_crm_settings.php:591
 msgid ""
 "Get user meta report. Will return an array of common meta keys and a few "
 "sample values.  This should be used to help you analyze a website with a lot "
 "of existing user meta."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:578
+#: lib/ui/crm_page_wp_crm_settings.php:592
 msgid "Get Report"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:584
+#: lib/ui/crm_page_wp_crm_settings.php:598
 msgid "Generate "
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:584
+#: lib/ui/crm_page_wp_crm_settings.php:598
 msgid "fake users. "
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:585
+#: lib/ui/crm_page_wp_crm_settings.php:599
 msgid "Generate"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:586
+#: lib/ui/crm_page_wp_crm_settings.php:600
 msgid "Delete All Fake Users"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:591
+#: lib/ui/crm_page_wp_crm_settings.php:605
 msgid "Restore Backup of WP-CRM Configuration"
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:592
+#: lib/ui/crm_page_wp_crm_settings.php:606
 msgid "Download Backup of Current WP-CRM Configuration."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:598
+#: lib/ui/crm_page_wp_crm_settings.php:612
 msgid ""
 "Enable developer mode and start displaying additional information in the "
 "console log."
 msgstr ""
 
-#: lib/ui/crm_page_wp_crm_settings.php:611
+#: lib/ui/crm_page_wp_crm_settings.php:625
 msgid "Save Changes"
 msgstr ""
 
@@ -1444,654 +1448,121 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:83
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:120
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:121
-msgid "Licenses"
+#: static/splashes/install.php:12 static/splashes/upgrade.php:12
+#, php-format
+msgid "WP-CRM %s has been installed"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:84
-msgid "More Products"
+#: static/splashes/install.php:14 static/splashes/upgrade.php:14
+msgid ""
+"Congratulations! You have just installed brand new version of WP-CRM plugin. "
+"There are some important things that you need to be aware of in order to use "
+"our products successfully and with pleasure."
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:613
+#: static/splashes/install.php:16 static/splashes/upgrade.php:16
+msgid ""
+"Please read the following instructions carefully. Explore links below to get "
+"more information on our site."
+msgstr ""
+
+#: static/splashes/install.php:20 static/splashes/upgrade.php:20
+msgid ""
+"WP-CRM is an unique customer relations management system seamlessly "
+"integrated into your WordPress control panel. Your customers and prospects’ "
+"information is stored in the WordPress user database, giving you the ability "
+"of utilizing the vast pool of WordPress plugins to collect and analyze user "
+"information. Create your own forms with custom data fields of your choice. "
+"Apart form sending messages, these forms will collect all kinds of custom "
+"data which can be filtered for easy contact analysis. These forms can create "
+"users with the user role you want to assign!"
+msgstr ""
+
+#: static/splashes/install.php:22 static/splashes/upgrade.php:22
 #, php-format
 msgid ""
-"%s License is not active. To get started, activate it <a href=\"%s\">here</"
-"a>."
+"In addition to the default functions WP-CRM can be extended with a <a href="
+"\"%s\">set of Add-ons</a>. They may help you manage your business more "
+"effectively."
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:615
-#, php-format
-msgid "%s License is not active."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:669
-msgid "No license keys were specified for activation."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:674
-msgid "Product deactivated successfully."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:676
-msgid "There was an error while deactivating the product."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:682
-msgid "Products activated successfully."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-admin.php:684
-msgid "There was an error and not all products were activated."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-api.php:82
-msgid "UsabilityDynamics Product"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-api.php:98
+#: static/splashes/install.php:26 static/splashes/upgrade.php:26
 #, php-format
 msgid ""
-"There was an error making %s request for %s. Could not do request to "
-"UsabilityDynamics."
+"Do you want to help us to improve %s? Or do you have any idea? We are "
+"waiting <a href=\"%s\" target=\"_blank\">feedback</a> from you!"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-api.php:104
-#, php-format
-msgid "There was an error making %s request for %s, please try again"
+#: static/splashes/install.php:37 static/splashes/upgrade.php:37
+msgid "User license management"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-api.php:106
-#, php-format
-msgid "There was an error making %s request for %s: %s."
+#: static/splashes/install.php:39 static/splashes/upgrade.php:39
+msgid "Installation"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-licenses-table.php:61
-#, php-format
-msgid "No active %s plugins found."
+#: static/splashes/install.php:41 static/splashes/upgrade.php:41
+msgid ""
+"In new version of WP-CRM all your premium features will be as separate "
+"plugins. If you are upgrading you will need to activate them one more time."
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-licenses-table.php:99
-msgid "Product"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-licenses-table.php:100
-msgid "Version"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-licenses-table.php:101
-msgid "Activation Status"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-licenses-table.php:142
-msgid "Deactivate"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-licenses-table.php:145
-msgid "Place License Key here"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-licenses-table.php:146
-msgid "Place Activation Email here"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-more-products-table.php:68
-msgid "Try again"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-more-products-table.php:70
-#, php-format
-msgid "No More Available Products for %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-more-products-table.php:119
-msgid "More Details"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-more-products-table.php:149
-msgid "<strong>Untested</strong> with your version of WordPress"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-more-products-table.php:151
-msgid "<strong>Incompatible</strong> with your version of WordPress"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-more-products-table.php:153
-msgid "<strong>Compatible</strong> with your version of WordPress"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:297
+#: static/splashes/install.php:43 static/splashes/upgrade.php:43
 #, php-format
 msgid ""
-"A license key for %s could not be found. Maybe you forgot to enter a license "
-"key when setting up %s, or the key was deactivated in your account. You can "
-"reactivate or purchase a license key from your account <a href=\"%s\" target="
-"\"_blank\">Licences</a>."
+"After you purchased the product, visit your <a href=\"%s\">UD Account</a>. "
+"You will find license keys and download links for all your purchased add-"
+"ons. Download plugins to your computer and Upload as new plugin on your site."
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:298
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:330
-#, php-format
+#: static/splashes/install.php:51 static/splashes/upgrade.php:51
+msgid "Adding License Keys"
+msgstr ""
+
+#: static/splashes/install.php:53 static/splashes/upgrade.php:53
 msgid ""
-"A subscription for %s could not be found. You can purchase a subscription "
-"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+"Click to activate plugin, you will see link to the Licenses admin screen. On "
+"the Licenses admin screen, you should see all your installed products, with "
+"an option to add your license key."
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:302
-#, php-format
-msgid ""
-"The license key for %s has expired. You can reactivate or purchase a license "
-"key from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+#: static/splashes/install.php:55 static/splashes/upgrade.php:55
+msgid "To add a license key:"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:306
-#, php-format
-msgid ""
-"The subscription for %s is on-hold. You can reactivate the subscription from "
-"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+#: static/splashes/install.php:58 static/splashes/upgrade.php:58
+msgid "copy the license key from your UD Account page or receipt email;"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:310
-#, php-format
-msgid ""
-"The subscription for %s has been cancelled. You can renew the subscription "
-"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>. A new "
-"license key will be emailed to you after your order has been completed."
+#: static/splashes/install.php:59 static/splashes/upgrade.php:59
+msgid "paste the license key into input field for your product;"
 msgstr ""
 
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:314
-#, php-format
-msgid ""
-"The subscription for %s has expired. You can reactivate the subscription "
-"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:318
-#, php-format
-msgid ""
-"The subscription for %s has been suspended. You can reactivate the "
-"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
-"a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:322
-#, php-format
-msgid ""
-"The subscription for %s is still pending. You can check on the status of the "
-"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
-"a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:326
-#, php-format
-msgid ""
-"The subscription for %s has been placed in the trash and will be deleted "
-"soon. You can purchase a new subscription from your account <a href=\"%s\" "
-"target=\"_blank\">dashboard</a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:334
-#, php-format
-msgid ""
-"%s has not been activated. Go to the settings page and enter the license key "
-"and license email to activate %s."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:338
-#, php-format
-msgid ""
-"A license key for %s could not be found. Maybe you forgot to enter a license "
-"key when setting up %s, or the key was deactivated in your account. You can "
-"reactivate or purchase a license key from your account <a href=\"%s\" target="
-"\"_blank\">dashboard</a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:342
-#, php-format
-msgid ""
-"Download permission for %s has been revoked possibly due to a license key or "
-"subscription expiring. You can reactivate or purchase a license key from "
-"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php:346
-#, php-format
-msgid ""
-"You changed the subscription for %s, so you will need to enter your new API "
-"License Key in the settings page. The License Key should have arrived in "
-"your email inbox, if not you can get it by logging into your account <a href="
-"\"%s\" target=\"_blank\">dashboard</a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/static/templates/screen-manage.php:5
-#, php-format
-msgid ""
-"See below for a list of %s Plugins active on %s. You can %s, as well as our "
-"%s on how this works. %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/static/templates/screen-manage.php:5
-msgid "Check for Updates"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-ud-api-client/static/templates/screen-manage.php:21
-msgid "Activate Products"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:26
-msgid "Could not create index on your posts table for the `guid` column"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:27
-msgid "Could not update a post&rsquo;s GUID"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:28
-msgid "Could not remove the index from `guid`"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:41
-msgid "Run GUID-fix"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:62
-msgid "CF GUID-Fix"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:66
-msgid ""
-"Post GUIDs are now unique! <b>You should now disable and remove this plugin."
-"</b>"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:82
-msgid "What does this plugin do?"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:82
-msgid ""
-"Corrects duplicate GUID values created with versions of WordPress that "
-"exhibited a <a href=\"http://core.trac.wordpress.org/ticket/15041\">non-"
-"unique GUID bug</a>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:83
-msgid ""
-"Clicking the button below runs the plugin to ensure your guids are unique."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:86
-msgid "Fix Your GUIDs"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:100
-msgid "You should not be here."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:138
-#, php-format
-msgid "Job %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:197
-msgid "Could not load job with unknown ID."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:252
-#, php-format
-msgid "Job Batch %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:382
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:383
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:386
-msgid "Jobs"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:384
-msgid "New Job"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:385
-msgid "View Job"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:388
-msgid "UsabilityDynamics Jobs."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:187
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:219
-msgid "Required file not found."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:868
-msgid "Invalid file type."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:877
-msgid "Could not create mentioned directory."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:916
-msgid "Zero size file downloaded"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:981
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:993
-msgid "Could not get image dimensions (headers)"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:1534
-#, php-format
-msgid ""
-"You cannot call UD\\Utility::log() before the %1$s hook, since the current "
-"user is not yet known."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2015
-#, php-format
-msgid "You cannot call UD\\Utility::add_log_page() after the %1$s hook."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2042
-msgid "Log Page for"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2047
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:382
-msgid "Type"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2050
-msgid "Related Object"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2060
-msgid "None"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:328
-msgid ""
-"Class \\UsabilityDynamics\\UD_API\\Bootstrap does not exist. Be sure all "
-"required plugins and (or) composer modules installed and activated."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:336
-msgid "Licenses client can not be activated due to invalid 'licenses' schema."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:357
-msgid ""
-"Product requires license, but product ID and (or) referrer is undefined. "
-"Please, be sure, that license schema has all required data."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:366
-msgid ""
-"Class \\UsabilityDynamics\\UD_API\\Manager does not exist. Be sure all "
-"required plugins installed and activated."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:403
-#, php-format
-msgid ""
-"Module <b>%s</b> is not installed or the version is old, class <b>%s</b> "
-"does not exist."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:407
-#, php-format
-msgid ""
-"Module <b>%s</b> should be updated to the latest version, class <b>%s</b> "
-"must have version <b>%s</b> or higher."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:85
-msgid "Welcome to Usability Dynamics, Inc."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:85
-msgid "UD Notices"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:103
-msgid "Usability Dynamics, Inc. Dashboard"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:104
-msgid "Thank you for using our products."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:145
-#, php-format
-msgid "<p><b>%s</b> is not active due to following errors:</p> %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:159
-#, php-format
-msgid "<p><b>%s</b> has the following additional notices:</p> %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:161
-#, php-format
-msgid "<p><b>%s</b> is active, but has the following notices:</p> %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:163
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:196
-msgid "Dismiss this notice"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:285
-msgid "Install package not available."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:286
-#, php-format
-msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:287
-msgid "Unpacking the package&#8230;"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:288
-msgid "Installing the plugin&#8230;"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:289
-msgid "Plugin install failed."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:290
-msgid "Plugin installed successfully."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:301
-msgid "Plugin activation failed."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:302
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:193
-msgid "Plugin activated successfully."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:415
-msgid ""
-"The installation and activation process is starting. This process may take a "
-"while on some hosts, so please be patient."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:416
-#, php-format
-msgid "%1$s installed and activated successfully."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:416
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:425
-msgid "Show Details"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:416
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:425
-msgid "Hide Details"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:417
-msgid "All installations and activations have been completed."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:418
-#, php-format
-msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:422
-msgid ""
-"The installation process is starting. This process may take a while on some "
-"hosts, so please be patient."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:423
-#, php-format
-msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:424
-#, php-format
-msgid "The installation of %1$s failed."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:425
-#, php-format
-msgid "%1$s installed successfully."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:426
-msgid "All installations have been completed."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:427
-#, php-format
-msgid "Installing Plugin %1$s (%2$d/%3$d)"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:519
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:549
-msgid "Return to the Dashboard"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:149
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:152
-msgid "Private Repository"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:157
-msgid "Pre-Packaged"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:162
-msgid "WordPress Repository"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:166
-msgid "Recommended"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:169
-msgid "Not Installed"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:171
-msgid "Installed But Not Activated"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:284
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:401
-msgid "Install"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:307
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:402
-msgid "Activate"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:364
-#, php-format
-msgid ""
-"No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
-"Dashboard\">Return to the Dashboard</a>"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:380
-msgid "Plugin"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:381
-msgid "Source"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:177
-msgid "Install Required Plugins"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:178
-msgid "Install Plugins"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:179
-#, php-format
-msgid "Installing Plugin: %s"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:180
-msgid "Something went wrong."
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:191
-msgid "Return to Required Plugins Installer"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:192
-msgid "Return to the dashboard"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:194
-msgid "The following plugin was activated successfully:"
-msgstr ""
-
-#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:195
-#, php-format
-msgid "All plugins installed and activated successfully. %1$s"
-msgstr ""
-
-#: wp-crm.php:53
+#: wp-crm.php:59
 msgid ""
 "Distributive is broken. composer.json is missed. Try to remove and upload "
 "plugin again."
 msgstr ""
 
-#: wp-crm.php:61
+#: wp-crm.php:67
 #, php-format
 msgid "Plugin requires PHP %s or higher. Your current PHP version is %s"
 msgstr ""
 
-#: wp-crm.php:69
+#: wp-crm.php:75
 #, php-format
 msgid ""
 "Distributive is broken. %s file is missed. Try to remove and upload plugin "
 "again."
 msgstr ""
 
-#: wp-crm.php:73
+#: wp-crm.php:79
 msgid ""
 "Distributive is broken. Plugin loader is not available. Try to remove and "
 "upload plugin again."
 msgstr ""
 
-#: wp-crm.php:94
+#: wp-crm.php:100
 #, php-format
 msgid "<p><b>%s</b> can not be initialized. %s</p>"
 msgstr ""
