@@ -455,7 +455,17 @@ class class_contact_messages {
 
         break;
 
-      case 'other_messages':
+      case 'source':
+
+        ob_start();
+
+        if ( !empty( $cell_data['object']['associated_object'] ) ) {
+          printf( '<a href="%s">%s</a>', get_permalink( $cell_data['object']['associated_object'] ), get_the_title( $cell_data['object']['associated_object'] ) );
+        } else {
+          _e( 'None', ud_get_wp_crm()->domain );
+        }
+
+        $r .= ob_get_clean();
 
         break;
 
@@ -1391,6 +1401,7 @@ class class_contact_messages {
     $columns[ 'cb' ]        = '<input type="checkbox" />';
     $columns[ 'messages' ]  = __( 'Message', ud_get_wp_crm()->domain );
     $columns[ 'user_card' ] = __( 'Sender', ud_get_wp_crm()->domain );
+    $columns[ 'source' ] = __( 'Source', ud_get_wp_crm()->domain );
 
     return $columns;
   }
