@@ -123,7 +123,7 @@ class class_contact_messages {
 
     if( $action[ 'action' ] == 'trash_message' ) {
 
-      $success = $wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->crm_log} WHERE id = {$action['object_id']}" ) );
+      $success = $wpdb->query( "DELETE FROM {$wpdb->crm_log} WHERE id = {$action['object_id']}" );
 
       if( $success ) {
         $return[ 'success' ] = 'true';
@@ -166,7 +166,7 @@ class class_contact_messages {
     global $wp_crm;
 
     $contact_forms = $wp_crm[ 'wp_crm_contact_system_data' ];
-    $search        = $_REQUEST[ 'wp_crm_message_search' ];
+    $search        = !empty($_REQUEST[ 'wp_crm_message_search' ])?$_REQUEST[ 'wp_crm_message_search' ]:false;
 
     if( empty( $search ) ) {
       foreach( $contact_forms as $form_slug => $form_data ) {
@@ -201,7 +201,7 @@ class class_contact_messages {
       <?php foreach( $contact_forms as $form_slug => $form_data ) { ?>
 
             <li>
-          <input id="wp_crm_cf_<?php echo $form_slug; ?>" type="checkbox" name="wp_crm_message_search[form_name][]" value="<?php echo $form_slug; ?>" <?php ( is_array( $search[ $form_slug ] ) && in_array( $option_slug, $search[ $form_slug ] ) ? "checked" : "" ); ?>/>
+          <input id="wp_crm_cf_<?php echo $form_slug; ?>" type="checkbox" name="wp_crm_message_search[form_name][]" value="<?php echo $form_slug; ?>" <?php ( !empty($search[ $form_slug ]) && is_array( $search[ $form_slug ] ) && in_array( $option_slug, $search[ $form_slug ] ) ? "checked" : "" ); ?>/>
           <label for="wp_crm_cf_<?php echo $form_slug; ?>"><?php echo $form_data[ 'title' ]; ?></label>
         </li>
 

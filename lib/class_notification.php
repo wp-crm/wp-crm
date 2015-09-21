@@ -27,7 +27,15 @@ class WP_CRM_N {
       return;
     }
 
+    $associated_object = !empty($_REQUEST['associated_object'])?get_post( $_REQUEST['associated_object'] ):false;
+
     $notification_keys = array_keys($notification_data);
+
+    $replace_with['post_id'] = !empty($associated_object)?$associated_object->ID:'';
+    $replace_with['post_title'] = !empty($associated_object)?$associated_object->post_title:'';
+    $replace_with['post_link'] = !empty($associated_object)?get_permalink($associated_object->ID):'';
+
+    $replace_with = apply_filters( 'wp_crm_notification_replace_values', $replace_with );
 
     foreach($replace_with as $key => $value) {
       if(is_array($value)) {
@@ -37,6 +45,7 @@ class WP_CRM_N {
         $notification_data[$n_key] = str_replace('[' . $key . ']', $value, $n_value);
       }
     }
+
     return $notification_data;
   }
 
