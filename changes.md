@@ -1,3 +1,7 @@
+#### 1.0.3 ( September 21, 2015 )
+* Added new column to messages list with Source association.
+* Fixed warnings and notices.
+
 #### 1.0.2 ( September 1, 2015 )
 * Fixed the bug when UsabilityDynamics Admin Notices could not be dismissed.
 * Fixed warnings and notices.
