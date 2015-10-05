@@ -75,6 +75,9 @@ For additional help, please reference the contextual help dropdowns the differen
 
 == Changelog ==
 
+= 1.0.4 =
+* Updated plugin initialisation logic.
+
 = 1.0.3 =
 * Added new column to messages list with Source association.
 * Fixed warnings and notices.
