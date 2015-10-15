@@ -20,7 +20,7 @@
 
 /** Plugin Version */
 if ( !defined( 'WP_CRM_Version' ) ) {
-  define('WP_CRM_Version', '1.0.3');
+  define('WP_CRM_Version', '1.0.4');
 }
 
 /** Path for Includes */

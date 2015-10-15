@@ -4,7 +4,7 @@ Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
 Tested up to: 4.3.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -77,6 +77,7 @@ For additional help, please reference the contextual help dropdowns the differen
 
 = 1.0.4 =
 * Updated plugin initialisation logic.
+* Removed unwanted libraries.
 
 = 1.0.3 =
 * Added new column to messages list with Source association.

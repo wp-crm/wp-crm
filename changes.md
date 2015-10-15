@@ -1,5 +1,6 @@
 #### 1.0.4
 * Updated plugin initialisation logic.
+* Removed unwanted libraries.
 
 #### 1.0.3 ( September 21, 2015 )
 * Added new column to messages list with Source association.
