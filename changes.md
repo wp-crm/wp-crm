@@ -1,3 +1,8 @@
+#### 1.0.5
+* Updated libraries.
+* Fixed permission issues.
+* Fixed conflict with wpMandrill plugin.
+
 #### 1.0.4
 * Updated plugin initialisation logic.
 * Removed unwanted libraries.
