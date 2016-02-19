@@ -284,11 +284,11 @@ class WP_CRM_Core {
     global $wp_crm, $current_screen;
 
     /* If avatar-delection redirection originated from CRM profile, we muts return there */
-    if ( $_GET[ 'delete_avatar' ] == 'true' && strpos( $_SERVER[ 'HTTP_REFERER' ], 'admin.php?page=wp_crm_add_new' ) ) {
+    if ( !empty($_GET[ 'delete_avatar' ]) && $_GET[ 'delete_avatar' ] == 'true' && strpos( $_SERVER[ 'HTTP_REFERER' ], 'admin.php?page=wp_crm_add_new' ) ) {
       die( wp_redirect( "admin.php?page=wp_crm_add_new&user_id={$_GET['user_id']}" ) );
     }
 
-    if ( $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] != 'true' ) {
+    if ( empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) || $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] != 'true' ) {
       return;
     }
 

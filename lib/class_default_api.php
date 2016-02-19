@@ -782,6 +782,8 @@ if (!function_exists('wp_crm_save_user_data')) {
       $insert_data['display_name'] = $insert_data['user_email'];
     }
 
+    $insert_data = apply_filters( 'wp_crm_insert_user_data', $insert_data, $user_data );
+
     if ( !empty( $new_user ) ) {
       $user_id = wp_insert_user($insert_data);
 
