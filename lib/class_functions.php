@@ -1438,14 +1438,24 @@ class WP_CRM_F {
       $data[] = $wp_list_table->no_items();
     }
 
-    return json_encode(array(
-        'sEcho' => $sEcho,
-        'iTotalRecords' => count($wp_list_table->all_items),
-        'iTotalDisplayRecords' => count($wp_list_table->all_items),
-        'user_ids' => $wp_list_table->user_ids,
-        'page_user_ids' => $wp_list_table->page_user_ids,
-        'aaData' => $data
-    ));
+    // Prepare response for AJAX/return
+    $_response = array(
+      'sEcho' => $sEcho,
+      'iTotalRecords' => count($wp_list_table->all_items),
+      'iTotalDisplayRecords' => count($wp_list_table->all_items),
+      'user_ids' => $wp_list_table->user_ids,
+      'page_user_ids' => $wp_list_table->page_user_ids,
+      'aaData' => isset( $data ) ? $data : array()
+    );
+
+    // If this is clearly an AJAX call we use the wp_send_json method which parses and outputs response object
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+      wp_send_json( $_response );
+    } else {
+      // for any legacy support we also return 
+      return $_response;
+    }
+    
   }
 
   /**
