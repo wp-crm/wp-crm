@@ -1,0 +1,1598 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"Project-Id-Version: WP-CRM\n"
+"Language: it\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Manuel D'Orso <manuel@inelemento.it>\n"
+"Language-Team: \n"
+
+#: ../action_hooks.php:36
+msgid "Single Line Text"
+msgstr "Linea di testo singola"
+
+#: ../action_hooks.php:37
+msgid "Checkbox"
+msgstr "Casella di scelta"
+
+#: ../action_hooks.php:38
+msgid "Textarea"
+msgstr "Area di testo"
+
+#: ../action_hooks.php:39
+msgid "Dropdown"
+msgstr "Menù a discesa"
+
+#: ../action_hooks.php:40
+msgid "Password"
+msgstr "Password"
+
+#: ../action_hooks.php:41
+msgid "Date Picker"
+msgstr "Selettore di data"
+
+#: ../action_hooks.php:49
+msgid "View and edit plugin settings."
+msgstr "Visualizza e modifica le impostazione del plugin"
+
+#: ../action_hooks.php:50
+msgid "View individual prospects and the overview page."
+msgstr "Visualizza i profili personali e la pagina generale"
+
+#: ../action_hooks.php:51
+msgid "View detailed user activity logs."
+msgstr "Visualizza i log dettagliati degli utenti"
+
+#: ../action_hooks.php:52
+msgid "View a user's profile."
+msgstr "Visualizza il profilo dell'utente"
+
+#: ../action_hooks.php:53
+msgid "Add to correspondence thread on a user's profile."
+msgstr "Aggiungi al corrispondente argomento sul profilo utente"
+
+#: ../action_hooks.php:54
+msgid "Send a group message to users."
+msgstr "Spedisci un messaggio di gruppo agli utenti"
+
+#: ../action_hooks.php:55
+msgid "Perform advanced functions such as merging users."
+msgstr "Eseguire funzioni avanzate come l'unione degli utenti."
+
+#: ../action_hooks.php:56
+msgid "Change passwords of other users. This is only checked if the user can edit users in the first place."
+msgstr "Cambia le password di altri utenti. Questo viene controllato solo se l'utente può modificare gli utenti in primo luogo."
+
+#: ../action_hooks.php:57
+msgid "Change color scheme. This is only checked if the user can edit users in the first place."
+msgstr "Modifica schema colori. Questo viene controllato solo se l'utente può modificare gli utenti in primo luogo."
+
+#: ../default_api.php:39
+msgid "Quick Password Reset"
+msgstr "Ripristino rapido della password"
+
+#: ../default_api.php:61
+msgid "Display Name"
+msgstr "Mostra il nome"
+
+#: ../default_api.php:62 ../default_api.php:67
+msgid "Generated automatically by WordPress."
+msgstr "Generato automaticamente da Wordpress"
+
+#: ../default_api.php:66
+msgid "User Login"
+msgstr "Login utente"
+
+#: ../default_api.php:113
+msgid "Password reset initiated by user. Reset URL: %1s."
+msgstr "Ripristino password inziato dall'utente. URL di ripristino %1s."
+
+#: ../default_api.php:136
+msgid "Please enter a valid e-mail address."
+msgstr "Inserisci un'email valida"
+
+#: ../default_api.php:152
+msgid "User Registration"
+msgstr "Registrazione utente"
+
+#: ../default_api.php:152
+msgid "Support Request"
+msgstr "Richiesta assistenza"
+
+#: ../default_api.php:801
+msgid "Error saving user: Email address cannot be empty"
+msgstr "Errore nel salvataggio utente: indirizzo email non può essere vuoto"
+
+#: ../default_api.php:806
+msgid "Error saving user: Email address is invalid"
+msgstr "Errore nel salvataggio utente:indirizzo email non valido"
+
+#: ../default_api.php:886
+msgid "New user added."
+msgstr "Nuovo utente aggiunto"
+
+#: ../default_api.php:890
+msgid "User updated."
+msgstr "Utente aggiornato"
+
+#: ../default_api.php:913 ../default_api.php:917
+msgid "Error saving user: %s"
+msgstr "Errore nel salvataggio dell'utente: %s"
+
+#: ../default_api.php:913
+msgid "Go to user profile"
+msgstr "Vai al profilo utente"
+
+#: ../core/class_core.php:217
+msgid "Password Reset"
+msgstr "Ripristino password"
+
+#: ../core/class_core.php:275
+msgid "Users"
+msgstr "Utenti"
+
+#: ../core/class_core.php:278
+msgid "This page is used to filter and find various users. Visit the Settings page to select which attributes to show on the overview."
+msgstr "Questa pagina serve a filtrare e trovare i vari utenti. Visita la pagina Impostazioni per selezionare quali attribute mostrare nel riepilogo."
+
+#: ../core/class_core.php:279
+msgid "Exporting"
+msgstr "Esportazione"
+
+#: ../core/class_core.php:280
+msgid "Once you narrow down the user results to the ones you want to export, click \"Show Actions\" and then \"Export to CSV\" to generate a comma separated flle."
+msgstr "Una volta che si restringere i risultati degli utenti a quelli che si desidera esportare, fare clic su \"Mostra Azioni\" e poi \"Esporta CSV\" per generare un file separato da virgole."
+
+#: ../core/class_core.php:281
+msgid "The CSV export will only include the user data as defined in Data tab, on the Settings page."
+msgstr "L'esportazione CSV conterrà solo i dati utente come definiti nel tab Dati nella pagina Impostazioni."
+
+#: ../core/class_core.php:353 ../core/ui/crm_page_wp_crm_settings.php:102
+msgid "Notifications"
+msgstr "Notifiche"
+
+#: ../core/class_core.php:357
+msgid "User Editing"
+msgstr "Modifica utente"
+
+#: ../core/class_core.php:358
+msgid "Please visit the WP-CRM Settings page to determine which fields to display on the editing page."
+msgstr "Visita la pagina delle impostazioni di WP-CRM per determinare quali campi visualizzare nella pagina di modifica"
+
+#: ../l10n.php:16 ../core/class_core.php:360
+msgid "User Activity History"
+msgstr "Cronologia attività utente"
+
+#: ../core/class_core.php:361
+msgid "The activity history can be used to log notes regarding a user, and will display any incoming messages generated by the user when using a WP-CRM shortcode forms."
+msgstr "La storia attività può essere utilizzato per registrare note riguardanti un utente e visualizza i messaggi in entrata generati dall'utente quando si utilizza una forma shortcode WP-CRM."
+
+#: ../core/class_core.php:402
+msgid "Roles - Hidden Attributes"
+msgstr "Regole - Attributi Nascosti"
+
+#: ../core/class_core.php:403
+msgid "If certain user attributes are not applicable to certain roles, such as \"Client Type\" to the \"Administrator\" role, you can elect to hide the unapplicable attributes on profile editing pages."
+msgstr "Se determinati attributi dell'utente non sono applicabili a certi ruoli, come \"Type Client\" al ruolo di \"Administrator\", è possibile scegliere di nascondere gli attributi unapplicable alle pagine di modifica del profilo."
+
+#: ../core/class_core.php:404 ../core/ui/crm_page_wp_crm_settings.php:386
+msgid "Predefined Values"
+msgstr "Valori predefiniti"
+
+#: ../core/class_core.php:405
+msgid "If you want your attributes to have predefined values, such as in a dropdown, or a checkbox list, enter a comma separated list of values you want to use.  You can also get more advanced by using taxonomies - to load all values from a taxonomy, simply type line: <b>taxonomy:taxonomy_name</b>."
+msgstr "Se volete che i vostri attributi hanno valori predefiniti, come ad esempio in discesa, o una lista di checkbox, immettere un elenco separato da virgole di valori che si desidera utilizzare. È inoltre possibile ottenere più avanzate utilizzando tassonomie - per caricare tutti i valori di una tassonomia, è sufficiente digitare riga: tassonomia <b>: taxonomy_name </ b>."
+
+#: ../core/class_core.php:406 ../core/premium/class_contact_messages.php:487
+msgid "Shortcode Forms"
+msgstr "Moduli shortcode"
+
+#: ../core/class_core.php:407
+msgid "Shortcode Forms, which can be used for contact forms, or profile editing, are setup here, and then inserted using a shortcode into a page, or a widget. The available shortcode form attributes are taken from the WP-CRM attributes, and when filled out by a user, are mapped over directly into their profile. User profiles are created based on the e-mail address, if one does not already exist, for keeping track of users. "
+msgstr "Forme shortcode, che possono essere utilizzati per moduli di contatto, o di modifica del profilo, sono installati qui, e poi inseriti utilizzando un codice funzione in una pagina, o un widget. Gli attributi forma shortcode disponibili sono prese dal WP-CRM attributi, e quando compilato da un utente, vengono mappati su direttamente nel loro profilo. I profili utente vengono creati in base all'indirizzo di posta elettronica, se non esiste già, per tenere traccia degli utenti."
+
+#: ../core/class_core.php:409
+msgid "Shortcode Forms attributes"
+msgstr "Shortcode attributi dei moduli"
+
+#: ../core/class_core.php:411
+msgid "display_notes = [ true | <b>false</b> ] &mdash; If a note exists for an attribute, it will be shown on the right."
+msgstr "display_notes = [ true | <b>false</b> ] &mdash; Se una nota esiste per un attributo, sarà mostrato sulla destra."
+
+#: ../core/class_core.php:412
+msgid "require_login_for_existing_users = [ <b>true</b> | false ]"
+msgstr "richiedi_login_per_utenti_esistenti = [ <b>true</b> | false ]"
+
+#: ../core/class_core.php:413
+msgid "use_current_user = [ <b>true</b> | false ]"
+msgstr "usa_utente_attuale = [ <b>true</b> | false ]\t"
+
+#: ../core/class_core.php:414
+msgid "success_message = \"<i>custom text</i>\"  &mdash; default value is \""
+msgstr "success_message = \"<i>custom text</i>\" &mdash; default value is \""
+
+#: ../core/class_core.php:414 ../core/premium/class_contact_messages.php:512
+msgid "Your message has been sent. Thank you."
+msgstr "Il tuo messaggio è stato spedito. Grazie"
+
+#: ../core/class_core.php:415
+msgid "submit_text = \"<i>custom text</i>\"  &mdash; default value is \""
+msgstr "submit_text = \"<i>test libero</i>\" &mdash; il valore di default è \""
+
+#: ../core/class_core.php:415 ../core/premium/class_contact_messages.php:513
+#: ../core/ui/crm_metaboxes.php:111
+msgid "Submit"
+msgstr "Invia"
+
+#: ../core/class_core.php:416
+msgid "js_callback_function = \"<i>custom_function_name</i>\"  &mdash; default value is \""
+msgstr "js_callback_function = \"<i> custom_function_name </ i>\" - valore di default è \""
+
+#: ../core/class_core.php:416 ../core/class_core.php:417
+msgid "false"
+msgstr "Errato"
+
+#: ../core/class_core.php:417
+msgid "js_validation_function = \"<i>custom_function_name</i>\"  &mdash; default value is \""
+msgstr "js_validation_function = \"<i> custom_function_name </ i>\" - valore di default è \""
+
+#: ../core/class_core.php:419
+msgid "For example, <b>[wp_crm_form form=example_from display_notes=true success_message=\"Your message was successfully sent!\" submit_text=\"Send message!\"]</b>"
+msgstr "Ad esempio, <b> [forma wp_crm_form = example_from display_notes = true success_message = \"Il tuo messaggio è stato inviato con successo!\" submit_text = \"Invia messaggio\"] </ b>"
+
+#: ../core/class_core.php:421
+msgid "If a new user fills out a form, an account will be created for them based on the specified role.  "
+msgstr "Se un nuovo utente compila un modulo, sarà creato un account in funzione del suo ruolo."
+
+#: ../core/class_core.php:422
+msgid "<b>Important</b>: user's email attribute should have slug 'user_email'."
+msgstr "<b> Importante </ b>: l'attributo email dell'utente dovrebbe avere slug 'USER_EMAIL'."
+
+#: ../core/class_core.php:424 ../core/ui/crm_page_wp_crm_settings.php:170
+msgid "Automation"
+msgstr "Automazione"
+
+#: ../core/class_core.php:425
+msgid "Use other attribute as components. Example: <b>[last_name], [rank]</b> will become <b>Smith, Sgt.</b>"
+msgstr "Utilizzare altro attributo come componenti. Esempio: <b> [cognome], [classifica] </ b> diventerà <b> Smith, il sergente </ b>."
+
+#: ../core/class_core.php:426
+msgid "Notifications and Trigger Actions"
+msgstr "Notifiche e Scatena Azioni"
+
+#: ../core/class_core.php:427
+msgid "Notification messages can be fired off when certain events, such as contact form submission, are executed.  Multiple notification events can be attached to a single <b>trigger action</b>. Multiple tags, such as <b>[user_email]</b> and <b>[display_name]</b>, are available to be used as dynamically replaceable tags when setting up notifications."
+msgstr "I messaggi di notifica possono essere licenziati quando determinati eventi, come ad esempio l'invio di form di contatto, vengono eseguiti. Eventi di notifica multipli possono essere collegati a un unico limite di azione <b> </ b>. Più tag, come <b> [USER_EMAIL] </ b> e <b> [DISPLAY_NAME] </ b>, sono a disposizione per essere usato come tag sostituibili dinamicamente durante l'impostazione delle notifiche."
+
+#: ../core/class_core.php:428
+msgid "Which tags are available depend on the trigger event, but in most cases all user data slugs can be used.  On a shortcode form message, <b>[message_content]</b>, <b>[profile_link]</b> and <b>[trigger_action]</b> variables are also available."
+msgstr "Quali tag sono disponibili dipendono dal trigger event, ma nella maggior parte dei casi possono essere utilizzate tutte le lumache dati utente. In un messaggio forma shortcode, <b> [message_content] </ b>, <b> [PROFILE_LINK] </ b> e <b> [trigger_action] </ b> le variabili sono inoltre disponibili."
+
+#: ../core/class_core.php:565
+msgid "Your Profile"
+msgstr "Il tuo profilo utente"
+
+#: ../core/class_core.php:656
+msgid "Information"
+msgstr "Informazioni"
+
+#: ../core/class_core.php:687
+msgid "All People"
+msgstr "Tutte le persone"
+
+#: ../core/class_core.php:688
+msgid "New Person"
+msgstr "Nuova persona"
+
+#: ../core/class_core.php:689
+msgid "My Profile"
+msgstr "Il mio profilo utente"
+
+#: ../core/class_core.php:691 ../core/class_core.php:855
+#: ../core/ui/crm_page_wp_crm_settings.php:384
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: ../core/class_core.php:694 ../core/ui/crm_page_wp_crm_detailed_logs.php:13
+msgid "Activity Logs"
+msgstr "Logs attività"
+
+#: ../core/class_core.php:896
+msgid "For more information:"
+msgstr "Per maggiori informazioni"
+
+#: ../core/class_core.php:897
+msgid "WP-CRM Product Page"
+msgstr "Pagina WP-CRM"
+
+#: ../core/class_core.php:898
+msgid "WP-CRM Forums"
+msgstr "Moduli WP.CRM"
+
+#: ../core/class_core.php:905
+msgid "Please upgrade Wordpress to the latest version for detailed help."
+msgstr "Aggiorna Wordpress all'ultima versione per un aiuto più preciso"
+
+#: ../core/class_core.php:905
+msgid "Or visit"
+msgstr "O visita"
+
+#: ../core/class_core.php:905
+msgid "WP-CRM Help Page"
+msgstr "AIuto WP-CRM"
+
+#: ../core/class_core.php:905
+msgid "on UsabilityDynamics.com"
+msgstr "su UsabilityDynamics.com"
+
+#: ../core/class_functions.php:55
+msgid " ago."
+msgstr " fa."
+
+#: ../core/class_functions.php:60
+msgid "Logged in from %1s."
+msgstr "Collegato da% 1s."
+
+#: ../core/class_functions.php:73
+msgid "Logged out from %1s."
+msgstr "Registrato dal% 1s."
+
+#: ../core/class_functions.php:109 ../core/ud_api.php:71
+msgid "API service not specified."
+msgstr "Servizio API non specificato"
+
+#: ../core/class_functions.php:170
+msgid "API did not send back a valid response."
+msgstr "API non ha mandato indietro una risposta valida."
+
+#: ../core/class_functions.php:179
+msgid "API Not Responding. Please contact support."
+msgstr "Il servizio API non risponde. Prego contattare il supporto"
+
+#: ../core/class_functions.php:187
+msgid "Unformatted API Response: "
+msgstr "Non formattata Risposta API:"
+
+#: ../core/class_functions.php:204
+msgid "An unknown error occurred while trying to make an API request to Usability Dynamics. Please contact support."
+msgstr "Si è verificato un errore sconosciuto durante il tentativo di effettuare una richiesta API di usabilità Dynamics. Si prega di contattare il supporto."
+
+#: ../core/class_functions.php:215 ../core/ud_api.php:89
+msgid "API Failure: %1s."
+msgstr "API Failure:% 1s."
+
+#: ../core/class_functions.php:355
+msgid "Personal Options"
+msgstr "Opzioni personali"
+
+#: ../core/class_functions.php:360
+msgid "Additional Settings"
+msgstr "Impostazioni aggiuntive"
+
+#: ../core/class_functions.php:489
+msgid "User attempted to reset password, but reset email could not be sent."
+msgstr "L'utente ha tentato di ripristinare la password ma l'email non può essere spedita."
+
+#: ../core/class_functions.php:492
+msgid "Password reset initiated by user, email sent with a password reset link."
+msgstr "L'utente ha chiesto di ripristinare la password, é stata spedita una email con il link di ripristino."
+
+#: ../core/class_functions.php:575
+msgid "Invalid email"
+msgstr "Email non valida"
+
+#: ../core/class_functions.php:590
+msgid "Email already exists"
+msgstr "Indirizzo email già esistente"
+
+#: ../core/class_functions.php:804
+msgid "Unaccounted"
+msgstr "Non esiste il profilo."
+
+#: ../core/class_functions.php:812
+#: ../core/premium/class_contact_messages.php:268
+msgid "There is not enough quantifiable data to generate any graphs."
+msgstr "Non ci sono abbastanza dati per generare grafici."
+
+#: ../core/class_functions.php:974
+msgid "Notification template not found."
+msgstr "Template Notifica non trovato."
+
+#: ../core/class_functions.php:1278
+msgid "No fake users found."
+msgstr "Nessun utente fake trovato."
+
+#: ../core/class_functions.php:1635
+msgid "Password reset. A random password has been generated for user by system."
+msgstr "Reset Password. Una password randomica è stata generata per l'utente dal sistema."
+
+#: ../core/class_functions.php:1659
+msgid "Message archived."
+msgstr "Messaggio salvato"
+
+#: ../core/class_functions.php:1671
+msgid "Message deleted."
+msgstr "Messaggio cancellato"
+
+#: ../core/class_functions.php:1687
+msgid "Sender trashed."
+msgstr "Mittente Cestinato."
+
+#: ../core/class_functions.php:2523
+msgid "Example Shortcode Form"
+msgstr "Form Shortcode di esempio."
+
+#: ../core/class_functions.php:2529
+msgid "Thank your for your message!"
+msgstr "Grazie per il messaggio!"
+
+#: ../core/class_functions.php:2532
+msgid ""
+"Hello [display_name],\n"
+"Thank you, your message has been received."
+msgstr ""
+"Salve [display_name]\n"
+"Grazie, il messaggio è stato ricevuto"
+
+#: ../core/class_functions.php:2535
+msgid "Message from Website"
+msgstr "Messaggio dal sito"
+
+#: ../core/class_functions.php:2538
+msgid ""
+"Shortcode Form: [trigger_action]\n"
+"Sender Name: [display_name]\n"
+"Sender Email: [user_email]\n"
+"Message: [message_content]"
+msgstr ""
+"Shortcode Form: [trigger_action]\n"
+"Nome Mittente: [display_name]\n"
+"Email Mittente: [user_email]\n"
+"Messaggio: [message_content]"
+
+#: ../core/class_functions.php:2684
+msgid "An error occurred during premium feature check: <b> %s </b>."
+msgstr "Si è verificato un errore durante il check premio caratteristica: <b>% s </ b>."
+
+#: ../core/class_functions.php:2726
+msgid "Feature Name"
+msgstr "Nome Opzione"
+
+#: ../core/class_functions.php:2727 ../core/class_functions.php:2783
+msgid "Version"
+msgstr "Versione"
+
+#: ../core/class_functions.php:2728 ../core/class_functions.php:2784
+msgid "Description"
+msgstr "Descrizione"
+
+#: ../core/class_functions.php:2742
+msgid "WP-CRM Premium Feature: %s updated to version %s from %s."
+msgstr "WP-CRM Funzione Premium:% s aggiornato alla versione% s da% s."
+
+#: ../core/class_functions.php:2744
+msgid "WP-CRM Premium Feature: %s updated to version %s."
+msgstr "WP-CRM Funzione Premium:% s aggiornato alla versione% s."
+
+#: ../core/class_functions.php:2764
+msgid "Update ran successfully but no features were downloaded because the setting is disabled."
+msgstr "Aggiornamento è stato eseguito correttamente, ma nessuna funzionalità sono stati scaricati perché l'impostazione è disabilitata."
+
+#: ../core/class_functions.php:2767
+msgid "Update ran successfully."
+msgstr "Aggiornamento completato con successo"
+
+#: ../core/class_functions.php:2782
+msgid "Name"
+msgstr "Nome"
+
+#: ../core/class_functions.php:2963
+msgid "Show in User Activity History"
+msgstr "Mostra nello storico attività Utente"
+
+#: ../core/class_functions.php:2983
+msgid "Note"
+msgstr "Nota"
+
+#: ../core/class_functions.php:2986
+msgid "General Message"
+msgstr "Messaggio generale"
+
+#: ../core/class_functions.php:2989
+msgid "Phone Call"
+msgstr "Telefonata"
+
+#: ../core/class_functions.php:2992
+msgid "Meeting"
+msgstr "Meeting"
+
+#: ../core/class_functions.php:2995
+msgid "File"
+msgstr "File"
+
+#: ../core/class_functions.php:2998
+msgid "Detailed Log"
+msgstr "Log dettagliato"
+
+#: ../core/class_functions.php:3001
+msgid "Shortcode Form Message %1s."
+msgstr "Form shortcode messaggio% 1s."
+
+#: ../core/class_functions.php:3075
+msgid "Logged in from IP %1s, %2s ago."
+msgstr "Collegato da IP% 1s, 2s% fa."
+
+#: ../core/class_functions.php:3097 ../core/class_functions.php:3476
+#: ../core/class_functions.php:3492 ../core/class_user_list_table.php:475
+#: ../core/premium/class_contact_messages.php:1310
+#: ../core/ui/crm_metaboxes.php:273
+#: ../core/ui/crm_page_wp_crm_settings.php:347
+#: ../core/ui/crm_page_wp_crm_settings.php:477
+msgid "Delete"
+msgstr "Cancella"
+
+#: ../core/class_functions.php:3380
+msgid "Last Name"
+msgstr "Cognome"
+
+#: ../core/class_functions.php:3383
+msgid "First Name"
+msgstr "Nome"
+
+#: ../core/class_functions.php:3396
+msgid "Warning: there is no field with slug '%s' in list of user attributes on Data tab!"
+msgstr "Attenzione: non c'è campo con slug '% s' nella lista degli attributi utente sulla scheda Dati!"
+
+#: ../core/class_functions.php:3416
+msgid "Group:"
+msgstr "Gruppo"
+
+#: ../l10n.php:17 ../core/class_functions.php:3418
+#: ../core/class_functions.php:3455 ../core/class_functions.php:3458
+msgid "Primary Information"
+msgstr "Informazione Primaria"
+
+#: ../core/class_functions.php:3442
+msgid "Attributes Groups"
+msgstr "Attributi gruppi"
+
+#: ../core/class_functions.php:3447
+msgid "Group Name"
+msgstr "Nome gruppo"
+
+#: ../core/class_functions.php:3448
+msgid "Metabox Title"
+msgstr "Titolo Metabox"
+
+#: ../l10n.php:15 ../core/class_functions.php:3449
+msgid "Actions"
+msgstr "Azioni"
+
+#: ../core/class_functions.php:3502
+#: ../core/premium/class_contact_messages.php:1318
+#: ../core/ui/crm_page_wp_crm_settings.php:355
+#: ../core/ui/crm_page_wp_crm_settings.php:486
+msgid "Add Row"
+msgstr "Aggiungi riga"
+
+#: ../core/class_functions.php:3624 ../core/ui/crm_metaboxes.php:168
+msgid "Add Another"
+msgstr "Aggiungi altra"
+
+#: ../core/class_list_table.php:315
+msgid "Nothing found."
+msgstr "Non trovato"
+
+#: ../core/class_ud.php:410 ../core/premium/class_contact_messages.php:796
+msgid "Processing..."
+msgstr "Elaborando ..."
+
+#: ../core/class_ud.php:466
+msgid "UD Log Page for"
+msgstr "UD Log Pagina per"
+
+#: ../core/class_ud.php:467 ../core/ud_api.php:1109
+msgid "Clear Log"
+msgstr "Pulisci Log"
+
+#: ../core/class_ud.php:474 ../core/ud_api.php:1114
+msgid "Timestamp"
+msgstr "Timestamp"
+
+#: ../core/class_ud.php:475 ../core/ud_api.php:1116
+msgid "Event"
+msgstr "Evento"
+
+#: ../core/class_ud.php:476 ../core/ud_api.php:1117
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:18
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:45
+msgid "User"
+msgstr "Utente"
+
+#: ../core/class_ud.php:744
+msgid "Cache table does not exist. Attempting to create:"
+msgstr "Tabella della cache non esiste. Il tentativo di creare:"
+
+#: ../core/class_ud.php:757
+msgid "SQL Ran: %s , verifying existence."
+msgstr "SQL Ran:% s, verificando l'esistenza."
+
+#: ../core/class_ud.php:762
+msgid "Table created and exists."
+msgstr "Tabella creata."
+
+#: ../core/class_ud.php:766
+msgid "Table not created."
+msgstr "Tabella non creata."
+
+#: ../core/class_ud.php:833 ../core/class_ud.php:870 ../core/ud_api.php:978
+msgid "Log Started."
+msgstr "Log iniziato."
+
+#: ../core/class_ud.php:962
+msgid "Today"
+msgstr "Oggi"
+
+#: ../core/class_ud.php:963
+msgid "Tomorrow "
+msgstr "Domani_"
+
+#: ../core/class_ud.php:963
+msgid "Yesterday "
+msgstr "Ieri_"
+
+#: ../core/class_ud.php:964
+msgid " in %d days "
+msgstr "_in %d giorni_"
+
+#: ../core/class_ud.php:964
+msgid "%d days ago"
+msgstr "%d giorni fa"
+
+#: ../core/class_ud.php:1081
+msgid "Automatically logged failed JSON response: "
+msgstr "Disconnesso automaticamente fallito risposta JSON:"
+
+#: ../core/class_ud.php:1199
+msgid "%s hours ago"
+msgstr "%s ore fa"
+
+#: ../core/class_ud.php:1201
+msgid "%s minutes ago"
+msgstr "%s minuti fa"
+
+#: ../core/class_user_list_table.php:187
+msgid "Bulk Actions"
+msgstr "Azioni di massa"
+
+#: ../core/class_user_list_table.php:192
+msgid "Apply"
+msgstr "Applica"
+
+#: ../core/class_user_list_table.php:361
+msgid "Role Lists"
+msgstr "Elenco ruoli"
+
+#: ../core/class_user_list_table.php:361 ../core/class_user_list_table.php:387
+msgid "Show"
+msgstr "Mostra"
+
+#: ../core/class_user_list_table.php:460
+msgid "%1$s <span class=\"count\">(%2$s)</span>"
+msgstr "% 1 $ s <span class=\"count\"> (% 2 $ s) </ span>"
+
+#: ../core/class_user_list_table.php:472
+msgid "Remove"
+msgstr "Rimuovi"
+
+#: ../core/ud_api.php:281
+msgid "UD Error"
+msgstr "UD errore"
+
+#: ../core/ud_api.php:877
+msgid "Unknown error."
+msgstr "Errore Sconosciuto."
+
+#: ../core/ud_api.php:964
+msgid "You cannot call UD_API::log() before the %1$s hook, since the current user is not yet known."
+msgstr "Non è possibile chiamare UD_API :: log () prima che il% 1 $ s gancio, dal momento che l'utente corrente non è ancora noto."
+
+#: ../core/connections/bbpress.php:90 ../core/connections/bbpress.php:111
+msgid "Posts"
+msgstr "Articoli"
+
+#: ../core/connections/bbpress.php:91 ../core/connections/bbpress.php:112
+msgid "Last Week"
+msgstr "Ultima settimana"
+
+#: ../core/connections/bbpress.php:92 ../core/connections/bbpress.php:113
+msgid "Last Two Weeks"
+msgstr "Ultime due settimane"
+
+#: ../core/connections/bbpress.php:126
+msgid "Forum Participation"
+msgstr "Forum"
+
+#: ../core/connections/buddypress.php:62
+msgid "Executing: %1s."
+msgstr "Esecuzione:% 1s."
+
+#: ../core/connections/buddypress.php:75
+msgid "BuddyPress Profile Link"
+msgstr "Link al profilo BuddyPress"
+
+#: ../core/connections/buddypress.php:90
+msgid "<a href=\"%1s\">BuddyPress Profile</a>"
+msgstr "<a href=\"%1s\"> BuddyPress Profilo </ a>"
+
+#: ../core/connections/buddypress.php:103
+msgid "BuddyPress Profile Fields"
+msgstr "BuddyPress Profilo campi"
+
+#: ../core/connections/buddypress.php:234
+msgid "There was a problem updating some of your profile information, please try again."
+msgstr "C'è stato un problema aggiornando alcune delle informazioni del profilo, si prega di riprovare."
+
+#: ../core/connections/buddypress.php:236
+msgid "Changes saved."
+msgstr "Cambiamenti salvati."
+
+#: ../core/connections/buddypress.php:262
+msgid "BuddyPress Profile Group"
+msgstr "BuddyPress Profilo del Gruppo"
+
+#: ../core/connections/buddypress.php:262
+msgid "BP Group:"
+msgstr "Gruppo BuddyPress"
+
+#: ../core/connections/buddypress.php:264
+msgid " - "
+msgstr " - "
+
+#: ../core/connections/buddypress.php:409
+#: ../core/connections/buddypress.php:423
+msgid "Clear"
+msgstr "Pulisci"
+
+#: ../core/connections/buddypress.php:474
+msgid "View CRM Profile"
+msgstr "Visualizza il profilo CRM"
+
+#: ../core/connections/buddypress.php:533
+msgid "Please make sure you fill in all required Buddypress fields in this profile field group before saving."
+msgstr "Si prega di assicurarsi di compilare tutti i campi obbligatori BuddyPress in questo gruppo campo profilo prima di salvare."
+
+#: ../core/connections/buddypress.php:549
+msgid "There was a problem updating some of Buddypress profile information, please try again."
+msgstr "C'è stato un problema aggiornando alcune delle BuddyPress informazioni del profilo, si prega di riprovare."
+
+#: ../core/connections/wp-invoice.php:96
+msgid "Sales"
+msgstr "Vendite"
+
+#: ../core/premium/class_contact_messages.php:82
+msgid "Filter"
+msgstr "Filtro"
+
+#: ../core/premium/class_contact_messages.php:101
+msgid "Message trashed."
+msgstr "Messaggio cestinato."
+
+#: ../core/premium/class_contact_messages.php:154
+msgid "Status"
+msgstr "Stato"
+
+#: ../core/premium/class_contact_messages.php:157
+msgid "New"
+msgstr "Nuovo"
+
+#: ../core/premium/class_contact_messages.php:163
+msgid "Archived"
+msgstr "Archiviato"
+
+#: ../core/premium/class_contact_messages.php:167
+msgid "All"
+msgstr "Tutto"
+
+#: ../core/premium/class_contact_messages.php:171
+msgid "Originating Form"
+msgstr "Generazione Form"
+
+#: ../core/premium/class_contact_messages.php:191
+#: ../core/ui/crm_metaboxes.php:29
+msgid "Filter Results"
+msgstr "Filtra Risultati"
+
+#: ../core/premium/class_contact_messages.php:198
+msgid "Visualize Contact Data"
+msgstr "Visualizza Dati Contatto"
+
+#: ../core/premium/class_contact_messages.php:284
+msgid "Date"
+msgstr "Data"
+
+#: ../core/premium/class_contact_messages.php:285
+msgid "All Daily Messages"
+msgstr "Tutti i messaggi quotidiani"
+
+#: ../core/premium/class_contact_messages.php:391
+msgid "Related %s:"
+msgstr "Related% s:"
+
+#: ../core/premium/class_contact_messages.php:395
+msgid "ago"
+msgstr "fa"
+
+#: ../core/premium/class_contact_messages.php:397
+msgid "other messages."
+msgstr "altri messaggi"
+
+#: ../core/premium/class_contact_messages.php:405
+msgid "Trash"
+msgstr "Cestino"
+
+#: ../core/premium/class_contact_messages.php:409
+msgid "Archive"
+msgstr "Archivio"
+
+#: ../core/premium/class_contact_messages.php:415
+msgid "Trash Message and User"
+msgstr "Trash messaggi e degli utenti"
+
+#: ../core/premium/class_contact_messages.php:878
+msgid "A server error occurred while trying to process the form."
+msgstr "Si è verificato un errore del server durante il tentativo di elaborare il modulo."
+
+#: ../core/premium/class_contact_messages.php:963
+msgid "If you see this message, WP-CRM thought you were a robot.  Please contact admin if you do not think are you one."
+msgstr "Se viene visualizzato questo messaggio, WP-CRM pensato che tu fossi un robot. Si prega di contattare amministratore se non pensi sei uno."
+
+#: ../core/premium/class_contact_messages.php:976
+#: ../core/premium/class_contact_messages.php:1001
+msgid "Form could not be submitted."
+msgstr "Il modulo non può essere sottoscritto"
+
+#: ../core/premium/class_contact_messages.php:1054
+msgid "%1s cannot be empty."
+msgstr "%1s non può essere vuoto."
+
+#: ../core/premium/class_contact_messages.php:1065
+msgid "This %1s belongs to a registered user, please login."
+msgstr "Questo% 1s appartiene ad un utente registrato, effettua il login."
+
+#: ../core/premium/class_contact_messages.php:1086
+#: ../core/premium/class_contact_messages.php:1106
+msgid "Form could not be submitted. Please make sure you have entered your information properly."
+msgstr "La forma non poteva essere presentata. Si prega di assicurarsi di aver inserito le informazioni in modo corretto."
+
+#: ../core/premium/class_contact_messages.php:1103
+msgid "Message could not be sent. Please make sure you have entered your information properly."
+msgstr "Il messaggio non ha potuto essere inviato. Si prega di assicurarsi di aver inserito le informazioni in modo corretto."
+
+#: ../core/premium/class_contact_messages.php:1125
+msgid " -- No message. -- "
+msgstr " - Nessun messaggio. -"
+
+#: ../core/premium/class_contact_messages.php:1203
+msgid "Use this section to add and configure new shortcode forms."
+msgstr "Utilizzare questa sezione per aggiungere e configurare nuove forme shortcode."
+
+#: ../core/premium/class_contact_messages.php:1208
+msgid "Form Settings"
+msgstr "Impostazioni modulo"
+
+#: ../core/premium/class_contact_messages.php:1209
+msgid "Fields"
+msgstr "Campi"
+
+#: ../core/premium/class_contact_messages.php:1220
+#: ../core/ui/crm_page_wp_crm_settings.php:399
+msgid "Title:"
+msgstr "Titolo:"
+
+#: ../core/premium/class_contact_messages.php:1225
+msgid "Shortcode:"
+msgstr "Shortcode:"
+
+#: ../core/premium/class_contact_messages.php:1232
+msgid "Role:"
+msgstr "Ruolo"
+
+#: ../core/premium/class_contact_messages.php:1237
+msgid "If new user created, assign this role."
+msgstr "Se viene creato un nuovo utente, asegna questo ruolo"
+
+#: ../core/premium/class_contact_messages.php:1251
+msgid "Display textarea for custom message."
+msgstr "Visualizza area testo per messaggi personalizzati"
+
+#: ../core/premium/class_contact_messages.php:1256
+msgid "Send message notification even if no message is submitted."
+msgstr "Invia un messaggio di notifica, anche se nessun messaggio viene inviato."
+
+#: ../core/premium/class_contact_messages.php:1261
+msgid "Do not require users with existing accounts to sign in first."
+msgstr "Non richiedono gli utenti con account esistenti a firmare in prima."
+
+#: ../core/premium/class_contact_messages.php:1324
+msgid "To see list of variables you can use in wp_crm_contact_system_data open up the \"Help\" tab and view the user data structure.  Any variable you see in there can be used in the subject field, to field, BCC field, and the message body. Example: [user_email] would include the recipient's e-mail."
+msgstr "Per visualizzare l'elenco delle variabili è possibile utilizzare in wp_crm_contact_system_data aprire la scheda \"Help\" e visualizzare la struttura dei dati utente. Qualsiasi variabile che vedete in là può essere utilizzato nel campo Oggetto, al campo, campo Ccn, e il corpo del messaggio. Esempio: [USER_EMAIL] includerebbe e-mail del destinatario."
+
+#: ../core/premium/class_contact_messages.php:1325
+#: ../core/ui/crm_page_wp_crm_settings.php:363
+msgid "To add notification actions use the <b>wp_crm_notification_actions</b> filter, then call the action within <b>wp_crm_send_notification()</b> function, and the messages association with the given action will be fired off."
+msgstr "Per aggiungere azioni di notifica usa il wp_crm_notification_actions </ b> Filtro <b>, quindi chiamare il ricorso entro <b> wp_crm_send_notification () </ b> funzione, e l'associazione dei messaggi con l'azione proposta verrà sparato."
+
+#: ../core/premium/class_contact_messages.php:1330
+msgid "Options"
+msgstr "Opzioni"
+
+#: ../core/premium/class_contact_messages.php:1335
+msgid "Default role to use for new contacts:"
+msgstr "Ruolo prestabilito per i nuovi utenti:"
+
+#: ../core/premium/class_contact_messages.php:1337
+msgid "WP-CRM creates user profiles, if only temporary, to store inquiries and messages from shortcode forms."
+msgstr "WP-CRM crea profili utente, se solo temporanea, per memorizzare le richieste e messaggi da forme shortcode."
+
+#: ../core/premium/class_contact_messages.php:1360
+msgid "View messages from shortcode forms."
+msgstr "Visualizza messaggio forme shortcode."
+
+#: ../core/premium/class_contact_messages.php:1399
+#: ../core/ui/crm_page_wp_crm_settings.php:285
+msgid "Message"
+msgstr "Messaggio"
+
+#: ../core/premium/class_contact_messages.php:1400
+msgid "Sender"
+msgstr "Mittente"
+
+#: ../core/premium/class_contact_messages.php:1463
+msgid "Contact Messages"
+msgstr "Messaggi contatto"
+
+#: ../core/premium/class_crm_advanced_functions.php:88
+msgid "Merge with another user."
+msgstr "Unisci con un altro utente"
+
+#: ../core/premium/class_crm_advanced_functions.php:262
+msgid "User ID of the user you would like to merge the current user with:"
+msgstr "ID utente dell'utente che si desidera unire l'utente corrente con:"
+
+#: ../core/premium/class_crm_advanced_functions.php:268
+msgid "Merge"
+msgstr "Unisci"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:623
+#: ../core/ui/crm_page_wp_crm_settings.php:630
+#: ../core/ui/crm_page_wp_crm_settings.php:642
+#: ../core/ui/crm_page_wp_crm_settings.php:649
+msgid "Cancel"
+msgstr "Cancella"
+
+#: ../core/premium/class_crm_advanced_functions.php:331
+msgid "Attached file:"
+msgstr "File allegato:"
+
+#: ../core/premium/class_crm_advanced_functions.php:460
+msgid "Save user before uploading files."
+msgstr "Salva prima di caricare file:"
+
+#: ../core/premium/class_crm_advanced_functions.php:512
+msgid "File Upload"
+msgstr "File caricato"
+
+#: ../core/premium/class_crm_group_messages.php:75
+msgid "Group Messages"
+msgstr "Messaggi di gruppo"
+
+#: ../core/premium/class_crm_group_messages.php:116
+msgid "PDF Attachment"
+msgstr "Allegato PDF"
+
+#: ../core/premium/class_crm_group_messages.php:119
+msgid "User attributes to include in PDF Attachments for each recipient without an e-mail:"
+msgstr "Attributi utente da includere negli allegati PDF per ogni destinatario senza un indirizzo e-mail:"
+
+#: ../core/premium/class_crm_group_messages.php:130
+msgid "When message recipients include users without e-mails, a PDF list of such recipients can be distributed amongst recipients with e-mails."
+msgstr "Quando i destinatari del messaggio sono gli utenti senza e-mail, un pdf Lista di tali destinatari può essere distribuito tra i destinatari con messaggi e-mail."
+
+#: ../core/ud_api.php:1115 ../core/premium/class_crm_group_messages.php:153
+msgid "Type"
+msgstr "Tipo"
+
+#: ../core/premium/class_crm_group_messages.php:157
+msgid "Shortcode Form Messages"
+msgstr "Messaggi Form shortcode"
+
+#: ../core/premium/class_crm_group_messages.php:162
+msgid "Group Messags"
+msgstr "Messaggi di gruppo"
+
+#: ../core/premium/class_crm_group_messages.php:201
+msgid "Group Message"
+msgstr "Nessaggio di gruppo"
+
+#: ../core/premium/class_crm_group_messages.php:216
+msgid "Group Messages (Newsletters)"
+msgstr "Messaggi di gruppo (Newsletter)"
+
+#: ../core/premium/class_crm_group_messages.php:217
+msgid "To send a group message, first use the filters to narrow down to the users you want to contact."
+msgstr "Per inviare un messaggio di gruppo, prima di utilizzare i filtri per restringere agli utenti che si desidera contattare."
+
+#: ../core/premium/class_crm_group_messages.php:218
+msgid "Once the users are filtered, click \"Show Actions\", and \"Send Group Message\" to begin creating a message."
+msgstr "Una volta che gli utenti vengono filtrati, fare clic su \"Mostra Azioni\" e \"Send Message Group\" per iniziare a creare un messaggio."
+
+#: ../core/premium/class_crm_group_messages.php:360
+msgid "You are about to send this message to %d users, are you sure?."
+msgstr "Stai per inviare questo messaggio a% d utenti, sei sicuro?."
+
+#: ../core/premium/class_crm_group_messages.php:366
+msgid "Sending..."
+msgstr "Invio in corso..."
+
+#: ../core/premium/class_crm_group_messages.php:411
+msgid "Send"
+msgstr "Spedisci"
+
+#: ../core/premium/class_crm_group_messages.php:434
+#: ../core/ui/crm_page_wp_crm_settings.php:308
+msgid "From:"
+msgstr "Da;"
+
+#: ../core/premium/class_crm_group_messages.php:443
+#: ../core/ui/crm_page_wp_crm_settings.php:300
+msgid "To:"
+msgstr "A:"
+
+#: ../core/premium/class_crm_group_messages.php:449
+msgid "Template:"
+msgstr "Modello:"
+
+#: ../core/premium/class_crm_group_messages.php:460
+#: ../core/ui/crm_page_wp_crm_settings.php:296
+msgid "Subject:"
+msgstr "Oggetto:"
+
+#: ../core/premium/class_crm_group_messages.php:473
+msgid "Be advised, %1d of the %2d intended recipients do not have an e-mail addresses.  <span class=\"wp_crm_secondary_action wp_crm_toggle\" toggle=\"wp_crm_no_email_actions\">Take action.</span>"
+msgstr "Essere informati,% 1 quinquies dello% 2d destinati destinatari non dispongono di un indirizzo di posta elettronica. <span class=\"wp_crm_secondary_action wp_crm_toggle\" toggle=\"wp_crm_no_email_actions\"> Agire. </ span>"
+
+#: ../core/premium/class_crm_group_messages.php:477
+msgid "Evenly break-up the users amongst recipients in the %1s group, and send them the user report."
+msgstr "Uniformemente break-up tra gli utenti destinatari nel gruppo% 1s, e inviare loro la relazione di un utente."
+
+#: ../core/premium/class_crm_group_messages.php:478
+msgid "E-mail me full report of all users without e-mail addresses."
+msgstr "Avvisami relazione completa di tutti gli utenti, senza indirizzi e-mail."
+
+#: ../core/premium/class_crm_group_messages.php:500
+msgid "Send Message"
+msgstr "Spedisci messaggio"
+
+#: ../core/premium/class_crm_group_messages.php:501
+msgid "Discard"
+msgstr "Scarta"
+
+#: ../core/premium/class_crm_group_messages.php:626
+msgid "There are no users in this list that have e-mails and the necessary role to disseminate the information."
+msgstr "Non ci sono utenti in questa lista che hanno e-mail e il ruolo necessario per diffondere le informazioni."
+
+#: ../core/premium/class_crm_group_messages.php:734
+msgid "<p class=\"wp_crm_system_message\">User received PDF Attachment and asked to contact the following recipients: %1s </p>"
+msgstr "<p class=\"wp_crm_system_message\"> utente ha ricevuto allegato PDF e ha chiesto di contattare i seguenti destinatari:% 1s </ p>"
+
+#: ../core/premium/class_crm_group_messages.php:772
+msgid "No messages were sent. Check your SMTP settings."
+msgstr "Nessun messaggio sono stati inviati. Controllare le impostazioni SMTP."
+
+#: ../core/premium/class_crm_group_messages.php:850
+msgid "Please notify the following (%1s) people of this message:"
+msgstr "Si prega di comunicare i seguenti (% 1s) persone di questo messaggio:"
+
+#: ../core/premium/class_crm_group_messages.php:1011
+msgid "Send Group Message"
+msgstr "Invia messaggio di gruppo"
+
+#: ../core/premium/class_email_sync.php:355
+msgid "Import and Sync Emails"
+msgstr "Importa e Sincronizza Email"
+
+#: ../core/premium/class_google_contacts.php:113
+msgid "User account updated by synchronizing with Google Contacts."
+msgstr "Account utente aggiornato mediante sincronizzazione con Google Contacts."
+
+#: ../core/premium/class_google_contacts.php:116
+msgid "User account created by importing from %1s Google account."
+msgstr "Account utente creato tramite l'importazione da% 1s account Google."
+
+#: ../core/premium/class_google_contacts.php:145
+msgid "Google Contacts"
+msgstr "Contatti Google"
+
+#: ../core/premium/class_google_contacts.php:149
+msgid "Google Username:"
+msgstr "Username Google:"
+
+#: ../core/premium/class_google_contacts.php:151
+msgid "Password:"
+msgstr "Password:"
+
+#: ../core/premium/class_google_contacts.php:153
+msgid "It is highly recommended you use an application-specific password."
+msgstr "Si consiglia vivamente di utilizzare una password specifica per l'applicazione."
+
+#: ../core/premium/class_google_contacts.php:183
+msgid "Synchronizing with Google Contacts..."
+msgstr "Sincronizzazione con Google Contacts ..."
+
+#: ../core/premium/class_google_contacts.php:188
+msgid "Google Contacts Synchronization failed."
+msgstr "Sincronizzazione Contatti Google non è riuscito."
+
+#: ../core/premium/class_google_contacts.php:202
+msgid "Google Contacts Update"
+msgstr "Google Contatti aggiornamento"
+
+#: ../core/ui/crm_metaboxes.php:36
+msgid "Export to CSV"
+msgstr "Esporta in uin file CSV"
+
+#: ../core/ui/crm_metaboxes.php:38
+msgid "Visualize User Data"
+msgstr "Visualizza dati utente"
+
+#: ../core/ui/crm_metaboxes.php:45
+msgid "Perfomed actions"
+msgstr "Azioni eseguito"
+
+#: ../core/ui/crm_metaboxes.php:85
+msgid "Add Message"
+msgstr "Aggiungi un messaggio"
+
+#: ../core/ui/crm_metaboxes.php:87 ../core/ui/crm_metaboxes.php:129
+msgid "loading"
+msgstr "caricamento"
+
+#: ../core/ui/crm_metaboxes.php:98
+msgid "Show Options"
+msgstr "Mostra opzioni"
+
+#: ../core/ui/crm_metaboxes.php:100
+msgid "Date:"
+msgstr "Data:"
+
+#: ../core/ui/crm_metaboxes.php:105
+msgid "Message type"
+msgstr "Tipo Messaggio"
+
+#: ../core/ui/crm_metaboxes.php:129
+msgid "Showing <span class=\"current_count\">%1s</span> messages of <span class=\"total_count\">%2s</span>. Load <span class=\"more_count\">%3s</span> more."
+msgstr "Mostrando <span class=\"current_count\">% 1s </ span> <span messaggi di class=\"total_count\">% 2s </ span>. Carico <span class=\"more_count\">% 3s </ span> di più."
+
+#: ../core/ui/crm_metaboxes.php:200
+msgid "Toggle Settings"
+msgstr "Espandi Impostazioni"
+
+#: ../core/ui/crm_metaboxes.php:204
+msgid "Set Password:"
+msgstr "Imposta password:"
+
+#: ../core/ui/crm_metaboxes.php:208
+msgid "Type in new password twice to change."
+msgstr "Digita la password due volte per cambiarla."
+
+#: ../core/ui/crm_metaboxes.php:212
+msgid "Type your new password again."
+msgstr "Digita la tua nuova password nuovamente."
+
+#: ../core/ui/crm_metaboxes.php:216
+msgid "Admin Options:"
+msgstr "Opzioni Amministratore:"
+
+#: ../core/ui/crm_metaboxes.php:220
+msgid "Capability Role:"
+msgstr "Abilità Ruolo:"
+
+#: ../core/ui/crm_metaboxes.php:230
+msgid "Show Admin Bar when viewing site."
+msgstr "Mostra la barra amministrazione mentre si visualizza il sito."
+
+#: ../core/ui/crm_metaboxes.php:235
+msgid "Color Scheme:"
+msgstr "Schema colore:"
+
+#: ../core/ui/crm_metaboxes.php:261 ../core/ui/crm_metaboxes.php:263
+msgid "Save"
+msgstr "Salva"
+
+#: ../core/ui/crm_metaboxes.php:261 ../core/ui/crm_metaboxes.php:263
+msgid "Update"
+msgstr "Aggiorna"
+
+#: ../core/ui/crm_page_wp_crm_add_new.php:10
+msgid "Profile created."
+msgstr "Profilo creato"
+
+#: ../core/ui/crm_page_wp_crm_add_new.php:12
+msgid "Profile updated."
+msgstr "Profilo aggiornato"
+
+#: ../core/ui/crm_page_wp_crm_add_new.php:26
+msgid "Add New Person"
+msgstr "Aggiungi una nuova persona"
+
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:19
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:46
+msgid "Activity"
+msgstr "Attività"
+
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:20
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:47
+msgid "Location"
+msgstr "Località"
+
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:21
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:48
+msgid "ISP"
+msgstr "ISP"
+
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:22
+#: ../core/ui/crm_page_wp_crm_detailed_logs.php:49
+msgid "Time"
+msgstr "Ora"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:89
+msgid "CRM Settings"
+msgstr "Impostazioni CRM"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:98
+msgid "Main"
+msgstr "Principale"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:99
+msgid "UI"
+msgstr "UI"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:100
+msgid "Data"
+msgstr "Data"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:101
+msgid "Roles"
+msgstr "Ruoli"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:120
+msgid "Premium Features"
+msgstr "Opzioni premium"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:122
+msgid "Help"
+msgstr "Aiuto"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:131
+#: ../core/ui/crm_page_wp_crm_settings.php:375
+msgid "General Settings"
+msgstr "Impostazioni generali"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:137
+msgid "Replace default WordPress User page with WP-CRM."
+msgstr "Sostituisci la pagina utenti di WP con quella di WP-CRM"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:142
+msgid "Allow user accounts to be created without an e-mail address."
+msgstr "Permetti la creazione di utenti senza l'indirizzo email"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:147
+msgid "Disable default WordPress password reset e-mail notification."
+msgstr "Disabilitare predefinito Password Reset notifica tramite posta elettronica WordPress."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:152
+msgid "Do not automatically convert line breaks in outgoing contact messages."
+msgstr "Non convertire automaticamente le interruzioni di riga nei messaggi in contatto in uscita."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:157
+msgid "Track detailed user activity."
+msgstr "Monitorare l'attività utente dettagliata."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:162
+msgid "Enable Attribute Grouping."
+msgstr "Attiva attributo di raggruppamento."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:175
+msgid "Standardize Display Names."
+msgstr "Standardizza Nome Pubblico."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:178
+msgid "Display name components: "
+msgstr "Componenti Nome Pubblico: "
+
+#: ../core/ui/crm_page_wp_crm_settings.php:186
+msgid "Email Settings"
+msgstr "Impostazioni email"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:191
+msgid "Default sender e-mail address."
+msgstr "Indirizzo standard di spedizione"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:192
+msgid "If you are not using SMTP, it is advisable to use a @%s email address to avoid being spammed."
+msgstr "Se non si utilizza SMTP, è consigliabile utilizzare un indirizzo di posta elettronica s @% per evitare di essere spam."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:208
+msgid "General UI Settings"
+msgstr "Impostazioni generali dell'interfaccia utente"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:213
+msgid "Do not display user avatars on overview pages."
+msgstr "Non visualizzare gli avatar degli utenti sulle pagine di riepilogo."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:220
+msgid "Primary User Identifier"
+msgstr "Primary identificativo utente"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:237
+msgid "Overview Page User Card"
+msgstr "Panoramica Carta Pagina utente"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:238
+msgid "User data to be displayed in the <b>Information</b> column."
+msgstr "I dati dell'utente da visualizzare nelle informazioni <b> </ b> colonna."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:257
+msgid "Quick User Actions"
+msgstr "Veloce Azioni utente"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:258
+msgid "User-specific actions that can be initiated from the user overview page."
+msgstr "Azioni specifiche dell'utente che possono essere avviati dalla pagina panoramica dell'utente."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:266
+msgid "Enable: %1s"
+msgstr "Abilita:% 1s"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:279
+msgid "This tab allows you to create and modify your notifications.  Notifications can be assigned to various events, such as new user registration, general contact messages, etc."
+msgstr "Questa scheda consente di creare e modificare le notifiche. Le notifiche possono essere assegnati a vari eventi, come la registrazione di nuovi utenti, i messaggi di contatto generali, ecc"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:284
+msgid "Message Header"
+msgstr "Messaggio Intestazione"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:286
+msgid "Trigger Actions"
+msgstr "Attivare azioni"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:304
+msgid "BCC:"
+msgstr "CCN:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:307
+msgid "Send From:"
+msgstr "Da:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:344
+msgid "You do not have any notification actions yet. "
+msgstr "Non hai ancora azioni di notifica."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:361
+msgid "For the <b>Send From</b> value enter an e-mailed address or a name and e-mail using the folloiwng format: John Smith <john.smith@gmail.com>"
+msgstr "Per la <b>Send From</b> inserisci un indirizzo e-mail o un nome ed  e-mail usando il seguente formato: John Smith <john.smith@gmail.com>"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:362
+msgid "To see list of variables you can use in notifications open up the \"Help\" tab and view the user data structure.  Any variable you see in there can be used in the subject field, to field, BCC field, and the message body. Example: [user_email] would include the recipient's e-mail."
+msgstr "Per visualizzare l'elenco delle variabili che è possibile utilizzare nelle notifiche aprire la scheda \"Help\" e visualizzare la struttura dei dati utente. Qualsiasi variabile che vedete in là può essere utilizzato nel campo Oggetto, al campo, campo Ccn, e il corpo del messaggio. Esempio: [USER_EMAIL] includerebbe e-mail del destinatario."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:383
+msgid "Attribute"
+msgstr "Attributo"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:385
+msgid "Input Type"
+msgstr "Tipo Input"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:406
+msgid "Note:"
+msgstr "Nota:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:411
+msgid "Slug:"
+msgstr "Slug:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:418
+msgid "Toggle Advanced"
+msgstr "Opzioni avanzate"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:427
+msgid "Primary"
+msgstr "Primario"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:432
+msgid "Overview Column"
+msgstr "Colonna Riepilogo"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:437
+msgid "Required"
+msgstr "Obbligatorio"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:442
+msgid "Uneditable"
+msgstr "Non modificabile"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:501
+msgid "User Roles"
+msgstr "Ruoli utenti"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:507
+msgid "Role"
+msgstr "ruolo"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:508
+msgid "Hidden Attributes"
+msgstr "Attributi Nascosti"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:509
+msgid "Capabilities"
+msgstr "Abilità"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:537
+msgid "No capabilities found for role."
+msgstr "Nessuna abilità trovata per il ruolo."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:570
+#: ../core/ui/crm_page_wp_crm_settings.php:617
+msgid "Force check of allowed premium features."
+msgstr "Controllo di forza di caratteristiche premium consentiti."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:571
+#: ../core/ui/crm_page_wp_crm_settings.php:618
+msgid "Check Updates"
+msgstr "Controlla Aggiornamenti"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:575
+msgid "When purchasing the premium features you will need to specify your domain to add the license correctly. <br />This is your domain:"
+msgstr "Al momento dell'acquisto le caratteristiche premium sarà necessario specificare il dominio per aggiungere la licenza correttamente. <br /> Questo è il vostro dominio:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:589
+msgid "[learn more]"
+msgstr "[per saperne di più]"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:598
+msgid "Disable feature."
+msgstr "Disabilita Opzione."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:599
+msgid "Feature installed, using version"
+msgstr "Opzione installata, usando la versione"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:601
+msgid "Please visit <a href=\"%s\">UsabilityDynamics.com</a> to purchase this feature."
+msgstr "Si prega di visitare <a href=\"%s\"> UsabilityDynamics.com </ a> per l'acquisto di questa funzione."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:622
+msgid "Look up the <b>$wp_crm</b> global settings array. This array stores all the default settings, which are overwritten by database settings, and custom filters."
+msgstr "Cercare il <b> $ wp_crm </ b> array impostazioni globali. Questo array memorizza tutte le impostazioni predefinite, che vengono sovrascritti dalle impostazioni di database e filtri personalizzati."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:623
+msgid "Show $wp_crm"
+msgstr "Mostra $wp_crm"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:629
+msgid "Show user data structure:"
+msgstr "Mostra struttura dati Utente:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:630
+msgid "Show WP_CRM_F::user_object_structure()"
+msgstr "Mostra WP_CRM_F :: user_object_structure ()"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:631
+msgid "All possible meta keys:"
+msgstr "Tutte le meta keys:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:633
+msgid "Root Only:"
+msgstr "Solo Root:"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:639
+msgid "Lookup a user object by its ID."
+msgstr "Cercare un oggetto utente con il suo ID."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:641
+msgid "Load User"
+msgstr "Carica Utente"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:647
+msgid "Get user meta report. Will return an array of common meta keys and a few sample values.  This should be used to help you analyze a website with a lot of existing user meta."
+msgstr "Prendi utente meta relazione. Restituirà una matrice di meta chiavi comuni e alcuni valori di esempio. Questo dovrebbe essere usato per aiutare ad analizzare un sito web con un sacco di meta utente esistente."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:648
+msgid "Get Report"
+msgstr "Ottieni report"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:654
+msgid "Generate "
+msgstr "Generazione "
+
+#: ../core/ui/crm_page_wp_crm_settings.php:654
+msgid "fake users. "
+msgstr "utenti fake. "
+
+#: ../core/ui/crm_page_wp_crm_settings.php:655
+msgid "Generate"
+msgstr "Genera"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:656
+msgid "Delete All Fake Users"
+msgstr "Elimina tutti gli utenti Fake"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:661
+msgid "Restore Backup of WP-CRM Configuration"
+msgstr "Ripristino di backup di WP-CRM Configuration"
+
+#: ../core/ui/crm_page_wp_crm_settings.php:662
+msgid "Download Backup of Current WP-CRM Configuration."
+msgstr "Scarica Backup di Current Configuration WP-CRM."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:668
+msgid "Enable developer mode and start displaying additional information in the console log."
+msgstr "Abilitare la modalità sviluppatore e iniziare a visualizzare informazioni aggiuntive nel log della console."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:681
+msgid "Save Changes"
+msgstr "Salva modifiche"
+
+#: ../core/ui/toplevel_page_wp_crm.php:4
+msgid "User has been deleted and all associated posts have been trashed."
+msgstr "L'utente è stato cancellato e tutti i messaggi associati sono stati cestinati."
+
+#: ../core/ui/toplevel_page_wp_crm.php:8
+msgid "WP-CRM has been updated, and any premium features your domain qualifies for have been downloaded."
+msgstr "WP-CRM è stato aggiornato, e di eventuale sovrapprezzo caratteristiche del tuo dominio si qualifica per essere stato scaricato."
+
+#: ../core/ui/toplevel_page_wp_crm.php:21
+msgid "CRM - All People"
+msgstr "Tutti gli utenti CRM"
+
+#: ../core/ui/toplevel_page_wp_crm.php:21
+msgid "Add New"
+msgstr "Aggiungi nuovo"
+
+#: ../l10n.php:18
+msgid "Special Actions"
+msgstr "Azioni Speciali"
+
+#: ../core/ud_api.php:1080
+msgid "You cannot call UD_API::add_log_page() after the %1$s hook."
+msgstr "Non è possibile chiamare UD_API :: add_log_page () dopo il% 1 $ s gancio."
+
+#: ../core/ud_api.php:1108
+msgid "Log Page for"
+msgstr "Accedere Pagina per"
+
+#: ../core/ud_api.php:1118
+msgid "Related Object"
+msgstr "Oggetti correlati"
+
+#: ../core/ud_api.php:1128
+msgid "None"
+msgstr "Nessuno"
+
+#: ../core/premium/class_contact_messages.php:1241
+msgid "Method:"
+msgstr "Metodo:"
+
+#: ../core/premium/class_contact_messages.php:1246
+msgid "Form request method."
+msgstr "Formare metodo di richiesta."
+
+#: ../core/ui/crm_page_wp_crm_settings.php:313
+msgid "Reply To:"
+msgstr "Rispondi a:"

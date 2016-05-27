@@ -2120,7 +2120,7 @@ class WP_CRM_F {
     //** Draw inputs on back-end */
     if (is_admin()) :
 
-      do_action("wp_crm_before_{$slug}_input", array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
+      do_action("wp_crm_before_{$slug}_input", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
       ?>
 
       <div class="input_div <?php echo $class; ?> wp_crm_<?php echo $slug; ?>_div">
@@ -2215,19 +2215,19 @@ class WP_CRM_F {
           break;
 
         default:
-          do_action('wp_crm_render_input', array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
+          do_action('wp_crm_render_input', array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
           break;
       }
 
       //** API Access for data after the field *'
-      do_action("wp_crm_after_{$slug}_input", array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
+      do_action("wp_crm_after_{$slug}_input", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
       ?>
 
       </div>
       <?php
     //** Draw input for front-end */
     else:
-      do_action("wp_crm_before_{$slug}_input_frontend", array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
+      do_action("wp_crm_before_{$slug}_input_frontend", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
       switch ($attribute['input_type']) {
 
         case 'date':
@@ -2291,12 +2291,12 @@ class WP_CRM_F {
           break;
 
         default:
-          do_action('wp_crm_render_input_frontend', array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
+          do_action('wp_crm_render_input_frontend', array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
           break;
       }
 
       //** API Access for data after the field *'
-      do_action("wp_crm_after_{$slug}_input_frontend", array('values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
+      do_action("wp_crm_after_{$slug}_input_frontend", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
 
     endif;
 

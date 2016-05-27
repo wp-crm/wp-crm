@@ -262,6 +262,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
     }
 
     $user_object = wp_crm_get_user($user_id);
+    $user_object = apply_filters('wp_crm_user_list_table_object', $user_object);
 
     $r = "<tr id='user-$user_id'>";
 
