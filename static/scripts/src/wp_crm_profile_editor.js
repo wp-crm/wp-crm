@@ -76,14 +76,15 @@ jQuery(document).ready(function() {
     var this_attribute = jQuery(this_element).attr("wp_crm_slug");
     var value = jQuery(this_element).val();
     var placeholder;
-
-    jQuery(this_element).attr("readonly", true);
-    jQuery(this_element).hide();
-
-    placeholder = "<div class=\"wp_crm_uneditable_placeholder " + this_class + "\">" + value + "</div>";
-
-    jQuery(placeholder).insertAfter(this_element);
-
+    if(value == ''){
+      jQuery(this_element).removeClass('wp_crm_attribute_uneditable');
+      jQuery(this_element).parents('.wp_crm_attribute_uneditable').removeClass('wp_crm_attribute_uneditable');
+    }else{
+      jQuery(this_element).attr("readonly", true);
+      jQuery(this_element).hide();
+      placeholder = "<div class=\"wp_crm_uneditable_placeholder " + this_class + "\">" + value + "</div>";
+      jQuery(placeholder).insertAfter(this_element);
+    }
 
   });
 
