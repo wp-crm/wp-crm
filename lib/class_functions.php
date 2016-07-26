@@ -2022,13 +2022,14 @@ class WP_CRM_F {
     //** Checkbox options are handled differently because they all need to be displayed, and we don't cycle through the values but through the available options */
     if ($attribute['input_type'] == 'checkbox') {
 
-      if ($attribute['has_options']) {
-        foreach ($attribute['option_labels'] as $option_key => $option_label) {
 
+      if (isset($attribute['has_options']) && $attribute['has_options']) {
+        foreach ($attribute['option_labels'] as $option_key => $option_label) {
           $rand_id = rand(10000, 99999);
           $loop_ready_values[$rand_id]['option'] = $option_key;
           $loop_ready_values[$rand_id]['label'] = $option_label;
 
+          $loop_ready_values[$rand_id]['enabled'] = null;
           if ( !empty($values[$option_key]) && $values[$option_key] && (in_array('on', $values[$option_key]) || in_array('true', $values[$option_key]))) {
             $loop_ready_values[$rand_id]['enabled'] = true;
           }
@@ -2040,6 +2041,7 @@ class WP_CRM_F {
         $loop_ready_values[$rand_id]['option'] = $slug;
         $loop_ready_values[$rand_id]['label'] = $attribute['title'];
 
+        $loop_ready_values[$rand_id]['enabled'] = null;
         if (in_array('on', $values['default']) || in_array('true', $values['default'])) {
           $loop_ready_values[$rand_id]['enabled'] = true;
         }
@@ -2177,7 +2179,7 @@ class WP_CRM_F {
                 <ul class="wp_crm_checkbox_list"  wp_crm_slug="<?php echo esc_attr($slug); ?>">
             <?php foreach ($values as $rand => $value_data) { ?>
                     <li option_meta_value="<?php echo esc_attr($value_data['option']); ?>" >
-                      <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />
+                      <!--<input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />-->
                       <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
                       <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
                       <label for="wpi_checkbox_<?php echo $rand; ?>"><?php echo $value_data['label']; ?></label>
@@ -2189,7 +2191,7 @@ class WP_CRM_F {
           } else {
             foreach ($values as $rand => $value_data) {
               ?>
-                <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />
+                <!--<input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />-->
                 <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
                 <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
               <?php
@@ -3261,7 +3263,7 @@ class WP_CRM_F {
       return;
     }
     
-    $user_role = WP_CRM_F::get_first_value($post['role']);
+    $user_role = WP_CRM_F::get_first_value(@$post['role']);
     
     ?>
     <table class="form-table">
@@ -3269,6 +3271,8 @@ class WP_CRM_F {
           <?php
           foreach ($metabox['args']['fields'] as $slug => $attribute):
             $row_classes = array();
+            // To avoid undefined warning.
+            $post[$slug] = isset($post[$slug])?$post[$slug]:'';
             $row_classes[] = (@$attribute['has_options'] ? 'wp_crm_has_options' : 'wp_crm_no_options');
             $row_classes[] = (@$attribute['required'] == 'true' ? 'wp_crm_required_field' : '');
             $row_classes[] = (@$attribute['primary'] == 'true' ? 'primary' : 'not_primary');

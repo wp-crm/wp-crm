@@ -46,10 +46,12 @@ jQuery(document).bind("wp_crm_value_changed", function(event, data) {
         changeMonth: !0,
         changeYear: !0
     }), jQuery(".wp_crm_attribute_uneditable:not(div)").each(function() {
-        var placeholder, this_element = this, this_class = jQuery(this_element).attr("class"), value = (jQuery(this_element).attr("wp_crm_slug"), 
-        jQuery(this_element).val());
-        jQuery(this_element).attr("readonly", !0), jQuery(this_element).hide(), placeholder = '<div class="wp_crm_uneditable_placeholder ' + this_class + '">' + value + "</div>", 
-        jQuery(placeholder).insertAfter(this_element);
+        var value, placeholder, this_element = jQuery(this), this_class = this_element.attr("class");
+        this_element.attr("wp_crm_slug");
+        value = this_element.is("select") ? this_element.find(":selected").html() : this_element.is(":checkbox") ? this_element.is(":checked") ? this_element.val() : "" : this_element.val(), 
+        "" == value ? (this_element.removeClass("wp_crm_attribute_uneditable"), this_element.parents(".wp_crm_attribute_uneditable").removeClass("wp_crm_attribute_uneditable")) : (this_element.attr("readonly", !0), 
+        this_element.hide(), placeholder = '<div class="wp_crm_uneditable_placeholder ' + this_class + '">' + value + "</div>", 
+        jQuery(placeholder).insertAfter(this_element));
     }), jQuery(".form-table tr.not_primary").each(function() {
         jQuery("div.wp_checkbox_input", this).length > 0 || "" == jQuery("input,textarea", this).val() && (jQuery(".input_div", this).hide(), 
         jQuery(".blank_slate", this).show());

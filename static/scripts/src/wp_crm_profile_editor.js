@@ -71,19 +71,28 @@ jQuery(document).ready(function() {
   /* Convert a uneditable element into something used for display only */
   jQuery('.wp_crm_attribute_uneditable:not(div)').each(function() {
 
-    var this_element = this;
-    var this_class = jQuery(this_element).attr("class");
-    var this_attribute = jQuery(this_element).attr("wp_crm_slug");
-    var value = jQuery(this_element).val();
+    var value;
     var placeholder;
+    var this_element = jQuery(this);
+    var this_class = this_element.attr("class");
+    var this_attribute = this_element.attr("wp_crm_slug");
 
-    jQuery(this_element).attr("readonly", true);
-    jQuery(this_element).hide();
+    if(this_element.is("select"))
+      value = this_element.find(":selected").html();
+    else if(this_element.is(":checkbox"))
+      value = this_element.is(":checked")?this_element.val():'';
+    else
+      value = this_element.val();
 
-    placeholder = "<div class=\"wp_crm_uneditable_placeholder " + this_class + "\">" + value + "</div>";
-
-    jQuery(placeholder).insertAfter(this_element);
-
+    if(value == ''){
+      this_element.removeClass('wp_crm_attribute_uneditable');
+      this_element.parents('.wp_crm_attribute_uneditable').removeClass('wp_crm_attribute_uneditable');
+    }else{
+      this_element.attr("readonly", true);
+      this_element.hide();
+      placeholder = "<div class=\"wp_crm_uneditable_placeholder " + this_class + "\">" + value + "</div>";
+      jQuery(placeholder).insertAfter(this_element);
+    }
 
   });
 
