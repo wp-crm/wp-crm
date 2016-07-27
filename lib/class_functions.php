@@ -1608,8 +1608,9 @@ class WP_CRM_F {
         break;
 
       case 'archive_message':
-
-        $wpdb->update($wpdb->crm_log, array('value' => 'archived'), array('id' => $object_id));
+        foreach ((array) $object_id as $key => $id) {
+          $wpdb->update($wpdb->crm_log, array('value' => 'archived'), array('id' => $id));
+        }
         $return['success'] = 'true';
         $return['message'] = __('Message archived.', ud_get_wp_crm()->domain);
         $return['action'] = 'hide_element';
