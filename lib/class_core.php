@@ -887,9 +887,10 @@ class WP_CRM_Core {
         //** Add tab with current info */
         $wpp_integration = array();
         $wpp_integration[] = "<h3>" . __("Integrating with WP-Property", ud_get_wp_crm()->domain) . "</h3>";
-        $wpp_integration[] = "<p><strong>post_id</strong> " . __("- renders property id.", ud_get_wp_crm()->domain) . "</p>";
-        $wpp_integration[] = "<p><strong>post_title</strong> " . __("- renders property title.", ud_get_wp_crm()->domain) . "</p>";
-        $wpp_integration[] = "<p><strong>post_link</strong> " . __("- renders property link.", ud_get_wp_crm()->domain) . "</p>";
+        $wpp_integration[] = sprintf(__("You can use the following tags in your notification templates for the forms which places on single %s pages.", ud_get_wp_crm()->domain), WPP_F::property_label());
+        $wpp_integration[] = "<p><strong>[post_id]</strong> " . sprintf(__("- renders %s id.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
+        $wpp_integration[] = "<p><strong>[post_title]</strong> " . sprintf(__("- renders %s title.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
+        $wpp_integration[] = "<p><strong>[post_link]</strong> " . sprintf(__("- renders %s link.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
 
         get_current_screen()->add_help_tab(
           array(
