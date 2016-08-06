@@ -383,7 +383,7 @@ if (!function_exists('wp_crm_get_user')) {
         $default_values = get_user_meta($user_id, $key);
 
         //** Add default value to array, taking into account that it may already have been populated from user table */
-        if ($default_values) {
+        if (is_array($default_values)) {
           foreach ($default_values as $default_value) {
             $user_data[$key]['default'][] = $default_value;
           }
