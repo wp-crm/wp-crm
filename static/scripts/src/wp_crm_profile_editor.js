@@ -72,26 +72,42 @@ jQuery(document).ready(function() {
   jQuery('.wp_crm_attribute_uneditable:not(div)').each(function() {
 
     var value;
+    var chkBoxs;
     var placeholder;
     var this_element = jQuery(this);
     var this_class = this_element.attr("class");
     var this_attribute = this_element.attr("wp_crm_slug");
 
-    if(this_element.is("select"))
+    if(this_element.is("select")){
       value = this_element.find(":selected").html();
-    else if(this_element.is(":checkbox"))
-      value = this_element.is(":checked")?this_element.val():'';
-    else
+    }
+    else if(this_element.is(":checkbox")){
+      chkBoxs = this_element.closest(".wp_crm_checkbox_list").find("input[type=checkbox]");
+      if(chkBoxs.filter(":checked").length > 0){
+        chkBoxs.filter(":not(:checked)").parent().remove();
+      }
+      
+      value = this_element.is(":checked")?this_element.siblings('label').html():'';
+    }
+    else{
       value = this_element.val();
+      if(this_element.siblings('.wp_crm_input_options').length == 1){
+        value += " " + this_element.siblings('.wp_crm_input_options').find(":selected").html();
+        this_element.siblings('.wp_crm_input_options').remove();
+      }
+    }
 
     if(value == ''){
       this_element.removeClass('wp_crm_attribute_uneditable');
       this_element.parents('.wp_crm_attribute_uneditable').removeClass('wp_crm_attribute_uneditable');
     }else{
-      this_element.attr("readonly", true);
-      this_element.hide();
-      placeholder = "<div class=\"wp_crm_uneditable_placeholder " + this_class + "\">" + value + "</div>";
-      jQuery(placeholder).insertAfter(this_element);
+      if(!this_element.is(":checkbox")){  // Because checkbox already have label.
+        placeholder = "<div class=\"wp_crm_uneditable_placeholder " + this_class + "\">" + value + "</div>";
+        jQuery(placeholder).insertAfter(this_element);
+      }
+
+      this_element.siblings('input').remove();
+      this_element.remove();
     }
 
   });
