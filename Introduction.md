@@ -44,4 +44,3 @@ ___
 * User CSV Exporting.
 * User activity and note tracking.
 * WP-Invoice plugin integration.
-Version: 1.0.4 Last Updated: 2015-10-15 Requires WordPress 4.0 Compatible up to WordPress 4.4.2
