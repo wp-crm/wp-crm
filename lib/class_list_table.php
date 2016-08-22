@@ -58,6 +58,7 @@ class WP_CMR_List_Table extends WP_List_Table {
     $column_count = 0;
     foreach ($columns as $column_slug => $column_title) {
 
+      $extra_classs = '';
       if (in_array($column_slug, $hidden)) {
         $column_visible = 'false';
       } else {
@@ -66,7 +67,9 @@ class WP_CMR_List_Table extends WP_List_Table {
 
       $column_sortable = isset($sortable[$column_slug]) ? 'true' : 'false';
 
-      $this->aoColumns[] = "{ 'sClass': '{$column_slug} column-{$column_slug}', 'bVisible': {$column_visible}}";
+      if($column_slug == 'cb')
+        $extra_classs = ' check-column';
+      $this->aoColumns[] = "{ 'sClass': '{$column_slug} column-{$column_slug}$extra_classs', 'bVisible': {$column_visible}}";
       $this->aoColumnDefs[] = "{ 'sName': '{$column_slug}', 'aTargets': [{$column_count}], 'bSortable': {$column_sortable}}";
       $this->column_ids[$column_count] = $column_slug;
       $column_count++;
@@ -106,7 +109,7 @@ class WP_CMR_List_Table extends WP_List_Table {
 
         wp_list_table = jQuery("#wp-list-table").dataTable({
           "sPaginationType": "full_numbers",
-          "sDom": 'iprtpl',
+          "sDom": '<"crm-msg-bulk-action">iprt<"crm-msg-bulk-action">lp',
           "iDisplayLength": 25,
           "bAutoWidth": false,
           "asStripClasses": ['wp_crm_row odd_row', 'wp_crm_row even_row'],
@@ -144,6 +147,46 @@ class WP_CMR_List_Table extends WP_List_Table {
             wp_list_table_do_columns();
           }
         });
+        var bulkWrapper = jQuery('.crm-msg-bulk-action');
+        var bulkAction = jQuery('<select></select>');
+        bulkAction.append('<option value="">Bulk Action</option>');
+        bulkAction.append('<option value="archive_message">Archive</option>');
+        bulkAction.append('<option value="trash_message">Delete</option>');
+        bulkWrapper.append(bulkAction);
+
+        var btnAction = jQuery('<button type="submit" id="doaction" class="button action" >Apply</button>');
+        btnAction.on('click', function(event){
+          var ids = [];
+          var action = jQuery(this).siblings('select').val();
+          var selected = jQuery('[name="users[]"]:checked');
+          event.preventDefault();
+
+          if(action != '' && selected.length > 0){
+            selected.each(function(i, item){
+              ids.push(jQuery(this).val());
+            });
+            jQuery.post({
+              url: ajaxurl,
+              dataType: "json",
+              data: {
+                action : 'wp_crm_quick_action',
+                object_id: ids,
+                wp_crm_quick_action: action
+              },
+              success: function(result) {
+                switch( result.action ) {
+                  case 'hide_element':
+                    selected.each(function(i, item){
+                      jQuery(this).parent().parent().remove();
+                    });
+                  break;
+                }
+              }
+            });
+          }
+          return false;
+        });
+        bulkWrapper.append(btnAction);
 
         jQuery("#wp-crm-filter").submit(function(event) {
           event.preventDefault();

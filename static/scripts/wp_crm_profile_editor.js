@@ -46,12 +46,16 @@ jQuery(document).bind("wp_crm_value_changed", function(event, data) {
         changeMonth: !0,
         changeYear: !0
     }), jQuery(".wp_crm_attribute_uneditable:not(div)").each(function() {
-        var value, placeholder, this_element = jQuery(this), this_class = this_element.attr("class");
+        var value, chkBoxs, placeholder, this_element = jQuery(this), this_class = this_element.attr("class");
         this_element.attr("wp_crm_slug");
-        value = this_element.is("select") ? this_element.find(":selected").html() : this_element.is(":checkbox") ? this_element.is(":checked") ? this_element.val() : "" : this_element.val(), 
-        "" == value ? (this_element.removeClass("wp_crm_attribute_uneditable"), this_element.parents(".wp_crm_attribute_uneditable").removeClass("wp_crm_attribute_uneditable")) : (this_element.attr("readonly", !0), 
-        this_element.hide(), placeholder = '<div class="wp_crm_uneditable_placeholder ' + this_class + '">' + value + "</div>", 
-        jQuery(placeholder).insertAfter(this_element));
+        this_element.is("select") ? value = this_element.find(":selected").html() : this_element.is(":checkbox") ? (chkBoxs = this_element.closest(".wp_crm_checkbox_list").find("input[type=checkbox]"), 
+        chkBoxs.filter(":checked").length > 0 && chkBoxs.filter(":not(:checked)").parent().remove(), 
+        value = this_element.is(":checked") ? this_element.siblings("label").html() : "") : (value = this_element.val(), 
+        1 == this_element.siblings(".wp_crm_input_options").length && (value += " " + this_element.siblings(".wp_crm_input_options").find(":selected").html(), 
+        this_element.siblings(".wp_crm_input_options").remove())), "" == value ? (this_element.removeClass("wp_crm_attribute_uneditable"), 
+        this_element.parents(".wp_crm_attribute_uneditable").removeClass("wp_crm_attribute_uneditable")) : (this_element.is(":checkbox") || (placeholder = '<div class="wp_crm_uneditable_placeholder ' + this_class + '">' + value + "</div>", 
+        jQuery(placeholder).insertAfter(this_element)), this_element.siblings("input").remove(), 
+        this_element.remove());
     }), jQuery(".form-table tr.not_primary").each(function() {
         jQuery("div.wp_checkbox_input", this).length > 0 || "" == jQuery("input,textarea", this).val() && (jQuery(".input_div", this).hide(), 
         jQuery(".blank_slate", this).show());

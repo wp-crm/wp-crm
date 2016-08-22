@@ -883,6 +883,24 @@ class WP_CRM_Core {
 
       }
 
+      if( function_exists( 'ud_get_wp_property' ) ) {
+        //** Add tab with current info */
+        $wpp_integration = array();
+        $wpp_integration[] = "<h3>" . __("Integrating with WP-Property", ud_get_wp_crm()->domain) . "</h3>";
+        $wpp_integration[] = sprintf(__("You can use the following tags in your notification templates for the forms which places on single %s pages.", ud_get_wp_crm()->domain), WPP_F::property_label());
+        $wpp_integration[] = "<p><strong>[post_id]</strong> " . sprintf(__("- renders %s id.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
+        $wpp_integration[] = "<p><strong>[post_title]</strong> " . sprintf(__("- renders %s title.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
+        $wpp_integration[] = "<p><strong>[post_link]</strong> " . sprintf(__("- renders %s link.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
+
+        get_current_screen()->add_help_tab(
+          array(
+            'id' => sanitize_title( "WP-Property Integration" ),
+            'title' => __( "WP-Property Integration", ud_get_wp_crm()->domain ),
+            'content' => implode( "\n", (array) $wpp_integration ),
+          )
+        );
+      }
+
       if ( is_callable( array( 'WP_Screen', 'set_help_sidebar' ) ) ) {
         //** Add help sidebar with More Links */
         get_current_screen()->set_help_sidebar(

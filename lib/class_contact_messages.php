@@ -121,15 +121,16 @@ class class_contact_messages {
   static function wp_crm_quick_action( $action ) {
     global $wpdb;
 
+    $object_ids = implode(', ', (array) $action['object_id']);
     if( $action[ 'action' ] == 'trash_message' ) {
 
-      $success = $wpdb->query( "DELETE FROM {$wpdb->crm_log} WHERE id = {$action['object_id']}" );
+      $success = $wpdb->query( "DELETE FROM {$wpdb->crm_log} WHERE id in ($object_ids)" );
 
       if( $success ) {
         $return[ 'success' ] = 'true';
         $return[ 'message' ] = __( 'Message trashed.', ud_get_wp_crm()->domain );
         $return[ 'action' ]  = 'hide_element';
-
+        $return[ 'object_id' ]  = $action['object_id'];
         return $return;
       }
 
@@ -376,7 +377,7 @@ class class_contact_messages {
       $associated_object = get_post( $associated_object );
 
       //** Only allow specific post types to be "associated "*/
-      if( apply_filters( 'wp_crm_associated_post_types', false, $associated_object->post_type ) ) {
+      if( is_object($associated_object) && apply_filters( 'wp_crm_associated_post_types', false, $associated_object->post_type ) ) {
         $post_type = get_post_type_object( $associated_object->post_type );
       } else {
         unset( $associated_object );
