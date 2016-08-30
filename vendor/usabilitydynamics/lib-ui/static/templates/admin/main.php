@@ -38,7 +38,7 @@
       <?php endif; ?>
       <?php do_action( 'ud:ui:settings:view:main:bottom' ); ?>
       <div class="actions">
-        <?php submit_button( __( 'Save', ud_get_wp_crm()->domain ), 'button' ); ?>
+        <?php submit_button( __( 'Save' ), 'button' ); ?>
         <?php do_action( 'ud:ui:settings:view:main:actions' ); ?>
       </div>
     </form>

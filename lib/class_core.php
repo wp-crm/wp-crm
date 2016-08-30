@@ -388,6 +388,10 @@ class WP_CRM_Core {
     $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'If certain user attributes are not applicable to certain roles, such as "Client Type" to the "Administrator" role, you can elect to hide the unapplicable attributes on profile editing pages.', ud_get_wp_crm()->domain ) . '</p>';
     $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Predefined Values', ud_get_wp_crm()->domain ) . '</h3>';
     $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'If you want your attributes to have predefined values, such as in a dropdown, or a checkbox list, enter a comma separated list of values you want to use.  You can also get more advanced by using taxonomies - to load all values from a taxonomy, simply type line: <b>taxonomy:taxonomy_name</b>.', ud_get_wp_crm()->domain ) . '</p>';
+
+    $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Visualize User Data', ud_get_wp_crm()->domain ) . '</h3>';
+    $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'You will see graphics for all attributes from your data tab which have Dropdown or Checkbox Data Input and filled at least in 2 users profiles.', ud_get_wp_crm()->domain ) . '</p>';
+
     $contextual_help[ 'Shortcode Forms' ][ ] = '<h3>' . __( 'Shortcode Forms', ud_get_wp_crm()->domain ) . '</h3>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p>' . __( 'Shortcode Forms, which can be used for contact forms, or profile editing, are setup here, and then inserted using a shortcode into a page, or a widget. The available shortcode form attributes are taken from the WP-CRM attributes, and when filled out by a user, are mapped over directly into their profile. User profiles are created based on the e-mail address, if one does not already exist, for keeping track of users. ', ud_get_wp_crm()->domain ) . '</p>';
 
