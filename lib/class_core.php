@@ -401,7 +401,7 @@ class WP_CRM_Core {
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'require_login_for_existing_users = [ <b>true</b> | false ]', ud_get_wp_crm()->domain ) . '</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'use_current_user = [ <b>true</b> | false ]', ud_get_wp_crm()->domain ) . '</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'success_message = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Your message has been sent. Thank you.', ud_get_wp_crm()->domain ) . '".</p>';
-    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'submit_text = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Submit', ud_get_wp_crm()->domain ) . '".</p>';
+    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'submit_text = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Submit', ud_get_wp_crm()->domain ) . " " . ud_get_wp_crm()->domain . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_callback_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_validation_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
 
@@ -909,8 +909,9 @@ class WP_CRM_Core {
         //** Add help sidebar with More Links */
         get_current_screen()->set_help_sidebar(
           '<p><strong>' . __( 'For more information:', ud_get_wp_crm()->domain ) . '</strong></p>' .
-          '<p><a href="https://usabilitydynamics.com/products/wp-crm/" target="_blank">' . __( 'WP-CRM Product Page', ud_get_wp_crm()->domain ) . '</a></p>' .
-          '<p><a href="https://usabilitydynamics.com/products/wp-crm/forum/" target="_blank">' . __( 'WP-CRM Forums', ud_get_wp_crm()->domain ) . '</a></p>'
+          '<p><a href="https://www.usabilitydynamics.com/product/wp-crm/" target="_blank">' . __( 'Product page', ud_get_wp_crm()->domain ) . '</a></p>' .
+          '<p><a href="https://www.usabilitydynamics.com/contact-us/" target="_blank">' . __( 'Contact us', ud_get_wp_crm()->domain ) . '</a></p>' .
+          '<p><a href="https://www.usabilitydynamics.com/product/support-service/" target="_blank">' . __( 'Premium support', ud_get_wp_crm()->domain ) . '</a></p>'
         );
       }
 
