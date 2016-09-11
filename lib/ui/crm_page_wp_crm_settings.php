@@ -568,6 +568,12 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         <pre id="wp_crm_show_settings_array_result" class="wp_crm_class_pre hidden"><?php echo htmlentities( print_r( $wp_crm, 1 ) ); ?></pre>
       </div>
 
+      <div class="wp_crm_settings_block">
+        <?php _e('Clear WP-CRM Cache. Some shortcodes and widgets use cache, so the good practice is clear it after widget, shortcode changes.',ud_get_wp_crm()->domain) ?>
+        <button type="button" id="wp_crm_clear_cache"><?php _e('Clear Cache',ud_get_wp_crm()->domain) ?>&nbsp;<span class='dots'></span></button>
+        <div id="clear_cache_status"></div>
+
+      </div>
 
       <div class="wp_crm_settings_block">
         <?php _e('Show user data structure:',ud_get_wp_crm()->domain) ?>

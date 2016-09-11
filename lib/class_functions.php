@@ -2359,6 +2359,9 @@ class WP_CRM_F {
       // Overwrite $wp_crm with database setting
       $wp_crm = array_merge($wp_crm, $wp_crm_db);
 
+      // Clear CRM cache.
+      WP_CRM_F::clear_cache();
+
       // Reload page to make sure higher-end functions take affect of new settings
       // The filters below will be ran on reload, but the saving functions won't
       if ($_REQUEST['page'] == 'wp_crm_settings')
@@ -3328,5 +3331,52 @@ class WP_CRM_F {
     }
 
     return $attributes;
+  }
+
+  /**
+   * Removes all WPC cache files
+   *
+   * @return string Response
+   *
+   * Copied from wp property.
+   * By alim
+   */
+  static public function clear_cache() {
+    $upload_dir = wp_upload_dir();
+    $cache_dir = trailingslashit( $upload_dir[ 'basedir' ] . '/wpc_cache' );
+    if( file_exists( $cache_dir ) ) {
+      wpc_recursive_unlink( $cache_dir );
+    }
+    return __( 'Cache was successfully cleared', ud_get_wp_crm()->domain );
+  }
+}
+
+
+
+/**
+ * Delete a file or recursively delete a directory
+ *
+ * @param string  $str Path to file or directory
+ * @param boolean $flag If false, doesn't remove root directory
+ * Duplicate of wpp_recursive_unlink() of wp property
+ *
+ * Copied from wp property.
+ * By alim
+ */
+if( !function_exists( 'wpc_recursive_unlink' ) ) {
+  function wpc_recursive_unlink( $str, $flag = false ) {
+    if( is_file( $str ) ) {
+      return @unlink( $str );
+    } elseif( is_dir( $str ) ) {
+      $scan = glob( rtrim( $str, '/' ) . '/*' );
+      foreach( $scan as $index => $path ) {
+        wpc_recursive_unlink( $path, true );
+      }
+      if( $flag ) {
+        return @rmdir( $str );
+      } else {
+        return true;
+      }
+    }
   }
 }

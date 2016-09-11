@@ -129,7 +129,23 @@ var wp_crm_ui = {}, wpp_crm_form_stop = !1;
 
 jQuery(document).ready(function() {
     if ("undefined" == typeof wp_crm_dev_mode) var wp_crm_dev_mode = !1;
-    jQuery(".wp_crm_show_advanced").each(function() {
+    jQuery("#wp_crm_clear_cache").on("click", function(e) {
+        e.preventDefault();
+        var $this = jQuery(this), msgHolder = jQuery("#clear_cache_status").html("").fadeOut().removeClass(), $dots = $this.find(".dots"), dots = 0, dotting = function() {
+            0 == dots ? ($dots.html(".&nbsp;&nbsp;"), dots++) : 1 == dots ? ($dots.html("..&nbsp;"), 
+            dots++) : 2 == dots ? ($dots.html("..."), dots++) : ($dots.html("&nbsp;&nbsp;&nbsp;"), 
+            dots = 0);
+        }, timer = setInterval(dotting, 600);
+        return $this.attr("disabled", "disabled"), jQuery.post(ajaxurl, {
+            action: "wpc_ajax_clear_cache"
+        }, function(data) {
+            msgHolder.html(data).addClass("updated").fadeIn();
+        }).fail(function() {
+            msgHolder.html(wpc.strings.something_wrong).addClass("error").fadeIn();
+        }).always(function() {
+            clearInterval(timer), $dots.html(""), $this.removeAttr("disabled");
+        }), !1;
+    }), jQuery(".wp_crm_show_advanced").each(function() {
         wp_crm_toggle_advanced_options(this);
     }), jQuery(".wp_crm_show_advanced").live("click", function(event) {
         wp_crm_toggle_advanced_options(this, event);
@@ -212,7 +228,7 @@ jQuery(document).ready(function() {
     }), jQuery(".wpp_crm_filter_section_title").click(function() {
         var parent = jQuery(this).parents(".wp_crm_overview_filters");
         jQuery(" .wp_crm_checkbox_filter", parent).slideToggle("fast", function() {
-            "none" == jQuery(this).css("display") ? jQuery(".wpp_crm_filter_show", parent).html("Show") : jQuery(".wpp_crm_filter_show", parent).html("Hide");
+            "none" == jQuery(this).css("display") ? jQuery(".wpp_crm_filter_show", parent).html(wpc.strings.filter_show) : jQuery(".wpp_crm_filter_show", parent).html(wpc.strings.filter_hide);
         });
     });
 }), jQuery(".wp_crm_load_more_stream").live("click", function() {

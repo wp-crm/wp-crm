@@ -91,7 +91,7 @@ class WP_CRM_Core {
     wp_register_script( 'wp-crm-jquery-cookie', ud_get_wp_crm()->path( 'lib/third-party/jquery.smookie.js', 'url' ), array( 'jquery' ), '1.7.3' );
     wp_register_script( 'swfobject', ud_get_wp_crm()->path( 'lib/third-party/swfobject.js', 'url' ), array( 'jquery' ) );
     wp_register_script( 'wp-crm-data-tables', ud_get_wp_crm()->path( 'lib/third-party/dataTables/jquery.dataTables.min.js', 'url' ), array( 'jquery' ) );
-    wp_register_script( 'wp_crm_global', ud_get_wp_crm()->path( 'static/scripts/wp_crm_global.js', 'url' ), array( 'jquery' ), WP_CRM_Version, true );
+    wp_register_script( 'wp_crm_global', ud_get_wp_crm()->path( 'static/scripts/wp_crm_global.js', 'url' ), array( 'jquery', 'wpc-localization' ), WP_CRM_Version, true );
     wp_register_script( 'wp_crm_profile_editor', ud_get_wp_crm()->path( 'static/scripts/wp_crm_profile_editor.js', 'url' ), array( 'wp_crm_global' ), WP_CRM_Version, true );
 
     // Find and register theme-specific style if a custom wp_properties.css does not exist in theme
@@ -173,6 +173,7 @@ class WP_CRM_Core {
     add_action( "deleted_user", array( 'WP_CRM_F', "deleted_user" ) );
 
     add_filter( 'set-screen-option', array( 'WP_CRM_F', "crm_set_option" ), 10, 3 );
+    add_action( 'wp_ajax_wpc_ajax_clear_cache', create_function( "", 'echo WP_CRM_F::clear_cache(); die();' ) );
   }
 
   /**
@@ -193,6 +194,16 @@ class WP_CRM_Core {
     }
 
     add_filter( "retrieve_password", array( 'WP_CRM_F', "retrieve_password" ) );
+
+    //** Load Localization early so plugins can use them as well */
+    //** Try to generate static localization script. It can be flushed on Clear Cache! */
+    if( $l10n_url = $this->maybe_generate_l10n_script() ) {
+      wp_register_script( 'wpc-localization', $l10n_url, array(), WPP_Version );
+    } else {
+      wp_register_script( 'wpc-localization', ud_get_wp_property()->path( 'static/scripts/l10n.js', 'url' ), array(), WPP_Version );
+      wp_localize_script( 'wpc-localization', 'wpc_l10n', $this->get_l10n_data() );
+    }
+
   }
 
   /**
@@ -920,5 +931,53 @@ class WP_CRM_Core {
       global $current_screen;
       add_contextual_help( $current_screen->id, '<p>' . __( 'Please upgrade Wordpress to the latest version for detailed help.', ud_get_wp_crm()->domain ) . '</p><p>' . __( 'Or visit', ud_get_wp_crm()->domain ) . ' <a href="https://usabilitydynamics.com/products/wp-crm/" target="_blank">' . __( 'WP-CRM Help Page', ud_get_wp_crm()->domain ) . '</a> ' . __( 'on UsabilityDynamics.com', ud_get_wp_crm()->domain ) . '</p>' );
     }
+  }
+
+  /**
+   * Generates javascript file with localization.
+   * Adds localization support to all WP-Property scripts.
+   *
+   * Copied from wp property.
+   * By alim
+   */
+  public function maybe_generate_l10n_script() {
+    $upload_dir = wp_upload_dir();
+    $dir = untrailingslashit( $upload_dir[ 'basedir' ] . '/wpc_cache' );
+    $file = $dir . '/crm-l10n.js';
+    $url = untrailingslashit( $upload_dir[ 'baseurl' ] . '/wpc_cache' ) . '/crm-l10n.js';
+    //** File already created! */
+    if( file_exists( $file ) ) {
+      return $url;
+    }
+    //** Try to create directory if it doesn't exist */
+    if( !is_dir( $dir ) && !wp_mkdir_p( $dir ) ) {
+      return false;
+    }
+    //** Save file */
+    if( @file_put_contents( $file, 'var wpc = ( typeof wpc === \'object\' ) ? wpc : {}; wpc.strings = ' . json_encode( $this->get_l10n_data() ) . ';' ) ) {
+      return false;
+    }
+    return $url;
+  }
+
+  /**
+   * Return l10n data.
+   * Copied from wp property.
+   * By alim
+   */
+  public function get_l10n_data() {
+    $l10n = array();
+    //** Include the list of translations */
+    $l10n_dir = ud_get_wp_crm()->path( 'l10n.php', 'dir' );
+    include( $l10n_dir );
+    /** All additional localizations must be added using the filter below. */
+    $l10n = apply_filters( 'wpp::js::localization', $l10n );
+    foreach( (array)$l10n as $key => $value ) {
+      if( !is_scalar( $value ) ) {
+        continue;
+      }
+      $l10n[ $key ] = html_entity_decode( (string)$value, ENT_QUOTES, 'UTF-8' );
+    }
+    return $l10n;
   }
 }
