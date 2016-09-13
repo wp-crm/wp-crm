@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP-CRM\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-01 13:02+0300\n"
-"PO-Revision-Date: 2015-09-01 13:13+0300\n"
+"POT-Creation-Date: 2016-09-13 16:11+0300\n"
+"PO-Revision-Date: 2016-09-13 16:12+0300\n"
 "Last-Translator: rotcod <denys.kostin@usabilitydynamics.com>\n"
 "Language-Team: Usability Dynamics, Inc. <info@usabilitydnamics.com>\n"
 "Language: ru_RU\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: .git\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -90,16 +90,16 @@ msgstr ""
 "Изменение цветовой схемы. Это проверяется только если пользователь может "
 "редактировать пользователей, в первую очередь."
 
-#: l10n.php:15 lib/class_functions.php:3111
+#: l10n.php:15 lib/class_functions.php:3127
 msgid "Actions"
 msgstr "Действия"
 
-#: l10n.php:16 lib/class_core.php:346
+#: l10n.php:16 lib/class_core.php:356
 msgid "User Activity History"
 msgstr "История активности пользователя"
 
-#: l10n.php:17 lib/class_functions.php:3080 lib/class_functions.php:3117
-#: lib/class_functions.php:3120
+#: l10n.php:17 lib/class_functions.php:3096 lib/class_functions.php:3133
+#: lib/class_functions.php:3136
 msgid "Primary Information"
 msgstr "Первичная информация"
 
@@ -107,101 +107,118 @@ msgstr "Первичная информация"
 msgid "Special Actions"
 msgstr "Специальные действия"
 
+#: l10n.php:19 lib/class_user_list_table.php:412
+#: lib/class_user_list_table.php:438
+msgid "Show"
+msgstr "Показать"
+
+#: l10n.php:20
+msgid "Hide"
+msgstr "Скрыть"
+
+#: l10n.php:21
+msgid "Something wrong, try again."
+msgstr ""
+
 #: lib/class_contact_messages.php:111
 msgid "Filter"
 msgstr "Фильтр"
 
-#: lib/class_contact_messages.php:130
+#: lib/class_contact_messages.php:131
 msgid "Message trashed."
 msgstr "Сообщение удалено."
 
-#: lib/class_contact_messages.php:183
+#: lib/class_contact_messages.php:184
 msgid "Status"
 msgstr "Статус"
 
-#: lib/class_contact_messages.php:186
+#: lib/class_contact_messages.php:187
 msgid "New"
 msgstr "Новые"
 
-#: lib/class_contact_messages.php:192
+#: lib/class_contact_messages.php:193
 msgid "Archived"
 msgstr "Архивные"
 
-#: lib/class_contact_messages.php:196
+#: lib/class_contact_messages.php:197
 msgid "All"
 msgstr "Все"
 
-#: lib/class_contact_messages.php:200
+#: lib/class_contact_messages.php:201
 msgid "Originating Form"
 msgstr "Появляющаяся форма"
 
-#: lib/class_contact_messages.php:220 lib/ui/crm_metaboxes.php:29
+#: lib/class_contact_messages.php:221 lib/ui/crm_metaboxes.php:29
 msgid "Filter Results"
 msgstr "Фильтровать результаты"
 
-#: lib/class_contact_messages.php:227
+#: lib/class_contact_messages.php:228
 msgid "Visualize Contact Data"
 msgstr "Визуализация контактных данных"
 
-#: lib/class_contact_messages.php:285 lib/class_functions.php:765
+#: lib/class_contact_messages.php:286 lib/class_functions.php:765
 msgid "There is not enough quantifiable data to generate any graphs."
 msgstr "Существует нехватка количественных данных для создания любых графиков."
 
-#: lib/class_contact_messages.php:301
+#: lib/class_contact_messages.php:302
 msgid "Date"
 msgstr "Дата"
 
-#: lib/class_contact_messages.php:302
+#: lib/class_contact_messages.php:303
 msgid "All Daily Messages"
 msgstr "Все сообщения за день"
 
-#: lib/class_contact_messages.php:408
+#: lib/class_contact_messages.php:409
 #, php-format
 msgid "Related %s:"
 msgstr "Связанные %s:"
 
-#: lib/class_contact_messages.php:412
+#: lib/class_contact_messages.php:413
 msgid "ago"
 msgstr "назад"
 
-#: lib/class_contact_messages.php:414
+#: lib/class_contact_messages.php:415
 msgid "other messages."
 msgstr "другие сообщения."
 
-#: lib/class_contact_messages.php:422
+#: lib/class_contact_messages.php:423
 msgid "Trash"
 msgstr "Удалить"
 
-#: lib/class_contact_messages.php:426
+#: lib/class_contact_messages.php:427
 msgid "Archive"
 msgstr "Архивировать"
 
-#: lib/class_contact_messages.php:434
+#: lib/class_contact_messages.php:435
 msgid "Trash Message and User"
 msgstr "Удалить пользователя и сообщения"
 
-#: lib/class_contact_messages.php:517 lib/class_core.php:392
+#: lib/class_contact_messages.php:466
+msgid "None"
+msgstr "Нет"
+
+#: lib/class_contact_messages.php:528 lib/class_core.php:406
 msgid "Shortcode Forms"
 msgstr "Шорткод Формы"
 
-#: lib/class_contact_messages.php:541 lib/class_core.php:400
+#: lib/class_contact_messages.php:552 lib/class_core.php:414
 msgid "Your message has been sent. Thank you."
 msgstr "Ваше сообщение было отправлено. Спасибо."
 
-#: lib/class_contact_messages.php:542 lib/class_core.php:401
+#: lib/class_contact_messages.php:553 lib/class_core.php:415
 #: lib/ui/crm_metaboxes.php:111
 msgid "Submit"
 msgstr "Подтвердить"
 
-#: lib/class_contact_messages.php:831 lib/class_ud.php:400
+#: lib/class_contact_messages.php:842 lib/class_ud.php:400
 msgid "Processing..."
 msgstr "Обработка..."
 
-#: lib/class_contact_messages.php:913
+#: lib/class_contact_messages.php:924
 msgid "A server error occurred while trying to process the form."
 msgstr "Ошибка сервера при попытке обработать форму."
 
-#: lib/class_contact_messages.php:998
+#: lib/class_contact_messages.php:1009
 msgid ""
 "If you see this message, WP-CRM thought you were a robot.  Please contact "
 "admin if you do not think are you one."
@@ -209,22 +226,22 @@ msgstr ""
 "Если вы видите это сообщение, WP-CRM думал, что Вы робот. Пожалуйста, "
 "свяжитесь с администратором, если вы не думаете, что это не так."
 
-#: lib/class_contact_messages.php:1011 lib/class_contact_messages.php:1036
+#: lib/class_contact_messages.php:1022 lib/class_contact_messages.php:1047
 msgid "Form could not be submitted."
 msgstr "Формы не могут быть представлены."
 
-#: lib/class_contact_messages.php:1089
+#: lib/class_contact_messages.php:1100
 #, php-format
 msgid "%1s cannot be empty."
 msgstr "%1s не может быть пустым"
 
-#: lib/class_contact_messages.php:1100
+#: lib/class_contact_messages.php:1111
 #, php-format
 msgid "This %1s belongs to a registered user, please login."
 msgstr ""
 "Это %1s принадлежит зарегистрированному пользователю, пожалуйста, войдите."
 
-#: lib/class_contact_messages.php:1121 lib/class_contact_messages.php:1141
+#: lib/class_contact_messages.php:1132 lib/class_contact_messages.php:1152
 msgid ""
 "Form could not be submitted. Please make sure you have entered your "
 "information properly."
@@ -232,7 +249,7 @@ msgstr ""
 "Формы не могут быть отправлены. Пожалуйста, убедитесь, что вы ввели "
 "информацию должным образом."
 
-#: lib/class_contact_messages.php:1138
+#: lib/class_contact_messages.php:1149
 msgid ""
 "Message could not be sent. Please make sure you have entered your "
 "information properly."
@@ -240,73 +257,73 @@ msgstr ""
 "Сообщение не может быть отправлено. Пожалуйста, убедитесь, что вы ввели "
 "информацию должным образом."
 
-#: lib/class_contact_messages.php:1160
+#: lib/class_contact_messages.php:1171
 msgid " -- No message. -- "
 msgstr "-- Нет сообщений. --"
 
-#: lib/class_contact_messages.php:1238
+#: lib/class_contact_messages.php:1249
 msgid "Use this section to add and configure new shortcode forms."
 msgstr "В этом разделе можно добавить и настроить новые шорткод формы."
 
-#: lib/class_contact_messages.php:1243
+#: lib/class_contact_messages.php:1254
 msgid "Form Settings"
 msgstr "Настройки форм"
 
-#: lib/class_contact_messages.php:1244
+#: lib/class_contact_messages.php:1255
 msgid "Fields"
 msgstr "Поля"
 
-#: lib/class_contact_messages.php:1254 lib/ui/crm_page_wp_crm_settings.php:410
+#: lib/class_contact_messages.php:1265 lib/ui/crm_page_wp_crm_settings.php:410
 msgid "Title:"
 msgstr "Заголовок:"
 
-#: lib/class_contact_messages.php:1259
+#: lib/class_contact_messages.php:1270
 msgid "Shortcode:"
 msgstr "Шорткод:"
 
-#: lib/class_contact_messages.php:1265
+#: lib/class_contact_messages.php:1276
 msgid "Role:"
 msgstr "Роль:"
 
-#: lib/class_contact_messages.php:1270
+#: lib/class_contact_messages.php:1281
 msgid "If new user created, assign this role."
 msgstr "Если новый пользователь создан, назначить эту роль."
 
-#: lib/class_contact_messages.php:1274
+#: lib/class_contact_messages.php:1285
 msgid "Method:"
 msgstr "Метод:"
 
-#: lib/class_contact_messages.php:1279
+#: lib/class_contact_messages.php:1290
 msgid "Form request method."
 msgstr "Метод формы запроса."
 
-#: lib/class_contact_messages.php:1284
+#: lib/class_contact_messages.php:1295
 msgid "Display textarea for custom message."
 msgstr "Отображать текстовое поле для пользовательских сообщений."
 
-#: lib/class_contact_messages.php:1289
+#: lib/class_contact_messages.php:1300
 msgid "Send message notification even if no message is submitted."
 msgstr "Отправить уведомление о сообщение, даже если сообщение не отправлено."
 
-#: lib/class_contact_messages.php:1294
+#: lib/class_contact_messages.php:1305
 msgid "Do not require users with existing accounts to sign in first."
 msgstr "Не регистрировать пользователей с существующими профилями."
 
-#: lib/class_contact_messages.php:1319 lib/class_functions.php:2772
-#: lib/class_functions.php:3138 lib/class_functions.php:3154
-#: lib/class_user_list_table.php:525 lib/ui/crm_metaboxes.php:278
+#: lib/class_contact_messages.php:1330 lib/class_functions.php:2788
+#: lib/class_functions.php:3154 lib/class_functions.php:3170
+#: lib/class_user_list_table.php:526 lib/ui/crm_metaboxes.php:278
 #: lib/ui/crm_page_wp_crm_settings.php:358
 #: lib/ui/crm_page_wp_crm_settings.php:476
 msgid "Delete"
 msgstr "Удалить"
 
-#: lib/class_contact_messages.php:1327 lib/class_functions.php:3164
+#: lib/class_contact_messages.php:1338 lib/class_functions.php:3180
 #: lib/ui/crm_page_wp_crm_settings.php:366
 #: lib/ui/crm_page_wp_crm_settings.php:485
 msgid "Add Row"
 msgstr "Добавить строку"
 
-#: lib/class_contact_messages.php:1333
+#: lib/class_contact_messages.php:1344
 msgid ""
 "To see list of variables you can use in wp_crm_contact_system_data open up "
 "the \"Help\" tab and view the user data structure.  Any variable you see in "
@@ -319,7 +336,7 @@ msgstr ""
 "ней, может быть использована в предметной области, в поле, BCC поле, и теле "
 "сообщения. Пример: [user_email] будет включать получателя электронной почты."
 
-#: lib/class_contact_messages.php:1334 lib/ui/crm_page_wp_crm_settings.php:374
+#: lib/class_contact_messages.php:1345 lib/ui/crm_page_wp_crm_settings.php:374
 msgid ""
 "To add notification actions use the <b>wp_crm_notification_actions</b> "
 "filter, then call the action within <b>wp_crm_send_notification()</b> "
@@ -331,15 +348,15 @@ msgstr ""
 "функции <b>wp_crm_send_notification()</b> и сообщения ассоциириванное с "
 "данным действием будет отправлено."
 
-#: lib/class_contact_messages.php:1338
+#: lib/class_contact_messages.php:1349
 msgid "Options"
 msgstr "Свойства"
 
-#: lib/class_contact_messages.php:1343
+#: lib/class_contact_messages.php:1354
 msgid "Default role to use for new contacts:"
 msgstr "Роль по умолчанию для новых контактов:"
 
-#: lib/class_contact_messages.php:1345
+#: lib/class_contact_messages.php:1356
 msgid ""
 "WP-CRM creates user profiles, if only temporary, to store inquiries and "
 "messages from shortcode forms."
@@ -347,31 +364,35 @@ msgstr ""
 "WP-CRM создает профили пользователей, возможно только временно, для хранения "
 "запросов и сообщений от шорткод форм."
 
-#: lib/class_contact_messages.php:1366
+#: lib/class_contact_messages.php:1377
 msgid "View messages from shortcode forms."
 msgstr "Просмотр сообщений шорков форм."
 
-#: lib/class_contact_messages.php:1392 lib/ui/crm_page_wp_crm_settings.php:289
+#: lib/class_contact_messages.php:1403 lib/ui/crm_page_wp_crm_settings.php:289
 msgid "Message"
 msgstr "Сообщение"
 
-#: lib/class_contact_messages.php:1393
+#: lib/class_contact_messages.php:1404
 msgid "Sender"
 msgstr "Отправитель"
 
-#: lib/class_contact_messages.php:1456
+#: lib/class_contact_messages.php:1405
+msgid "Source"
+msgstr ""
+
+#: lib/class_contact_messages.php:1468
 msgid "Contact Messages"
 msgstr "Контактные сообщения"
 
-#: lib/class_core.php:211
+#: lib/class_core.php:221
 msgid "Password Reset"
 msgstr "Сброс пароля"
 
-#: lib/class_core.php:264
+#: lib/class_core.php:274
 msgid "Users"
 msgstr "Пользователи"
 
-#: lib/class_core.php:267
+#: lib/class_core.php:277
 msgid ""
 "This page is used to filter and find various users. Visit the Settings page "
 "to select which attributes to show on the overview."
@@ -380,11 +401,11 @@ msgstr ""
 "Посетите страницу Параметры, чтобы выбрать, какие атрибуты отображать на "
 "странице обзора."
 
-#: lib/class_core.php:268
+#: lib/class_core.php:278
 msgid "Exporting"
 msgstr "Экспорт"
 
-#: lib/class_core.php:269
+#: lib/class_core.php:279
 msgid ""
 "Once you narrow down the user results to the ones you want to export, click "
 "\"Show Actions\" and then \"Export to CSV\" to generate a comma separated "
@@ -394,7 +415,7 @@ msgstr ""
 "нажмите кнопку \"Показать Действия \" и \"Экспорт в CSV\", файл, разделенный "
 "запятыми, будет создан."
 
-#: lib/class_core.php:270
+#: lib/class_core.php:280
 msgid ""
 "The CSV export will only include the user data as defined in Data tab, on "
 "the Settings page."
@@ -402,15 +423,15 @@ msgstr ""
 "Экспорт CSV будет содержать только данные пользователя, как это определено в "
 "таблице данных на странице настроек."
 
-#: lib/class_core.php:339 lib/ui/crm_page_wp_crm_settings.php:109
+#: lib/class_core.php:349 lib/ui/crm_page_wp_crm_settings.php:109
 msgid "Notifications"
 msgstr "Уведомления"
 
-#: lib/class_core.php:343
+#: lib/class_core.php:353
 msgid "User Editing"
 msgstr "Редактирование пользователя"
 
-#: lib/class_core.php:344
+#: lib/class_core.php:354
 msgid ""
 "Please visit the WP-CRM Settings page to determine which fields to display "
 "on the editing page."
@@ -418,7 +439,7 @@ msgstr ""
 "Пожалуйста, посетите WP-CRM -> Параметры страницы, чтобы определить, какие "
 "поля отображать на странице редактирования."
 
-#: lib/class_core.php:347
+#: lib/class_core.php:357
 msgid ""
 "The activity history can be used to log notes regarding a user, and will "
 "display any incoming messages generated by the user when using a WP-CRM "
@@ -428,11 +449,11 @@ msgstr ""
 "относительно пользователя, и будет отображать входящие сообщения, созданные "
 "пользователем при помощи WP-CRM шорткод формы."
 
-#: lib/class_core.php:388
+#: lib/class_core.php:398
 msgid "Roles - Hidden Attributes"
 msgstr "Роли - Скрытые атрибуты"
 
-#: lib/class_core.php:389
+#: lib/class_core.php:399
 msgid ""
 "If certain user attributes are not applicable to certain roles, such as "
 "\"Client Type\" to the \"Administrator\" role, you can elect to hide the "
@@ -442,11 +463,11 @@ msgstr ""
 "роли, такие как \"Тип Клиента \" к \"Администратору \", вы можете выбрать "
 "скрыть признаки неприменимы на страницах профилей редактирования."
 
-#: lib/class_core.php:390 lib/ui/crm_page_wp_crm_settings.php:397
+#: lib/class_core.php:400 lib/ui/crm_page_wp_crm_settings.php:397
 msgid "Predefined Values"
 msgstr "Стандартные значения"
 
-#: lib/class_core.php:391
+#: lib/class_core.php:401
 msgid ""
 "If you want your attributes to have predefined values, such as in a "
 "dropdown, or a checkbox list, enter a comma separated list of values you "
@@ -459,7 +480,17 @@ msgstr ""
 "получить больше с помощью таксономии - для загрузки всех значений из "
 "таксономии, просто введите строку: <b>taxonomy:taxonomy_name</b>."
 
-#: lib/class_core.php:393
+#: lib/class_core.php:403 lib/ui/crm_metaboxes.php:38
+msgid "Visualize User Data"
+msgstr "График пользователей"
+
+#: lib/class_core.php:404
+msgid ""
+"You will see graphics for all attributes from your data tab which have "
+"Dropdown or Checkbox Data Input and filled at least in 2 users profiles."
+msgstr ""
+
+#: lib/class_core.php:407
 msgid ""
 "Shortcode Forms, which can be used for contact forms, or profile editing, "
 "are setup here, and then inserted using a shortcode into a page, or a "
@@ -476,11 +507,11 @@ msgstr ""
 "основе адреса электронной почты, если таковой не существовал, для слежения "
 "за пользователями."
 
-#: lib/class_core.php:395
+#: lib/class_core.php:409
 msgid "Shortcode Forms attributes"
 msgstr "Атрибуты Шорткод Формы"
 
-#: lib/class_core.php:397
+#: lib/class_core.php:411
 msgid ""
 "display_notes = [ true | <b>false</b> ] &mdash; If a note exists for an "
 "attribute, it will be shown on the right."
@@ -488,27 +519,27 @@ msgstr ""
 "display_notes = [ true | <b>false</b> ] &mdash; Если запись существует для "
 "атрибута, она будет показана справа."
 
-#: lib/class_core.php:398
+#: lib/class_core.php:412
 msgid "require_login_for_existing_users = [ <b>true</b> | false ]"
 msgstr "require_login_for_existing_users = [ <b>true</b> | false ]"
 
-#: lib/class_core.php:399
+#: lib/class_core.php:413
 msgid "use_current_user = [ <b>true</b> | false ]"
 msgstr "use_current_user = [ <b>true</b> | false ]"
 
-#: lib/class_core.php:400
+#: lib/class_core.php:414
 msgid "success_message = \"<i>custom text</i>\"  &mdash; default value is \""
 msgstr ""
 "success_message = \"<i>пользовательский текст</i>\"  &mdash; значение по "
 "умолчанию \""
 
-#: lib/class_core.php:401
+#: lib/class_core.php:415
 msgid "submit_text = \"<i>custom text</i>\"  &mdash; default value is \""
 msgstr ""
 "submit_text = \"<i>пользовательский текст</i>\"  &mdash; значение по "
 "умолчанию \""
 
-#: lib/class_core.php:402
+#: lib/class_core.php:416
 msgid ""
 "js_callback_function = \"<i>custom_function_name</i>\"  &mdash; default "
 "value is \""
@@ -516,11 +547,11 @@ msgstr ""
 "js_callback_function = \"<i>пользовательский текст</i>\"  &mdash; значение "
 "по умолчанию \""
 
-#: lib/class_core.php:402 lib/class_core.php:403
+#: lib/class_core.php:416 lib/class_core.php:417
 msgid "false"
 msgstr "ложный"
 
-#: lib/class_core.php:403
+#: lib/class_core.php:417
 msgid ""
 "js_validation_function = \"<i>custom_function_name</i>\"  &mdash; default "
 "value is \""
@@ -528,7 +559,7 @@ msgstr ""
 "js_validation_function = \"<i>пользовательский текст</i>\"  &mdash; значение "
 "по умолчанию \""
 
-#: lib/class_core.php:405
+#: lib/class_core.php:419
 msgid ""
 "For example, <b>[wp_crm_form form=example_from display_notes=true "
 "success_message=\"Your message was successfully sent!\" submit_text=\"Send "
@@ -538,7 +569,7 @@ msgstr ""
 "success_message=\"Ваше сообщение было отправлено!\" submit_text=\"Send "
 "message!\"]</b>"
 
-#: lib/class_core.php:407
+#: lib/class_core.php:421
 msgid ""
 "If a new user fills out a form, an account will be created for them based on "
 "the specified role.  "
@@ -546,17 +577,17 @@ msgstr ""
 "Если новый пользователь заполняет форму, будет создана учетная запись для "
 "него на основе указанной роли."
 
-#: lib/class_core.php:408
+#: lib/class_core.php:422
 msgid "<b>Important</b>: user's email attribute should have slug 'user_email'."
 msgstr ""
 "<b> Внимание </b>: атрибут электронной почты пользователя должна иметь слаг "
 "\"user_email\"."
 
-#: lib/class_core.php:410 lib/ui/crm_page_wp_crm_settings.php:174
+#: lib/class_core.php:424 lib/ui/crm_page_wp_crm_settings.php:174
 msgid "Automation"
 msgstr "Автоматизация"
 
-#: lib/class_core.php:411
+#: lib/class_core.php:425
 msgid ""
 "Use other attribute as components. Example: <b>[last_name], [rank]</b> will "
 "become <b>Smith, Sgt.</b>"
@@ -564,11 +595,11 @@ msgstr ""
 "Использование других атрибутов в качестве компонентов. Пример: "
 "<b>[last_name], [rank]</b> will become <b>Smith, Sgt.</b>"
 
-#: lib/class_core.php:412
+#: lib/class_core.php:426
 msgid "Notifications and Trigger Actions"
 msgstr "Уведомления и триггерные действия"
 
-#: lib/class_core.php:413
+#: lib/class_core.php:427
 msgid ""
 "Notification messages can be fired off when certain events, such as contact "
 "form submission, are executed.  Multiple notification events can be attached "
@@ -583,7 +614,7 @@ msgstr ""
 "использования в качестве заменяемых динамически тегов при настройке "
 "уведомлений."
 
-#: lib/class_core.php:414
+#: lib/class_core.php:428
 msgid ""
 "Which tags are available depend on the trigger event, but in most cases all "
 "user data slugs can be used.  On a shortcode form message, "
@@ -595,61 +626,95 @@ msgstr ""
 "шорткод формы  также доступны переменные <b>[message_content]</b>, "
 "<b>[profile_link]</b>, <b>[trigger_action]</b>."
 
-#: lib/class_core.php:556
+#: lib/class_core.php:570
 msgid "Your Profile"
 msgstr "Ваш профайл"
 
-#: lib/class_core.php:647
+#: lib/class_core.php:661
 msgid "Information"
 msgstr "Информация"
 
-#: lib/class_core.php:678
+#: lib/class_core.php:692
 msgid "All People"
 msgstr "Все люди"
 
-#: lib/class_core.php:679
+#: lib/class_core.php:693
 msgid "New Person"
 msgstr "Новый человек"
 
-#: lib/class_core.php:680
+#: lib/class_core.php:694
 msgid "My Profile"
 msgstr "Мой профайл"
 
-#: lib/class_core.php:682 lib/class_core.php:849
+#: lib/class_core.php:696 lib/class_core.php:863
 #: lib/ui/crm_page_wp_crm_settings.php:395
 msgid "Settings"
 msgstr "Настройки"
 
-#: lib/class_core.php:685 lib/ui/crm_page_wp_crm_detailed_logs.php:13
+#: lib/class_core.php:699 lib/ui/crm_page_wp_crm_detailed_logs.php:13
 msgid "Activity Logs"
 msgstr "Логи активности"
 
-#: lib/class_core.php:890
+#: lib/class_core.php:904
+msgid "Integrating with WP-Property"
+msgstr ""
+
+#: lib/class_core.php:905
+#, php-format
+msgid ""
+"You can use the following tags in your notification templates for the forms "
+"which places on single %s pages."
+msgstr ""
+
+#: lib/class_core.php:906
+#, php-format
+msgid "- renders %s id."
+msgstr ""
+
+#: lib/class_core.php:907
+#, php-format
+msgid "- renders %s title."
+msgstr ""
+
+#: lib/class_core.php:908
+#, php-format
+msgid "- renders %s link."
+msgstr ""
+
+#: lib/class_core.php:913
+msgid "WP-Property Integration"
+msgstr ""
+
+#: lib/class_core.php:922
 msgid "For more information:"
 msgstr "Для более детальной информации:"
 
-#: lib/class_core.php:891
-msgid "WP-CRM Product Page"
-msgstr "Страница продукта WP-CRM"
+#: lib/class_core.php:923
+msgid "Product page"
+msgstr ""
 
-#: lib/class_core.php:892
-msgid "WP-CRM Forums"
-msgstr "WP-CRM Форумы"
+#: lib/class_core.php:924
+msgid "Contact us"
+msgstr ""
 
-#: lib/class_core.php:899
+#: lib/class_core.php:925
+msgid "Premium support"
+msgstr ""
+
+#: lib/class_core.php:932
 msgid "Please upgrade Wordpress to the latest version for detailed help."
 msgstr ""
 "Обновите Wordpress до последней версии, для получения подробной справки."
 
-#: lib/class_core.php:899
+#: lib/class_core.php:932
 msgid "Or visit"
 msgstr "Или посетите"
 
-#: lib/class_core.php:899
+#: lib/class_core.php:932
 msgid "WP-CRM Help Page"
 msgstr "Страница помощи WP-CRM"
 
-#: lib/class_core.php:899
+#: lib/class_core.php:932
 msgid "on UsabilityDynamics.com"
 msgstr "на UsabilityDynamics.com"
 
@@ -694,20 +759,20 @@ msgstr ""
 "Ошибка при сохранении пользователя: Адрес электронной почты является "
 "недействительным"
 
-#: lib/class_default_api.php:851
+#: lib/class_default_api.php:853
 msgid "New user added."
 msgstr "Новый пользователь добавлен."
 
-#: lib/class_default_api.php:855
+#: lib/class_default_api.php:857
 msgid "User updated."
 msgstr "Пользователь обновлен."
 
-#: lib/class_default_api.php:880 lib/class_default_api.php:884
+#: lib/class_default_api.php:882 lib/class_default_api.php:886
 #, php-format
 msgid "Error saving user: %s"
 msgstr "Ошибка при сохранении пользователя: %s"
 
-#: lib/class_default_api.php:880
+#: lib/class_default_api.php:882
 msgid "Go to user profile"
 msgstr "Перейти в профиль пользователя."
 
@@ -795,33 +860,33 @@ msgstr "Шаблон уведомления не найден."
 msgid "No fake users found."
 msgstr "Ни одного тестового пользователя не найдено."
 
-#: lib/class_functions.php:1591
+#: lib/class_functions.php:1601
 msgid ""
 "Password reset. A random password has been generated for user by system."
 msgstr ""
 "Сброса пароля.Случайный пароль был сгенерирован для пользователя системой."
 
-#: lib/class_functions.php:1614
+#: lib/class_functions.php:1625
 msgid "Message archived."
 msgstr "Сообщение архивировано."
 
-#: lib/class_functions.php:1626
+#: lib/class_functions.php:1637
 msgid "Message deleted."
 msgstr "Сообщение удалено."
 
-#: lib/class_functions.php:1642
+#: lib/class_functions.php:1653
 msgid "Sender trashed."
 msgstr "Отправитель удален."
 
-#: lib/class_functions.php:2420
+#: lib/class_functions.php:2436
 msgid "Example Shortcode Form"
 msgstr "Образец шоркод формы"
 
-#: lib/class_functions.php:2426
+#: lib/class_functions.php:2442
 msgid "Thank your for your message!"
 msgstr "Спасибо за Ваше сообщение!"
 
-#: lib/class_functions.php:2429
+#: lib/class_functions.php:2445
 msgid ""
 "Hello [display_name],\n"
 "Thank you, your message has been received."
@@ -829,11 +894,11 @@ msgstr ""
 "Здравствуйте [display_name],\n"
 "Спасибо, Ваше сообщение получено."
 
-#: lib/class_functions.php:2432
+#: lib/class_functions.php:2448
 msgid "Message from Website"
 msgstr "Сообщение от вебсайта"
 
-#: lib/class_functions.php:2435
+#: lib/class_functions.php:2451
 msgid ""
 "Shortcode Form: [trigger_action]\n"
 "Sender Name: [display_name]\n"
@@ -845,53 +910,53 @@ msgstr ""
 "Электронная почта отправителяl: [user_email]\n"
 "Сообщение: [message_content]"
 
-#: lib/class_functions.php:2644
+#: lib/class_functions.php:2660
 msgid "Show in User Activity History"
 msgstr "Показывать в пользовательской истории активности"
 
-#: lib/class_functions.php:2663
+#: lib/class_functions.php:2679
 msgid "Note"
 msgstr "Заметка"
 
-#: lib/class_functions.php:2666
+#: lib/class_functions.php:2682
 msgid "General Message"
 msgstr "Общее сообщение"
 
-#: lib/class_functions.php:2669
+#: lib/class_functions.php:2685
 msgid "Phone Call"
 msgstr "Телефоный звонок"
 
-#: lib/class_functions.php:2672
+#: lib/class_functions.php:2688
 msgid "Meeting"
 msgstr "Совещание"
 
-#: lib/class_functions.php:2675
+#: lib/class_functions.php:2691
 msgid "File"
 msgstr "Файл"
 
-#: lib/class_functions.php:2678
+#: lib/class_functions.php:2694
 msgid "Detailed Log"
 msgstr "Детализированный журнал"
 
-#: lib/class_functions.php:2681
+#: lib/class_functions.php:2697
 #, php-format
 msgid "Shortcode Form Message %1s."
 msgstr "Шорткодная форма сообщений %1s."
 
-#: lib/class_functions.php:2753
+#: lib/class_functions.php:2769
 #, php-format
 msgid "Logged in from IP %1s, %2s ago."
 msgstr "Зашел с  IP %1s, %2s назад."
 
-#: lib/class_functions.php:3032
+#: lib/class_functions.php:3048
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: lib/class_functions.php:3035
+#: lib/class_functions.php:3051
 msgid "First Name"
 msgstr "Имя"
 
-#: lib/class_functions.php:3057
+#: lib/class_functions.php:3073
 #, php-format
 msgid ""
 "Warning: there is no field with slug '%s' in list of user attributes on Data "
@@ -899,27 +964,31 @@ msgid ""
 msgstr ""
 "Предупреждение: нет поля со слагом '%s' в списке атрибутов на вкладке Данные!"
 
-#: lib/class_functions.php:3078
+#: lib/class_functions.php:3094
 msgid "Group:"
 msgstr "Группа:"
 
-#: lib/class_functions.php:3104
+#: lib/class_functions.php:3120
 msgid "Attributes Groups"
 msgstr "Группы атрибутов"
 
-#: lib/class_functions.php:3109
+#: lib/class_functions.php:3125
 msgid "Group Name"
 msgstr "Название группы"
 
-#: lib/class_functions.php:3110
+#: lib/class_functions.php:3126
 msgid "Metabox Title"
 msgstr "Название метабокса"
 
-#: lib/class_functions.php:3292 lib/ui/crm_metaboxes.php:173
+#: lib/class_functions.php:3310 lib/ui/crm_metaboxes.php:173
 msgid "Add Another"
 msgstr "Добавить другой"
 
-#: lib/class_list_table.php:332
+#: lib/class_functions.php:3360
+msgid "Cache was successfully cleared"
+msgstr ""
+
+#: lib/class_list_table.php:375
 msgid "Nothing found."
 msgstr "Ничего не найдено."
 
@@ -1009,21 +1078,17 @@ msgstr "Массовые действия"
 msgid "Apply"
 msgstr "Принять"
 
-#: lib/class_user_list_table.php:411
+#: lib/class_user_list_table.php:412
 msgid "Role Lists"
 msgstr "Список ролей"
 
-#: lib/class_user_list_table.php:411 lib/class_user_list_table.php:437
-msgid "Show"
-msgstr "Показать"
-
 #. translators: User role name with count
-#: lib/class_user_list_table.php:510
+#: lib/class_user_list_table.php:511
 #, php-format
 msgid "%1$s <span class=\"count\">(%2$s)</span>"
 msgstr "%1$s <span class=“count”>(%2$s)</span>"
 
-#: lib/class_user_list_table.php:522
+#: lib/class_user_list_table.php:523
 msgid "Remove"
 msgstr "Удалить"
 
@@ -1124,10 +1189,6 @@ msgstr "Продажи"
 #: lib/ui/crm_metaboxes.php:36
 msgid "Export to CSV"
 msgstr "Экспорт CSV"
-
-#: lib/ui/crm_metaboxes.php:38
-msgid "Visualize User Data"
-msgstr "График пользователей"
 
 #: lib/ui/crm_metaboxes.php:45
 msgid "Perfomed actions"
@@ -1491,37 +1552,47 @@ msgid "Show $wp_crm"
 msgstr "Показать $wp_crm"
 
 #: lib/ui/crm_page_wp_crm_settings.php:567
-#: lib/ui/crm_page_wp_crm_settings.php:574
-#: lib/ui/crm_page_wp_crm_settings.php:586
-#: lib/ui/crm_page_wp_crm_settings.php:593
+#: lib/ui/crm_page_wp_crm_settings.php:580
+#: lib/ui/crm_page_wp_crm_settings.php:592
+#: lib/ui/crm_page_wp_crm_settings.php:599
 msgid "Cancel"
 msgstr "Отмена"
 
+#: lib/ui/crm_page_wp_crm_settings.php:572
+msgid ""
+"Clear WP-CRM Cache. Some shortcodes and widgets use cache, so the good "
+"practice is clear it after widget, shortcode changes."
+msgstr ""
+
 #: lib/ui/crm_page_wp_crm_settings.php:573
+msgid "Clear Cache"
+msgstr ""
+
+#: lib/ui/crm_page_wp_crm_settings.php:579
 msgid "Show user data structure:"
 msgstr "Показать структуру данных пользователей:"
 
-#: lib/ui/crm_page_wp_crm_settings.php:574
+#: lib/ui/crm_page_wp_crm_settings.php:580
 msgid "Show WP_CRM_F::user_object_structure()"
 msgstr "Показать WP_CRM_F::user_object_structure()"
 
-#: lib/ui/crm_page_wp_crm_settings.php:575
+#: lib/ui/crm_page_wp_crm_settings.php:581
 msgid "All possible meta keys:"
 msgstr "Все возможные мета ключи:"
 
-#: lib/ui/crm_page_wp_crm_settings.php:577
+#: lib/ui/crm_page_wp_crm_settings.php:583
 msgid "Root Only:"
 msgstr "Только корневые:"
 
-#: lib/ui/crm_page_wp_crm_settings.php:583
+#: lib/ui/crm_page_wp_crm_settings.php:589
 msgid "Lookup a user object by its ID."
 msgstr "Посмотреть объекты пользователя по его ID."
 
-#: lib/ui/crm_page_wp_crm_settings.php:585
+#: lib/ui/crm_page_wp_crm_settings.php:591
 msgid "Load User"
 msgstr "Загрузить пользователя"
 
-#: lib/ui/crm_page_wp_crm_settings.php:591
+#: lib/ui/crm_page_wp_crm_settings.php:597
 msgid ""
 "Get user meta report. Will return an array of common meta keys and a few "
 "sample values.  This should be used to help you analyze a website with a lot "
@@ -1532,35 +1603,35 @@ msgstr ""
 "проанализировать сайт с большим количеством существующих пользовательских "
 "мета."
 
-#: lib/ui/crm_page_wp_crm_settings.php:592
+#: lib/ui/crm_page_wp_crm_settings.php:598
 msgid "Get Report"
 msgstr "Получить отчет"
 
-#: lib/ui/crm_page_wp_crm_settings.php:598
+#: lib/ui/crm_page_wp_crm_settings.php:604
 msgid "Generate "
 msgstr "Создать"
 
-#: lib/ui/crm_page_wp_crm_settings.php:598
+#: lib/ui/crm_page_wp_crm_settings.php:604
 msgid "fake users. "
 msgstr "тестовые пользователи."
 
-#: lib/ui/crm_page_wp_crm_settings.php:599
+#: lib/ui/crm_page_wp_crm_settings.php:605
 msgid "Generate"
 msgstr "Создать"
 
-#: lib/ui/crm_page_wp_crm_settings.php:600
+#: lib/ui/crm_page_wp_crm_settings.php:606
 msgid "Delete All Fake Users"
 msgstr "Удалить всех пробных пользователей"
 
-#: lib/ui/crm_page_wp_crm_settings.php:605
+#: lib/ui/crm_page_wp_crm_settings.php:611
 msgid "Restore Backup of WP-CRM Configuration"
 msgstr "Восстановить конфигурацию WP-CRM из резервной копии"
 
-#: lib/ui/crm_page_wp_crm_settings.php:606
+#: lib/ui/crm_page_wp_crm_settings.php:612
 msgid "Download Backup of Current WP-CRM Configuration."
 msgstr "Скачать резервную копию текущих WP-CRM конфигурации."
 
-#: lib/ui/crm_page_wp_crm_settings.php:612
+#: lib/ui/crm_page_wp_crm_settings.php:618
 msgid ""
 "Enable developer mode and start displaying additional information in the "
 "console log."
@@ -1568,7 +1639,7 @@ msgstr ""
 "Включить режим разработчика и начать отображать дополнительную информацию в "
 "журнале консоли."
 
-#: lib/ui/crm_page_wp_crm_settings.php:625
+#: lib/ui/crm_page_wp_crm_settings.php:631
 msgid "Save Changes"
 msgstr "Сохранить изменения"
 
@@ -1741,6 +1812,12 @@ msgstr ""
 msgid "<p><b>%s</b> can not be initialized. %s</p>"
 msgstr "<p><b>%s</b> не может быть запущен. %s</p>"
 
+#~ msgid "WP-CRM Product Page"
+#~ msgstr "Страница продукта WP-CRM"
+
+#~ msgid "WP-CRM Forums"
+#~ msgstr "WP-CRM Форумы"
+
 #, fuzzy
 #~ msgid "Product deactivated successfully."
 #~ msgstr "Успешное обновление."
@@ -1810,9 +1887,6 @@ msgstr "<p><b>%s</b> не может быть запущен. %s</p>"
 
 #~ msgid "Related Object"
 #~ msgstr "Связанный объект"
-
-#~ msgid "None"
-#~ msgstr "Нет"
 
 #, fuzzy
 #~ msgid "Welcome to Usability Dynamics, Inc."
