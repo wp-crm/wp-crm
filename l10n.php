@@ -16,6 +16,9 @@ $l10n = array(
   'user_activity_history' => __( 'User Activity History', ud_get_wp_crm()->domain ),
   'primary_information' => __( 'Primary Information', ud_get_wp_crm()->domain ),
   'special_actions' => __( 'Special Actions', ud_get_wp_crm()->domain ),
+  'filter_show' => __( 'Show', ud_get_wp_crm()->domain ),
+  'filter_hide' => __( 'Hide', ud_get_wp_crm()->domain ),
+  'something_wrong' => __( 'Something wrong, try again.', ud_get_wp_crm()->domain ),
 
 );
 

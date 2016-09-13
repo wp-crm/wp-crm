@@ -16,6 +16,51 @@ jQuery( document ).ready( function() {
     var wp_crm_dev_mode = false;
   }
 
+  jQuery('#wp_crm_clear_cache').on('click', function(e){
+    e.preventDefault();
+    var $this = jQuery(this);
+    var msgHolder = jQuery( '#clear_cache_status' ).html('').fadeOut().removeClass();
+    var $dots = $this.find('.dots');
+    var dots = 0;
+    var dotting = function(){
+      if(dots == 0)
+      {
+        $dots.html('.&nbsp;&nbsp;');
+        dots++;
+      }
+      else if(dots == 1)
+      {
+        $dots.html('..&nbsp;');
+        dots++;
+      }
+      else if(dots == 2)
+      {
+        $dots.html('...');
+        dots++;
+      }
+      else
+      {
+        $dots.html('&nbsp;&nbsp;&nbsp;');
+        dots = 0;
+      }
+    }
+    var timer = setInterval (dotting, 600);
+
+    $this.attr('disabled', 'disabled');
+
+    jQuery.post( ajaxurl, {
+      action: 'wpc_ajax_clear_cache'
+    }, function ( data ) {
+      msgHolder.html(data).addClass('updated').fadeIn();
+    }).fail(function() {
+      msgHolder.html(wpc.strings.something_wrong).addClass('error').fadeIn();
+    }).always(function() {
+      clearInterval(timer);
+      $dots.html('');
+      $this.removeAttr('disabled');
+    });
+    return false;
+  });
   /* Cycle through all advanced UI options and toggle them */
   jQuery( '.wp_crm_show_advanced' ).each( function() {
     wp_crm_toggle_advanced_options( this );
@@ -238,9 +283,9 @@ jQuery( document ).ready( function() {
       var parent = jQuery( this ).parents( '.wp_crm_overview_filters' );
       jQuery(' .wp_crm_checkbox_filter', parent).slideToggle('fast', function(){
         if(jQuery(this).css('display') == 'none') {
-          jQuery('.wpp_crm_filter_show', parent).html('Show');
+          jQuery('.wpp_crm_filter_show', parent).html(wpc.strings.filter_show);
         } else {
-          jQuery('.wpp_crm_filter_show', parent).html('Hide');
+          jQuery('.wpp_crm_filter_show', parent).html(wpc.strings.filter_hide);
         }
       });
     });
