@@ -198,9 +198,9 @@ class WP_CRM_Core {
     //** Load Localization early so plugins can use them as well */
     //** Try to generate static localization script. It can be flushed on Clear Cache! */
     if( $l10n_url = $this->maybe_generate_l10n_script() ) {
-      wp_register_script( 'wpc-localization', $l10n_url, array(), WPP_Version );
+      wp_register_script( 'wpc-localization', $l10n_url, array() );
     } else {
-      wp_register_script( 'wpc-localization', ud_get_wp_property()->path( 'static/scripts/l10n.js', 'url' ), array(), WPP_Version );
+      wp_register_script( 'wpc-localization', ud_get_wp_property()->path( 'static/scripts/l10n.js', 'url' ), array() );
       wp_localize_script( 'wpc-localization', 'wpc_l10n', $this->get_l10n_data() );
     }
 
