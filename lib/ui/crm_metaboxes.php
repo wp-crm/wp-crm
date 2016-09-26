@@ -6,6 +6,64 @@
  * @since 0.01
  *
  */
+class toplevel_page_wp_crm_network {
+
+  /**
+   * Actions metabox used for primary filtering purposes in network admin.
+   *
+   * @duplicated from class toplevel_page_wp_crm 
+   * @uses CRM_User_List_Table class
+   * @since 1.0.2
+   *
+   */
+  static function actions($wp_list_table) {
+    ?>
+    <div class="misc-pub-section">
+      <?php $wp_list_table->search_box('Search', 'wp_crm_text_search', 'Search User'); ?>
+      <select id="network-sites" class="combobox" name="wp_crm_search[primary_blog]" data-placeholder="<?php _e("Select Site", ud_get_wp_crm()->domain);?>">
+        <option value='0'><?php _e("All", ud_get_wp_crm()->domain);?></option>
+      <?php
+      $sites = get_sites();
+      foreach ($sites as $site) {
+        echo "<option value='{$site->blog_id}'>{$site->domain}{$site->path}</option>";
+      }
+      ?>
+      </select>
+    </div>
+
+    <div class="major-publishing-actions">
+
+      <div class="publishing-action">
+        <?php submit_button(__('Filter Results',ud_get_wp_crm()->domain), 'button', false, false, array('id' => 'search-submit')); ?>
+      </div>
+      <br class="clear" />
+    </div>
+
+    <div class="wp_crm_user_actions">
+      <ul class="wp_crm_action_list">
+        <li class="button wp_crm_export_to_csv"><?php _e('Export to CSV', ud_get_wp_crm()->domain); ?></li>
+      <?php if (WP_CRM_F::get_quantifiable_attributes()) { ?>
+        <li class="button wp_crm_visualize_results"><?php _e('Visualize User Data', ud_get_wp_crm()->domain); ?></li>
+      <?php } ?>
+        <?php do_action('wp_crm_user_actions'); ?>
+      </ul>
+    </div>
+
+    <div id="performed_actions">
+      <h3><?php _e('Perfomed actions', ud_get_wp_crm()->domain); ?></h3>
+      <div class="wp_crm_quick_report_wrapper"></div>
+    </div>
+    <?php
+  }
+
+}
+
+/**
+ * Metaboxes for the main overview page
+ *
+ * @since 0.01
+ *
+ */
 class toplevel_page_wp_crm {
 
   /**

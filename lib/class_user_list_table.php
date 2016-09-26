@@ -184,11 +184,11 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
    *
    *
    */
-  function search_box( $text, $input_id ) {
+  function search_box( $text, $input_id, $placeholder = "" ) {
 
     ?>
   <p class="search-box">
-    <input type="text" id="<?php echo $input_id ?>" name="wp_crm_search[search_string]" value="<?php echo !empty($_REQUEST['wp_crm_search']['search_string'])?$_REQUEST['wp_crm_search']['search_string']:''; ?>" />
+    <input type="text" id="<?php echo $input_id ?>" name="wp_crm_search[search_string]" value="<?php echo !empty($_REQUEST['wp_crm_search']['search_string'])?$_REQUEST['wp_crm_search']['search_string']:''; ?>" placeholder="<?php echo $placeholder;?>" />
   </p>
   <?php
   }

@@ -1,0 +1,29 @@
+.misc-pub-section .custom-combobox-input {
+  margin: 0;
+  padding: 5px 10px;
+  float: left;
+}
+.misc-pub-section .custom-combobox-input:focus + a {
+  border-color: #5b9dd9;
+  border-left: 0;
+  -webkit-box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+  box-shadow: 0 0 2px rgba(30, 140, 190, 0.8);
+}
+.misc-pub-section .custom-combobox {
+  position: relative;
+  display: inline-block;
+}
+.misc-pub-section .custom-combobox-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-left: -1px;
+  padding: 0;
+}
+.misc-pub-section .custom-combobox-input {
+  margin: 0;
+  padding: 5px 10px;
+}
+.misc-pub-section .ui-state-default {
+  background: none;
+}

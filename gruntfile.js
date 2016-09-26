@@ -54,6 +54,7 @@ module.exports = function build( grunt ) {
           'static/styles/crm_page_wp_crm_settings.css': 'static/styles/src/crm_page_wp_crm_settings.less',
           'static/styles/jquery-ui-1.8.20.custom.css': 'static/styles/src/jquery-ui-1.8.20.custom.less',
           'static/styles/toplevel_page_wp_crm.css': 'static/styles/src/toplevel_page_wp_crm.less',
+          'static/styles/toplevel_page_wp_crm-network.css': 'static/styles/src/toplevel_page_wp_crm-network.less',
           'static/styles/wp_crm_global.css': 'static/styles/src/wp_crm_global.less'
         }
       },
@@ -68,6 +69,7 @@ module.exports = function build( grunt ) {
           'static/styles/crm_page_wp_crm_settings.css': 'static/styles/src/crm_page_wp_crm_settings.less',
           'static/styles/jquery-ui-1.8.20.custom.css': 'static/styles/src/jquery-ui-1.8.20.custom.less',
           'static/styles/toplevel_page_wp_crm.css': 'static/styles/src/toplevel_page_wp_crm.less',
+          'static/styles/toplevel_page_wp_crm-network.css': 'static/styles/src/toplevel_page_wp_crm-network.less',
           'static/styles/wp_crm_global.css': 'static/styles/src/wp_crm_global.less'
         }
       }

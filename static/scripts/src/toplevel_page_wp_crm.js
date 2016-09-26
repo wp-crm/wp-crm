@@ -9,6 +9,7 @@ jQuery(document).bind('wp_crm_user_results', function(data) {
 
 jQuery(document).ready(function () {
 
+  jQuery('#side-sortables').removeClass('empty-container');
   jQuery("#wp_crm_text_search").focus();
 
   jQuery(".wp_crm_user_row_actions .wp_crm_user_action[action=reset_password]").live("click", function() {

@@ -1325,6 +1325,18 @@ class WP_CRM_F {
           }
           continue;
         }
+        //** Handle search_string differently, it applies to all meta values */
+        if ($primary_key == 'primary_blog') {
+          /* First, go through the users table */
+          $tofind = intval($key_terms);
+          if ($tofind) {
+            $where .= " AND (";
+            /* Now go through the users meta table */
+            $where .= "u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = 'primary_blog' AND meta_value = '$tofind')";
+            $where .= ")";
+          }
+          continue;
+        }
 
         //** Handle role filtering differently too*/
         if ($primary_key == 'wp_role') {
@@ -1369,9 +1381,11 @@ class WP_CRM_F {
     }
 
     //** Multi site fix */
-    $id = get_current_blog_id();
-    $blog_prefix = $wpdb->get_blog_prefix($id);
-    $where .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$blog_prefix}capabilities' )";
+    if(!isset($search_vars['primary_blog'])){
+      $id = get_current_blog_id();
+      $blog_prefix = $wpdb->get_blog_prefix($id);
+      $where .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$blog_prefix}capabilities' )";
+    }
 
     $sql = $select . $join . $where . $sort_by;
 

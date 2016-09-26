@@ -126,6 +126,7 @@ class WP_CRM_Core {
 
     // Setup pages and overview columns
     add_action( "admin_menu", array( 'WP_CRM_Core', "admin_menu" ) );
+    add_action('network_admin_menu', array( 'WP_CRM_Core', "network_admin_menu" ));
 
     add_filter( "retrieve_password_message", array( 'WP_CRM_F', "retrieve_password_message" ) );
 
@@ -680,6 +681,46 @@ class WP_CRM_Core {
    * @todo Make position incriment by one to not override anything
    *
    */
+  static function network_admin_menu() {
+    global $wp_crm, $menu, $submenu, $current_user;
+    
+
+    do_action( 'wp_crm_network_admin_menu' );
+    //** Replace default user management screen if set */
+    $position = ( ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && current_user_can( 'manage_options' ) ) ? '70' : '33' );
+
+    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
+    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] .= "_network"; // Unless metabox will not work;
+
+    $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] = add_submenu_page( 'wp_crm', __( 'All People', ud_get_wp_crm()->domain ), __( 'All People', ud_get_wp_crm()->domain ), 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ) );
+    $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] .= "_network"; // Unless metabox will not work;
+
+    wp_enqueue_script( 'jquery-ui-core' );
+    wp_enqueue_script( 'jquery-ui-button' );
+    wp_enqueue_script( 'jquery-ui-tooltip' );
+    wp_enqueue_script( 'jquery-ui-autocomplete' );
+
+    wp_enqueue_style( 'jquery-ui-style', ud_get_wp_crm()->path( "static/styles/jquery-ui-1.8.20.custom.css", 'url' ), array(), WP_CRM_Version, 'screen' );
+
+    //** Automatically insert styles sheet if one exists with $current_screen->ID name */
+    if ( file_exists( ud_get_wp_crm()->path( "static/styles/toplevel_page_wp_crm-network.css", 'dir' ) ) ) {
+      wp_enqueue_style( 'toplevel_page_wp_crm-network-style', ud_get_wp_crm()->path( "static/styles/toplevel_page_wp_crm-network.css", 'url' ), array(), WP_CRM_Version, 'screen' );
+    }
+
+    //** Automatically insert JS sheet if one exists with $current_screen->ID name */
+    if ( file_exists( ud_get_wp_crm()->path( "static/scripts/toplevel_page_wp_crm-network.js", 'dir' ) ) ) {
+      wp_enqueue_script( '$current_screen_id . -js', ud_get_wp_crm()->path( "static/scripts/toplevel_page_wp_crm-network.js", 'url' ), array( 'jquery' ), WP_CRM_Version, 'wp_crm_global' );
+    }
+
+  }
+
+  /**
+   * Sets up plugin pages and loads their scripts
+   *
+   * @since 0.01
+   * @todo Make position incriment by one to not override anything
+   *
+   */
   static function admin_menu() {
     global $wp_crm, $menu, $submenu, $current_user;
 
@@ -753,9 +794,12 @@ class WP_CRM_Core {
    */
   static function admin_enqueue_scripts() {
     global $current_screen;
+    $current_screen_id = $current_screen->id;
+    if($current_screen_id == 'toplevel_page_wp_crm-network')
+      $current_screen_id = str_replace('-network', '', $current_screen_id);
 
     //** Load scripts on specific pages */
-    switch ( $current_screen->id ) {
+    switch ( $current_screen_id ) {
 
       case 'toplevel_page_wp_crm':
         wp_enqueue_script( 'post' );
@@ -791,13 +835,13 @@ class WP_CRM_Core {
     wp_enqueue_style( 'wp_crm_global' );
 
     //** Automatically insert styles sheet if one exists with $current_screen->ID name */
-    if ( file_exists( ud_get_wp_crm()->path( "static/styles/{$current_screen->id}.css", 'dir' ) ) ) {
-      wp_enqueue_style( $current_screen->id . '-style', ud_get_wp_crm()->path( "static/styles/{$current_screen->id}.css", 'url' ), array(), WP_CRM_Version, 'screen' );
+    if ( file_exists( ud_get_wp_crm()->path( "static/styles/{$current_screen_id}.css", 'dir' ) ) ) {
+      wp_enqueue_style( $current_screen_id . '-style', ud_get_wp_crm()->path( "static/styles/{$current_screen_id}.css", 'url' ), array(), WP_CRM_Version, 'screen' );
     }
 
     //** Automatically insert JS sheet if one exists with $current_screen->ID name */
-    if ( file_exists( ud_get_wp_crm()->path( "static/scripts/{$current_screen->id}.js", 'dir' ) ) ) {
-      wp_enqueue_script( $current_screen->id . '-js', ud_get_wp_crm()->path( "static/scripts/{$current_screen->id}.js", 'url' ), array( 'jquery' ), WP_CRM_Version, 'wp_crm_global' );
+    if ( file_exists( ud_get_wp_crm()->path( "static/scripts/{$current_screen_id}.js", 'dir' ) ) ) {
+      wp_enqueue_script( $current_screen->id . '-js', ud_get_wp_crm()->path( "static/scripts/{$current_screen_id}.js", 'url' ), array( 'jquery' ), WP_CRM_Version, 'wp_crm_global' );
     }
 
   }
