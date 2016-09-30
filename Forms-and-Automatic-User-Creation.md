@@ -88,32 +88,3 @@ By now we have our attributes, forms, roles, notifications and user creation all
 Overview user actions are displayed on the overview table below the User card and the available actions are stored in $wp_crm['overview_user_actions']. By default, WP-CRM includes a “Password Reset” user action which is added in default_api.php To add a new action, attach a function to the ‘wp_crm_settings_lower’ filter and augment the $wp_crm settings array with a new user action.
 
 <img src="https://storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_tuts_overview.png" alt="wpcrm_tuts_overview"/>
-
-____
-
-###Frequently Asked Questions
-
-Does WP-CRM use the same user database as regular WordPress user management?
-
-Yes, same exact tables, except WP-CRM lets you add custom attributes and customize the fields you want to work with, amongst many other things, but the data is stored in the same two tables, wp_users and wp_usermeta as default user management.
-
-___
-
-###CRM Process
-
-* Forms and Automatic User Creation
-* Creating Users and User Data
-
-___
-
-###Settings
-
-* Translating plugins
-* WP-CRM Settings: The Shortcode Forms Tab
-* WP-CRM Settings: The Data Tab
-* WP-CRM Settings: The Notifications Tab
-* WP-CRM Settings: The Features Tab
-* WP-CRM Settings: The Roles Tab
-* WP-CRM Settings: The UI Tab
-* WP-CRM Settings: The Main Tab
-
