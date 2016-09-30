@@ -8,6 +8,7 @@
 ###CRM Process
 * [[Creating Users and User Data]]
 * [[Forms and Automatic User Creation]]
+* [[WP CRM Settings: The Data Tab]]
 
 ###Get Started
 * [[WP-CRM Settings: The Main Tab]]
