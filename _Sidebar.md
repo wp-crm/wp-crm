@@ -10,7 +10,7 @@
 * [[Forms and Automatic User Creation]]
 
 ###Get Started
-
+* [[WP-CRM Settings: The Main Tab]]
 * [[Shortcode Cheatsheet]]
 
 ###FAQ
