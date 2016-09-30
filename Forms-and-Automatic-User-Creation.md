@@ -3,7 +3,7 @@
 In this tutorial we will see the typical steps involved in creating and publishing a form on the website, and using that form for automatic user creation.
 
 ___
-We have seen how to set User Attributes and manually create users using those set attributes in the tutorial, ‘Creating Users and User Data’.
+We have seen how to set User Attributes and manually create users using those set attributes in the tutorial, [‘Creating Users and User Data’.](https://github.com/wp-crm/wp-crm/wiki/Creating-Users-and-User-Data)
 
 For form creation, we first need to set all user attributes in the Data table located under the Settings option of the CRM plugin, and save them. After that is done, we move on to the Roles Table.
 
