@@ -1,7 +1,5 @@
 ###Welcome to the WP-CRM wiki! - [View how it works.](https://04-lvl3-pdl.vimeocdn.com/01/396/1/26983459/60055057.mp4?expires=1475247565&token=06feeb89da65acad4594e)
 
-![wp-crm-logo](https://storage.googleapis.com/media.usabilitydynamics.com/2011/05/wp-crm-logo.png)
-
 A unique customer relations management system seamlessly integrated into your WordPress control panel. Your customers and prospects’ information is stored in the WordPress user database, giving you the ability of utilizing the vast pool of WordPress plugins to collect and analyze user information. Create your own forms with custom data fields of your choice. Apart form sending messages, these forms will collect all kinds of custom data which can be filtered for easy contact analysis. These forms can create users with the user role you want to assign!
 
 ### Not Just Contacts
@@ -18,15 +16,11 @@ A unique customer relations management system seamlessly integrated into your Wo
 *   Client IDs, advanced contact classification, little details that make the difference, everything is possible.
 *   Use custom data to organize and filter your business network the way your business requires you to.
 
-![Attributes and Labeling](https://storage.googleapis.com/media.usabilitydynamics.com/Screen-Shot-2012-02-10-at-2.35.51-PM-e1330706406930-250x187.png "Attributes and Labeling")
-
 ### Lead-Generating Forms
 
 *   Create your own forms with custom data fields of your choice.
 *   Apart form sending messages, these forms will collect all kinds of custom data which can be filtered for easy contact analysis.
 *   These forms can create users with the user role you want to assign!
-
-![Lead-Generating Forms](https://storage.googleapis.com/media.usabilitydynamics.com/Screen-Shot-2012-02-10-at-5.24.27-PM-e1330706636189-250x187.png "Lead-Generating Forms")
 
 ### Other Features
 
