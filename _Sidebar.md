@@ -13,3 +13,4 @@
 * [[Shortcode Cheatsheet]]
 
 ###FAQ
+* [[Does WP-CRM use the same user database as regular WordPress user management?]]
