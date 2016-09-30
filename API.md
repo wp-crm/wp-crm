@@ -1,1 +1,0 @@
-WP-CRM API. (WIP)
