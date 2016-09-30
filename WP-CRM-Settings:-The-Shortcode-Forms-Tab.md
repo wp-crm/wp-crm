@@ -1,5 +1,3 @@
-## WP-CRM Settings: The Shortcode Forms Tab
-
 This tutorial will cover the options present under the ‘Shortcode Forms’ Tab in WP-CRM Settings
 
 * * *
