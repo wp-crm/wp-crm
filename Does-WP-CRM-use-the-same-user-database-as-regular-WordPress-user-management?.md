@@ -1,0 +1,1 @@
+Yes, same exact tables, except WP-CRM lets you add custom attributes and customize the fields you want to work with, amongst many other things, but the data is stored in the same two tables, wp_users and wp_usermeta as default user management.
