@@ -1,5 +1,3 @@
-## WP-CRM Settings: The Data Tab
-
 This tutorial will cover the options present under the ‘Data' Tab in WP-CRM Settings.
 
 * * *
@@ -10,7 +8,7 @@ The Data tab is the starting point for both form creation and user data storage.
 
 Let us see how we can go about setting custom attributes. An attribute has four sections:
 
-[![wpcrm_settings_data02](//storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_data02-1200x559.png)](//storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_data02-1200x559.png)
+![wpcrm_settings_data02](https://storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_data02-1200x559.png)
 
 ## Title
 
