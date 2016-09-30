@@ -1,5 +1,3 @@
-## WP-CRM Settings: The Notifications Tab
-
 This tutorial will cover the options present under the ‘Notifications’ Tab in WP-CRM Settings.
 
 * * *
