@@ -4,13 +4,7 @@ This tutorial will cover the options present under the ‘Main’ Tab in WP-CRM 
 
 Main Table of WP-CRM settings contains the following options:
 
-* * *
-
 ## General Settings
-
-[![wpcrm_settings_main02](https://storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_main022.png)](https://storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_main022.png)
-
-* * *
 
 **Replace default WordPress User page with WP-CRM**
 
