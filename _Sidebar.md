@@ -14,6 +14,7 @@
 * [[WP CRM Settings: The UI Tab]]
 * [[WP CRM Settings: The Data Tab]]
 * [[WP CRM Settings: The Roles Tab]]
+* [[WP-CRM Settings: The Shortcode Forms Tab]]
 * [[Shortcode Cheatsheet]]
 
 ###Intergrations
