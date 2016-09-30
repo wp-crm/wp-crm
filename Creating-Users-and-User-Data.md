@@ -59,7 +59,7 @@ Let us see how we can go about setting custom attributes. An attribute has four 
 
 **Input Type:** This section determines what type of data the user is expected to enter. E.g. _User Name_ will have _input type_ ‘Single Line Text’. There are 5 types of input: Singe Line Text, Checkbox, Textarea, Dropdown and Password. Depending on the nature of the said attribute, you can set the input type.
 
-![input type](//storage.googleapis.com/media.usabilitydynamics.com/2012/02/input-type-166x180.png)
+![input type](https://storage.googleapis.com/media.usabilitydynamics.com/2012/02/input-type-166x180.png)
 
 **Predefined Values:** This section is set if there is a set of predefined options that the user is expected to select from. E.g. For attribute Product Type, of input type Check Box, a string of product names need to be entered in the predefined values sections. Suppose we have _Product A_, _Product B_ and _Product C_. These will be entered in the predefined values section separated by commas and no spaces. There is no limit to the number of predefined values that can be entered.
 
