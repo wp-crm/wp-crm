@@ -24,9 +24,13 @@ WordPress will, by default, notify you whenever one of your users resets their p
 
 If checked, does not automatically convert line breaks in any of your outgoing contact messages.
 
-**Track detailed user activity. (In Development)**
+**Track detailed user activity.**
+
+You will see user's activity on edit single user page.
 
 **Allow Attributes Grouping**
+
+Attributes will be grouped on edit single user page.
 
 ## Automation
 
