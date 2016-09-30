@@ -24,7 +24,7 @@ A unique customer relations management system seamlessly integrated into your Wo
 *   Apart form sending messages, these forms will collect all kinds of custom data which can be filtered for easy contact analysis.
 *   These forms can create users with the user role you want to assign!
 
-![Lead-Generating Forms](//storage.googleapis.com/media.usabilitydynamics.com/Screen-Shot-2012-02-10-at-5.24.27-PM-e1330706636189-250x187.png "Lead-Generating Forms")
+![Lead-Generating Forms](https://storage.googleapis.com/media.usabilitydynamics.com/Screen-Shot-2012-02-10-at-5.24.27-PM-e1330706636189-250x187.png "Lead-Generating Forms")
 
 ### Other Features
 
