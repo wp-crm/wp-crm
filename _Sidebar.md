@@ -6,7 +6,7 @@
 * [[Translating]]
 
 ###CRM Process
-
+* [[Forms and Automatic User Creation]]
 
 ###Get Started
 
