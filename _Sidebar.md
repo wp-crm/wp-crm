@@ -13,6 +13,7 @@
 ###Get Started
 * [[WP-CRM Settings: The Main Tab]]
 * [[WP CRM Settings: The UI Tab]]
+* [[WP CRM Settings: The Data Tab]]
 * [[Shortcode Cheatsheet]]
 
 ###FAQ
