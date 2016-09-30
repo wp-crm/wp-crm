@@ -1,5 +1,3 @@
-## WP-CRM Settings: The Main Tab
-
 This tutorial will cover the options present under the ‘Main’ Tab in WP-CRM Settings.
 
 * * *
