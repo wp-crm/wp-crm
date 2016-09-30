@@ -1,4 +1,4 @@
-## WP-CRM Settings: The Roles Tab
+WP-CRM Settings: The Roles Tab
 
 This tutorial will cover the options present under the ‘Roles’ Tab in WP-CRM Settings.
 
@@ -8,7 +8,7 @@ The Roles Table of WP-CRM settings contains the following options:
 
 This table is mainly used to set user role settings. It comes with a set of predefined user roles that are displayed under the ‘Roles’ heading in the table.
 
-![wpcrm_settings_roles02](//storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_roles022-1200x566.png)
+![wpcrm_settings_roles02](https://storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_roles022-1200x566.png)
 
 *   **Administrator** - Has all the capabilities granted to him.
 *   **Author**- Has the capability to control editing, publishing and deleting posts.
