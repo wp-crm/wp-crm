@@ -1,12 +1,10 @@
-## WP-CRM Settings: The UI Tab
-
 This tutorial will cover the options present under the ‘UI’ Tab in WP-CRM Settings.
 
 * * *
 
 The UI Table of WP-CRM settings contains the following options:
 
-[![wpcrm_settings_ui02](//storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_ui021-1200x507.png)](//storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_ui021-1200x507.png)
+![wpcrm_settings_ui02](https://storage.googleapis.com/media.usabilitydynamics.com/2012/03/wpcrm_settings_ui021-1200x507.png)
 
 ## General UI Settings
 
