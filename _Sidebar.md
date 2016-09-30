@@ -1,8 +1,12 @@
-### Overview
-- [Home](/UsabilityDynamics/wp-crm/wiki)
-- [API](/UsabilityDynamics/wp-crm/wiki/API)
+[[[https://storage.googleapis.com/media.usabilitydynamics.com/2014/11/0a6151b2-wpcrm-plugin-icon-300x300.png|alt="WP-CRM"|height=210px|width=210px]]](https://www.usabilitydynamics.com/product/wp-crm)
 
-### Support
-- [Forum](http://UsabilityDynamics.com/forums)
-- [Suggestions](http://feedback.usabilitydynamics.com/forums/95257-wp-crm)
-- [Issues](/UsabilityDynamics/wp-crm/issues)
+###Intro
+* [[Home]]
+* [[Installing]]
+* [[Translating]]
+
+###Get Started
+
+* [[Shortcode Cheatsheet]]
+
+###FAQ
