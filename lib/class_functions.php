@@ -1280,6 +1280,7 @@ class WP_CRM_F {
         'ids_only' => 'false',
         'order_by' => 'user_registered',
         'sort_order' => 'DESC',
+        'meta_field_search' => 'All',
     ));
 
     $pr_columns = array(
@@ -1320,7 +1321,16 @@ class WP_CRM_F {
             $where .= " AND (";
             $where .= " u.ID IN (SELECT ID FROM {$wpdb->users} WHERE LOWER(display_name) LIKE '%$tofind%' OR LOWER(user_email) LIKE '%$tofind%')";
             /* Now go through the users meta table */
-            $where .= " OR u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE LOWER(meta_value) LIKE '%$tofind%')";
+            // Whether to search in user meta.
+            if($search_in = $args['meta_field_search']){
+              $meta_key_query = "";
+
+              if(is_array($search_in)){
+                $meta_key_query = "meta_key in ( ". implode(',', $search_in) ." ) AND";
+              }
+
+              $where .= " OR u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE $meta_key_query LOWER(meta_value) LIKE '%$tofind%')";
+            }
             $where .= ")";
           }
           continue;

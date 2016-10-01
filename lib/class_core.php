@@ -161,6 +161,7 @@ class WP_CRM_Core {
 
     add_action( 'wp_crm_contextual_help', array( 'WP_CRM_Core', 'wp_crm_contextual_help' ) );
     add_action( 'load-toplevel_page_wp_crm', array( 'WP_CRM_Core', 'toplevel_page_wp_crm' ) );
+    add_action( 'load-toplevel_page_wp_crm-network', array( 'WP_CRM_Core', 'toplevel_page_wp_crm' ) );
     add_action( 'load-crm_page_wp_crm_settings', array( 'WP_CRM_Core', 'crm_page_wp_crm_settings' ) );
     add_action( 'load-crm_page_wp_crm_add_new', array( 'WP_CRM_Core', 'crm_page_wp_crm_add_new' ) );
     add_action( 'load-crm_page_wp_crm_my_profile', array( 'WP_CRM_Core', 'crm_page_wp_crm_add_new' ) );
@@ -175,6 +176,7 @@ class WP_CRM_Core {
 
     add_filter( 'set-screen-option', array( 'WP_CRM_F', "crm_set_option" ), 10, 3 );
     add_action( 'wp_ajax_wpc_ajax_clear_cache', create_function( "", 'echo WP_CRM_F::clear_cache(); die();' ) );
+    add_action( "wp_ajax_wp_crm_user_search_network", array( 'WP_CRM_AJAX', 'user_search_network' ) );
   }
 
   /**
@@ -454,6 +456,7 @@ class WP_CRM_Core {
 
     //** Add overview table rows. Static because admin_menu is not loaded on ajax calls. */
     add_filter( "manage_toplevel_page_wp_crm_columns", array( 'WP_CRM_Core', "overview_columns" ) );
+    add_filter( "manage_toplevel_page_wp_crm-network_columns", array( 'WP_CRM_Core', "overview_columns" ) );
 
     if ( !empty( $wp_crm[ 'system' ][ 'pages' ][ 'settings' ] ) ) {
       add_action( 'admin_print_scripts-' . $wp_crm[ 'system' ][ 'pages' ][ 'settings' ], create_function( '', "wp_enqueue_script('jquery-ui-tabs');wp_enqueue_script('wp-crm-jquery-cookie');" ) );

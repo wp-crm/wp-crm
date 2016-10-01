@@ -194,7 +194,7 @@ class WP_CMR_List_Table extends WP_List_Table {
           return false;
         });
 
-        jQuery('.metabox-prefs').change(function() {
+        jQuery('.metabox-prefs .hide-column-tog').click(function() {
           wp_list_table_do_columns();
         });
 
@@ -219,8 +219,12 @@ class WP_CMR_List_Table extends WP_List_Table {
           return jQuery(this).val();
         });
 
+        jQuery.each(visible_columns, function(key, row_class) {
+          jQuery('#wp-list-table .column-' + row_class).show();
+        });
+
         jQuery.each(hidden_columns, function(key, row_class) {
-          jQuery('#wp-list-table .' + row_class).hide();
+          jQuery('#wp-list-table .column-' + row_class).hide();
         });
 
       }

@@ -1,6 +1,7 @@
 
 
 jQuery( function() {
+  // Jquery combobox
   jQuery.widget( "custom.combobox", {
     _create: function() {
       this.wrapper = jQuery( "<span>" )
@@ -32,7 +33,6 @@ jQuery( function() {
       this._on( this.input, {
         autocompleteselect: function( event, ui ) {
           ui.item.option.selected = true;
-          console.log(ui.item.option);
           _this.input.val(ui.item.label);
           this._trigger( "select", event, {
             item: ui.item.option
@@ -51,12 +51,6 @@ jQuery( function() {
       jQuery( "<a>" )
         .attr( "tabIndex", -1 )
         .appendTo( this.wrapper )
-        .button({
-          icons: {
-            primary: "ui-icon-triangle-1-s"
-          },
-          text: false
-        })
         .removeClass( "ui-corner-all" )
         .addClass( "custom-combobox-toggle ui-corner-right" )
         .on( "mousedown", function() {
@@ -128,8 +122,33 @@ jQuery( function() {
 } );
 
 
-jQuery(document).ready(function (jQuery) {
+jQuery(document).ready(function ($) {
   jQuery( ".combobox" ).combobox();
+
+  var cache = {};
+  $( "#wp_crm_text_search" ).autocomplete({
+    minLength: 2,
+    source: function( request, response ) {
+      var term = request.term;
+      if ( 1==2 && term in cache ) {
+        response( cache[ term ] );
+        return;
+      }
+
+      request.action = "wp_crm_user_search_network";
+
+      $.getJSON( ajaxurl, request, function( data, status, xhr ) {
+        cache[ term ] = data;
+        response( data.map(function(item) {
+          return {
+            label: item.display_name,
+            //value: item.ID,
+            option: item
+          };
+        }) );
+      });
+    }
+  });
 
 
 });

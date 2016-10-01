@@ -12,8 +12,7 @@ jQuery(function() {
                 source: jQuery.proxy(this, "_source")
             }), this._on(this.input, {
                 autocompleteselect: function(event, ui) {
-                    return ui.item.option.selected = !0, console.log(ui.item.option), _this.input.val(ui.item.label), 
-                    this._trigger("select", event, {
+                    return ui.item.option.selected = !0, _this.input.val(ui.item.label), this._trigger("select", event, {
                         item: ui.item.option
                     }), !1;
                 },
@@ -22,12 +21,7 @@ jQuery(function() {
         },
         _createShowAllButton: function() {
             var input = this.input, wasOpen = !1;
-            jQuery("<a>").attr("tabIndex", -1).appendTo(this.wrapper).button({
-                icons: {
-                    primary: "ui-icon-triangle-1-s"
-                },
-                text: !1
-            }).removeClass("ui-corner-all").addClass("custom-combobox-toggle ui-corner-right").on("mousedown", function() {
+            jQuery("<a>").attr("tabIndex", -1).appendTo(this.wrapper).removeClass("ui-corner-all").addClass("custom-combobox-toggle ui-corner-right").on("mousedown", function() {
                 wasOpen = input.autocomplete("widget").is(":visible");
             }).on("click", function() {
                 input.trigger("focus"), wasOpen || input.autocomplete("search", "");
@@ -57,6 +51,21 @@ jQuery(function() {
             this.wrapper.remove(), this.element.show();
         }
     });
-}), jQuery(document).ready(function(jQuery) {
+}), jQuery(document).ready(function($) {
     jQuery(".combobox").combobox();
+    var cache = {};
+    $("#wp_crm_text_search").autocomplete({
+        minLength: 2,
+        source: function(request, response) {
+            var term = request.term;
+            request.action = "wp_crm_user_search_network", $.getJSON(ajaxurl, request, function(data, status, xhr) {
+                cache[term] = data, response(data.map(function(item) {
+                    return {
+                        label: item.display_name,
+                        option: item
+                    };
+                }));
+            });
+        }
+    });
 });

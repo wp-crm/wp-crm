@@ -42,6 +42,24 @@ if ( !class_exists( 'WP_CRM_AJAX' ) ) {
     }
     
     /**
+     * Debug user by ID
+     */
+    static function user_search_network() {
+      $search = $_REQUEST['term'];
+      $users = WP_CRM_F::user_search(
+                                array(
+                                  'primary_blog' => '',
+                                  'search_string' => $search,
+                                ),
+                                array(
+                                  'select_what' => 'ID, display_name, user_email',
+                                  'meta_field_search' => '',
+                                )
+                              );
+      wp_send_json($users);
+    }
+    
+    /**
      * Debug meta data
      */
     static function show_meta_report() {
