@@ -6,7 +6,9 @@ To have the WooCommerce's user meta be accessible in WP-CRM you will need to add
 
 Notice that I have not yet fixed the Title of the Shipping Postcode to make it human-readable. We must first create the new fields using the same exact naming convention as used by WooCommerce, save the settings, and then we can change the Titles to whatever we want.
 
-Below is a list of the User Meta fields that WooCommerce stores information in:
+Below is a list of the User Meta fields that WooCommerce stores information in.
+
+**Billing Information:**
 
 *   billing_first_name
 *   billing_last_name
@@ -19,6 +21,8 @@ Below is a list of the User Meta fields that WooCommerce stores information in:
 *   billing_city
 *   billing_state
 *   billing_country
+
+**Shipping Information**
 
 *   shipping_first_name
 *   shipping_last_name
