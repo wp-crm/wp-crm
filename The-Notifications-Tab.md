@@ -17,11 +17,14 @@ Under there, you can set the,
 
 ### Available tags
 
+Which tags are available depend on the trigger event, but in most cases all user data slugs can be used. On a shortcode form message, **[message_content]**, **[profile_link]** and **[trigger_action]** variables are also available.
+
+**Some other available tags:**
+
 *   [post_id]
 *   [post_title]
 *   [post_link]
-*   [message_content]
-*   [trigger_action]
+
 
 Also you will find some notifications which already set up for you as examples.
 
