@@ -1,8 +1,0 @@
-last_name
-first_name
-city
-state
-zip
-streetaddress
-phonenumber
-country
