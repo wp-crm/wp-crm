@@ -1,3 +1,5 @@
+## [WP-Invoice plugin](https://github.com/wp-invoice/wp-invoice/wiki) integration:
+
 ### WP-Invoice custom field
 
 Advanced option WP-Invoice custom field may be used for adding custom user data fields for payments forms.
