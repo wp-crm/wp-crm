@@ -14,6 +14,7 @@
 * [[The UI Tab]]
 * [[The Data Tab]]
 * [[The Roles Tab]]
+* [[The Notifications Tab]]
 * [[The Shortcode Forms Tab]]
 * [[Shortcode Cheatsheet]]
 
