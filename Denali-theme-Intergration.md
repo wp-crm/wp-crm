@@ -4,6 +4,7 @@ _Note: Denali theme is special theme for [WP-Property plugin](https://github.com
 ### Inquiry
 
 WP-CRM Shortcode forms can be used to display property inquries. Please visit CRM -> Settings -> Shortcode Forms.
+
 Also, you can use WP-CRM plugin for sending Inquire notifications. Please visit CRM -> Settings -> Notifications to add notification.
 
 You can use next additional shortcodes in your notification:
