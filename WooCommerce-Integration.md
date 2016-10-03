@@ -1,3 +1,5 @@
+### Using WooCommerce Billing and Shipping Fields
+
 When a customer places an order using WooCommerce a user account is create for them. The user information is stored in what's called "User Meta". Other plugins, including WP-CRM, can use this user meta as well. 
 
 To have the WooCommerce's user meta be accessible in WP-CRM you will need to add the fields you are interested in on the CRM -> Settings -> Data page. Below is an example of me having added the "Shipping Address" and working on the "Shipping Postcode". 
