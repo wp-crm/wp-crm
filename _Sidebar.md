@@ -10,11 +10,11 @@
 * [[Forms and Automatic User Creation]]
 
 ###Get Started
-* [[WP-CRM Settings: The Main Tab]]
-* [[WP CRM Settings: The UI Tab]]
-* [[WP CRM Settings: The Data Tab]]
-* [[WP CRM Settings: The Roles Tab]]
-* [[WP-CRM Settings: The Shortcode Forms Tab]]
+* [[The Main Tab]]
+* [[The UI Tab]]
+* [[The Data Tab]]
+* [[The Roles Tab]]
+* [[The Shortcode Forms Tab]]
 * [[Shortcode Cheatsheet]]
 
 ###Intergrations
