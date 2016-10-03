@@ -1,5 +1,5 @@
 ## [Denali theme](https://github.com/wp-property/wp-denali/wiki) Integration.
-_Note: Denali theme is special theme for [WP-Property plugin](https://github.com/wp-property/wp-property/wiki)_
+_Note: Denali theme is special theme only for [WP-Property plugin](https://github.com/wp-property/wp-property/wiki)_
 
 ### Inquiry
 
