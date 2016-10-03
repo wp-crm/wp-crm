@@ -25,3 +25,4 @@
 
 ###FAQ
 * [[Does WP-CRM use the same user database as regular WordPress user management?]]
+* [[How do I add a new attribute?]]
