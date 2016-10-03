@@ -29,6 +29,8 @@ For your notifications on any of these Trigger actions — WPI: Invoice Paid (Cl
 * [admin_email]
 * [admin_id]
 
+### Storing WP-Invoice Data
+
 When a customer pays an invoice using WP-Invoice a user account is create for them. The user information is stored in what's called "User Meta". Other plugins, including WP-CRM, can use this user meta as well. 
 
 To have the WP-Invoice's user meta be accessible in WP-CRM you will need to add the fields you are interested in on the CRM -> Settings -> Data page. Below is list of WP-Invoice fileds:
