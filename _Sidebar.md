@@ -17,10 +17,10 @@
 * [[The Notifications Tab]]
 * [[The Shortcode Forms Tab]]
 
-###Intergrations
-* [[WP-Property Intergration]]
-* [[WP-Invoice Intergration]]
-* [[Denali theme Intergration]]
-
+###Integrations
+* [[WP-Property Integration]]
+* [[WP-Invoice Integration]]
+* [[Denali theme Integration]]
+* [[WooCommerce Integration]]
 ###FAQ
 * [[Does WP-CRM use the same user database as regular WordPress user management?]]
