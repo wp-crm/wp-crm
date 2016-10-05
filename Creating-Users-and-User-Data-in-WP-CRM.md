@@ -1,5 +1,3 @@
-## Creating Users and User Data
-
 WP-CRM allows you to significantly improve user management, easily create contact forms, and keep track of incoming contact form messages. Listed below are the steps required to create users and to manage user data.
 
 * * *
