@@ -6,7 +6,7 @@
 * [[Translating]]
 
 ###CRM Process
-* [[Creating Users and User Data]]
+* [Creating Users and User Data](Creating-Users-and-User-Data-in-WP-CRM)
 * [[Forms and Automatic User Creation]]
 
 ###Get Started
