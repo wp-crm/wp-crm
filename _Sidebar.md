@@ -2,12 +2,12 @@
 
 ###Intro
 * [Home](home)
-* [[Installing]]
-* [[Translating]]
+* [Installation](Installing-WP-CRM)
+* [Translating](Translating-WP-CRM)
 
 ###CRM Process
 * [Creating Users and User Data](Creating-Users-and-User-Data-in-WP-CRM)
-* [[Forms and Automatic User Creation]]
+* [Forms and Automatic User Creation](Forms-and-Automatic-User-Creation-in-WP-CRM)
 
 ###Get Started
 * [[The Main Tab]]
