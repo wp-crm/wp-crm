@@ -1210,7 +1210,7 @@ class class_contact_messages {
       'message' => $data[ 'success_message' ]
     );
 
-    if( current_user_can( 'manage_options' ) ) {
+    if( current_user_can( WP_CRM_F::capability_to_manage_crm() ) ) {
       $result[ 'user_id' ] = $user_id;
     }
 

@@ -137,7 +137,7 @@ class crm_page_wp_crm_add_new {
         $limited_messages = WP_CRM_F::get_events($params);
         $rest_messages = count($all_messages) - count($limited_messages);
     }
-    if (current_user_can('WP-CRM: Add User Messages')) :
+    if (current_user_can(WP_CRM_F::capability_to_manage_crm())) :
       ?>
       <div class="wp_crm_activity_top">
         <input class="wp_crm_toggle_message_entry" type="button" value="<?php _e('Add Message', ud_get_wp_crm()->domain); ?>" />
@@ -262,7 +262,7 @@ class crm_page_wp_crm_add_new {
         <li class="wp_crm_advanced_user_actions">
           <div class="wp_crm_toggle_advanced_user_actions wp_crm_link"><?php _e('Toggle Settings',ud_get_wp_crm()->domain); ?></div>
           <div class="wp_crm_advanced_user_actions wp-tab-panel">
-            <?php if (current_user_can('edit_users')) { ?>
+            <?php if (current_user_can(WP_CRM_F::capability_to_manage_crm())) { ?>
             <?php if (current_user_can('WP-CRM: Change Passwords')) { ?>
               <?php _e('Set Password:', ud_get_wp_crm()->domain); ?>
               <ul class="wp_crm_edit_password">
@@ -278,7 +278,7 @@ class crm_page_wp_crm_add_new {
               <?php } ?>
               <?php _e('Admin Options:', ud_get_wp_crm()->domain); ?>
               <ul>
-                <?php if (current_user_can('edit_users')) { ?>
+                <?php if (current_user_can(WP_CRM_F::capability_to_manage_crm())) { ?>
                   <li class="wp_crm_edit_roles">
                     <label for="wp_crm_role"><?php _e('Capability Role:', ud_get_wp_crm()->domain); ?></label>
                     <select id="wp_crm_role" <?php echo (!empty($own_profile) ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
@@ -294,7 +294,7 @@ class crm_page_wp_crm_add_new {
                 </li>
               </ul>
             <?php } ?>
-            <?php if ( count($_wp_admin_css_colors) > 1 && has_action('admin_color_scheme_picker') && current_user_can('WP-CRM: Change Color Scheme') ) { ?>
+            <?php if ( count($_wp_admin_css_colors) > 1 && has_action('admin_color_scheme_picker') && current_user_can(WP_CRM_F::capability_to_manage_crm()) ) { ?>
             <?php _e('Color Scheme:', ud_get_wp_crm()->domain); do_action('admin_color_scheme_picker'); ?>
             <?php } ?>
             </div>
@@ -312,7 +312,7 @@ class crm_page_wp_crm_add_new {
         ?>
           </div>
         <?php } ?>
-        <?php if (current_user_can('edit_users')) {
+        <?php if (current_user_can(WP_CRM_F::capability_to_manage_crm())) {
           do_action('wp_crm_metabox_special_actions');
         } ?>
         </div>
@@ -320,7 +320,7 @@ class crm_page_wp_crm_add_new {
         <div class="major-publishing-actions">
           <div id="publishing-action">
             <input type="hidden" value="Publish" id="original_publish" name="original_publish" />
-            <?php if (current_user_can('edit_users') || (current_user_can('add_users') && $object['new'])) { ?>
+            <?php if (current_user_can(WP_CRM_F::capability_to_manage_crm()) || (current_user_can('add_users') && $object['new'])) { ?>
             <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', ud_get_wp_crm()->domain) : __('Update', ud_get_wp_crm()->domain)); ?>" class="button-primary" id="publish" name="publish" />
               <?php } else { ?>
                 <input type="submit" accesskey="p" tabindex="5" value="<?php echo (!empty($object['new']) ? __('Save', ud_get_wp_crm()->domain) : __('Update', ud_get_wp_crm()->domain)); ?>" class="button-primary" id="publish" name="publish" disabled="true">
@@ -332,7 +332,7 @@ class crm_page_wp_crm_add_new {
         <div class="wp_crm_user_actions">
           <ul class="wp_crm_action_list">
             <?php do_action('wp_crm_single_user_actions', $object); ?>
-            <?php if ((current_user_can('remove_users') || current_user_can('delete_users')) && (empty($object['new']) && $user_id != $current_user->ID)) { ?>
+            <?php if ((current_user_can(WP_CRM_F::capability_to_manage_crm()) || current_user_can('delete_users')) && (empty($object['new']) && $user_id != $current_user->ID)) { ?>
               <li><a href="<?php echo wp_nonce_url("admin.php?wp_crm_action=delete_user&page=wp_crm&user_id={$user_id}", 'wp-crm-delete-user-' . $user_id); ?>" class="submitdelete deletion button"><?php _e('Delete',ud_get_wp_crm()->domain); ?></a></li>
             <?php } ?>
           </ul>

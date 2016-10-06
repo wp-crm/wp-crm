@@ -2009,7 +2009,7 @@ namespace UsabilityDynamics {
 
           return false;
         }
-        add_action( 'admin_menu', create_function( '', "add_menu_page( __( 'Log' ,UD_API_Transdomain ), __( 'Log',UD_API_Transdomain ), current_user_can( 'manage_options' ), 'ud_log', array( 'UD_API', 'show_log_page' ) );" ) );
+        add_action( 'admin_menu', create_function( '', "add_menu_page( __( 'Log' ,UD_API_Transdomain ), __( 'Log',UD_API_Transdomain ), current_user_can( " . WP_CRM_F::capability_to_manage_crm() . " ), 'ud_log', array( 'UD_API', 'show_log_page' ) );" ) );
       }
 
       /**

@@ -27,7 +27,10 @@ class WP_CRM_Core {
    *
    */
   function WP_CRM_Core() {
-    global $wpdb;
+    global $wpdb, $wp_crm;
+
+    if (!current_user_can(WP_CRM_F::capability_to_manage_crm()) ) 
+      return;
 
     do_action( 'wp_crm_pre_load' );
 
@@ -74,7 +77,7 @@ class WP_CRM_Core {
 
     if ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' ) {
       $current_user = wp_get_current_user();
-      if ( $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && basename( $_SERVER[ 'SCRIPT_NAME' ] ) == 'profile.php' && !empty( $current_user->ID ) && current_user_can( 'edit_users' ) ) {
+      if ( $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && basename( $_SERVER[ 'SCRIPT_NAME' ] ) == 'profile.php' && !empty( $current_user->ID ) && current_user_can( WP_CRM_F::capability_to_manage_crm()) ) {
         die( wp_redirect( "admin.php?page=wp_crm_add_new&user_id={$current_user->ID}" ) );
       }
       add_filter( 'edit_profile_url', array( 'WP_CRM_F', 'edit_profile_url' ), 10, 3 );
@@ -686,16 +689,17 @@ class WP_CRM_Core {
    */
   static function network_admin_menu() {
     global $wp_crm, $menu, $submenu, $current_user;
-    
+
+    $capability = WP_CRM_F::capability_to_manage_crm();
 
     do_action( 'wp_crm_network_admin_menu' );
     //** Replace default user management screen if set */
     $position = ( ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && current_user_can( 'manage_options' ) ) ? '70' : '33' );
 
-    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
+    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
     $wp_crm[ 'system' ][ 'pages' ][ 'core' ] .= "_network"; // Unless metabox will not work;
 
-    $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] = add_submenu_page( 'wp_crm', __( 'All People', ud_get_wp_crm()->domain ), __( 'All People', ud_get_wp_crm()->domain ), 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ) );
+    $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] = add_submenu_page( 'wp_crm', __( 'All People', ud_get_wp_crm()->domain ), __( 'All People', ud_get_wp_crm()->domain ), $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ) );
     $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] .= "_network"; // Unless metabox will not work;
 
     wp_enqueue_script( 'jquery-ui-core' );
@@ -726,30 +730,32 @@ class WP_CRM_Core {
    */
   static function admin_menu() {
     global $wp_crm, $menu, $submenu, $current_user;
+    
+    $capability = WP_CRM_F::capability_to_manage_crm();
 
     do_action( 'wp_crm_admin_menu' );
     //** Replace default user management screen if set */
     $position = ( ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && current_user_can( 'manage_options' ) ) ? '70' : '33' );
 
     /** Setup main overview page */
-    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
+    $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
 
     //* Setup child pages (first one is used to be loaded in place of 'CRM' */
-    $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] = add_submenu_page( 'wp_crm', __( 'All People', ud_get_wp_crm()->domain ), __( 'All People', ud_get_wp_crm()->domain ), 'WP-CRM: View Overview', 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ) );
-    $wp_crm[ 'system' ][ 'pages' ][ 'add_new' ] = add_submenu_page( 'wp_crm', __( 'New Person', ud_get_wp_crm()->domain ), __( 'New Person', ud_get_wp_crm()->domain ), 'WP-CRM: View Profiles', 'wp_crm_add_new', array( 'WP_CRM_Core', 'page_loader' ) );
-    add_submenu_page( 'wp_crm', __( 'My Profile', ud_get_wp_crm()->domain ), __( 'My Profile', ud_get_wp_crm()->domain ), 'WP-CRM: View Profiles', 'wp_crm_my_profile', array( 'WP_CRM_Core', 'page_loader' ) );
+    $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] = add_submenu_page( 'wp_crm', __( 'All People', ud_get_wp_crm()->domain ), __( 'All People', ud_get_wp_crm()->domain ), $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ) );
+    $wp_crm[ 'system' ][ 'pages' ][ 'add_new' ] = add_submenu_page( 'wp_crm', __( 'New Person', ud_get_wp_crm()->domain ), __( 'New Person', ud_get_wp_crm()->domain ), $capability, 'wp_crm_add_new', array( 'WP_CRM_Core', 'page_loader' ) );
+    add_submenu_page( 'wp_crm', __( 'My Profile', ud_get_wp_crm()->domain ), __( 'My Profile', ud_get_wp_crm()->domain ), $capability, 'wp_crm_my_profile', array( 'WP_CRM_Core', 'page_loader' ) );
     $wp_crm[ 'system' ][ 'pages' ][ 'your_profile' ] = $wp_crm[ 'system' ][ 'pages' ][ 'add_new' ];
-    $wp_crm[ 'system' ][ 'pages' ][ 'settings' ] = add_submenu_page( 'wp_crm', __( 'Settings', ud_get_wp_crm()->domain ), __( 'Settings', ud_get_wp_crm()->domain ), 'WP-CRM: Manage Settings', 'wp_crm_settings', array( 'WP_CRM_Core', 'page_loader' ) );
+    $wp_crm[ 'system' ][ 'pages' ][ 'settings' ] = add_submenu_page( 'wp_crm', __( 'Settings', ud_get_wp_crm()->domain ), __( 'Settings', ud_get_wp_crm()->domain ), $capability, 'wp_crm_settings', array( 'WP_CRM_Core', 'page_loader' ) );
 
     if ( !empty($wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ]) && $wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ] == 'true' ) {
-      $wp_crm[ 'system' ][ 'pages' ][ 'user_logs' ] = add_submenu_page( 'wp_crm', __( 'Activity Logs', ud_get_wp_crm()->domain ), __( 'Activity Logs', ud_get_wp_crm()->domain ), 'WP-CRM: View Detailed Logs', 'wp_crm_detailed_logs', array( 'WP_CRM_Core', 'page_loader' ) );
+      $wp_crm[ 'system' ][ 'pages' ][ 'user_logs' ] = add_submenu_page( 'wp_crm', __( 'Activity Logs', ud_get_wp_crm()->domain ), __( 'Activity Logs', ud_get_wp_crm()->domain ),$capability, 'wp_crm_detailed_logs', array( 'WP_CRM_Core', 'page_loader' ) );
     }
 
     //** Migrate any pages that are under default user page */
     if ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' ) {
 
       $wp_crm_excluded_sub_pages = apply_filters( 'wp_crm_excluded_sub_pages', array( 5, 10, 15 ) );
-      if ( is_array( $submenu[ 'users.php' ] ) ) {
+      if ( isset($submenu[ 'users.php' ]) && is_array( $submenu[ 'users.php' ] ) ) {
 
         foreach ( $submenu[ 'users.php' ] as $sub_key => $sub_pages_data ) {
 

@@ -519,10 +519,10 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
     $actions = array();
 
     if ( is_multisite() ) {
-      if ( current_user_can( 'remove_users' ) )
+      if ( current_user_can( WP_CRM_F::capability_to_manage_crm() ) )
         $actions['remove'] = __( 'Remove', ud_get_wp_crm()->domain );
     } else {
-      if ( current_user_can( 'delete_users' ) )
+      if ( current_user_can( WP_CRM_F::capability_to_manage_crm() ) )
         $actions['delete'] = __( 'Delete', ud_get_wp_crm()->domain );
     }
 

@@ -166,6 +166,29 @@ if(empty($wp_crm['data_structure']['attributes'])) {
               <label for="wp_crm_allow_attributes_grouping"><?php _e('Enable Attribute Grouping.', ud_get_wp_crm()->domain); ?></label>
             </li>
 
+            <li>
+              <label for="wp_crm_user_level"><?php _e("Minimum user level to manage WP-CRM", ud_get_wp_crm()->domain)?></label>
+              <select id="wp_crm_user_level" name="wp_crm[configuration][user_level]">
+                <?php
+                $current_value = isset($wp_crm['configuration']['user_level'])?$wp_crm['configuration']['user_level']:8;
+                $user_levels = array(
+                                  "0" => __('Subscriber', ud_get_wp_crm()->domain),
+                                  "1" => __('Contributor', ud_get_wp_crm()->domain),
+                                  "2" => __('Author', ud_get_wp_crm()->domain),
+                                  "5" => __('Editor', ud_get_wp_crm()->domain),
+                                  "8" => __('Administrator', ud_get_wp_crm()->domain),
+                                );
+
+                foreach ( $user_levels as $value => $label ) {
+                  echo '<option value="'.$value.'"';
+                  if ( $value == $current_value )
+                    echo " selected";
+                  echo ">$label</option>";
+                }
+                ?>
+              </select>
+            </li>
+
           </ul>
         </td>
       </tr>

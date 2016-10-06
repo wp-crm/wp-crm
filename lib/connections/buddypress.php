@@ -468,7 +468,7 @@ class WPC_BuddyPress {
   static function add_crm_button() {
     global $bp;
 
-    if(current_user_can('manage_options')) {
+    if(current_user_can(WP_CRM_F::capability_to_manage_crm())) {
     ?>
     <div id="view_crm_profile" class="btn">
       <a target="_blank" href="<?php echo admin_url("admin.php?page=wp_crm_add_new&user_id={$bp->displayed_user->id}"); ?>"><?php _e('View CRM Profile', ud_get_wp_crm()->domain); ?></a>

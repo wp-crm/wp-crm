@@ -18,7 +18,7 @@ $wp_list_table->data_tables_script();
 <div class="wp_crm_overview_wrapper wrap">
 <div class="wp_crm_ajax_result"></div>
     <?php screen_icon(); ?>
-    <h2><?php _e('CRM - All People', ud_get_wp_crm()->domain); ?> <?php if(current_user_can('WP-CRM: View Profiles') && (current_user_can('create_users') || current_user_can('add_users'))) { ?><a href="<?php echo admin_url('admin.php?page=wp_crm_add_new'); ?>" class="button add-new-h2"><?php _e('Add New', ud_get_wp_crm()->domain); ?></a><?php } ?></h2>
+    <h2><?php _e('CRM - All People', ud_get_wp_crm()->domain); ?> <?php if(current_user_can(WP_CRM_F::capability_to_manage_crm())) { ?><a href="<?php echo admin_url('admin.php?page=wp_crm_add_new'); ?>" class="button add-new-h2"><?php _e('Add New', ud_get_wp_crm()->domain); ?></a><?php } ?></h2>
     <?php WP_CRM_F::print_messages(); ?>
 
     <form id="wp-crm-filter" action="#" method="POST">
