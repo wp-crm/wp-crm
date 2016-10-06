@@ -10,19 +10,19 @@
 * [Forms and Automatic User Creation](Forms-and-Automatic-User-Creation-in-WP-CRM)
 
 ###Get Started
-* [[The Main Tab]]
-* [[The UI Tab]]
-* [[The Data Tab]]
-* [[The Roles Tab]]
-* [[The Notifications Tab]]
-* [[The Shortcode Forms Tab]]
+* [The Main Tab](WP-CRM-Settings-The-Main-Tab)
+* [The UI Tab](WP-CRM-Settings-The-UI-Tab)
+* [The Data Tab](WP-CRM-Settings-The-Data-Tab)
+* [The Roles Tab](WP-CRM-Settings-The-Roles-Tab)
+* [The Notifications Tab](WP-CRM-Settings-The-Notifications-Tab)
+* [The Shortcode Forms Tab](WP-CRM-Settings-The-Notifications-Tab-The-Shortcode-Forms-Tab)
 
 ###Integrations
-* [[WP-Property Integration]]
-* [[WP-Invoice Integration]]
-* [[Denali theme Integration]]
-* [[WooCommerce Integration]]
+* [WP-Property Integration](WP-CRM-&-WP-Property-Integration)
+* [WP-Invoice Integration](WP-CRM-&-WP-Invoice-Integration)
+* [Denali theme Integration](Integrating-WP-CRM-with-Denali-Theme)
+* [WooCommerce Integration](WP-CRM-&-WooCommerce-Integration)
 
 ###FAQ
 * [[Does WP-CRM use the same user database as regular WordPress user management?]]
-* [[How do I add a new attribute?]]
+* [How do I add a new attribute?](How-do-I-add-a-new-attribute-in-WP-CRM-plugin%3F)
