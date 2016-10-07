@@ -12,17 +12,17 @@ Below is a list of the User Meta fields that WooCommerce stores information in.
 
 **Billing Information:**
 
-*   billing_first_name
-*   billing_last_name
-*   billing_phone
-*   billing_email
-*   billing_company
-*   billing_address_1
-*   billing_address_2
-*   billing_postcode
-*   billing_city
-*   billing_state
-*   billing_country
+* `billing_first_name`
+* `billing_last_name`
+* `billing_phone`
+* `billing_email`
+* `billing_company`
+* `billing_address_1`
+* `billing_address_2`
+* `billing_postcode`
+* `billing_city`
+* `billing_state`
+* `billing_country`
 
 **Shipping Information**
 
