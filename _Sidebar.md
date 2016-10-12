@@ -4,6 +4,7 @@
 * [Home](home)
 * [Installation](Installing-WP-CRM)
 * [Translating](Translating-WP-CRM)
+* [Installing Add ons](Installing-WP-CRM-Add-ons)
 
 ###CRM Process
 * [Creating Users and User Data](Creating-Users-and-User-Data-in-WP-CRM)
