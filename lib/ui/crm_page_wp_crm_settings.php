@@ -171,19 +171,23 @@ if(empty($wp_crm['data_structure']['attributes'])) {
               <select id="wp_crm_user_level" name="wp_crm[configuration][user_level]">
                 <?php
                 $current_value = isset($wp_crm['configuration']['user_level'])?$wp_crm['configuration']['user_level']:8;
-                $user_levels = array(
+                $user_levels = get_editable_roles();
+                                /*array(
                                   "0" => __('Subscriber', ud_get_wp_crm()->domain),
                                   "1" => __('Contributor', ud_get_wp_crm()->domain),
                                   "2" => __('Author', ud_get_wp_crm()->domain),
+                                  "3" => __('Real Estate Agent', ud_get_wp_crm()->domain),
                                   "5" => __('Editor', ud_get_wp_crm()->domain),
                                   "8" => __('Administrator', ud_get_wp_crm()->domain),
-                                );
+                                );*/
 
                 foreach ( $user_levels as $value => $label ) {
+                  $level = WP_CRM_F::get_max_level($label['capabilities']);
+                  $label = isset($label['name'])?$label['name']:$label;
                   echo '<option value="'.$value.'"';
                   if ( $value == $current_value )
                     echo " selected";
-                  echo ">$label</option>";
+                  echo ">$label ($level)</option>";
                 }
                 ?>
               </select>

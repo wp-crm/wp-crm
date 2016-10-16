@@ -29,6 +29,11 @@ class class_contact_messages {
 
     self::add_capabilities();
 
+    if(!WP_CRM_F::current_user_can_manage_crm()){
+      add_shortcode( 'wp_crm_form', '__return_empty_string' );
+      return;
+    }
+
     add_action( "admin_menu", array( __CLASS__, "admin_menu" ), 101 );
     add_action( 'wp_crm_settings_content_contact_messages', array( __CLASS__, 'settings_page_tab_content' ) );
     add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
@@ -1211,7 +1216,7 @@ class class_contact_messages {
       'message' => $data[ 'success_message' ]
     );
 
-    if( current_user_can( WP_CRM_F::capability_to_manage_crm() ) ) {
+    if( WP_CRM_F::current_user_can_manage_crm() ) {
       $result[ 'user_id' ] = $user_id;
     }
 

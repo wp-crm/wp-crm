@@ -518,12 +518,12 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
   function get_bulk_actions() {
     $actions = array();
 
-    if ( is_multisite() ) {
-      if ( current_user_can( WP_CRM_F::capability_to_manage_crm() ) )
-        $actions['remove'] = __( 'Remove', ud_get_wp_crm()->domain );
-    } else {
-      if ( current_user_can( WP_CRM_F::capability_to_manage_crm() ) )
-        $actions['delete'] = __( 'Delete', ud_get_wp_crm()->domain );
+    if ( WP_CRM_F::current_user_can_manage_crm() ){
+      if ( is_multisite() ) {
+          $actions['remove'] = __( 'Remove', ud_get_wp_crm()->domain );
+      } else {
+          $actions['delete'] = __( 'Delete', ud_get_wp_crm()->domain );
+      }
     }
 
     return $actions;

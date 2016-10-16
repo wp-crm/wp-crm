@@ -648,7 +648,7 @@ class WP_CRM_F {
 
     <?php if (!$do_not_display_user_avatars) { ?>
       <div class='user_avatar'>
-      <?php if (current_user_can(WP_CRM_F::capability_to_manage_crm())) { ?>
+      <?php if (WP_CRM_F::current_user_can_manage_crm()) { ?>
           <a href='<?php echo admin_url("admin.php?page=wp_crm_add_new&user_id={$user_id}"); ?>'><?php echo get_avatar($user_id, $avatar_width); ?></a>
       <?php } else { ?>
         <?php echo get_avatar($user_id, $avatar_width); ?>
@@ -659,7 +659,7 @@ class WP_CRM_F {
     <div class="user_card_inner_wrapper">
       <ul class="user_card_data">
         <li class='primary'>
-    <?php if (current_user_can(WP_CRM_F::capability_to_manage_crm())) { ?>
+    <?php if (WP_CRM_F::current_user_can_manage_crm()) { ?>
             <a href='<?php echo admin_url("admin.php?page=wp_crm_add_new&user_id={$user_id}"); ?>'><?php echo WP_CRM_F::get_primary_display_value($user_object); ?></a>
     <?php } else { ?>
       <?php echo WP_CRM_F::get_primary_display_value($user_object); ?>
@@ -1261,7 +1261,7 @@ class WP_CRM_F {
   static function edit_profile_url($url, $user, $scheme) {
     global $wp_crm;
 
-    if ($wp_crm['configuration']['replace_default_user_page'] == 'true' && current_user_can(WP_CRM_F::capability_to_manage_crm())) {
+    if ($wp_crm['configuration']['replace_default_user_page'] == 'true' && WP_CRM_F::current_user_can_manage_crm()) {
       $url = admin_url("admin.php?page=wp_crm_my_profile");
     }
     return $url;
@@ -1666,7 +1666,7 @@ class WP_CRM_F {
 
       case 'trash_message_and_user':
 
-        if (current_user_can(WP_CRM_F::capability_to_manage_crm())) {
+        if (WP_CRM_F::current_user_can_manage_crm()) {
           $user_id = $wpdb->get_var("SELECT object_id FROM {$wpdb->crm_log} WHERE id = {$object_id} AND object_type = 'user' ");
 
           if ($user_id) {
@@ -2440,6 +2440,9 @@ class WP_CRM_F {
 
         $assumed_email = 'crm@' . $_SERVER['HTTP_HOST'];
 
+        /* Default configuration */
+        $wp_crm['configuration']['user_level'] = "administrator";
+
         //* Load some basic data structure (need better place to put this) */
         $wp_crm['data_structure']['attributes']['display_name']['title'] = 'Display Name';
         $wp_crm['data_structure']['attributes']['display_name']['primary'] = 'true';
@@ -2518,7 +2521,7 @@ class WP_CRM_F {
     }
 
     if(!isset($wp_crm['configuration']['user_level'])){
-      $wp_crm['configuration']['user_level'] = "8";
+      $wp_crm['configuration']['user_level'] = "administrator";
     }
 
     $wp_crm = stripslashes_deep($wp_crm);
@@ -3415,59 +3418,48 @@ class WP_CRM_F {
   }
 
   /**
-   * Duplicate of WPI_UI::get_capability_by_level() functon.
-   *
-   * Get capability required for this plugin's menu to be displayed to the user.
-   * It's used for setting this plugin's menu Capability.
-   *
-   * For more capability details: http://codex.wordpress.org/Roles_and_Capabilities
-   *
-   * @param int/string $level. Role's level number
-   *
-   * @retun string. Unique User Level's capability
-   * @author Alim
-   */
-  static function get_capability_by_level( $level ) {
-    $capability = '';
-    switch ( $level ) {
-      /* Subscriber */
-      case '0':
-        $capability = 'read';
-        break;
-      /* Contributor */
-      case '1':
-        $capability = 'edit_posts';
-        break;
-      /* Author */
-      case '2':
-        $capability = 'publish_posts';
-        break;
-      /* Editor */
-      case '5':
-        $capability = 'edit_pages';
-        break;
-      /* Administrator */
-      case '8':
-      default:
-        $capability = 'manage_options';
-        break;
-    }
-    return $capability;
-  }
-
-
-  /**
-   * Wrapper function for WP_CRM_F::get_capability_by_level().
+   * Whether current user can manage WP CRM.
    *
    * @param none;
    *
-   * @retun string capability
+   * @return bolean
    * @author Alim
    */
-  static function capability_to_manage_crm(){
-    global $wp_crm;
-    $user_level = isset($wp_crm['configuration']['user_level']) && $wp_crm['configuration']['user_level'] != ''?$wp_crm['configuration']['user_level']:8;
-    return WP_CRM_F::get_capability_by_level($user_level);
+  static function current_user_can_manage_crm(){
+    global $wp_crm, $current_user_can_manage_crm;
+    if($current_user_can_manage_crm !== null){
+      return $current_user_can_manage_crm;
+    }
+
+    $user_level = isset($wp_crm['configuration']['user_level']) && $wp_crm['configuration']['user_level'] != ''?$wp_crm['configuration']['user_level']:'administrator';
+    $required_role = get_role($user_level);
+    $required_cap = $required_role->capabilities;
+    $current_user = wp_get_current_user();
+    $current_user_cap = $current_user->allcaps;
+
+    $current_user_can_manage_crm = false;
+
+    if(!empty($current_user->roles[$user_level])){
+        $current_user_can_manage_crm = true;
+    }
+    else{
+      if(WP_CRM_F::get_max_level($current_user_cap) >= WP_CRM_F::get_max_level($required_cap) )
+        $current_user_can_manage_crm = true;
+    }
+
+    return $current_user_can_manage_crm;
+  }
+
+  static function get_max_level($caps){
+    $max_level = 0;
+    $matches = array();
+    foreach ($caps as $cap => $value) {
+      preg_match('/^level_(\d+)/', $cap, $matches);
+      if(isset($matches[1])){
+        $max_level = (int)$matches[1] > $max_level ? $matches[1] : $max_level;
+      }
+    }
+    return $max_level;
   }
 
 

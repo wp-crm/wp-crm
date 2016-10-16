@@ -29,16 +29,16 @@ class WP_CRM_Core {
   function WP_CRM_Core() {
     global $wpdb, $wp_crm;
 
-    if (!current_user_can(WP_CRM_F::capability_to_manage_crm()) ) 
-      return;
 
     do_action( 'wp_crm_pre_load' );
 
-    add_filter( 'wp_crm_settings_save', array( 'WP_CRM_F', 'wp_crm_settings_save_email_required' ), 10, 2 );
 
-    //* Process settings updates */
-    WP_CRM_F::settings_action();
+    if(WP_CRM_F::current_user_can_manage_crm()){
+      add_filter( 'wp_crm_settings_save', array( 'WP_CRM_F', 'wp_crm_settings_save_email_required' ), 10, 2 );
 
+      //* Process settings updates */
+      WP_CRM_F::settings_action();
+    }
     // Load third-party plugin load_plugin_compatibility */
     WP_CRM_F::load_plugin_compatibility();
 
@@ -75,9 +75,17 @@ class WP_CRM_Core {
   function init() {
     global $wp_crm;
 
+    /* Init action hook 
+       invoking this before the user level checkpoint.
+    */
+    do_action( 'wp_crm_init' );
+
+    if(!WP_CRM_F::current_user_can_manage_crm())
+      return;
+
     if ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' ) {
       $current_user = wp_get_current_user();
-      if ( $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && basename( $_SERVER[ 'SCRIPT_NAME' ] ) == 'profile.php' && !empty( $current_user->ID ) && current_user_can( WP_CRM_F::capability_to_manage_crm()) ) {
+      if ( $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && basename( $_SERVER[ 'SCRIPT_NAME' ] ) == 'profile.php' && !empty( $current_user->ID ) && WP_CRM_F::current_user_can_manage_crm() ) {
         die( wp_redirect( "admin.php?page=wp_crm_add_new&user_id={$current_user->ID}" ) );
       }
       add_filter( 'edit_profile_url', array( 'WP_CRM_F', 'edit_profile_url' ), 10, 3 );
@@ -156,9 +164,6 @@ class WP_CRM_Core {
     add_action( "admin_init", array( 'WP_CRM_Core', "admin_init" ) );
     add_action( "current_screen", array( 'WP_CRM_Core', "current_screen" ) );
     add_action( "admin_head", array( 'WP_CRM_Core', "admin_head" ) );
-
-    //* Init action hook */
-    do_action( 'wp_crm_init' );
 
     add_action( 'admin_notices', array( 'WP_CRM_F', 'wp_crm_admin_notice' ) );
 
@@ -690,7 +695,7 @@ class WP_CRM_Core {
   static function network_admin_menu() {
     global $wp_crm, $menu, $submenu, $current_user;
 
-    $capability = WP_CRM_F::capability_to_manage_crm();
+    $capability = "read";
 
     do_action( 'wp_crm_network_admin_menu' );
     //** Replace default user management screen if set */
@@ -730,8 +735,8 @@ class WP_CRM_Core {
    */
   static function admin_menu() {
     global $wp_crm, $menu, $submenu, $current_user;
-    
-    $capability = WP_CRM_F::capability_to_manage_crm();
+
+    $capability = "read";  //
 
     do_action( 'wp_crm_admin_menu' );
     //** Replace default user management screen if set */
@@ -742,9 +747,12 @@ class WP_CRM_Core {
 
     //* Setup child pages (first one is used to be loaded in place of 'CRM' */
     $wp_crm[ 'system' ][ 'pages' ][ 'overview' ] = add_submenu_page( 'wp_crm', __( 'All People', ud_get_wp_crm()->domain ), __( 'All People', ud_get_wp_crm()->domain ), $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ) );
+
     $wp_crm[ 'system' ][ 'pages' ][ 'add_new' ] = add_submenu_page( 'wp_crm', __( 'New Person', ud_get_wp_crm()->domain ), __( 'New Person', ud_get_wp_crm()->domain ), $capability, 'wp_crm_add_new', array( 'WP_CRM_Core', 'page_loader' ) );
+    
     add_submenu_page( 'wp_crm', __( 'My Profile', ud_get_wp_crm()->domain ), __( 'My Profile', ud_get_wp_crm()->domain ), $capability, 'wp_crm_my_profile', array( 'WP_CRM_Core', 'page_loader' ) );
     $wp_crm[ 'system' ][ 'pages' ][ 'your_profile' ] = $wp_crm[ 'system' ][ 'pages' ][ 'add_new' ];
+
     $wp_crm[ 'system' ][ 'pages' ][ 'settings' ] = add_submenu_page( 'wp_crm', __( 'Settings', ud_get_wp_crm()->domain ), __( 'Settings', ud_get_wp_crm()->domain ), $capability, 'wp_crm_settings', array( 'WP_CRM_Core', 'page_loader' ) );
 
     if ( !empty($wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ]) && $wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ] == 'true' ) {

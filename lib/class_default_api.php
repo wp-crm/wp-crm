@@ -35,7 +35,7 @@ class wp_crm_default_api {
   static function wp_crm_add_overview_user_actions($wp_crm) {
 
     //** Add Quick Actions */
-    if (current_user_can(WP_CRM_F::capability_to_manage_crm())) {
+    if (WP_CRM_F::current_user_can_manage_crm()) {
       $wp_crm['overview_user_actions']['reset_password']['label'] = __('Quick Password Reset', ud_get_wp_crm()->domain);
     }
 
