@@ -35,7 +35,8 @@ $wp_crm['configuration']['input_types'] = array(
     'textarea' => __("Textarea", ud_get_wp_crm()->domain),
     'dropdown' => __("Dropdown", ud_get_wp_crm()->domain),
     'password' => __("Password", ud_get_wp_crm()->domain),
-    'date' => __("Date Picker", ud_get_wp_crm()->domain)
+    'date' => __("Date Picker", ud_get_wp_crm()->domain),
+    'file_upload' => __("File Upload", ud_get_wp_crm()->domain),
 );
 
 /**

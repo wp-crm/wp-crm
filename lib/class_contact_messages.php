@@ -541,6 +541,7 @@ class class_contact_messages {
    */
   static function shortcode_wp_crm_form( $atts, $content = null, $code = '' ) {
     global $wp_crm;
+    wp_enqueue_media();
 
     $a = shortcode_atts( array(
       'js_callback_function'             => false,

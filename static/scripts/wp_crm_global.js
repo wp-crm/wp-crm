@@ -129,7 +129,20 @@ var wp_crm_ui = {}, wpp_crm_form_stop = !1;
 
 jQuery(document).ready(function() {
     if ("undefined" == typeof wp_crm_dev_mode) var wp_crm_dev_mode = !1;
-    jQuery("#wp_crm_clear_cache").on("click", function(e) {
+    var media_uploader = null;
+    media_uploader = wp.media({
+        title: "Select File",
+        button: {
+            text: "Select File"
+        },
+        multiple: !1
+    }), jQuery(".wpc_file_upload").on("click", function() {
+        var _this = jQuery(this);
+        event.preventDefault(), media_uploader.on("select", function() {
+            var data = media_uploader.state().get("selection").first().toJSON();
+            _this.siblings("input").val(data.url), media_uploader.off("insert");
+        }), media_uploader.open();
+    }), jQuery("#wp_crm_clear_cache").on("click", function(e) {
         e.preventDefault();
         var $this = jQuery(this), msgHolder = jQuery("#clear_cache_status").html("").fadeOut().removeClass(), $dots = $this.find(".dots"), dots = 0, dotting = function() {
             0 == dots ? ($dots.html(".&nbsp;&nbsp;"), dots++) : 1 == dots ? ($dots.html("..&nbsp;"), 

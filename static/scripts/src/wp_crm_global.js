@@ -16,6 +16,29 @@ jQuery( document ).ready( function() {
     var wp_crm_dev_mode = false;
   }
 
+  var media_uploader = null;
+  media_uploader = wp.media({
+      title: 'Select File',
+      button: {
+        text: 'Select File'
+      },
+      multiple: false
+  });
+
+  jQuery('.wpc_file_upload').on('click', function(){
+    var _this = jQuery(this);
+    event.preventDefault();
+
+    media_uploader.on("select", function(){
+      var data = media_uploader.state().get("selection").first().toJSON();
+      _this.siblings('input').val(data.url);
+      media_uploader.off("insert");
+    });
+
+    media_uploader.open();
+
+  });
+
   jQuery('#wp_crm_clear_cache').on('click', function(e){
     e.preventDefault();
     var $this = jQuery(this);

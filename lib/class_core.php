@@ -842,6 +842,7 @@ class WP_CRM_Core {
     wp_enqueue_script( 'wp_crm_profile_editor' );
     wp_enqueue_script( 'wp_crm_global' );
     wp_enqueue_style( 'wp_crm_global' );
+    wp_enqueue_media();
 
     //** Automatically insert styles sheet if one exists with $current_screen->ID name */
     if ( file_exists( ud_get_wp_crm()->path( "static/styles/{$current_screen_id}.css", 'dir' ) ) ) {

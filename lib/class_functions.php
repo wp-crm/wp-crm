@@ -2241,6 +2241,19 @@ class WP_CRM_F {
           }
           break;
 
+        case 'file_upload':
+          $input_type = $attribute['input_type'];
+          foreach ($values as $rand => $value_data) {
+            ?>
+              <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo esc_attr($value_data['value']); ?>" />
+                <button class="button wpc_file_upload">Browse file</button>
+              </div>
+            <?php
+          }
+
+          break;
+
         default:
           do_action('wp_crm_render_input', array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
           break;
@@ -2315,6 +2328,19 @@ class WP_CRM_F {
             </select>
           <?php
           }
+          break;
+
+        case 'file_upload':
+          $input_type = $attribute['input_type'];
+          foreach ($values as $rand => $value_data) {
+            ?>
+              <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo esc_attr($value_data['value']); ?>" />
+                <button class="button wpc_file_upload">Browse file</button>
+              </div>
+            <?php
+          }
+
           break;
 
         default:
@@ -2492,7 +2518,7 @@ class WP_CRM_F {
     }
 
     if(!isset($wp_crm['configuration']['user_level'])){
-      $wp_crm['configuration']['user_level'] = "administrator";
+      $wp_crm['configuration']['user_level'] = "8";
     }
 
     $wp_crm = stripslashes_deep($wp_crm);
@@ -3440,7 +3466,8 @@ class WP_CRM_F {
    */
   static function capability_to_manage_crm(){
     global $wp_crm;
-    return WP_CRM_F::get_capability_by_level($wp_crm['configuration']['user_level']);
+    $user_level = isset($wp_crm['configuration']['user_level']) && $wp_crm['configuration']['user_level'] != ''?$wp_crm['configuration']['user_level']:8;
+    return WP_CRM_F::get_capability_by_level($user_level);
   }
 
 
