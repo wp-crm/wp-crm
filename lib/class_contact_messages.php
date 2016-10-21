@@ -29,8 +29,11 @@ class class_contact_messages {
 
     self::add_capabilities();
 
+    add_action( 'wp_ajax_process_crm_message', array( __CLASS__, 'process_crm_message' ) );
+    add_action( 'wp_ajax_nopriv_process_crm_message', array( __CLASS__, 'process_crm_message' ) );
+    add_shortcode( 'wp_crm_form', array( __CLASS__, 'shortcode_wp_crm_form' ) );
+    
     if(!WP_CRM_F::current_user_can_manage_crm()){
-      add_shortcode( 'wp_crm_form', '__return_empty_string' );
       return;
     }
 
@@ -39,8 +42,6 @@ class class_contact_messages {
     add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
     add_action( 'load-crm_page_wp_crm_contact_messages', array( __CLASS__, 'load_screen' ) );
 
-    add_action( 'wp_ajax_process_crm_message', array( __CLASS__, 'process_crm_message' ) );
-    add_action( 'wp_ajax_nopriv_process_crm_message', array( __CLASS__, 'process_crm_message' ) );
     add_action( "wp_ajax_wp_crm_messages_table", array( __CLASS__, 'ajax_message_table' ) );
     add_action( "wp_ajax_wp_crm_visualize_contact_results", array( __CLASS__, 'ajax_visualize_contact_results' ) );
     add_action( "wp_ajax_wp_crm_display_shortcode_form", array( __CLASS__, 'ajax_display_shortcode_form' ) );
@@ -53,7 +54,6 @@ class class_contact_messages {
     add_filter( 'wp_crm_list_table_object', array( __CLASS__, 'wp_crm_list_table_object' ) );
     add_filter( 'wp_crm_quick_action', array( __CLASS__, 'wp_crm_quick_action' ) );
 
-    add_shortcode( 'wp_crm_form', array( __CLASS__, 'shortcode_wp_crm_form' ) );
 
   }
   

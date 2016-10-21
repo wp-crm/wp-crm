@@ -80,23 +80,7 @@ class WP_CRM_Core {
     */
     do_action( 'wp_crm_init' );
 
-    if(!WP_CRM_F::current_user_can_manage_crm())
-      return;
-
-    if ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' ) {
-      $current_user = wp_get_current_user();
-      if ( $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && basename( $_SERVER[ 'SCRIPT_NAME' ] ) == 'profile.php' && !empty( $current_user->ID ) && WP_CRM_F::current_user_can_manage_crm() ) {
-        die( wp_redirect( "admin.php?page=wp_crm_add_new&user_id={$current_user->ID}" ) );
-      }
-      add_filter( 'edit_profile_url', array( 'WP_CRM_F', 'edit_profile_url' ), 10, 3 );
-    }
-
-    /** Loads all the class for handling all plugin tables */
-    include_once ud_get_wp_crm()->path( 'lib/class_list_table.php', 'dir' );
-
-    if ( !empty($wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ]) && $wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ] == 'true' ) {
-      WP_CRM_F::track_detailed_user_activity();
-    }
+  
 
     wp_register_script( 'google-jsapi', 'https://www.google.com/jsapi' );
     wp_register_script( 'wp-crm-jquery-cookie', ud_get_wp_crm()->path( 'lib/third-party/jquery.smookie.js', 'url' ), array( 'jquery' ), '1.7.3' );
@@ -121,6 +105,25 @@ class WP_CRM_Core {
     }
 
     wp_register_style( 'wp-crm-data-tables', ud_get_wp_crm()->path( "static/styles/crm-data-tables.css", 'url' ), array(), WP_CRM_Version );
+
+    if(!WP_CRM_F::current_user_can_manage_crm()){
+      return;
+    }
+
+    if ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' ) {
+      $current_user = wp_get_current_user();
+      if ( $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && basename( $_SERVER[ 'SCRIPT_NAME' ] ) == 'profile.php' && !empty( $current_user->ID ) && WP_CRM_F::current_user_can_manage_crm() ) {
+        die( wp_redirect( "admin.php?page=wp_crm_add_new&user_id={$current_user->ID}" ) );
+      }
+      add_filter( 'edit_profile_url', array( 'WP_CRM_F', 'edit_profile_url' ), 10, 3 );
+    }
+
+    /** Loads all the class for handling all plugin tables */
+    include_once ud_get_wp_crm()->path( 'lib/class_list_table.php', 'dir' );
+
+    if ( !empty($wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ]) && $wp_crm[ 'configuration' ][ 'track_detailed_user_activity' ] == 'true' ) {
+      WP_CRM_F::track_detailed_user_activity();
+    }
 
     //** Attribute grouping options */
     if ( !empty($wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ]) && $wp_crm[ 'configuration' ][ 'allow_attributes_grouping' ] == 'true' ) {

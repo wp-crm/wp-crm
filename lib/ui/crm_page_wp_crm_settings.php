@@ -172,6 +172,10 @@ if(empty($wp_crm['data_structure']['attributes'])) {
                 <?php
                 $current_value = isset($wp_crm['configuration']['user_level'])?$wp_crm['configuration']['user_level']:8;
                 $user_levels = get_editable_roles();
+                unset($user_levels['agent']); // Un setting agent, will be set again if agent plugin is active.
+
+                $user_levels = apply_filters('wp_crm_user_level_roles', $user_levels);
+
                                 /*array(
                                   "0" => __('Subscriber', ud_get_wp_crm()->domain),
                                   "1" => __('Contributor', ud_get_wp_crm()->domain),
