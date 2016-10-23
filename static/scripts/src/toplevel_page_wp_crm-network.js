@@ -20,7 +20,7 @@ jQuery( function() {
 
       this.input = jQuery( "<input>" )
         .appendTo( this.wrapper )
-        .val( value )
+        //.val( value )
         .attr( "title", "" )
         .attr( "placeholder", this.element.attr('data-placeholder') )
         .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
@@ -52,7 +52,8 @@ jQuery( function() {
         .attr( "tabIndex", -1 )
         .appendTo( this.wrapper )
         .removeClass( "ui-corner-all" )
-        .addClass( "custom-combobox-toggle ui-corner-right" )
+        .addClass( "ui-button ui-widget ui-button-icon-only custom-combobox-toggle ui-corner-right" )
+        .html('<span class="ui-button-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-button-icon-space"> </span>')
         .on( "mousedown", function() {
           wasOpen = input.autocomplete( "widget" ).is( ":visible" );
         })

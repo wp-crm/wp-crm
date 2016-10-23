@@ -5,8 +5,9 @@ jQuery(function() {
             this.element.hide(), this._createAutocomplete(), this._createShowAllButton();
         },
         _createAutocomplete: function() {
-            var _this = this, selected = this.element.children(":selected"), value = selected.val() ? selected.text() : "";
-            this.input = jQuery("<input>").appendTo(this.wrapper).val(value).attr("title", "").attr("placeholder", this.element.attr("data-placeholder")).addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left").autocomplete({
+            var _this = this, selected = this.element.children(":selected");
+            selected.val() ? selected.text() : "";
+            this.input = jQuery("<input>").appendTo(this.wrapper).attr("title", "").attr("placeholder", this.element.attr("data-placeholder")).addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left").autocomplete({
                 delay: 0,
                 minLength: 0,
                 source: jQuery.proxy(this, "_source")
@@ -21,7 +22,7 @@ jQuery(function() {
         },
         _createShowAllButton: function() {
             var input = this.input, wasOpen = !1;
-            jQuery("<a>").attr("tabIndex", -1).appendTo(this.wrapper).removeClass("ui-corner-all").addClass("custom-combobox-toggle ui-corner-right").on("mousedown", function() {
+            jQuery("<a>").attr("tabIndex", -1).appendTo(this.wrapper).removeClass("ui-corner-all").addClass("ui-button ui-widget ui-button-icon-only custom-combobox-toggle ui-corner-right").html('<span class="ui-button-icon ui-icon ui-icon-triangle-1-s"></span><span class="ui-button-icon-space"> </span>').on("mousedown", function() {
                 wasOpen = input.autocomplete("widget").is(":visible");
             }).on("click", function() {
                 input.trigger("focus"), wasOpen || input.autocomplete("search", "");
