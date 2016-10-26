@@ -1,4 +1,4 @@
-## [WP-Invoice plugin](https://github.com/wp-invoice/wp-invoice/wiki) integration:
+## [WP-Invoice plugin](https://www.usabilitydynamics.com/product/wp-invoice) integration:
 
 ### WP-Invoice custom field
 
