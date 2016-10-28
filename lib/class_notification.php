@@ -35,6 +35,14 @@ class WP_CRM_N {
     $replace_with['post_title'] = !empty($associated_object)?$associated_object->post_title:'';
     $replace_with['post_link'] = !empty($associated_object)?get_permalink($associated_object->ID):'';
 
+    if (!empty($associated_object) && $user = get_userdata($associated_object->post_author)) {
+      $replace_with['author_email'] = $user->user_email;
+    }
+
+    if (!empty($associated_object) && $wpp_agents = get_post_meta($associated_object->ID, 'wpp_agents', true)) {
+      $replace_with['agent_email'] = $wpp_agents;
+    }
+
     $replace_with = apply_filters( 'wp_crm_notification_replace_values', $replace_with );
 
     foreach($replace_with as $key => $value) {
