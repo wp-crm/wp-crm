@@ -2246,7 +2246,7 @@ class WP_CRM_F {
           foreach ($values as $rand => $value_data) {
             ?>
               <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo esc_attr($value_data['value']); ?>" />
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
                 <button class="button wpc_file_upload">Browse file</button>
               </div>
             <?php
@@ -2333,12 +2333,18 @@ class WP_CRM_F {
         case 'file_upload':
           $input_type = $attribute['input_type'];
           foreach ($values as $rand => $value_data) {
+            if(is_user_logged_in()):
             ?>
               <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo esc_attr($value_data['value']); ?>" />
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="text" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
                 <button class="button wpc_file_upload">Browse file</button>
               </div>
+            <?php else: ?>
+              <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="file" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+              </div>
             <?php
+            endif;
           }
 
           break;

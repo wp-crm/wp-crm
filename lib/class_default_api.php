@@ -668,6 +668,11 @@ if (!function_exists('wp_crm_save_user_data')) {
 
               break;
 
+            case 'file_upload':
+              $insert_custom_data[$meta_key][] = $data['value'];
+
+              break;
+
             default:
 
               //* Do not save empty values until this is being done on the profile editing page */
