@@ -973,7 +973,7 @@ class WP_CRM_Core {
         $wpp_integration[] = "<p><strong>[post_id]</strong> " . sprintf(__("- renders %s id.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
         $wpp_integration[] = "<p><strong>[post_title]</strong> " . sprintf(__("- renders %s title.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
         $wpp_integration[] = "<p><strong>[post_link]</strong> " . sprintf(__("- renders %s link.", ud_get_wp_crm()->domain), WPP_F::property_label()) . "</p>";
-        $wpp_integration[] = "<p><strong>[agent_email]</strong> " . sprintf(__("- email address of associate agent.", ud_get_wp_crm()->domain)) . "</p>";
+        $wpp_integration[] = "<p><strong>[agent_email]</strong> " . sprintf(__("- email address of associated agent.", ud_get_wp_crm()->domain)) . "</p>";
         $wpp_integration[] = "<p><strong>[author_email]</strong> " . sprintf(__("- email address of author.", ud_get_wp_crm()->domain)) . "</p>";
 
         get_current_screen()->add_help_tab(

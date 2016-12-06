@@ -39,8 +39,10 @@ class WP_CRM_N {
       $replace_with['author_email'] = $user->user_email;
     }
 
-    if (!empty($associated_object) && $wpp_agents = get_post_meta($associated_object->ID, 'wpp_agents', true)) {
-      $replace_with['agent_email'] = $wpp_agents;
+    $wpp_agents_id = get_post_meta($associated_object->ID, 'wpp_agents', true);
+    $agent_data = get_userdata( $wpp_agents_id );
+    if (!empty($associated_object) && $wpp_agents_id && property_exists($agent_data, 'user_email')) {
+      $replace_with['agent_email'] = $agent_data->user_email;
     }
 
     $replace_with = apply_filters( 'wp_crm_notification_replace_values', $replace_with );
