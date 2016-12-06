@@ -644,6 +644,15 @@ class class_contact_messages {
       return false;
     }
 
+    if(!is_user_logged_in()){
+      foreach ($form[ 'fields' ] as $field) {
+        if($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ]['input_type'] == 'file_upload'){
+          $form[ 'request_method' ] = 'POST';
+          break;
+        }
+      }
+    }
+
     WP_CRM_F::force_script_inclusion( 'jquery-ui-datepicker' );
     WP_CRM_F::force_script_inclusion( 'wp_crm_profile_editor' );
 
@@ -815,6 +824,7 @@ class class_contact_messages {
       function submit_this_form ( crm_action, trigger_object ) {
         var validation_error = false;
         var form = this_form;
+        var request_method = '<?php echo $form['request_method']; ?>';
 
         wp_crm_developer_log( 'submit_this_form() initiated.' );
 
@@ -860,7 +870,14 @@ class class_contact_messages {
 
         jQuery( submit_button ).attr( "disabled", "disabled" );
         
-        var params = new FormData(jQuery( this_form )[0]);
+        var params;
+        if(request_method == 'POST'){
+          params = new FormData(jQuery( this_form )[0]);
+        }
+        else{
+          params = jQuery( this_form ).serialize();
+        }
+
         if( crm_action ) {
           params.append('crm_action', crm_action);
         }
@@ -868,7 +885,7 @@ class class_contact_messages {
         jQuery.ajax( {
           url: "<?php echo admin_url('admin-ajax.php'); ?>",
           dataType: "json",
-          type: "<?php echo $form['request_method']; ?>",
+          type: request_method,
           contentType: false,
           processData: false,
           data: params,
