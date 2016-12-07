@@ -2603,11 +2603,11 @@ class WP_CRM_F {
   function minify_js($data) {
 
     if (!class_exists('W3_Plugin')) {
-      include_once wp_crm_Path . '/third-party/jsmin.php';
+      include_once wp_crm_Path . 'lib/third-party/jsmin.php';
     } elseif (file_exists(WP_PLUGIN_DIR . '/w3-total-cache/lib/Minify/JSMin.php')) {
       include_once WP_PLUGIN_DIR . '/w3-total-cache/lib/Minify/JSMin.php';
     } else {
-      include_once wp_crm_Path . '/third-party/jsmin.php';
+      include_once wp_crm_Path . 'lib/third-party/jsmin.php';
     }
 
     if (class_exists('JSMin')) {

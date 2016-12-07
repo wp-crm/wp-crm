@@ -757,6 +757,7 @@ class class_contact_messages {
     <style type="text/css">.wp_crm_<?php echo $wp_crm_nonce; ?>_first {
         display: none;
       }</style>
+    <?php ob_start();?>
     <script type="text/javascript">
     jQuery( document ).ready( function() {
 
@@ -974,6 +975,11 @@ class class_contact_messages {
 
     } );
   </script>
+    <?php 
+    $content = ob_get_contents();
+    ob_end_clean();
+    echo WP_CRM_F::minify_js($content);
+    ?>
   <?php
 
   }

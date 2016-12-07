@@ -27,6 +27,10 @@ if ( !defined( 'WP_CRM_Version' ) ) {
 if ( !defined( 'WP_CRM_Cache' ) ) {
   define( 'WP_CRM_Cache', WP_CONTENT_DIR . '/cache' );
 }
+/** Path for Includes */
+if ( !defined( 'wp_crm_Path' ) ) {
+  define( 'wp_crm_Path', plugin_dir_path( __FILE__ ) );
+}
 
 if( !function_exists( 'ud_get_wp_crm' ) ) {
 
