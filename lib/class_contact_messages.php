@@ -1131,6 +1131,7 @@ class class_contact_messages {
 
     $check_fields = apply_filters( 'wp_crm_distinct_user_fields', $check_fields );
 
+    $chkbox_checker = array(); 
     //** Do not check any fields if nothing to check */
     foreach( $data[ 'user_data' ] as $field_slug => $field_data ) {
 
@@ -1165,6 +1166,10 @@ class class_contact_messages {
           if( empty( $value ) ) {
             $bad_fields[ $field_slug ] = sprintf( __( '%1s cannot be empty.', ud_get_wp_crm()->domain ), $wp_crm[ 'data_structure' ][ 'attributes' ][ $field_slug ][ 'title' ] );
           }
+          // Store all the checkbox field_slug who have at least one value.
+          else if ($wp_crm[ 'data_structure' ][ 'attributes' ][ $field_slug ]['input_type'] == 'checkbox') {
+            $chkbox_checker[$field_slug] = true;
+          }
 
         }
 
@@ -1182,6 +1187,13 @@ class class_contact_messages {
 
       }
 
+    }
+
+    // Removing all checkbox from $bad_fields if they have at least one value.
+    foreach ($chkbox_checker as $field_slug => $true) {
+      if(isset($bad_fields[$field_slug])){
+        unset($bad_fields[$field_slug]);
+      }
     }
 
     //** If this is a validation request, we check to make sure everything is good */
