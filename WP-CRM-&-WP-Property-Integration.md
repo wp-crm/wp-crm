@@ -7,3 +7,7 @@ You can use the following tags in your notification templates for the forms whic
 * [post_title] - renders Property title.
 
 * [post_link] - renders Property link.
+
+* [agent_email] - e-mail address of an associated agent. 
+
+* [author_e-mail] - e-mail address of an author.
