@@ -33,5 +33,5 @@ A unique customer relations management system seamlessly integrated into your Wo
 *   User CSV Exporting.
 *   User activity and note tracking.
 *   [WP-Invoice](https://github.com/wp-invoice/wp-invoice/wiki) plugin integration.
-*   [WP-Property] (https://github.com/wp-property/wp-property/wiki) plugin integration.
+*   [WP-Property](https://github.com/wp-property/wp-property/wiki) plugin integration.
 *   [Denali](https://github.com/wp-property/wp-denali/wiki) theme integration.
