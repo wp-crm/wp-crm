@@ -28,17 +28,18 @@ If Overview Column is selected, it gives you the freedom to filter users based o
 
 This section determines what type of data the user is expected to enter. E.g. _User Name_ will have _input type_ ‘Single Line Text’.
 
-There are 5 types of input:
+There are 6 types of input:
 
 *   Singe Line Text - Creates a text box which has a single line.
 *   Checkbox - Creates checkboxes whith the given options as titles. This is useful when you want your user to select one or more options from a group of options.
 *   Textarea - Creates a textarea which spans multiple lines.
 *   Dropdown - Creates a list which when clicked opens up and shows all the options in the list. This is useful when you want your user to select only one option from a bunch of options.
 *   Password - Creates a password field, meaning any text entered here will not be displayed as Astrix.
+*   File Upload - Allows the user to upload files. 
 
 Depending on the nature of the said attribute, you can set the input type.
 
-![new input type](https://storage.googleapis.com/media.usabilitydynamics.com/2012/02/new-input-type.png)
+![new input type](https://storage.googleapis.com/media.usabilitydynamics.com/2016/12/2016-12-13_1354.png)
 
 * * *
 
