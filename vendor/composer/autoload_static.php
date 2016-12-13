@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit64e3c968faa17fadb167e49c7083de74
+class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
 {
     public static $classMap = array (
         'UsabilityDynamics\\Job' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-job.php',
@@ -59,7 +59,7 @@ class ComposerStaticInit64e3c968faa17fadb167e49c7083de74
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit64e3c968faa17fadb167e49c7083de74::$classMap;
+            $loader->classMap = ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac::$classMap;
 
         }, null, ClassLoader::class);
     }

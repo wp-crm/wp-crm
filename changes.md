@@ -1,3 +1,17 @@
+#### 1.0.6
+* Added Bulk actions to Messages.
+* Added new options for WP-Property and Denali Integration. See Help tab.
+* Added ability to use WP-CRM on Network.
+* Added new option - Minimum user level to manage WP-CRM.
+* Added [agent_email] and [author_email] to the list of available tags for notifications.
+* Added ability to attach file to the forms.
+* Fixed issue with not editable fields.
+* Fixed issue with required fields.
+* Fixed issue with long dropdown fields which displayed the background key instead of the descriptor.
+* Fixed Warning and notices.
+* Fixed issue that Save button was not translating.
+* Fixed issue with Show button was reverting to EN translation.
+
 #### 1.0.5
 * Updated libraries.
 * Fixed permission issues.

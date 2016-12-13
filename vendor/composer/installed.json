@@ -196,7 +196,7 @@
         "extra": {
             "installer-name": "lib-ud-api-client"
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "classmap": [
                 "lib/classes"
