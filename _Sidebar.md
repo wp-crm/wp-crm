@@ -20,9 +20,9 @@
 
 ###Integrations
 * [WP-Property Integration](WP-CRM-with-WP-Property-Integration)
-* [WP-Invoice Integration](WP-CRM-&-WP-Invoice-Integration)
-* [Denali theme Integration](Integrating-WP-CRM-with-Denali-Theme)
-* [WooCommerce Integration](WP-CRM-&-WooCommerce-Integration)
+* [WP-Invoice Integration](WP-CRM-with-WP-Invoice-Integration)
+* [Denali theme Integration](Integrating-WP-CRM-with-Denali-Theme) 
+* [WooCommerce Integration](WP-CRM-with-WooCommerce-Integration)
 
 ###FAQ
 * [[Does WP-CRM use the same user database as regular WordPress user management?]]
