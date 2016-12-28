@@ -21,7 +21,7 @@
 ###Integrations
 * [WP-Property Integration](WP-CRM-with-WP-Property-Integration)
 * [WP-Invoice Integration](WP-CRM-&-WP-Invoice-Integration)
-* [Denali Theme Integration](Integrating-WP-CRM-with-Denali-Theme)
+* [Denali theme Integration](Integrating-WP-CRM-with-Denali-Theme)
 * [WooCommerce Integration](WP-CRM-&-WooCommerce-Integration)
 
 ###FAQ
