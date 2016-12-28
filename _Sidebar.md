@@ -19,7 +19,7 @@
 * [The Shortcode Forms Tab](WP-CRM-Settings-The-Notifications-Tab-The-Shortcode-Forms-Tab)
 
 ###Integrations
-* [WP-Property Integration](WP-CRM-&-WP-Property-Integration)
+* [WP-Property Integration](Integrating-WP-CRM-with-Property-Integration)
 * [WP-Invoice Integration](WP-CRM-&-WP-Invoice-Integration)
 * [Denali theme Integration](Integrating-WP-CRM-with-Denali-Theme)
 * [WooCommerce Integration](WP-CRM-&-WooCommerce-Integration)
