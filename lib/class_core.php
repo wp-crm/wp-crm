@@ -702,7 +702,7 @@ class WP_CRM_Core {
 
     do_action( 'wp_crm_network_admin_menu' );
     //** Replace default user management screen if set */
-    $position = ( ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && current_user_can( 'manage_options' ) ) ? '70' : '33' );
+    $position = 11;
 
     $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
     $wp_crm[ 'system' ][ 'pages' ][ 'core' ] .= "_network"; // Unless metabox will not work;

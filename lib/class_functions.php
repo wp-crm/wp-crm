@@ -3445,7 +3445,7 @@ class WP_CRM_F {
 
     $current_user_can_manage_crm = false;
 
-    if(!empty($current_user->roles[$user_level])){
+    if(is_super_admin($current_user->ID) || !empty($current_user->roles[$user_level])){
         $current_user_can_manage_crm = true;
     }
     else{
