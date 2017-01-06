@@ -880,7 +880,10 @@ class class_contact_messages {
         }
 
         if( crm_action ) {
-          params.append('crm_action', crm_action);
+          if(request_method === 'POST')
+            params.append('crm_action', crm_action);
+          else
+            params += '&crm_action='+crm_action;
         }
 
         jQuery.ajax( {
