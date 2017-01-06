@@ -649,6 +649,12 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         <label for="wp_crm_enable_developer_mode"><?php _e("Enable developer mode and start displaying additional information in the console log.", ud_get_wp_crm()->domain); ?></label>
       </div>
 
+      <div class="wp_crm_settings_block">
+        <input value="" type="hidden" name="wp_crm[configuration][pre_release_updates]" />
+        <input id="wp_crm_pre_release_updates" value="true" type="checkbox" <?php checked(!empty($wp_crm['configuration']['pre_release_updates'])?$wp_crm['configuration']['pre_release_updates']:false, 'true'); ?> name="wp_crm[configuration][pre_release_updates]" />
+        <label for="wp_crm_pre_release_updates"><?php _e("Enable pre-release updates.", ud_get_wp_crm()->domain); ?></label>
+      </div>
+
       <?php do_action('wp_crm_settings_help_tab'); ?>
     </div>
   </div>
