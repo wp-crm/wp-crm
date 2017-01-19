@@ -6,7 +6,22 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
 {
+    public static $prefixLengthsPsr4 = array (
+        'R' => 
+        array (
+            'ReCaptcha\\' => 10,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'ReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
+        ),
+    );
+
     public static $classMap = array (
+        'ReCaptcha\\RequestMethod\\WpRecaptchaPost' => __DIR__ . '/../..' . '/lib/classes/class-wp-recaptcha-post.php',
         'UsabilityDynamics\\Job' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-job.php',
         'UsabilityDynamics\\Loader' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-loader.php',
         'UsabilityDynamics\\Structure' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-structure.php',
@@ -59,6 +74,8 @@ class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac::$classMap;
 
         }, null, ClassLoader::class);

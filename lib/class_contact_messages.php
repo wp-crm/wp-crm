@@ -646,6 +646,7 @@ class class_contact_messages {
 
     if(!is_user_logged_in()){
       foreach ($form[ 'fields' ] as $field) {
+        if($field == 'recaptcha') continue;
         if($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ]['input_type'] == 'file_upload'){
           $form[ 'request_method' ] = 'POST';
           break;
@@ -655,6 +656,7 @@ class class_contact_messages {
 
     WP_CRM_F::force_script_inclusion( 'jquery-ui-datepicker' );
     WP_CRM_F::force_script_inclusion( 'wp_crm_profile_editor' );
+    WP_CRM_F::force_script_inclusion( 'recaptcha' );
 
     $wp_crm_nonce = md5( NONCE_KEY . $form_slug . rand( 10000, 99999 ) );
 
@@ -697,6 +699,19 @@ class class_contact_messages {
     $tabindex = 1;
 
     foreach( $form[ 'fields' ] as $field ) {
+
+      if($field == 'recaptcha'){
+        if(!empty($wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]) && $site_key = $wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]):?>
+          <li class="wp_crm_form_element wp_crm_required_field wp_crm_recaptcha_container">
+            <div class="control-group wp_crm_recaptcha_div">
+              <label class="control-label wp_crm_input_label">&nbsp;</label>
+              <div class='g-recaptcha' data-sitekey='<?php echo $site_key;?>'></div>
+              <span class="help-inline wp_crm_error_messages"></span>
+            </div>
+          </li>
+        <?php endif;
+        continue;
+      }
 
       $this_attribute                   = $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ];
       $this_attribute[ 'autocomplete' ] = 'false';
@@ -850,6 +865,19 @@ class class_contact_messages {
           if( !t ) {
             validation_error = true;
           }
+        }
+        <?php } ?>
+
+        <?php if(in_array('recaptcha', $form[ 'fields' ])) { ?>
+        /** Custom validation */
+        if( !validation_error ) {
+          if(jQuery('#g-recaptcha-response').length){
+            if( !jQuery('#g-recaptcha-response').val() ) {
+              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages').html("Are you human?").addClass('error');
+              validation_error = true;
+            }
+          }
+          
         }
         <?php } ?>
 
@@ -1049,7 +1077,8 @@ class class_contact_messages {
     if( !empty( $_REQUEST[ 'comment' ] ) ||
       !empty( $_REQUEST[ 'email' ] ) ||
       !empty( $_REQUEST[ 'name' ] ) ||
-      !empty( $_REQUEST[ 'url' ] )
+      !empty( $_REQUEST[ 'url' ] ) ||
+      !WP_CRM_F::reCaptchaVerify($_REQUEST[ 'g-recaptcha-response' ])
     ) {
       die( json_encode( array( 'success' => 'false', 'message' => __( 'If you see this message, WP-CRM thought you were a robot.  Please contact admin if you do not think are you one.', ud_get_wp_crm()->domain ) ) ) );
     }
@@ -1403,6 +1432,8 @@ class class_contact_messages {
                           <label for="field_<?php echo $attribute_slug; ?>_<?php echo $row_hash; ?>"><?php echo $attribute_data['title']; ?></label>
                         </li>
                       <?php endforeach; ?>
+                      <input id="field_recaptcha_<?php echo $row_hash; ?>" type="checkbox" <?php CRM_UD_UI::checked_in_array("recaptcha", !empty($data['fields'])?$data['fields']:array()); ?> name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][fields][]" value="recaptcha"/>
+                          <label for="field_recaptcha_<?php echo $row_hash; ?>">Google reCAPTCHA</label>
                     </ul>
                   <?php endif; ?>
 
