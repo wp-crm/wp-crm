@@ -1002,6 +1002,10 @@ class class_contact_messages {
    *
    * @version 1.0
    * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   * @param $user_id
+   * @param $message
+   * @param $form_slug
+   * @return bool|int|mixed|string|void
    */
   static function insert_message( $user_id, $message, $form_slug ) {
     $insert_id = WP_CRM_F::insert_event( "object_id={$user_id}&user_id={$user_id}&attribute=contact_form_message&text={$message}&value=new&other={$form_slug}" );
@@ -1018,6 +1022,11 @@ class class_contact_messages {
    *
    * @version 0.20
    * Copyright 2011 Andy Potanin, Usability Dynamics, Inc.  <andy.potanin@usabilitydynamics.com>
+   * @param $message_id
+   * @param $meta_key
+   * @param $meta_value
+   * @param bool $args
+   * @return int
    */
   static function insert_message_meta( $message_id, $meta_key, $meta_value, $args = false ) {
     global $wpdb;
@@ -1299,7 +1308,9 @@ class class_contact_messages {
       //** Pass the trigger and array of notification arguments to sender function */
       wp_crm_send_notification( $confirmed_form_slug, $notification_info );
 
-      do_action( 'process_crm_message_' . $confirmed_form_slug );
+      do_action( 'process_crm_message_' . $confirmed_form_slug, $notification_info );
+
+      do_action( 'wp-crm::process_crm_message', $notification_info, $confirmed_form_slug );
 
     }
 
