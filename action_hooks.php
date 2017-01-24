@@ -30,6 +30,7 @@ $wp_crm['configuration']['mail'] = array(
     'sender_name' => get_bloginfo(),
     'send_email' => get_bloginfo('admin_email')
 );
+
 $wp_crm['configuration']['input_types'] = array(
     'text' => __('Single Line Text', ud_get_wp_crm()->domain),
     'checkbox' => __("Checkbox", ud_get_wp_crm()->domain),

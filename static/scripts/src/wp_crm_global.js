@@ -389,8 +389,8 @@ function wp_crm_create_slug( slug ) {
    */
   function wp_crm_refresh_random_keys( element ) {
 
-    if( jQuery( element ).attr( "random_hash" ) ) {
-      var old_hash = jQuery( element ).attr( "random_hash" );
+    if( jQuery( element ).attr( "data-random-hash" ) ) {
+      var old_hash = jQuery( element ).attr( "data-random-hash" );
       var new_hash = Math.floor( Math.random()*10000000 );
       var current_html = jQuery( element ).html();
 
@@ -401,7 +401,7 @@ function wp_crm_create_slug( slug ) {
       jQuery( element ).html( new_html );
 
 
-      jQuery( element ).attr( "random_hash", new_hash );
+      jQuery( element ).attr( "data-random-hash", new_hash );
 
     }
 

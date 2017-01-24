@@ -852,17 +852,19 @@ class WP_CRM_Core {
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_script( 'thickbox' );
         wp_enqueue_style( 'thickbox' );
-        break;
+      break;
 
       case 'crm_page_wp_crm_settings':
         wp_enqueue_script( 'jquery-ui-widget' );
         wp_enqueue_script( 'jquery-ui-sortable' );
         wp_enqueue_script( 'jquery-ui-mouse' );
-        wp_enqueue_script( 'ace', ud_get_wp_crm()->path( 'lib/third-party/ace/ace.js', 'url' ) );
 
-        break;
-      default:
-        break;
+        if( defined( 'WP_CRM_ENABLE_ACE_EDITOR' ) && WP_CRM_ENABLE_ACE_EDITOR ) {
+          wp_enqueue_script( 'ace', ud_get_wp_crm()->path( 'lib/third-party/ace/ace.js', 'url' ) );
+        }
+
+      break;
+
     }
 
     //** Include on all pages */
@@ -952,7 +954,7 @@ class WP_CRM_Core {
   /**
    * WP-CRM Contextual Help
    *
-   * @param type $args
+   * @param array|type $args
    *
    * @author korotkov@UD
    */

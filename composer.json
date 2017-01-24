@@ -47,7 +47,23 @@
         "name": "Google Visualization",
         "option": "enable_google_visualization",
         "constant": "WP_CRM_VISUALIZATION",
-        "description": "Layouts for WP Property",
+        "description": "Google graph visualization on overview page.",
+        "since": "1.1.0",
+        "enabled": false
+      },
+      {
+        "name": "Color Schemes",
+        "option": "enable_user_color_schems",
+        "constant": "WP_CRM_ENABLE_USER_COLOR_SCHEMES",
+        "description": "Color scheme selector on editor.",
+        "since": "1.1.0",
+        "enabled": false
+      },
+      {
+        "name": "Ace Editor",
+        "option": "enable_ace_editor",
+        "constant": "WP_CRM_ENABLE_ACE_EDITOR",
+        "description": "Legacy rich-test editor.",
         "since": "1.1.0",
         "enabled": false
       },

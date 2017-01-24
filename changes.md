@@ -1,4 +1,8 @@
 #### 1.1.0 [wip]
+* The placement/order, and the label, of the "Message Field" may be adjusted for each contact form.
+* Added Contact Form option to disable pre-filling form data for logged in users.
+* Sort order setting of Contact Form fields. [wip]
+* Attribute labels can be changed for a specific Contact Form. [wip]
 * Added Feature Flags handler.
 * Moved Google Visualization into [WP_CRM_VISUALIZATION] flag.
 * Added [WP_CRM_DISABLE_DASHBOARD_SPLASH] Feature Flag to disable Splash page.

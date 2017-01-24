@@ -30,11 +30,11 @@ jQuery( document ).ready( function() {
 
   /* Hide Toggle Settings link if there are no settings */
   if( !jQuery( '.wp_crm_advanced_user_actions.wp-tab-panel' ).text().trim().length ) {
-    jQuery( 'ul.wp_crm_advanced_user_actions_wrapper' ).hide();
+    //jQuery( 'ul.wp_crm_advanced_user_actions_wrapper' ).hide();
   }
 
   jQuery( "form#crm_user input[ type=text ], form#crm_user input[ type=checkbox ], form#crm_user select" ).change( function() {
-    var this_attribute = jQuery( this ).attr( "wp_crm_slug" );
+    var this_attribute = jQuery( this ).attr( "data-crm-slug" );
     wp_crm_ui.change_made = true;
     wp_crm_ui.changed_fields.push( this_attribute );
   });
@@ -44,43 +44,43 @@ jQuery( document ).ready( function() {
    * @Author odokienko@UD
    */
   jQuery( "input.wp_crm_user_email_field").change( function ( ) {
-      var obj = this;
-      var user_id = jQuery("#user_id").val();
+    var obj = this;
+    var user_id = jQuery("#user_id").val();
 
-      /* elear all error notifications */
-      jQuery( obj ).removeClass( "wp_crm_input_error" ).parent().removeClass( "wp_crm_input_error" );
-      jQuery( obj ).removeClass( "email_validated" ).parent().removeClass( "email_validated" );
-      jQuery( 'span.error', jQuery( obj ).parent()).remove();
+    /* elear all error notifications */
+    jQuery( obj ).removeClass( "wp_crm_input_error" ).parent().removeClass( "wp_crm_input_error" );
+    jQuery( obj ).removeClass( "email_validated" ).parent().removeClass( "email_validated" );
+    jQuery( 'span.error', jQuery( obj ).parent()).remove();
 
-      /* indicate validationg state */
-      if ( jQuery( obj ).val() ){
-        jQuery( obj ).attr('disabled', obj).parent().addClass( "email_validating" );
-        jQuery.post(ajaxurl, {
-          action:'wp_crm_check_email_for_duplicates',
-          email: jQuery( obj ).val(),
-          user_id: user_id
-        },function(response) {
-          /* double check: submit may set error status and not wait for response */
-          jQuery( obj ).removeClass( "wp_crm_input_error" ).parent().removeClass( "wp_crm_input_error" );
+    /* indicate validationg state */
+    if ( jQuery( obj ).val() ){
+      jQuery( obj ).attr('disabled', obj).parent().addClass( "email_validating" );
+      jQuery.post(ajaxurl, {
+        action:'wp_crm_check_email_for_duplicates',
+        email: jQuery( obj ).val(),
+        user_id: user_id
+      },function(response) {
+        /* double check: submit may set error status and not wait for response */
+        jQuery( obj ).removeClass( "wp_crm_input_error" ).parent().removeClass( "wp_crm_input_error" );
 
-          if(response == 'Ok') {
-            /* class 'email_validated' are used by .submit(). If class is not present then form will be invalid and won't  submitted */
-            jQuery( obj ).addClass( "email_validated" ).parent().addClass( "email_validated" );
-          }else{
-            jQuery( obj ).addClass( "wp_crm_input_error" ).parent().addClass( "wp_crm_input_error" ).append("<span class='error'>"+response+"</span>");
-          }
-          /* remove validation state */
-          jQuery( obj ).attr('disabled', false).parent().removeClass( "email_validating" );
-        });
-      }else{
-        /** Empty field is valid of course if it is not required */
-        jQuery( obj ).addClass( "email_validated" ).parent().addClass( "email_validated" );
-      }
+        if(response == 'Ok') {
+          /* class 'email_validated' are used by .submit(). If class is not present then form will be invalid and won't  submitted */
+          jQuery( obj ).addClass( "email_validated" ).parent().addClass( "email_validated" );
+        }else{
+          jQuery( obj ).addClass( "wp_crm_input_error" ).parent().addClass( "wp_crm_input_error" ).append("<span class='error'>"+response+"</span>");
+        }
+        /* remove validation state */
+        jQuery( obj ).attr('disabled', false).parent().removeClass( "email_validating" );
+      });
+    }else{
+      /** Empty field is valid of course if it is not required */
+      jQuery( obj ).addClass( "email_validated" ).parent().addClass( "email_validated" );
+    }
 
   });
 
 
-   /* Handles form saving */
+  /* Handles form saving */
   jQuery( "form#crm_user" ).submit( function( form ) {
     return wp_crm_save_user_form( form );
   });
@@ -101,6 +101,12 @@ jQuery( document ).ready( function() {
     return confirm( 'Are you sure you want to delete user?' );
   });
 
+  jQuery( 'div.wp-crm-toggle-action' ).click( function toggleTarget() {
+    //console.log( 'toggleTarget', jQuery( this ).data( 'toggle-target' ) );
+    var _toggle_target = jQuery( this ).data( 'toggle-target' );
+    jQuery(_toggle_target).toggle();
+  });
+
   jQuery( 'div.wp_crm_toggle_advanced_user_actions' ).click( function() {
     jQuery( 'div.wp_crm_advanced_user_actions' ).toggle();
   });
@@ -115,7 +121,7 @@ jQuery( document ).ready( function() {
   });
 
   jQuery( ".wp_crm_show_message_options" ).click( function() {
-      jQuery( '.wp_crm_message_options' ).toggle();
+    jQuery( '.wp_crm_message_options' ).toggle();
   });
 
   jQuery( ".wp_crm_toggle_message_entry" ).click( function() {
@@ -136,12 +142,12 @@ jQuery( document ).ready( function() {
   });
 
 
-/**
- * Adds another attribute field
- *
- * @todo Should migrate functionality into UD Dynamic Rows
- *
- */
+  /**
+   * Adds another attribute field
+   *
+   * @todo Should migrate functionality into UD Dynamic Rows
+   *
+   */
   jQuery( '.add_another' ).live( "click", function() {
     var parent_row =  jQuery( this ).closest( ".wp_crm_user_entry_row" );
     var input_div =  jQuery( '.input_div:last', parent_row );
@@ -150,27 +156,27 @@ jQuery( document ).ready( function() {
     jQuery( 'input', new_input_div ).val( '' );
 
     /** Get current hash */
-    var current_hash = jQuery( 'input', new_input_div ).attr( 'random_hash' );
+    var current_hash = jQuery( 'input', new_input_div ).attr( 'data-random-hash' );
 
     /** Fix hashes */
     var new_hash = Math.floor( ( 9999 )*Math.random() ) + 1000;
 
     /** Need a more elegant way of doing this */
     if( jQuery( 'input', new_input_div ).length ) {
-      jQuery( 'input', new_input_div ).attr( 'random_hash', new_hash )
+      jQuery( 'input', new_input_div ).attr( 'data-random-hash', new_hash )
       var old_name = jQuery( 'input', new_input_div ).attr( 'name' );
       jQuery( 'input', new_input_div ).attr( 'name', old_name.replace( current_hash, new_hash ) );
 
     }
 
     if( jQuery( 'select', new_input_div ).length ) {
-      jQuery( 'select', new_input_div ).attr( 'random_hash', new_hash )
+      jQuery( 'select', new_input_div ).attr( 'data-random-hash', new_hash )
       var old_name = jQuery( 'select', new_input_div ).attr( 'name' );
-       jQuery( 'select', new_input_div ).attr( 'name', old_name.replace( current_hash, new_hash ) );
+      jQuery( 'select', new_input_div ).attr( 'name', old_name.replace( current_hash, new_hash ) );
     }
 
     /** Insert row */
-      jQuery( new_input_div ).insertAfter( input_div );
+    jQuery( new_input_div ).insertAfter( input_div );
 
     /** hide 'add another' */
     jQuery( this ).hide();

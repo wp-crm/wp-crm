@@ -13,8 +13,8 @@ jQuery(document).bind("wp_crm_value_changed", function(event, data) {
         return jQuery.each(matches, function(key, replacement_key) {
             var meta_value;
             if (meta_key = replacement_key.replace("[", ""), meta_key = meta_key.replace("]", ""), 
-            jQuery("[wp_crm_slug=" + meta_key + "], [wp_crm_option_for=" + meta_key + "]").length) {
-                var element = jQuery("[wp_crm_slug=" + meta_key + "]");
+            jQuery("[data-crm-slug=" + meta_key + "], [wp_crm_option_for=" + meta_key + "]").length) {
+                var element = jQuery("[data-crm-slug=" + meta_key + "]");
                 listener_keys.push(element);
                 var type = element.get(0).tagName;
                 switch (type) {
@@ -47,7 +47,7 @@ jQuery(document).bind("wp_crm_value_changed", function(event, data) {
         changeYear: !0
     }), jQuery(".wp_crm_attribute_uneditable:not(div)").each(function() {
         var value, chkBoxs, placeholder, this_element = jQuery(this), this_class = this_element.attr("class");
-        this_element.attr("wp_crm_slug");
+        this_element.attr("data-crm-slug");
         this_element.is("select") ? value = this_element.find(":selected").html() : this_element.is(":checkbox") ? (chkBoxs = this_element.closest(".wp_crm_checkbox_list").find("input[type=checkbox]"), 
         chkBoxs.filter(":checked").length > 0 && chkBoxs.filter(":not(:checked)").parent().remove(), 
         value = this_element.is(":checked") ? this_element.siblings("label").html() : "") : (value = this_element.val(), 

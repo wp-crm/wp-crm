@@ -24,11 +24,11 @@ function wp_crm_handle_unload() {
 }
 
 function wp_crm_refresh_random_keys(element) {
-    if (jQuery(element).attr("random_hash")) {
-        var old_hash = jQuery(element).attr("random_hash"), new_hash = Math.floor(1e7 * Math.random()), current_html = jQuery(element).html();
+    if (jQuery(element).attr("data-random-hash")) {
+        var old_hash = jQuery(element).attr("data-random-hash"), new_hash = Math.floor(1e7 * Math.random()), current_html = jQuery(element).html();
         old_hash = new RegExp(old_hash, "gi");
         var new_html = current_html.replace(old_hash, new_hash);
-        jQuery(element).html(new_html), jQuery(element).attr("random_hash", new_hash);
+        jQuery(element).html(new_html), jQuery(element).attr("data-random-hash", new_hash);
     }
 }
 
