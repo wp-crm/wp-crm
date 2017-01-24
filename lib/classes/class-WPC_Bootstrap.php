@@ -6,8 +6,13 @@
  */
 namespace UsabilityDynamics\WPC {
 
-  if( !class_exists( 'UsabilityDynamics\WPC\WPC_Bootstrap' ) ) {
+  use Exception;
+  use WP_CRM_Core;
 
+  if( !class_exists( 'UsabilityDynamics\WPC\WPC_Bootstrap' ) ) {
+    /**
+     * @property WP_CRM_Core core
+     */
     final class WPC_Bootstrap extends \UsabilityDynamics\WP\Bootstrap_Plugin {
       
       /**
@@ -19,7 +24,7 @@ namespace UsabilityDynamics\WPC {
        * @type UsabilityDynamics\WPC\WPC_Bootstrap object
        */
       protected static $instance = null;
-      
+
       /**
        * Instantaite class.
        */
@@ -61,7 +66,8 @@ namespace UsabilityDynamics\WPC {
         include_once ud_get_wp_crm()->path( "lib/class_contact_messages.php", 'dir' );
 
         //** Initiate the plugin */
-        $this->core = new \WP_CRM_Core();
+        $this->core = new WP_CRM_Core();
+
       }
 
       /**
@@ -223,6 +229,65 @@ namespace UsabilityDynamics\WPC {
 
         do_action( $this->slug . '::upgrade', $this->old_version, $this->args[ 'version' ], $this );
       }
+
+      /**
+       * Set Feature Flag constants by parsing composer.json
+       *
+       * @author potanin@UD
+       *
+       * @param array|bool $_parsed
+       * @param array $options - Override of which feature flags should be enabled.
+       * @return array|mixed|null|object
+       * @internal param array $data - Composer.json parsed.
+       */
+      static public function parse_feature_flags( $_parsed = false, $options = array() )  {
+
+        try {
+
+          if( !isset( $_parsed ) || !is_object( $_parsed ) ) {
+
+            if( !file_exists( path_join( dirname( __DIR__, 2 ), 'composer.json' ) ) ) {
+              throw new Exception( "Missing composer.json file." );
+            }
+
+            $_raw = file_get_contents( path_join( dirname( __DIR__, 2 ), 'composer.json' ) );
+
+            $_parsed = json_decode( $_raw );
+
+            // @todo Catch poorly formatted JSON.
+            if( !is_object( $_parsed ) ) {
+              throw new Exception( "Unable to parse composer.json file." );
+            }
+
+          }
+
+          // Missing feature flags.
+          if( !isset( $_parsed ) || !isset( $_parsed->extra ) || !isset( $_parsed->extra->featureFlags ) ) {
+            return null;
+          }
+
+          foreach( (array) $_parsed->extra->featureFlags as $_feature ) {
+
+            if( !defined( $_feature->constant ) ) {
+
+              if( is_array( $options ) && isset( $options[ $_feature->option ] ) ) {
+                define( $_feature->constant, (bool) $options[ $_feature->constant ] );
+              }  else {
+                define( $_feature->constant, $_feature->enabled );
+              }
+
+            }
+
+          }
+
+        } catch (Exception $e) {
+          echo error_log( 'Caught [wp-crm] exception: [' . $e->getMessage() . ']' );
+        }
+
+        return isset($_parsed) ? $_parsed : null;
+
+      }
+
 
     }
 
