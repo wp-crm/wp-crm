@@ -2953,7 +2953,7 @@ class WP_CRM_F {
 
     $defaults = array(
         'object_type' => 'user',
-        'user_id' => $current_user->data->ID,
+        'user_id' => isset( $current_user ) && isset( $current_user->data ) && isset( $current_user->data->ID ) ? $current_user->data->ID : null,
         'attribute' => 'general_message',
         'action' => 'insert',
         'ajax' => 'false',

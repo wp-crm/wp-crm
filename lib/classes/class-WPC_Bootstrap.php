@@ -12,6 +12,7 @@ namespace UsabilityDynamics\WPC {
   if( !class_exists( 'UsabilityDynamics\WPC\WPC_Bootstrap' ) ) {
     /**
      * @property WP_CRM_Core core
+     * @property API api
      */
     final class WPC_Bootstrap extends \UsabilityDynamics\WP\Bootstrap_Plugin {
       
@@ -67,6 +68,10 @@ namespace UsabilityDynamics\WPC {
 
         //** Initiate the plugin */
         $this->core = new WP_CRM_Core();
+
+        if( class_exists( 'UsabilityDynamics\WPC\API' ) ) {
+          $this->api = new API();
+        }
 
       }
 

@@ -1225,7 +1225,7 @@ class class_contact_messages {
     $user_role = !empty( $wp_crm[ 'configuration' ][ 'new_contact_role' ] ) ? $wp_crm[ 'configuration' ][ 'new_contact_role' ] : false;
     $user_role = !empty( $confirmed_form_data[ 'new_user_role' ] ) ? $confirmed_form_data[ 'new_user_role' ] : $user_role;
 
-    $user_data = @wp_crm_save_user_data( $data[ 'user_data' ], array_filter( array(
+    $user_data = wp_crm_save_user_data( $data[ 'user_data' ], array_filter( array(
       'default_role' => $user_role,
       'use_global_messages' => 'false',
       'match_login' => 'true',
@@ -1233,8 +1233,11 @@ class class_contact_messages {
       'return_detail' => 'true',
     ) ) );
 
+
+    $message_field_supported = isset( $confirmed_form_data[ 'message_field' ] ) ? $confirmed_form_data[ 'message_field' ] : null;
+
     if( !$user_data ) {
-      if( !empty( $confirmed_form_data[ 'message_field' ] ) && $confirmed_form_data[ 'message_field' ] == 'on' ) {
+      if( !empty( $message_field_data ) ) {
         //** If contact form includes a message, notify that message could not be sent */
         die( json_encode( array( 'success' => 'false', 'message' => __( 'Message could not be sent. Please make sure you have entered your information properly.', ud_get_wp_crm()->domain ) ) ) );
       } else {
@@ -1251,7 +1254,11 @@ class class_contact_messages {
 
     }
 
-    $message = WP_CRM_F::get_first_value( !empty( $_REQUEST[ 'wp_crm' ][ 'user_data' ][ 'message_field' ] ) ? $_REQUEST[ 'wp_crm' ][ 'user_data' ][ 'message_field' ] : '' );
+    if( $message_field_supported ) {
+      $message = WP_CRM_F::get_first_value( $data['user_data']['_message_field'] );
+    } else {
+      $message = null;
+    }
 
     if( ( empty( $confirmed_form_data[ 'notify_with_blank_message' ] ) || $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' ) && empty( $message ) ) {
       //** No message submitted */
@@ -1265,6 +1272,7 @@ class class_contact_messages {
       $message_id = class_contact_messages::insert_message( $user_id, $message, $confirmed_form_slug );
 
       $associated_object = !empty( $associated_object ) ? $associated_object : false;
+
       if( $associated_object ) {
         class_contact_messages::insert_message_meta( $message_id, 'associated_object', $associated_object );
       }
@@ -1304,8 +1312,7 @@ class class_contact_messages {
       $result[ 'user_id' ] = $user_id;
     }
 
-    echo json_encode( $result );
-    die();
+    wp_send_json( $result );
   }
 
   /**
@@ -1385,7 +1392,7 @@ class class_contact_messages {
                       <label for="message_<?php echo $row_hash; ?>"><?php _e( 'Display textarea for custom message.', ud_get_wp_crm()->domain ); ?></label>
                     </li>
 
-                    <li class="wp_crm_checkbox_on_left wp-crm-advanced-field">
+                    <li class="wp_crm_checkbox_on_left">
                       <input <?php checked( !empty( $data[ 'notify_with_blank_message' ] ) ? $data[ 'notify_with_blank_message' ] : '', 'on' ); ?> id="blank_message<?php echo $row_hash; ?>" type="checkbox" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][notify_with_blank_message]" value="on" value="<?php echo !empty( $data[ 'notify_with_blank_message' ] ) ? $data[ 'notify_with_blank_message' ] : ''; ?>"/>
                       <label for="blank_message<?php echo $row_hash; ?>"><?php _e( 'Send message notification even if no message is submitted.', ud_get_wp_crm()->domain ); ?></label>
                     </li>
