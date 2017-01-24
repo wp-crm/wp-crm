@@ -42,6 +42,24 @@
     ]
   },
   "extra": {
+    "featureFlags": [
+      {
+        "name": "Google Visualization",
+        "option": "enable_google_visualization",
+        "constant": "WP_CRM_VISUALIZATION",
+        "description": "Layouts for WP Property",
+        "since": "1.1.0",
+        "enabled": false
+      },
+      {
+        "name": "Disable Dashboard Splash Page",
+        "option": "disable_dashboard_splash_page",
+        "constant": "WP_CRM_DISABLE_DASHBOARD_SPLASH",
+        "description": "UD splash disabled.",
+        "since": "1.1.0",
+        "enabled": true
+      }
+    ],
     "splashes": {
       "install": "static/splashes/install.php"
     },

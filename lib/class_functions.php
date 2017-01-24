@@ -857,9 +857,9 @@ class WP_CRM_F {
    * Reference readme.txt to see details of updates.
    *
    * @since 0.1
-   *
+   * @param $old_version
    */
-  function handle_update($old_version) {
+  static public function handle_update($old_version) {
     global $wp_roles;
 
     if (!$wp_roles) {

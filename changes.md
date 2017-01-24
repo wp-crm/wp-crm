@@ -1,3 +1,9 @@
+#### 1.1.0 [wip]
+* Added Feature Flags handler.
+* Moved Google Visualization into [WP_CRM_VISUALIZATION] flag.
+* Added [WP_CRM_DISABLE_DASHBOARD_SPLASH] Feature Flag to disable Splash page.
+* Various PHP notice fixes.
+
 #### 1.0.6
 * Added Bulk actions to Messages.
 * Added new options for WP-Property and Denali Integration. See Help tab.

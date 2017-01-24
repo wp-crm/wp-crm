@@ -42,7 +42,7 @@ class toplevel_page_wp_crm_network {
     <div class="wp_crm_user_actions">
       <ul class="wp_crm_action_list">
         <li class="button wp_crm_export_to_csv"><?php _e('Export to CSV', ud_get_wp_crm()->domain); ?></li>
-      <?php if (WP_CRM_F::get_quantifiable_attributes()) { ?>
+      <?php if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION && WP_CRM_F::get_quantifiable_attributes()) { ?>
         <li class="button wp_crm_visualize_results"><?php _e('Visualize User Data', ud_get_wp_crm()->domain); ?></li>
       <?php } ?>
         <?php do_action('wp_crm_user_actions'); ?>
@@ -92,7 +92,7 @@ class toplevel_page_wp_crm {
     <div class="wp_crm_user_actions">
       <ul class="wp_crm_action_list">
         <li class="button wp_crm_export_to_csv"><?php _e('Export to CSV', ud_get_wp_crm()->domain); ?></li>
-      <?php if (WP_CRM_F::get_quantifiable_attributes()) { ?>
+      <?php if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION && WP_CRM_F::get_quantifiable_attributes()) { ?>
         <li class="button wp_crm_visualize_results"><?php _e('Visualize User Data', ud_get_wp_crm()->domain); ?></li>
       <?php } ?>
         <?php do_action('wp_crm_user_actions'); ?>
