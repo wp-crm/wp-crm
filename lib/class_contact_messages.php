@@ -660,10 +660,10 @@ class class_contact_messages {
 
     if( !is_user_logged_in() ) {
       foreach( $form[ 'fields' ] as $field ) {
-        if( $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ] == 'file_upload' ) {
-          $form[ 'request_method' ] = 'POST';
-          break;
-        }
+        //if( $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ] == 'file_upload' ) {
+        //  $form[ 'request_method' ] = 'POST';
+        //  break;
+        //}
       }
     }
 

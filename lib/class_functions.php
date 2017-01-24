@@ -2248,7 +2248,7 @@ class WP_CRM_F {
             ?>
               <div class="wp_crm_input_wrap" data-random-hash="<?php echo $rand; ?>" >
 
-                <textarea  data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>"><?php echo $value_data['value']; ?></textarea>
+                <textarea data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" placeholder="<?php echo $args['placeholder'] ?>"><?php echo $value_data['value']; ?></textarea>
 
             <?php if ( !empty($attribute['has_options']) ) { ?>
                   <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo !empty($tabindex)?$tabindex:''; ?>  data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
@@ -2358,7 +2358,7 @@ class WP_CRM_F {
 
         case 'textarea': foreach ($values as $rand => $value_data) {
             ?>
-            <textarea data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>"><?php echo $value_data['value']; ?></textarea>
+            <textarea data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" placeholder="<?php echo isset( $args['placeholder'] ) ? $args['placeholder'] : ''; ?>"><?php echo $value_data['value']; ?></textarea>
               <?php if ( !empty($attribute['has_options']) && $attribute['has_options'] ) { ?>
               <select class="input-small" wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?>  data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                 <option></option>
