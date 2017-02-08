@@ -42,7 +42,7 @@ class toplevel_page_wp_crm_network {
     <div class="wp_crm_user_actions">
       <ul class="wp_crm_action_list">
         <li class="button wp_crm_export_to_csv"><?php _e('Export to CSV', ud_get_wp_crm()->domain); ?></li>
-      <?php if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION && WP_CRM_F::get_quantifiable_attributes()) { ?>
+      <?php if (WP_CRM_F::get_quantifiable_attributes()) { ?>
         <li class="button wp_crm_visualize_results"><?php _e('Visualize User Data', ud_get_wp_crm()->domain); ?></li>
       <?php } ?>
         <?php do_action('wp_crm_user_actions'); ?>
@@ -92,7 +92,7 @@ class toplevel_page_wp_crm {
     <div class="wp_crm_user_actions">
       <ul class="wp_crm_action_list">
         <li class="button wp_crm_export_to_csv"><?php _e('Export to CSV', ud_get_wp_crm()->domain); ?></li>
-      <?php if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION && WP_CRM_F::get_quantifiable_attributes()) { ?>
+      <?php if (WP_CRM_F::get_quantifiable_attributes()) { ?>
         <li class="button wp_crm_visualize_results"><?php _e('Visualize User Data', ud_get_wp_crm()->domain); ?></li>
       <?php } ?>
         <?php do_action('wp_crm_user_actions'); ?>
@@ -190,6 +190,19 @@ class crm_page_wp_crm_add_new {
   }
 
   /**
+   *
+   * @global type $wp_crm
+   * @param type $user_object
+   */
+  static function side_send_invoce($user_object) {
+		global  $wpdb,$wpi_settings ;
+		if ( WP_CRM_F::current_user_can_manage_crm() ) { ?>
+				<input type="button" data-gotourl="<?php echo $wpi_settings['links']['manage_invoice'];?>" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" id="crm_new_invioce"/>
+		<?php } else { ?>
+				<input type="button" data-gotourl="#" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" disabled="disabled" />
+		<?php }
+		}
+  /**
    * 
    * @global type $wp_crm
    * @param type $user_object
@@ -260,35 +273,12 @@ class crm_page_wp_crm_add_new {
     <div id="minor-publishing">
       <ul class="wp_crm_advanced_user_actions_wrapper">
         <li class="wp_crm_advanced_user_actions">
-
-          <div class="wp_crm_toggle_advanced_user_actions wp_crm_link wp-crm-toggle-action" data-toggle-target=".wp-crm-other-settings.wp-tab-panel"><?php _e('User Options',ud_get_wp_crm()->domain); ?></div>
-          <div class="wp-crm-other-settings wp-tab-panel hidden">
-
-            <ul>
-              <?php if (WP_CRM_F::current_user_can_manage_crm()) { ?>
-                <li class="wp_crm_edit_roles">
-                  <label for="wp_crm_role"><?php _e('Capability Role:', ud_get_wp_crm()->domain); ?></label>
-                  <select id="wp_crm_role" <?php echo (!empty($own_profile) ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
-                    <option value=""></option>
-                    <?php wp_dropdown_roles(!empty($object['role']['default'][0])?$object['role']['default'][0]:''); ?>
-                  </select>
-                </li>
-              <?php } ?>
-              <li class="wp_crm_capability_bar">
-                <input name="show_admin_bar_front" type="hidden" value="false"  />
-                <input name="show_admin_bar_front" type="checkbox" id="show_admin_bar_front" value="true" <?php checked(_get_admin_bar_pref('front', !empty($profileuser->ID)?$profileuser->ID:'' )); ?> />
-                <label for="show_admin_bar_front"><?php _e('Show Admin Bar when viewing site.',ud_get_wp_crm()->domain); ?> </label>
-              </li>
-            </ul>
-
-          </div>
-
-          <div class="wp_crm_toggle_advanced_user_actions wp_crm_link wp-crm-toggle-action" data-toggle-target=".wp-crm-password-settings.wp-tab-panel"><?php _e('Password Settings',ud_get_wp_crm()->domain); ?></div>
-          <div class="wp-crm-password-settings wp-tab-panel hidden">
+          <div class="wp_crm_toggle_advanced_user_actions wp_crm_link"><?php _e('Toggle Settings',ud_get_wp_crm()->domain); ?></div>
+          <div class="wp_crm_advanced_user_actions wp-tab-panel">
             <?php if (WP_CRM_F::current_user_can_manage_crm()) { ?>
-              <?php if (current_user_can('WP-CRM: Change Passwords')) { ?>
-                <?php _e('New Password:', ud_get_wp_crm()->domain); ?>
-                <ul class="wp_crm_edit_password">
+            <?php if (current_user_can('WP-CRM: Change Passwords')) { ?>
+              <?php _e('Set Password:', ud_get_wp_crm()->domain); ?>
+              <ul class="wp_crm_edit_password">
                 <li>
                   <input type="password" autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_1" name="wp_crm[user_data][user_pass][<?php echo rand(1000, 9999); ?>][value]" />
                   <span class="description"><?php _e('Type in new password twice to change.',ud_get_wp_crm()->domain); ?></span>
@@ -299,20 +289,30 @@ class crm_page_wp_crm_add_new {
                 </li>
               </ul>
               <?php } ?>
-
+              <?php _e('Admin Options:', ud_get_wp_crm()->domain); ?>
+              <ul>
+                <?php if (WP_CRM_F::current_user_can_manage_crm()) { ?>
+                  <li class="wp_crm_edit_roles">
+                    <label for="wp_crm_role"><?php _e('Capability Role:', ud_get_wp_crm()->domain); ?></label>
+                    <select id="wp_crm_role" <?php echo (!empty($own_profile) ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
+                      <option value=""></option>
+                  <?php wp_dropdown_roles(!empty($object['role']['default'][0])?$object['role']['default'][0]:''); ?>
+                    </select>
+                  </li>
+                <?php } ?>
+                <li class="wp_crm_capability_bar">
+                  <input name="show_admin_bar_front" type="hidden" value="false"  />
+                  <input name="show_admin_bar_front" type="checkbox" id="show_admin_bar_front" value="true" <?php checked(_get_admin_bar_pref('front', !empty($profileuser->ID)?$profileuser->ID:'' )); ?> />
+                  <label for="show_admin_bar_front"><?php _e('Show Admin Bar when viewing site.',ud_get_wp_crm()->domain); ?> </label>
+                </li>
+              </ul>
             <?php } ?>
-
-            <?php if( defined('WP_CRM_ENABLE_USER_COLOR_SCHEMES') && WP_CRM_ENABLE_USER_COLOR_SCHEMES ) { ?>
-              <?php if ( count($_wp_admin_css_colors) > 1 && has_action('admin_color_scheme_picker') && WP_CRM_F::current_user_can_manage_crm() ) { ?>
-                <?php _e('Color Scheme:', ud_get_wp_crm()->domain); do_action('admin_color_scheme_picker'); ?>
-              <?php } ?>
+            <?php if ( count($_wp_admin_css_colors) > 1 && has_action('admin_color_scheme_picker') && WP_CRM_F::current_user_can_manage_crm() ) { ?>
+            <?php _e('Color Scheme:', ud_get_wp_crm()->domain); do_action('admin_color_scheme_picker'); ?>
             <?php } ?>
-
-          </div>
-
-        </li>
-      </ul>
-
+            </div>
+          </li>
+        </ul>
         <?php if ( ( !empty($wp_filter['show_user_profile']) && count( $wp_filter['show_user_profile'] ) ) || ( !empty($wp_filter['profile_personal_options']) && count( $wp_filter['profile_personal_options'] ) ) ) { ?>
           <div class="wp_crm_user_api_actions">
         <?php
