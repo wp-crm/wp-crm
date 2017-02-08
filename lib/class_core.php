@@ -26,12 +26,10 @@ class WP_CRM_Core {
    * @uses $wp_crm WP-CRM configuration array
    *
    */
-  function WP_CRM_Core() {
+  function __construct() {
     global $wpdb, $wp_crm;
 
-
     do_action( 'wp_crm_pre_load' );
-
 
     if(WP_CRM_F::current_user_can_manage_crm()){
       add_filter( 'wp_crm_settings_save', array( 'WP_CRM_F', 'wp_crm_settings_save_email_required' ), 10, 2 );
@@ -39,6 +37,7 @@ class WP_CRM_Core {
       //* Process settings updates */
       WP_CRM_F::settings_action();
     }
+
     // Load third-party plugin load_plugin_compatibility */
     WP_CRM_F::load_plugin_compatibility();
 
@@ -59,6 +58,17 @@ class WP_CRM_Core {
       $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
     }
 
+  }
+
+  /**
+   * Backwards Compat.
+   *
+   * @todo Verify this is proper way of doing this or even if it matters . -potanin@UD
+   *
+   * @return WP_CRM_Core
+   */
+  function WP_CRM_Core() {
+    return new WP_CRM_Core;
   }
 
   /**
@@ -416,8 +426,10 @@ class WP_CRM_Core {
     $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Predefined Values', ud_get_wp_crm()->domain ) . '</h3>';
     $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'If you want your attributes to have predefined values, such as in a dropdown, or a checkbox list, enter a comma separated list of values you want to use.  You can also get more advanced by using taxonomies - to load all values from a taxonomy, simply type line: <b>taxonomy:taxonomy_name</b>.', ud_get_wp_crm()->domain ) . '</p>';
 
-    $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Visualize User Data', ud_get_wp_crm()->domain ) . '</h3>';
-    $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'You will see graphics for all attributes from your data tab which have Dropdown or Checkbox Data Input and filled at least in 2 users profiles.', ud_get_wp_crm()->domain ) . '</p>';
+    if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION ) {
+      $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Visualize User Data', ud_get_wp_crm()->domain ) . '</h3>';
+      $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'You will see graphics for all attributes from your data tab which have Dropdown or Checkbox Data Input and filled at least in 2 users profiles.', ud_get_wp_crm()->domain ) . '</p>';
+    }
 
     $contextual_help[ 'Shortcode Forms' ][ ] = '<h3>' . __( 'Shortcode Forms', ud_get_wp_crm()->domain ) . '</h3>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p>' . __( 'Shortcode Forms, which can be used for contact forms, or profile editing, are setup here, and then inserted using a shortcode into a page, or a widget. The available shortcode form attributes are taken from the WP-CRM attributes, and when filled out by a user, are mapped over directly into their profile. User profiles are created based on the e-mail address, if one does not already exist, for keeping track of users. ', ud_get_wp_crm()->domain ) . '</p>';
@@ -702,7 +714,7 @@ class WP_CRM_Core {
 
     do_action( 'wp_crm_network_admin_menu' );
     //** Replace default user management screen if set */
-    $position = ( ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && current_user_can( 'manage_options' ) ) ? '70' : '33' );
+    $position = 11;
 
     $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
     $wp_crm[ 'system' ][ 'pages' ][ 'core' ] .= "_network"; // Unless metabox will not work;
@@ -825,9 +837,13 @@ class WP_CRM_Core {
         wp_enqueue_script( 'post' );
         wp_enqueue_script( 'postbox' );
         wp_enqueue_script( 'wp-crm-data-tables' );
-        wp_enqueue_script( 'google-jsapi' );
+
+        if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION ) {
+          wp_enqueue_script( 'wp-crm-google-visualization', ud_get_wp_crm()->path( 'static/scripts/wp-crm-visualization.js', 'url' ), array( 'google-jsapi' ), null, true );
+        }
+
         wp_enqueue_style( 'wp-crm-data-tables' );
-        break;
+      break;
 
       case 'crm_page_wp_crm_add_new':
         wp_enqueue_script( 'post' );
@@ -836,17 +852,19 @@ class WP_CRM_Core {
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_script( 'thickbox' );
         wp_enqueue_style( 'thickbox' );
-        break;
+      break;
 
       case 'crm_page_wp_crm_settings':
         wp_enqueue_script( 'jquery-ui-widget' );
         wp_enqueue_script( 'jquery-ui-sortable' );
         wp_enqueue_script( 'jquery-ui-mouse' );
-        wp_enqueue_script( 'ace', ud_get_wp_crm()->path( 'lib/third-party/ace/ace.js', 'url' ) );
 
-        break;
-      default:
-        break;
+        if( defined( 'WP_CRM_ENABLE_ACE_EDITOR' ) && WP_CRM_ENABLE_ACE_EDITOR ) {
+          wp_enqueue_script( 'ace', ud_get_wp_crm()->path( 'lib/third-party/ace/ace.js', 'url' ) );
+        }
+
+      break;
+
     }
 
     //** Include on all pages */
@@ -936,7 +954,7 @@ class WP_CRM_Core {
   /**
    * WP-CRM Contextual Help
    *
-   * @param type $args
+   * @param array|type $args
    *
    * @author korotkov@UD
    */

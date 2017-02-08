@@ -20,6 +20,7 @@ global $wp_crm;
 $wp_crm['version'] = '0.1';
 
 $wp_crm['configuration'] = array(
+    'user_level' => 'administrator',
     'default_user_capability' => 'prospect',
     'default_user_capability_permissions_base' => 'subscriber',
     'create_individual_pages_for_crm_capabilities' => 'true'
@@ -29,6 +30,7 @@ $wp_crm['configuration']['mail'] = array(
     'sender_name' => get_bloginfo(),
     'send_email' => get_bloginfo('admin_email')
 );
+
 $wp_crm['configuration']['input_types'] = array(
     'text' => __('Single Line Text', ud_get_wp_crm()->domain),
     'checkbox' => __("Checkbox", ud_get_wp_crm()->domain),

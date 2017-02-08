@@ -62,7 +62,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
    * @todo Get list of displayed columns from options
    *
    */
-  function CRM_User_List_Table($args = '') {
+  function __construct($args = '') {
     global $wp_crm;
 
     $args = wp_parse_args( $args, array(

@@ -42,6 +42,7 @@ class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
         'UsabilityDynamics\\UI\\Utility' => __DIR__ . '/..' . '/usabilitydynamics/lib-ui/lib/class-utility.php',
         'UsabilityDynamics\\Utility' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-utility.php',
         'UsabilityDynamics\\Utility\\Guid_Fix' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-guid-fix.php',
+        'UsabilityDynamics\\WPC\\API' => __DIR__ . '/../..' . '/lib/classes/class-api.php',
         'UsabilityDynamics\\WPC\\WPC_Bootstrap' => __DIR__ . '/../..' . '/lib/classes/class-WPC_Bootstrap.php',
         'UsabilityDynamics\\WP\\Bootstrap' => __DIR__ . '/..' . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php',
         'UsabilityDynamics\\WP\\Bootstrap_Plugin' => __DIR__ . '/..' . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap-plugin.php',
