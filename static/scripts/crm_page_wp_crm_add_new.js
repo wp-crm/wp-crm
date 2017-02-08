@@ -193,6 +193,13 @@ jQuery( document ).ready( function() {
     wp_crm_update_activity_stream();
   });
 
+  /**
+   * Execute redirection to invoice page
+   *
+   * @author Sudhirpur123@UD
+   */
 
-
+	jQuery("#crm_new_invioce").click(function() {
+			window.location.href=jQuery(this).data('gotourl');
+    });
 });
