@@ -2558,6 +2558,8 @@ class WP_CRM_F {
         $wp_crm['configuration']['overview_table_options']['main_view'] = array('display_name', 'user_email');
         $wp_crm['configuration']['default_sender_email'] = "CRM <$assumed_email>";
         $wp_crm['configuration']['primary_user_attribute'] = 'display_name';
+        $wp_crm['configuration']['recaptcha_site_key'] = '';
+        $wp_crm['configuration']['recaptcha_secret_key'] = '';
 
         $wp_crm['wp_crm_contact_system_data']['example_form']['title'] = __('Example Shortcode Form', ud_get_wp_crm()->domain);
         $wp_crm['wp_crm_contact_system_data']['example_form']['full_shortcode'] = '[wp_crm_form form=example_contact_form]';
@@ -3533,6 +3535,21 @@ class WP_CRM_F {
       }
     }
     return $max_level;
+  }
+
+  static function reCaptchaVerify($gRecaptchaResponse){
+    global $wp_crm;
+    if(!$secret = $wp_crm['configuration']['recaptcha_secret_key'])
+      return false;
+    $cpost = new ReCaptcha\RequestMethod\WpRecaptchaPost();
+    $recaptcha = new \ReCaptcha\ReCaptcha($secret, $cpost);
+    // Make the call to verify the response and also pass the user's IP address
+    $resp = $recaptcha->verify($gRecaptchaResponse, $_SERVER['REMOTE_ADDR']);
+    if ($resp->isSuccess()) {
+      return true;
+    } else {
+      return $resp->getErrorCodes();
+    }
   }
 
 

@@ -93,6 +93,7 @@ class WP_CRM_Core {
   
 
     wp_register_script( 'google-jsapi', 'https://www.google.com/jsapi' );
+    wp_register_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js' );
     wp_register_script( 'wp-crm-jquery-cookie', ud_get_wp_crm()->path( 'lib/third-party/jquery.smookie.js', 'url' ), array( 'jquery' ), '1.7.3' );
     wp_register_script( 'swfobject', ud_get_wp_crm()->path( 'lib/third-party/swfobject.js', 'url' ), array( 'jquery' ) );
     wp_register_script( 'wp-crm-data-tables', ud_get_wp_crm()->path( 'lib/third-party/dataTables/jquery.dataTables.min.js', 'url' ), array( 'jquery' ) );

@@ -658,17 +658,19 @@ class class_contact_messages {
       return false;
     }
 
-    if( !is_user_logged_in() ) {
-      foreach( $form[ 'fields' ] as $field ) {
-        //if( $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ] == 'file_upload' ) {
-        //  $form[ 'request_method' ] = 'POST';
-        //  break;
-        //}
+    if(!is_user_logged_in()){
+      foreach ($form[ 'fields' ] as $field) {
+        if($field == 'recaptcha') continue;
+        if($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ]['input_type'] == 'file_upload'){
+          $form[ 'request_method' ] = 'POST';
+          break;
+        }
       }
     }
 
     WP_CRM_F::force_script_inclusion( 'jquery-ui-datepicker' );
     WP_CRM_F::force_script_inclusion( 'wp_crm_profile_editor' );
+    WP_CRM_F::force_script_inclusion( 'recaptcha' );
 
     $wp_crm_nonce = md5( defined( 'NONCE_KEY' ) ? NONCE_KEY : '' . $form_slug . rand( 10000, 99999 ) );
 
@@ -716,7 +718,20 @@ class class_contact_messages {
 
     foreach( $_attribute_fields as $field => $this_attribute ) {
 
-      //$this_attribute = $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ];
+      if($field == 'recaptcha'){
+        if(!empty($wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]) && $site_key = $wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]):?>
+          <li class="wp_crm_form_element wp_crm_required_field wp_crm_recaptcha_container">
+            <div class="control-group wp_crm_recaptcha_div">
+              <label class="control-label wp_crm_input_label">&nbsp;</label>
+              <div class='g-recaptcha' data-sitekey='<?php echo $site_key;?>'></div>
+              <span class="help-inline wp_crm_error_messages"></span>
+            </div>
+          </li>
+        <?php endif;
+        continue;
+      }
+
+      //$this_attribute                   = $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ];
       $this_attribute[ 'autocomplete' ] = 'false';
 
       if( !empty( $user_data ) && !empty( $user_data[ $field ] ) && $user_data[ $field ] ) {
@@ -862,6 +877,19 @@ class class_contact_messages {
           if( !t ) {
             validation_error = true;
           }
+        }
+        <?php } ?>
+
+        <?php if(in_array('recaptcha', $form[ 'fields' ])) { ?>
+        /** Custom validation */
+        if( !validation_error ) {
+          if(jQuery('#g-recaptcha-response').length){
+            if( !jQuery('#g-recaptcha-response').val() ) {
+              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages').html("Are you human?").addClass('error');
+              validation_error = true;
+            }
+          }
+          
         }
         <?php } ?>
 
@@ -1068,7 +1096,8 @@ class class_contact_messages {
     if( !empty( $_REQUEST[ 'comment' ] ) ||
       !empty( $_REQUEST[ 'email' ] ) ||
       !empty( $_REQUEST[ 'name' ] ) ||
-      !empty( $_REQUEST[ 'url' ] )
+      !empty( $_REQUEST[ 'url' ] ) ||
+      !WP_CRM_F::reCaptchaVerify($_REQUEST[ 'g-recaptcha-response' ])
     ) {
       die( json_encode( array( 'success' => 'false', 'message' => __( 'If you see this message, WP-CRM thought you were a robot.  Please contact admin if you do not think are you one.', ud_get_wp_crm()->domain ) ) ) );
     }
@@ -1448,7 +1477,6 @@ class class_contact_messages {
                           <span class="wp-crm-field-edit">Edit</span>
                         </li>
                       <?php }; ?>
-
                     </ul>
                   <?php endif; ?>
 
