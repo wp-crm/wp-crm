@@ -716,7 +716,7 @@ class class_contact_messages {
 
     $_attribute_fields = WP_CRM_F::get_attribute_array_for_form( $form, array( 'show_all' => false ) );
      //echo ( '<!-- $form ' . print_r( $form, true ) . '-->' );
-     echo ( '<!-- $_attribute_fields' . print_r( $_attribute_fields, true ) . '-->' );
+     //echo ( '<!-- $_attribute_fields' . print_r( $_attribute_fields, true ) . '-->' );
 
     foreach( $_attribute_fields as $field => $this_attribute ) {
 
