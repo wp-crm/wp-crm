@@ -325,6 +325,25 @@ jQuery( document ).ready( function($) {
 
   });
 
+function crm_recaptcha_onload(argument) {
+  jQuery('.crm-g-recaptcha').each(function(argument) {
+    var container = jQuery(this);
+    var formID = container.parents('form').attr('id');
+    var callback = formID + '_recaptcha_cb';
+    var expiredCallback = formID + '_expired_recaptcha_cb';
+    var parameters = {
+      sitekey: container.data('sitekey'),
+      tabindex: container.data('tabindex'),
+      callback: callback,
+      'expired-callback': expiredCallback,
+    };
+    window[formID + '_recaptcha'] = grecaptcha.render(
+      this,
+      parameters
+    );
+
+  });
+}
 
 function wp_crm_create_slug( slug ) {
 

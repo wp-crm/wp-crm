@@ -1,3 +1,15 @@
+function crm_recaptcha_onload(argument) {
+    jQuery(".crm-g-recaptcha").each(function(argument) {
+        var container = jQuery(this), formID = container.parents("form").attr("id"), callback = formID + "_recaptcha_cb", expiredCallback = formID + "_expired_recaptcha_cb", parameters = {
+            sitekey: container.data("sitekey"),
+            tabindex: container.data("tabindex"),
+            callback: callback,
+            "expired-callback": expiredCallback
+        };
+        window[formID + "_recaptcha"] = grecaptcha.render(this, parameters);
+    });
+}
+
 function wp_crm_create_slug(slug) {
     return slug = slug.replace(/[^a-zA-Z0-9_\s]/g, ""), slug = slug.toLowerCase(), slug = slug.replace(/\s/g, "_");
 }
