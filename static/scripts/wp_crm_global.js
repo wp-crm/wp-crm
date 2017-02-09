@@ -129,18 +129,20 @@ var wp_crm_ui = {}, wpp_crm_form_stop = !1;
 
 jQuery(document).ready(function($) {
     if ("undefined" == typeof wp_crm_dev_mode) var wp_crm_dev_mode = !1;
-    var media_uploader = null;
-    media_uploader = wp.media({
-        title: "Select File",
-        button: {
-            text: "Select File"
-        },
-        multiple: !1
-    }), jQuery(".wpc_file_upload").on("click", function() {
+    jQuery(".wpc_file_upload").on("click", function() {
         var _this = jQuery(this);
-        event.preventDefault(), media_uploader.on("select", function() {
+        event.preventDefault();
+        var media_uploader = null;
+        media_uploader = new wp.media({
+            title: "Select File",
+            button: {
+                text: "Select File"
+            },
+            multiple: !1
+        }), media_uploader.on("select", function() {
             var data = media_uploader.state().get("selection").first().toJSON();
-            _this.siblings("input").val(data.url), media_uploader.off("insert");
+            _this.siblings("input").val(data.url), media_uploader.off("insert"), media_uploader.off("select"), 
+            delete media_uploader;
         }), media_uploader.open();
     }), jQuery("#wp_crm_clear_cache").on("click", function(e) {
         e.preventDefault();
