@@ -215,6 +215,9 @@ class crm_page_wp_crm_add_new {
       <?php if (!empty($wp_crm['data_structure']) && is_array($wp_crm['data_structure']['attributes'])) : ?>
         <?php foreach (apply_filters('wp_crm_primary_information_attributes', $wp_crm['data_structure']['attributes']) as $slug => $attribute):
 
+                if($attribute['input_type'] == 'recaptcha'){
+                  continue;
+                }
                 /* we already have an Actions box to change user pass, so we can just skip it here */
                 if ($slug=='user_pass') continue;
 

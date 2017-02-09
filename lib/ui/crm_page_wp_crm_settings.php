@@ -245,6 +245,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <div class="description"><?php printf(__('', ud_get_wp_crm()->domain)); ?></div>
             </li>
           </ul>
+          <p>See more details in <a href="#" class="open-help-tab" aria-controls="contextual-help-wrap">help tab</a>.</p>
         </td>
       </tr>
 
