@@ -39,6 +39,7 @@ $wp_crm['configuration']['input_types'] = array(
     'password' => __("Password", ud_get_wp_crm()->domain),
     'date' => __("Date Picker", ud_get_wp_crm()->domain),
     'file_upload' => __("File Upload", ud_get_wp_crm()->domain),
+    'recaptcha' => __("Google reCAPTCHA", ud_get_wp_crm()->domain),
 );
 
 /**

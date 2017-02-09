@@ -661,7 +661,9 @@ class class_contact_messages {
     if(!is_user_logged_in()){
       foreach ($form[ 'fields' ] as $field) {
         if($field == 'recaptcha') continue;
-        if($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ]['input_type'] == 'file_upload'){
+
+        // Override request method for file upload. File upload need request method POST.
+        if( isset($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ]) && $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ] == 'file_upload' ) {
           $form[ 'request_method' ] = 'POST';
           break;
         }
@@ -722,16 +724,18 @@ class class_contact_messages {
         if(!empty($wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]) && $site_key = $wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]):?>
           <li class="wp_crm_form_element wp_crm_required_field wp_crm_recaptcha_container">
             <div class="control-group wp_crm_recaptcha_div">
-              <label class="control-label wp_crm_input_label">&nbsp;</label>
+              <label class="control-label wp_crm_input_label"><?php echo nl2br( $this_attribute[ 'description' ] ); ?></label>
               <div class='g-recaptcha' data-sitekey='<?php echo $site_key;?>'></div>
               <span class="help-inline wp_crm_error_messages"></span>
             </div>
           </li>
-        <?php endif;
+        <?php 
+          $tabindex++;
+        endif;
         continue;
       }
 
-      //$this_attribute                   = $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ];
+      //$this_attribute = $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ];
       $this_attribute[ 'autocomplete' ] = 'false';
 
       if( !empty( $user_data ) && !empty( $user_data[ $field ] ) && $user_data[ $field ] ) {
@@ -869,6 +873,8 @@ class class_contact_messages {
         jQuery( ".control-group", form ).removeClass( form ).removeClass( "error" );
 
         jQuery( "span.wp_crm_error_messages", form ).removeClass( form ).text( "" );
+        jQuery( form_response_field ).text( "" );
+
 
         <?php if(isset( $form_settings[ 'js_validation_function' ] )) { ?>
         /** Custom validation */
@@ -885,8 +891,11 @@ class class_contact_messages {
         if( !validation_error ) {
           if(jQuery('#g-recaptcha-response').length){
             if( !jQuery('#g-recaptcha-response').val() ) {
-              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages').html("Are you human?").addClass('error');
+              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages').html('<?php _e("Are you human?");?>').addClass('error');
               validation_error = true;
+            }
+            else{
+              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages').html('').removeClass('error');
             }
           }
           
