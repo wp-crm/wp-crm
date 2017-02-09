@@ -674,7 +674,7 @@ class class_contact_messages {
     WP_CRM_F::force_script_inclusion( 'wp_crm_profile_editor' );
     WP_CRM_F::force_script_inclusion( 'recaptcha' );
 
-    $wp_crm_nonce = md5( defined( 'NONCE_KEY' ) ? NONCE_KEY : '' . $form_slug . rand( 10000, 99999 ) );
+    $wp_crm_nonce = md5( (defined( 'NONCE_KEY' ) ? NONCE_KEY : '') . $form_slug . rand( 10000, 99999 ) );
 
     $wpc_form_id = 'wpc_' . $wp_crm_nonce . '_form';
 
@@ -1106,7 +1106,7 @@ class class_contact_messages {
       !empty( $_REQUEST[ 'email' ] ) ||
       !empty( $_REQUEST[ 'name' ] ) ||
       !empty( $_REQUEST[ 'url' ] ) ||
-      !WP_CRM_F::reCaptchaVerify($_REQUEST[ 'g-recaptcha-response' ])
+      (isset($_REQUEST[ 'g-recaptcha-response' ]) && !WP_CRM_F::reCaptchaVerify($_REQUEST[ 'g-recaptcha-response' ]))
     ) {
       die( json_encode( array( 'success' => 'false', 'message' => __( 'If you see this message, WP-CRM thought you were a robot.  Please contact admin if you do not think are you one.', ud_get_wp_crm()->domain ) ) ) );
     }
