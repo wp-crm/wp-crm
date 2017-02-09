@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ReCaptcha\\RequestMethod\\WpRecaptchaPost' => $baseDir . '/lib/classes/class-wp-recaptcha-post.php',
     'UsabilityDynamics\\Job' => $vendorDir . '/usabilitydynamics/lib-utility/lib/class-job.php',
     'UsabilityDynamics\\Loader' => $vendorDir . '/usabilitydynamics/lib-utility/lib/class-loader.php',
     'UsabilityDynamics\\Structure' => $vendorDir . '/usabilitydynamics/lib-utility/lib/class-structure.php',

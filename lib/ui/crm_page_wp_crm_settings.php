@@ -230,24 +230,6 @@ if(empty($wp_crm['data_structure']['attributes'])) {
         </td>
       </tr>
 
-      <tr>
-        <th><?php _e('reCAPTCHA keys',ud_get_wp_crm()->domain); ?></th>
-        <td>
-          <ul>
-            <li>
-            <input id="wp_crm_recaptcha_site_key" class="regular-text" type="text" value="<?php echo !empty($wp_crm['configuration']['recaptcha_site_key'])? $wp_crm['configuration']['recaptcha_site_key']: ""; ?>" name="wp_crm[configuration][recaptcha_site_key]" />
-            <label for="wp_crm_recaptcha_site_key"><?php _e('Site key', ud_get_wp_crm()->domain); ?></label>
-            <div class="description"><?php printf(__('', ud_get_wp_crm()->domain)); ?></div>
-            </li>
-            <li>
-            <input id="wp_crm_recaptcha_secret_key" class="regular-text" type="text" value="<?php echo !empty($wp_crm['configuration']['recaptcha_secret_key'])? $wp_crm['configuration']['recaptcha_secret_key']: ""; ?>" name="wp_crm[configuration][recaptcha_secret_key]" />
-            <label for="wp_crm_recaptcha_secret_key"><?php _e('Secret key', ud_get_wp_crm()->domain); ?></label>
-            <div class="description"><?php printf(__('', ud_get_wp_crm()->domain)); ?></div>
-            </li>
-          </ul>
-        </td>
-      </tr>
-
       <?php do_action('wp_crm::settings_page::main_tab_bottom'); ?>
 
     </table>
