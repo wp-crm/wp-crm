@@ -251,11 +251,11 @@ namespace UsabilityDynamics\WPC {
 
           if( !isset( $_parsed ) || !is_object( $_parsed ) ) {
 
-            if( !file_exists( path_join( dirname( __DIR__, 2 ), 'composer.json' ) ) ) {
+            if( !file_exists( path_join( dirname(dirname( __DIR__)), 'composer.json' ) ) ) {
               throw new Exception( "Missing composer.json file." );
             }
 
-            $_raw = file_get_contents( path_join( dirname( __DIR__, 2 ), 'composer.json' ) );
+            $_raw = file_get_contents( path_join( dirname(dirname( __DIR__)), 'composer.json' ) );
 
             $_parsed = json_decode( $_raw );
 
