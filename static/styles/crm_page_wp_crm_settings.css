@@ -1,4 +1,30 @@
 @import url("wp_crm_global.css");
+
+.wp-crm-advanced-field {
+  display: none;
+}
+.wp-crm-field-edit {
+  opacity:0;
+}
+
+input.wp-crm-field[readonly] {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: inherit;
+  -webkit-box-shadow: inherit;
+}
+
+input.wp-crm-field[readonly]:hover {
+  background-color: #f9ffe2;
+  border-color: transparent;
+  box-shadow: inherit;
+  -webkit-box-shadow: inherit;
+}
+
+.wp-crm-editable-item:hover .wp-crm-field-edit {
+  opacity: 1;
+}
+
 span.wp_crm_show_advanced {
   margin-left: 29px;
 }
@@ -157,26 +183,28 @@ ul.wp_crm_notification_main_configuration .wp_crm_checkbox_on_left label {
   border-top-right-radius: 5px;
   border-width: 1px 1px 0;
   float: left;
-  height: 25px;
+  height: 31px;
   line-height: 23px;
   margin: 0 10px -1px 0;
   overflow: hidden;
-  padding: 3px;
+  padding: 0px;
   position: relative;
 }
 #wp_crm_settings_tabs ul.tabs li a {
   color: #000;
   display: block;
   outline: none;
-  padding: 0 10px;
+  padding: 0px 14px;
   text-decoration: none;
+  line-height: 32px;
 }
+
 #wp_crm_settings_tabs ul.tabs li a:hover {
   color: #9D611D;
 }
 #wp_crm_settings_tabs ul.tabs li.ui-tabs-selected,
 #wp_crm_settings_tabs ul.tabs li.ui-state-active {
-  height: 26px;
+  height: 32px;
   background: none repeat scroll 0 0 #FFFFFF;
   border-bottom: 1px solid #FFFFFF;
 }

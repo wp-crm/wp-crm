@@ -4,7 +4,7 @@
  * Plugin URI: https://www.usabilitydynamics.com/product/wp-crm/
  * Description: This plugin is intended to significantly improve user management, easily create contact forms, and keep track of incoming shortcode form messages.
  * Author: Usability Dynamics, Inc.
- * Version: 1.0.6
+ * Version: 1.1.0
  * Requires at least: 4.0
  * Tested up to: 4.7
  * Text Domain: wp-crm
@@ -20,7 +20,7 @@
 
 /** Plugin Version */
 if ( !defined( 'WP_CRM_Version' ) ) {
-  define('WP_CRM_Version', '1.0.6');
+  define('WP_CRM_Version', '1.1.0');
 }
 
 /** Path for Includes */
@@ -39,15 +39,22 @@ if( !function_exists( 'ud_get_wp_crm' ) ) {
    *
    * @author Usability Dynamics, Inc.
    * @since 1.0.0
+   * @param bool $key
+   * @param null $default
+   * @return
    */
   function ud_get_wp_crm( $key = false, $default = null ) {
+
+    // Create wp-crm instance.
     $instance = \UsabilityDynamics\WPC\WPC_Bootstrap::get_instance();
+
     return $key ? $instance->get( $key, $default ) : $instance;
   }
 
 }
 
 if( !function_exists( 'ud_check_wp_crm' ) ) {
+
   /**
    * Determines if plugin can be initialized.
    *
@@ -56,6 +63,7 @@ if( !function_exists( 'ud_check_wp_crm' ) ) {
    */
   function ud_check_wp_crm() {
     global $_ud_wp_crm_error;
+
     try {
       //** Be sure composer.json exists */
       $file = dirname( __FILE__ ) . '/composer.json';
@@ -82,10 +90,15 @@ if( !function_exists( 'ud_check_wp_crm' ) ) {
       if( !class_exists( '\UsabilityDynamics\WPC\WPC_Bootstrap' ) ) {
         throw new Exception( __( 'Distributive is broken. Plugin loader is not available. Try to remove and upload plugin again.', 'wp-crm' ) );
       }
+
+      // Invoke feature flags.
+      UsabilityDynamics\WPC\WPC_Bootstrap::parse_feature_flags( $data, get_option( 'wp_crm_flags', array() ) );
+
     } catch( Exception $e ) {
       $_ud_wp_crm_error = $e->getMessage();
       return false;
     }
+
     return true;
   }
 
@@ -109,6 +122,15 @@ if( !function_exists( 'ud_my_wp_plugin_message' ) ) {
 }
 
 if( ud_check_wp_crm() ) {
+
+
+  // @todo Move into a more approprivate place.
+  if( defined( 'WP_CRM_DISABLE_DASHBOARD_SPLASH' ) && WP_CRM_DISABLE_DASHBOARD_SPLASH ) {
+    add_filter( 'transient_ud_splash_dashboard', '__return_false' );
+    add_filter( 'transient_ud_need_splash', '__return_false' );
+    add_filter( 'pre_option_dismiss_wp-crm_1_1_0_notice', '__return_true' );
+  }
+
   //** Initialize. */
   ud_get_wp_crm();
 }

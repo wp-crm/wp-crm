@@ -353,8 +353,10 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             </ul>
           </td>
           <td>
-            <textarea class="html-editor" id="editor_notification_<?php echo $notification_slug; ?>_text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][message]"/><?php echo $data['message']; ?></textarea>
+            <textarea class="html-editor" id="editor_notification_<?php echo $notification_slug; ?>_text" name="wp_crm[notifications][<?php echo $notification_slug; ?>][message]"><?php echo $data['message']; ?></textarea>
             <div id="editor_notification_<?php echo $notification_slug; ?>"></div>
+
+            <?php if( defined( 'WP_CRM_ENABLE_ACE_EDITOR' ) && WP_CRM_ENABLE_ACE_EDITOR ) { ?>
             <script>
               var editor_notification_<?php echo $notification_slug; ?> = ace.edit("editor_notification_<?php echo $notification_slug; ?>");
               var textarea_<?php echo $notification_slug; ?> = jQuery('#editor_notification_<?php echo $notification_slug; ?>_text').hide();
@@ -363,6 +365,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
               editor_notification_<?php echo $notification_slug; ?>.getSession().on('change', function(){
                 textarea_<?php echo $notification_slug; ?>.val(editor_notification_<?php echo $notification_slug; ?>.getSession().getValue());
               });
+              <?php } ?>
             </script>
           </td>
           <td class="wp_crm_settings_col">
@@ -493,10 +496,10 @@ if(empty($wp_crm['data_structure']['attributes'])) {
           </ul>
           </td>
           <td>
-              <select name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][input_type]">
-                <?php foreach($wp_crm['configuration']['input_types'] as $this_input_type_slug => $this_input_type_label): ?>
-                <option value="<?php echo $this_input_type_slug; ?>" <?php selected($wp_crm['data_structure']['attributes'][$slug]['input_type'] == $this_input_type_slug); ?>><?php echo $this_input_type_label; ?></option>
-                <?php endforeach; ?>
+              <select name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][input_type]" data-slug="<?php echo $slug; ?>" data-input-type="<?php echo $wp_crm['data_structure']['attributes'][$slug]['input_type']; ?>" >
+                <?php foreach($wp_crm['configuration']['input_types'] as $this_input_type_slug => $this_input_type_label) { ?>
+                <option data-input-type-label="<?php echo $this_input_type_label; ?>" data-input-type-slug="<?php echo $this_input_type_slug; ?>"  value="<?php echo $this_input_type_slug; ?>" <?php selected( isset( $wp_crm['data_structure']['attributes'][$slug]['input_type'] ) ? $wp_crm['data_structure']['attributes'][$slug]['input_type'] : 'text', $this_input_type_slug ); ?>><?php echo $this_input_type_label; ?></option>
+                <?php }; ?>
             </select>
           </td>
 
@@ -618,7 +621,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
       <div class="wp_crm_settings_block">
         <?php _e('Lookup a user object by its ID.',ud_get_wp_crm()->domain) ?>
-        <input type="input" value="<?php echo get_current_user_id(); ?>" id="wp_crm_user_id">
+        <input type="text" value="<?php echo get_current_user_id(); ?>" id="wp_crm_user_id">
         <input type="button" value="<?php _e('Load User',ud_get_wp_crm()->domain) ?>" id="wp_crm_show_user_object">
         <span class="wp_crm_link hidden"><?php _e('Cancel',ud_get_wp_crm()->domain) ?></span>
         <pre  class="wp_crm_class_pre hidden"></pre>
@@ -632,7 +635,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
       </div>
 
       <div class="wp_crm_settings_block">
-        <?php _e('Generate ',ud_get_wp_crm()->domain) ?> <input type="input" value="5" id="wp_crm_fake_users"> <?php _e('fake users. ',ud_get_wp_crm()->domain) ?>
+        <?php _e('Generate ',ud_get_wp_crm()->domain) ?> <input type="text" value="5" id="wp_crm_fake_users"> <?php _e('fake users. ',ud_get_wp_crm()->domain) ?>
         <input type="button" value="<?php _e('Generate',ud_get_wp_crm()->domain) ?>" id="wp_crm_generate_fake_users">
         <a href="#" id="wp_crm_delete_fake_users"><?php _e('Delete All Fake Users',ud_get_wp_crm()->domain) ?></a>
        <pre  class="wp_crm_class_pre hidden"></pre>

@@ -1,12 +1,5 @@
 var wp_crm_quick_reports = [];
 
-google.load("visualization", "1", {packages:["corechart"]});
-
-jQuery(document).bind('wp_crm_user_results', function(data) {
-
-});
-
-
 jQuery(document).ready(function () {
 
   jQuery('#side-sortables').removeClass('empty-container');
@@ -70,26 +63,6 @@ jQuery(document).ready(function () {
     wp_list_table_rebrand_rows();
 
   });
-
-  jQuery(".wp_crm_visualize_results").click(function() {
-
-    var filters = jQuery('#wp-crm-filter').serialize()
-
-    jQuery.ajax({
-      url: ajaxurl,
-      context: document.body,
-      data: {
-        action : 'wp_crm_visualize_results',
-        filters: filters
-      },
-      success: function(result){
-          jQuery('.wp_crm_ajax_result').html(result);
-          jQuery('.wp_crm_ajax_result').show("slide", { direction: "down" }, 1000)
-      }
-    });
-
-  });
-
 
   jQuery(".wp_crm_export_to_csv").click(function() {
 
