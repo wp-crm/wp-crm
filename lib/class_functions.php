@@ -3407,6 +3407,10 @@ class WP_CRM_F {
           <?php
           foreach ($metabox['args']['fields'] as $slug => $attribute):
             $row_classes = array();
+
+            if($attribute['input_type'] == 'recaptcha'){
+              continue;
+            }
             // To avoid undefined warning.
             $post[$slug] = isset($post[$slug])?$post[$slug]:'';
             $row_classes[] = (@$attribute['has_options'] ? 'wp_crm_has_options' : 'wp_crm_no_options');

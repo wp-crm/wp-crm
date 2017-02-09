@@ -10,7 +10,7 @@
 var wp_crm_ui = {};
 var wpp_crm_form_stop = false;
 
-jQuery( document ).ready( function() {
+jQuery( document ).ready( function($) {
 
   if( typeof wp_crm_dev_mode == 'undefined' ) {
     var wp_crm_dev_mode = false;
@@ -311,6 +311,14 @@ jQuery( document ).ready( function() {
           jQuery('.wpp_crm_filter_show', parent).html(wpc.strings.filter_hide);
         }
       });
+    });
+
+    jQuery('.open-help-tab').on('click', function(event){
+      event.preventDefault();
+      var panel = jQuery( '#' + jQuery( this ).attr( 'aria-controls' ) );
+      var button = jQuery( '#screen-meta-links' ).find( '.show-settings' );
+      screenMeta.open( panel, button );
+      return false;
     });
 
   });

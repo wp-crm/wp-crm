@@ -724,7 +724,7 @@ class class_contact_messages {
         if(!empty($wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]) && $site_key = $wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]):?>
           <li class="wp_crm_form_element wp_crm_required_field wp_crm_recaptcha_container">
             <div class="control-group wp_crm_recaptcha_div">
-              <label class="control-label wp_crm_input_label"><?php echo nl2br( $this_attribute[ 'description' ] ); ?></label>
+              <label class="control-label wp_crm_input_label"><?php echo nl2br( $this_attribute[ 'title' ] ); ?></label>
               <div class='g-recaptcha' data-sitekey='<?php echo $site_key;?>'></div>
               <span class="help-inline wp_crm_error_messages"></span>
             </div>

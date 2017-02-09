@@ -127,7 +127,7 @@ function wp_crm_toggle_advanced_options(this_element, triggered_event) {
 
 var wp_crm_ui = {}, wpp_crm_form_stop = !1;
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function($) {
     if ("undefined" == typeof wp_crm_dev_mode) var wp_crm_dev_mode = !1;
     var media_uploader = null;
     media_uploader = wp.media({
@@ -243,6 +243,10 @@ jQuery(document).ready(function() {
         jQuery(" .wp_crm_checkbox_filter", parent).slideToggle("fast", function() {
             "none" == jQuery(this).css("display") ? jQuery(".wpp_crm_filter_show", parent).html(wpc.strings.filter_show) : jQuery(".wpp_crm_filter_show", parent).html(wpc.strings.filter_hide);
         });
+    }), jQuery(".open-help-tab").on("click", function(event) {
+        event.preventDefault();
+        var panel = jQuery("#" + jQuery(this).attr("aria-controls")), button = jQuery("#screen-meta-links").find(".show-settings");
+        return screenMeta.open(panel, button), !1;
     });
 }), jQuery(".wp_crm_load_more_stream").live("click", function() {
     var params = {
