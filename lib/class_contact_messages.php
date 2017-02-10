@@ -663,7 +663,7 @@ class class_contact_messages {
         if($field == 'recaptcha') continue;
 
         // Override request method for file upload. File upload need request method POST.
-        if( isset($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ]) && $wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ] == 'file_upload' ) {
+        if( isset($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ]) && in_array($wp_crm[ 'data_structure' ][ 'attributes' ][ $field ][ 'input_type' ], array('file_upload', 'recaptcha')) ) {
           $form[ 'request_method' ] = 'POST';
           break;
         }
@@ -719,13 +719,16 @@ class class_contact_messages {
      //echo ( '<!-- $_attribute_fields' . print_r( $_attribute_fields, true ) . '-->' );
 
     foreach( $_attribute_fields as $field => $this_attribute ) {
+      if($this_attribute['input_type'] == 'recaptcha'){
+        if(!empty($wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]) && $site_key = $wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]):
+          $rand_id = rand(10000, 99999);
 
-      if($field == 'recaptcha'){
-        if(!empty($wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]) && $site_key = $wp_crm[ 'configuration' ][ 'recaptcha_site_key' ]):?>
+        ?>
           <li class="wp_crm_form_element wp_crm_required_field wp_crm_recaptcha_container">
             <div class="control-group wp_crm_recaptcha_div">
               <label class="control-label wp_crm_input_label"><?php echo nl2br( $this_attribute[ 'title' ] ); ?></label>
-              <div class='g-recaptcha' data-sitekey='<?php echo $site_key;?>'></div>
+              <input class="crm-g-captcha-input" type="hidden" name="wp_crm[user_data][<?php echo $field; ?>][<?php echo $rand_id; ?>][value]">
+              <div class='crm-g-recaptcha' data-sitekey='<?php echo $site_key;?>' data-tabindex='<?php echo $tabindex;?>'></div>
               <span class="help-inline wp_crm_error_messages"></span>
             </div>
           </li>
@@ -791,6 +794,16 @@ class class_contact_messages {
       }</style>
     <?php ob_start(); ?>
     <script type="text/javascript">
+    function <?php echo $wpc_form_id; ?>_recaptcha_cb(response) {
+      var input = jQuery('.crm-g-captcha-input', '#<?php echo $wpc_form_id; ?>');
+      input.val(response);
+    }
+    function <?php echo $wpc_form_id; ?>_expired_recaptcha_cb() {
+      var input = jQuery('.crm-g-captcha-input', '#<?php echo $wpc_form_id; ?>');
+      input.val('');
+    }
+
+
     jQuery( document ).ready( function () {
 
       if( typeof wp_crm_developer_log != 'function' ) {
@@ -857,6 +870,7 @@ class class_contact_messages {
         var validation_error = false;
         var form = this_form;
         var request_method = '<?php echo $form[ 'request_method' ]; ?>';
+        var captchaInput = jQuery('.crm-g-captcha-input', form);
 
         wp_crm_developer_log( 'submit_this_form() initiated.' );
 
@@ -886,21 +900,19 @@ class class_contact_messages {
         }
         <?php } ?>
 
-        <?php if(in_array('recaptcha', $form[ 'fields' ])) { ?>
         /** Custom validation */
         if( !validation_error ) {
-          if(jQuery('#g-recaptcha-response').length){
-            if( !jQuery('#g-recaptcha-response').val() ) {
-              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages').html('<?php _e("Are you human?");?>').addClass('error');
+          if(captchaInput.length){
+            if( captchaInput.val() == '' ) {
+              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages', form).html('<?php _e("Are you human?");?>').addClass('error');
               validation_error = true;
             }
             else{
-              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages').html('').removeClass('error');
+              jQuery('.wp_crm_recaptcha_div .wp_crm_error_messages', form).html('').removeClass('error');
             }
           }
           
         }
-        <?php } ?>
 
         if( validation_error ) {
           jQuery( submit_button ).removeAttr( "disabled" );
@@ -932,6 +944,7 @@ class class_contact_messages {
           else
             params += '&crm_action=' + crm_action;
         }
+        
 
         jQuery.ajax( {
           url: "<?php echo admin_url( 'admin-ajax.php' ); ?>",
