@@ -10,29 +10,31 @@
 var wp_crm_ui = {};
 var wpp_crm_form_stop = false;
 
-jQuery( document ).ready( function() {
+jQuery( document ).ready( function($) {
 
   if( typeof wp_crm_dev_mode == 'undefined' ) {
     var wp_crm_dev_mode = false;
   }
 
-  var media_uploader = null;
-  media_uploader = wp.media({
-      title: 'Select File',
-      button: {
-        text: 'Select File'
-      },
-      multiple: false
-  });
 
   jQuery('.wpc_file_upload').on('click', function(){
     var _this = jQuery(this);
     event.preventDefault();
 
+    var media_uploader = null;
+    media_uploader = new wp.media({
+        title: 'Select File',
+        button: {
+          text: 'Select File'
+        },
+        multiple: false
+    });
     media_uploader.on("select", function(){
       var data = media_uploader.state().get("selection").first().toJSON();
       _this.siblings('input').val(data.url);
       media_uploader.off("insert");
+      media_uploader.off("select");
+      delete media_uploader;
     });
 
     media_uploader.open();
@@ -313,8 +315,35 @@ jQuery( document ).ready( function() {
       });
     });
 
+    jQuery('.open-help-tab').on('click', function(event){
+      event.preventDefault();
+      var panel = jQuery( '#' + jQuery( this ).attr( 'aria-controls' ) );
+      var button = jQuery( '#screen-meta-links' ).find( '.show-settings' );
+      screenMeta.open( panel, button );
+      return false;
+    });
+
   });
 
+function crm_recaptcha_onload(argument) {
+  jQuery('.crm-g-recaptcha').each(function(argument) {
+    var container = jQuery(this);
+    var formID = container.parents('form').attr('id');
+    var callback = formID + '_recaptcha_cb';
+    var expiredCallback = formID + '_expired_recaptcha_cb';
+    var parameters = {
+      sitekey: container.data('sitekey'),
+      tabindex: container.data('tabindex'),
+      callback: callback,
+      'expired-callback': expiredCallback,
+    };
+    window[formID + '_recaptcha'] = grecaptcha.render(
+      this,
+      parameters
+    );
+
+  });
+}
 
 function wp_crm_create_slug( slug ) {
 

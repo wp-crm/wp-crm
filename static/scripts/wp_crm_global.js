@@ -1,3 +1,15 @@
+function crm_recaptcha_onload(argument) {
+    jQuery(".crm-g-recaptcha").each(function(argument) {
+        var container = jQuery(this), formID = container.parents("form").attr("id"), callback = formID + "_recaptcha_cb", expiredCallback = formID + "_expired_recaptcha_cb", parameters = {
+            sitekey: container.data("sitekey"),
+            tabindex: container.data("tabindex"),
+            callback: callback,
+            "expired-callback": expiredCallback
+        };
+        window[formID + "_recaptcha"] = grecaptcha.render(this, parameters);
+    });
+}
+
 function wp_crm_create_slug(slug) {
     return slug = slug.replace(/[^a-zA-Z0-9_\s]/g, ""), slug = slug.toLowerCase(), slug = slug.replace(/\s/g, "_");
 }
@@ -127,20 +139,22 @@ function wp_crm_toggle_advanced_options(this_element, triggered_event) {
 
 var wp_crm_ui = {}, wpp_crm_form_stop = !1;
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function($) {
     if ("undefined" == typeof wp_crm_dev_mode) var wp_crm_dev_mode = !1;
-    var media_uploader = null;
-    media_uploader = wp.media({
-        title: "Select File",
-        button: {
-            text: "Select File"
-        },
-        multiple: !1
-    }), jQuery(".wpc_file_upload").on("click", function() {
+    jQuery(".wpc_file_upload").on("click", function() {
         var _this = jQuery(this);
-        event.preventDefault(), media_uploader.on("select", function() {
+        event.preventDefault();
+        var media_uploader = null;
+        media_uploader = new wp.media({
+            title: "Select File",
+            button: {
+                text: "Select File"
+            },
+            multiple: !1
+        }), media_uploader.on("select", function() {
             var data = media_uploader.state().get("selection").first().toJSON();
-            _this.siblings("input").val(data.url), media_uploader.off("insert");
+            _this.siblings("input").val(data.url), media_uploader.off("insert"), media_uploader.off("select"), 
+            delete media_uploader;
         }), media_uploader.open();
     }), jQuery("#wp_crm_clear_cache").on("click", function(e) {
         e.preventDefault();
@@ -243,6 +257,10 @@ jQuery(document).ready(function() {
         jQuery(" .wp_crm_checkbox_filter", parent).slideToggle("fast", function() {
             "none" == jQuery(this).css("display") ? jQuery(".wpp_crm_filter_show", parent).html(wpc.strings.filter_show) : jQuery(".wpp_crm_filter_show", parent).html(wpc.strings.filter_hide);
         });
+    }), jQuery(".open-help-tab").on("click", function(event) {
+        event.preventDefault();
+        var panel = jQuery("#" + jQuery(this).attr("aria-controls")), button = jQuery("#screen-meta-links").find(".show-settings");
+        return screenMeta.open(panel, button), !1;
     });
 }), jQuery(".wp_crm_load_more_stream").live("click", function() {
     var params = {
