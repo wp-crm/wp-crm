@@ -196,8 +196,10 @@ class crm_page_wp_crm_add_new {
    */
   static function side_send_invoce($user_object) {
 		global  $wpdb,$wpi_settings ;
-		if ( WP_CRM_F::current_user_can_manage_crm() ) { ?>
-				<input type="button" data-gotourl="<?php echo $wpi_settings['links']['manage_invoice'];?>" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" id="crm_new_invioce"/>
+		if ( WP_CRM_F::current_user_can_manage_crm() ) {
+			$email = isset($user_object['user_email']['default']['0']) ? "&email=".$user_object['user_email']['default']['0']:'';
+			?>
+				<input type="button" data-gotourl="<?php echo $wpi_settings['links']['manage_invoice'].$email; ?>" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" id="crm_new_invioce"/>
 		<?php } else { ?>
 				<input type="button" data-gotourl="#" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" disabled="disabled" />
 		<?php }
