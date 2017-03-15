@@ -704,6 +704,7 @@ class WP_CRM_Core {
   static function overview_columns( $columns = false ) {
     global $wp_crm;
 
+    $columns[ 'wp_crm_cb' ] =  '<input type="checkbox" name="select-all-users" class="select-all-users" />';
     $columns[ 'wp_crm_user_card' ] = __( 'Information', ud_get_wp_crm()->domain );
 
     if ( !empty( $wp_crm[ 'data_structure' ] ) && is_array( $wp_crm[ 'data_structure' ][ 'attributes' ] ) ) {

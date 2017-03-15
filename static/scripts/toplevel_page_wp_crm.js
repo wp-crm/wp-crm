@@ -104,5 +104,17 @@ jQuery(document).ready(function () {
     }
 
   });
+  
+  jQuery(".select-all-users").click(function(){
+	  //alert("Select ");
+	if(jQuery(this).is(":checked")){
+	  jQuery(".single-user-chk").attr("checked","checked");
+	  jQuery(".select-all-users").attr("checked","checked");
+	}else{
+	  jQuery(".single-user-chk").removeAttr("checked","checked");
+	  jQuery(".select-all-users").removeAttr("checked","checked");
+		
+	}
+  });
 
 });
