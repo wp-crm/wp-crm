@@ -46,3 +46,11 @@
   float: left;
   margin: 3px 6px 0 1px;
 }
+
+.clearfix:before, .clearfix:after{
+  content: " "; 
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
