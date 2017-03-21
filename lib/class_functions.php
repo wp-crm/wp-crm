@@ -1740,6 +1740,25 @@ class WP_CRM_F {
         }
 
         break;
+      case 'trash_user':
+
+        if ( WP_CRM_F::current_user_can_manage_crm() ) {
+
+          $user_id_arr = $object_id;
+
+          foreach($user_id_arr as $user_id){
+			  if ($user_id) {
+				$return['message'] .=" user is ".$user_id;
+				wp_delete_user($user_id);
+			  }
+		  }
+
+          $return['success'] = 'true';
+          $return['message'] .= __( 'in trash users User trashed.', ud_get_wp_crm()->domain );
+          $return['action'] = 'hide_element';
+        }
+
+        break;
 
       default:
         $return = apply_filters('wp_crm_quick_action', array(
