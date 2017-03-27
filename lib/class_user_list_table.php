@@ -206,7 +206,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
           var ids = [];
           var action = jQuery(this).siblings('select').val();
 		  if(action=='trash_user'){
-			  if(!confirm("<?php _e( "Are you sure to delete?" , ud_get_wp_crm()->domain );?>")){
+			  if(!confirm("<?php _e( "Confirm Delition" , ud_get_wp_crm()->domain );?>")){
 				  return false;
 			  }
 		  }
