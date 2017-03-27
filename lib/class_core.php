@@ -457,7 +457,7 @@ class WP_CRM_Core {
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'require_login_for_existing_users = [ <b>true</b> | false ]', ud_get_wp_crm()->domain ) . '</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'use_current_user = [ <b>true</b> | false ]', ud_get_wp_crm()->domain ) . '</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'success_message = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Your message has been sent. Thank you.', ud_get_wp_crm()->domain ) . '".</p>';
-    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'submit_text = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Submit', ud_get_wp_crm()->domain ) . " " . ud_get_wp_crm()->domain . '".</p>';
+    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'submit_text = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Submit', ud_get_wp_crm()->domain ) . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_callback_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_validation_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
 
