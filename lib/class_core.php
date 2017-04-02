@@ -50,14 +50,6 @@ class WP_CRM_Core {
     //** Hook in lower init */
     add_action( 'init', array( $this, 'init_lower' ), 100 );
 
-    if ( empty($wpdb->crm_log) ) {
-      $wpdb->crm_log = $wpdb->base_prefix . 'crm_log';
-    }
-
-    if ( empty($wpdb->crm_log_meta) ) {
-      $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
-    }
-
   }
 
   /**

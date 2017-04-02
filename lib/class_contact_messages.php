@@ -1731,12 +1731,6 @@ class class_contact_messages {
       $where_query[] = " value = '{$args['value']}' ";
     }
 
-    // If multisite filter by current site user ids.
-    if( is_multisite() ) {
-      $users = get_users( array( 'fields' => 'ID' ) );
-      $where_query[] = ' object_id in (' . implode( ",", $users ) . ') ';
-    }
-
     if( !empty( $args[ 'select_fields' ] ) ) {
       $select_query = implode( ', ', $args[ 'select_fields' ] );
     }
