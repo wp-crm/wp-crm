@@ -728,8 +728,8 @@ class class_contact_messages {
             <div class="control-group wp_crm_recaptcha_div">
               <label class="control-label wp_crm_input_label"><?php echo nl2br( $this_attribute[ 'title' ] ); ?></label>
               <input class="crm-g-captcha-input" type="hidden" name="wp_crm[user_data][<?php echo $field; ?>][<?php echo $rand_id; ?>][value]">
-              <div class='crm-g-recaptcha' data-sitekey='<?php echo $site_key;?>' data-tabindex='<?php echo $tabindex;?>'></div>
-              <span class="help-inline wp_crm_error_messages"></span>
+              <div class='crm-g-recaptcha clearfix' data-sitekey='<?php echo $site_key;?>' data-tabindex='<?php echo $tabindex;?>'></div>
+              <span class="help-inline wp_crm_error_messages clearfix"></span>
             </div>
           </li>
         <?php 
@@ -1729,12 +1729,6 @@ class class_contact_messages {
     //** Filter by type, unless 'all' is specified */
     if( !empty( $args[ 'value' ] ) && $args[ 'value' ] != 'all' ) {
       $where_query[] = " value = '{$args['value']}' ";
-    }
-
-    // If multisite filter by current site user ids.
-    if( is_multisite() ) {
-      $users = get_users( array( 'fields' => 'ID' ) );
-      $where_query[] = ' object_id in (' . implode( ",", $users ) . ') ';
     }
 
     if( !empty( $args[ 'select_fields' ] ) ) {

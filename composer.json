@@ -75,6 +75,14 @@
         "description": "UD splash disabled.",
         "since": "1.1.0",
         "enabled": true
+      },
+      {
+        "name": "Network Mood",
+        "option": "enable_network_mood",
+        "constant": "ENABLE_NETWORK_MOOD",
+        "description": "Enable Multisite.",
+        "since": "1.1.0",
+        "enabled": true
       }
     ],
     "splashes": {
