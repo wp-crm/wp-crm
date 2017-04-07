@@ -728,8 +728,8 @@ class class_contact_messages {
             <div class="control-group wp_crm_recaptcha_div">
               <label class="control-label wp_crm_input_label"><?php echo nl2br( $this_attribute[ 'title' ] ); ?></label>
               <input class="crm-g-captcha-input" type="hidden" name="wp_crm[user_data][<?php echo $field; ?>][<?php echo $rand_id; ?>][value]">
-              <div class='crm-g-recaptcha clearfix' data-sitekey='<?php echo $site_key;?>' data-tabindex='<?php echo $tabindex;?>'></div>
-              <span class="help-inline wp_crm_error_messages clearfix"></span>
+              <div class='crm-g-recaptcha crm-clearfix' data-sitekey='<?php echo $site_key;?>' data-tabindex='<?php echo $tabindex;?>'></div>
+              <span class="help-inline wp_crm_error_messages crm-clearfix"></span>
             </div>
           </li>
         <?php 
