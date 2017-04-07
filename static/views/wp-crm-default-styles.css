@@ -46,11 +46,20 @@
   float: left;
   margin: 3px 6px 0 1px;
 }
+.crm-clearfix{
+  display: block;
 
-.clearfix:before, .clearfix:after{
+}
+.crm-clearfix:before, .crm-clearfix:after{
   content: " "; 
   visibility: hidden;
   display: block;
   height: 0;
   clear: both;
+}
+.crm-g-recaptcha{
+  margin-bottom: 30px;
+}
+.crm-g-recaptcha iframe{
+  border: 0px;
 }
