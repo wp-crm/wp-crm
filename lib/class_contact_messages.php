@@ -1320,22 +1320,25 @@ class class_contact_messages {
       $message = null;
     }
 
-    if( ( empty( $confirmed_form_data[ 'notify_with_blank_message' ] ) || $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' ) && empty( $message ) ) {
+    $is_message_empty = false;
+
+    if( empty( $message ) ) {
+      $is_message_empty = true;
+      $message = __( ' -- No message. -- ', ud_get_wp_crm()->domain );
+    }
+
+    //** Message is submitted. Do stuff. */
+    $message_id = class_contact_messages::insert_message( $user_id, $message, $confirmed_form_slug );
+
+    $associated_object = !empty( $associated_object ) ? $associated_object : false;
+
+    if( $associated_object ) {
+      class_contact_messages::insert_message_meta( $message_id, 'associated_object', $associated_object );
+    }
+
+    if( ( empty( $confirmed_form_data[ 'notify_with_blank_message' ] ) || $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' ) && $is_message_empty ) {
       //** No message submitted */
     } else {
-
-      if( empty( $message ) ) {
-        $message = __( ' -- No message. -- ', ud_get_wp_crm()->domain );
-      }
-
-      //** Message is submitted. Do stuff. */
-      $message_id = class_contact_messages::insert_message( $user_id, $message, $confirmed_form_slug );
-
-      $associated_object = !empty( $associated_object ) ? $associated_object : false;
-
-      if( $associated_object ) {
-        class_contact_messages::insert_message_meta( $message_id, 'associated_object', $associated_object );
-      }
 
       //** Build default notification arguments */
       foreach( (array)$wp_crm[ 'data_structure' ][ 'attributes' ] as $attribute => $attribute_data ) {
