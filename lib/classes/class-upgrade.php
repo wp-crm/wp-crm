@@ -26,68 +26,7 @@ namespace UsabilityDynamics\WPC {
         update_option( "wp_crm_version", $new_version );
 
         switch( true ) {
-          case ( version_compare( $old_version, '1.1.0', '<' ) ):
-            if( is_multisite()) {
-              $sites = array();
-              $blogusers = array();
-              $current_blog_id = get_current_blog_id();
-
-              // The base crm log tables to work with.
-              $table_crm_log = $wpdb->base_prefix . 'crm_log';
-              $table_crm_log_meta = $table_crm_log . '_meta';
-
-              // Getting sites.
-              if ( function_exists( 'get_sites' ) && class_exists( 'WP_Site_Query' ) ) {
-                $sites = get_sites();
-              }
-              else if ( function_exists( 'wp_get_sites' ) ) {
-                $sites = wp_get_sites();
-              }
-
-              // Get user ids from sites.
-              foreach ( $sites as $site ) {
-                $site = (object) $site;
-                $users = get_users(array('blog_id' => $site->blog_id));
-                foreach ( $users as $user ) {
-                  $blogusers[$site->blog_id][] = $user->ID;
-                }
-              }
-
-              foreach ($blogusers as $blog_id => $_users) {
-                // Switching blog
-                switch_to_blog( $blog_id );
-                // Filtering users
-                $users = array_unique($_users);
-                
-                // If this is the main site or the $users array is empty then continue.
-                if($table_crm_log == $wpdb->crm_log || empty($users)) continue;
-
-                $users = implode(', ', $users);
-                // Getting log ids
-                $log_ids = $wpdb->get_col("SELECT id from $table_crm_log WHERE user_id IN ( $users )");
-                $log_ids = implode(', ', $log_ids);
-
-                // Copying logs to new table
-                $sql = "INSERT INTO {$wpdb->crm_log} WHERE id IN ( $log_ids );\n";
-                $wpdb->get_results($sql);
-
-                // Copying logs meta to new table
-                $sql = "INSERT INTO {$wpdb->table_crm_log_meta} WHERE message_id IN ( $log_ids );\n";
-                $wpdb->get_results($sql);
-
-                if(!count(array_intersect($_users, $blogusers[1]))){
-                  // Deleting logs from old table
-                  $sql = "DELETE FROM $table_crm_log WHERE user_id IN ( $log_ids );\n";
-                  $wpdb->get_results($sql);
-                  
-                  // Deleting logs meta from old table
-                  $sql = "DELETE FROM $table_crm_log_meta WHERE message_id IN ( $log_ids );\n";
-                  $wpdb->get_results($sql);
-                }
-                restore_current_blog();
-                
-              }
-            }
+            
             // End case
             
         }
