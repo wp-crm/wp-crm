@@ -50,7 +50,7 @@ class WP_CRM_F {
     }
 
     // If the standard "Message Field" is used, add it to attributes for this form.
-    if( $formData[ 'message_field' ] === 'on' ) {
+    if( isset( $formData[ 'message_field' ] ) && $formData[ 'message_field' ] === 'on' ) {
 
       if( array_search( '_message_field', $formData[ 'fields' ] ) !== false ) {
         $_attributes[ '_message_field' ] = array( 'title' => isset( $_field_labels[ '_message_field' ] ) ? $_field_labels['_message_field' ] : 'Message', 'input_type' => 'textarea' );
