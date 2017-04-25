@@ -43,6 +43,7 @@ return array(
     'UsabilityDynamics\\Utility' => $vendorDir . '/usabilitydynamics/lib-utility/lib/class-utility.php',
     'UsabilityDynamics\\Utility\\Guid_Fix' => $vendorDir . '/usabilitydynamics/lib-utility/lib/class-guid-fix.php',
     'UsabilityDynamics\\WPC\\API' => $baseDir . '/lib/classes/class-api.php',
+    'UsabilityDynamics\\WPC\\Upgrade' => $baseDir . '/lib/classes/class-upgrade.php',
     'UsabilityDynamics\\WPC\\WPC_Bootstrap' => $baseDir . '/lib/classes/class-WPC_Bootstrap.php',
     'UsabilityDynamics\\WP\\Bootstrap' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php',
     'UsabilityDynamics\\WP\\Bootstrap_Plugin' => $vendorDir . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap-plugin.php',

@@ -50,7 +50,7 @@ class WP_CRM_F {
     }
 
     // If the standard "Message Field" is used, add it to attributes for this form.
-    if( $formData[ 'message_field' ] === 'on' ) {
+    if( isset( $formData[ 'message_field' ] ) && $formData[ 'message_field' ] === 'on' ) {
 
       if( array_search( '_message_field', $formData[ 'fields' ] ) !== false ) {
         $_attributes[ '_message_field' ] = array( 'title' => isset( $_field_labels[ '_message_field' ] ) ? $_field_labels['_message_field' ] : 'Message', 'input_type' => 'textarea' );
@@ -2723,50 +2723,65 @@ class WP_CRM_F {
    * @uses $wpdb
    *
    */
-  static function maybe_install_tables() {
+  static function maybe_install_tables($blog_ids = array()) {
     global $wpdb;
+    $sites = array('');
+    if(!empty($blog_ids))
+      $sites = $blog_ids;
 
-    if ( empty($wpdb->crm_log) ) {
-      $wpdb->crm_log = $wpdb->base_prefix . 'crm_log';
-    }
-
-    if ( empty($wpdb->crm_log_meta) ) {
-      $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
+    if(function_exists('get_sites') && empty($blog_ids)){
+      $sites = get_sites();
+    } 
+    elseif(function_exists('wp_get_sites') && empty($blog_ids)){
+      $sites = wp_get_sites();
     }
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    $sql = "CREATE TABLE {$wpdb->crm_log} (
-      id mediumint(9) NOT NULL AUTO_INCREMENT,
-      object_id mediumint(9) NOT NULL,
-      object_type VARCHAR(11),
-      user_id mediumint(9) NOT NULL,
-      action VARCHAR(255),
-      attribute VARCHAR(255),
-      value VARCHAR(255),
-      msgno VARCHAR(255),
-      email_to VARCHAR(255),
-      email_from VARCHAR(255),
-      subject VARCHAR(255),
-      text TEXT,
-      email_references VARCHAR(255),
-      time DATETIME,
-      other VARCHAR(255),
-      UNIQUE KEY id (id)
-    );";
-    
-    dbDelta($sql);
+    foreach ($sites as $key => $site) {
+      $site = (object) $site;
 
-    $sql = "CREATE TABLE {$wpdb->crm_log_meta} (
-      meta_id mediumint(9) NOT NULL AUTO_INCREMENT,
-      message_id mediumint(9) NOT NULL,
-      meta_key VARCHAR(255),
-      meta_group VARCHAR(255),
-      meta_value TEXT,
-      UNIQUE KEY id (meta_id)
-    );";
+      if( is_multisite() && isset($site->blog_id)) {
+        switch_to_blog( $site->blog_id );
+      }
 
-    dbDelta($sql);
+      $sql = "CREATE TABLE {$wpdb->crm_log} (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        object_id mediumint(9) NOT NULL,
+        object_type VARCHAR(11),
+        user_id mediumint(9) NOT NULL,
+        action VARCHAR(255),
+        attribute VARCHAR(255),
+        value VARCHAR(255),
+        msgno VARCHAR(255),
+        email_to VARCHAR(255),
+        email_from VARCHAR(255),
+        subject VARCHAR(255),
+        text TEXT,
+        email_references VARCHAR(255),
+        time DATETIME,
+        other VARCHAR(255),
+        UNIQUE KEY id (id)
+      );";
+      
+      dbDelta($sql);
+      
+      $sql = "CREATE TABLE {$wpdb->crm_log_meta} (
+        meta_id mediumint(9) NOT NULL AUTO_INCREMENT,
+        message_id mediumint(9) NOT NULL,
+        meta_key VARCHAR(255),
+        meta_group VARCHAR(255),
+        meta_value TEXT,
+        UNIQUE KEY id (meta_id)
+      );";
+
+      dbDelta($sql);
+
+      if( is_multisite()) {
+        restore_current_blog();
+      }
+    }
+
   }
 
   /**
@@ -2997,7 +3012,7 @@ class WP_CRM_F {
     $args['time'] = date('Y-m-d H:i:s', $time_stamp);
 
     //** Insert event. We double-check $wpdb->crm_log exists in case this function is called very early */
-    $wpdb->insert($wpdb->crm_log ? $wpdb->crm_log : $wpdb->base_prefix . 'crm_log', array(
+    $wpdb->insert($wpdb->crm_log, array(
         'object_id' => isset($args['object_id'])?$args['object_id']:'',
         'object_type' => isset($args['object_type'])?$args['object_type']:'',
         'user_id' => isset($args['user_id'])?$args['user_id']:'',

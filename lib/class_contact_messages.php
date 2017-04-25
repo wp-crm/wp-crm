@@ -728,8 +728,8 @@ class class_contact_messages {
             <div class="control-group wp_crm_recaptcha_div">
               <label class="control-label wp_crm_input_label"><?php echo nl2br( $this_attribute[ 'title' ] ); ?></label>
               <input class="crm-g-captcha-input" type="hidden" name="wp_crm[user_data][<?php echo $field; ?>][<?php echo $rand_id; ?>][value]">
-              <div class='crm-g-recaptcha' data-sitekey='<?php echo $site_key;?>' data-tabindex='<?php echo $tabindex;?>'></div>
-              <span class="help-inline wp_crm_error_messages"></span>
+              <div class='crm-g-recaptcha crm-clearfix' data-sitekey='<?php echo $site_key;?>' data-tabindex='<?php echo $tabindex;?>'></div>
+              <span class="help-inline wp_crm_error_messages crm-clearfix"></span>
             </div>
           </li>
         <?php 
@@ -1320,22 +1320,25 @@ class class_contact_messages {
       $message = null;
     }
 
-    if( ( empty( $confirmed_form_data[ 'notify_with_blank_message' ] ) || $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' ) && empty( $message ) ) {
+    $is_message_empty = false;
+
+    if( empty( $message ) ) {
+      $is_message_empty = true;
+      $message = __( ' -- No message. -- ', ud_get_wp_crm()->domain );
+    }
+
+    //** Message is submitted. Do stuff. */
+    $message_id = class_contact_messages::insert_message( $user_id, $message, $confirmed_form_slug );
+
+    $associated_object = !empty( $associated_object ) ? $associated_object : false;
+
+    if( $associated_object ) {
+      class_contact_messages::insert_message_meta( $message_id, 'associated_object', $associated_object );
+    }
+
+    if( ( empty( $confirmed_form_data[ 'notify_with_blank_message' ] ) || $confirmed_form_data[ 'notify_with_blank_message' ] != 'on' ) && $is_message_empty ) {
       //** No message submitted */
     } else {
-
-      if( empty( $message ) ) {
-        $message = __( ' -- No message. -- ', ud_get_wp_crm()->domain );
-      }
-
-      //** Message is submitted. Do stuff. */
-      $message_id = class_contact_messages::insert_message( $user_id, $message, $confirmed_form_slug );
-
-      $associated_object = !empty( $associated_object ) ? $associated_object : false;
-
-      if( $associated_object ) {
-        class_contact_messages::insert_message_meta( $message_id, 'associated_object', $associated_object );
-      }
 
       //** Build default notification arguments */
       foreach( (array)$wp_crm[ 'data_structure' ][ 'attributes' ] as $attribute => $attribute_data ) {
@@ -1729,12 +1732,6 @@ class class_contact_messages {
     //** Filter by type, unless 'all' is specified */
     if( !empty( $args[ 'value' ] ) && $args[ 'value' ] != 'all' ) {
       $where_query[] = " value = '{$args['value']}' ";
-    }
-
-    // If multisite filter by current site user ids.
-    if( is_multisite() ) {
-      $users = get_users( array( 'fields' => 'ID' ) );
-      $where_query[] = ' object_id in (' . implode( ",", $users ) . ') ';
     }
 
     if( !empty( $args[ 'select_fields' ] ) ) {

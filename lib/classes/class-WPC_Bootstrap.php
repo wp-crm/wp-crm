@@ -73,6 +73,9 @@ namespace UsabilityDynamics\WPC {
           $this->api = new API();
         }
 
+        
+        add_action( 'wpmu_new_blog', array($this, 'maybe_install_tables'), 10, 6 );
+
       }
 
       /**
@@ -175,6 +178,24 @@ namespace UsabilityDynamics\WPC {
         \WP_CRM_F::maybe_install_tables();
         \WP_CRM_F::manual_activation('auto_redirect=false&update_caps=true');
       }
+
+      /**
+       * Example of wpmu_new_blog usage
+       * 
+       * @param int    $blog_id Blog ID.
+       * @param int    $user_id User ID.
+       * @param string $domain  Site domain.
+       * @param string $path    Site path.
+       * @param int    $site_id Site ID. Only relevant on multi-network installs.
+       * @param array  $meta    Meta data. Used to set initial site options.
+       */
+      function maybe_install_tables( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
+        if ( !class_exists('\WP_CRM_F') ) {
+          include_once ud_get_wp_crm()->path( "lib/class_functions.php", 'dir' );
+        }
+        $blog_details = get_blog_details($blog_id);
+        \WP_CRM_F::maybe_install_tables(array($blog_details));
+      }
       
       /**
        * Plugin Deactivation
@@ -202,36 +223,7 @@ namespace UsabilityDynamics\WPC {
        * @author peshkov@UD
        */
       public function run_upgrade_process() {
-        /* Do automatic Settings backup! */
-        $settings = get_option( 'wp_crm_settings' );
-
-        if( !empty( $settings ) ) {
-
-          /**
-           * Fixes allowed mime types for adding download files on Edit Product page.
-           *
-           * @see https://wordpress.org/support/topic/2310-download-file_type-missing-in-variations-filters-exe?replies=5
-           * @author peshkov@UD
-           */
-          add_filter( 'upload_mimes', function( $t ){
-            if( !isset( $t['json'] ) ) {
-              $t['json'] = 'application/json';
-            }
-            return $t;
-          }, 99 );
-
-          $filename = md5( 'wp_crm_settings_backup' ) . '.json';
-          $upload = @wp_upload_bits( $filename, null, json_encode( $settings ) );
-
-          if( !empty( $upload ) && empty( $upload[ 'error' ] ) ) {
-            if( isset( $upload[ 'error' ] ) ) unset( $upload[ 'error' ] );
-            $upload[ 'version' ] = $this->old_version;
-            $upload[ 'time' ] = time();
-            update_option( 'wp_crm_settings_backup', $upload );
-          }
-
-        }
-
+        Upgrade::run($this->old_version, $this->args['version']);
         do_action( $this->slug . '::upgrade', $this->old_version, $this->args[ 'version' ], $this );
       }
 

@@ -32,6 +32,21 @@ if ( !defined( 'wp_crm_Path' ) ) {
   define( 'wp_crm_Path', plugin_dir_path( __FILE__ ) );
 }
 
+/*
+ * Setting crm_log and crm_log_meta table name with prefix.
+ * This will avoid redundency leter.
+ *
+*/
+add_action( 'switch_blog', 'wp_crm_wpdb_table_name' );
+wp_crm_wpdb_table_name();
+function wp_crm_wpdb_table_name($blog = null, $prev_blog_id = null) {
+  global $wpdb;
+  $wpdb->crm_log = $wpdb->prefix . 'crm_log';
+  $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
+  $wpdb->tables[] = $wpdb->crm_log;
+  $wpdb->tables[] = $wpdb->crm_log_meta;
+}
+
 if( !function_exists( 'ud_get_wp_crm' ) ) {
 
   /**
