@@ -1486,7 +1486,7 @@ class class_contact_messages {
 
                       foreach( $_attributes as $attribute_slug => $attribute_data ) {
 
-                        if( empty( $attribute_data[ 'title' ] ) ) {
+                        if( empty( $attribute_data[ 'title' ] ) || $attribute_slug == '_message_field' ) {
                           continue;
                         }
 
