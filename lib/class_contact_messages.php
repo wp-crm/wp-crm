@@ -1419,7 +1419,17 @@ class class_contact_messages {
             </tr>
           </thead>
           <tbody>
-            <?php foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $contact_form_slug => $data ): $row_hash = rand( 100, 999 ); ?>
+            <?php
+			foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $contact_form_slug => $data ){
+				if( is_array( $wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ] ) ){
+					$wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ][] = '_message_field';
+				}
+				else{
+					$wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ] = array( '_message_field' );
+				}
+			}
+
+			foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $contact_form_slug => $data ): $row_hash = rand( 100, 999 ); ?>
               <tr class="wp_crm_dynamic_table_row" slug="<?php echo $contact_form_slug; ?>" new_row='false'>
                 <td class='wp_crm_contact_form_header_col'>
                   <ul class="wp_crm_notification_main_configuration">
@@ -1483,13 +1493,17 @@ class class_contact_messages {
 
                       $_attributes = WP_CRM_F::get_attribute_array_for_form($data, array( 'show_all' => true ));
                       // echo ( '<!-- sorter attrbiutes' . print_r( $_attributes, true ) . '-->' );
+						/*if( is_array( $data[ 'fields' ] ) ){
+							$data[ 'fields' ][] = '_message_field';
+						}else{
+							$data[ 'fields' ] = array('_message_field');
+						}*/
 
                       foreach( $_attributes as $attribute_slug => $attribute_data ) {
 
-                        if( empty( $attribute_data[ 'title' ] ) || $attribute_slug == '_message_field' ) {
+                        if( empty( $attribute_data[ 'title' ] ) /*|| $attribute_slug == '_message_field'*/ ) {
                           continue;
                         }
-
                         ?>
                         <li data-attribute="<?php echo $attribute_slug; ?>" data-order="<?php echo $attribute_data[ 'order' ]; ?>"  class="wp-crm-editable-item">
                           <span class="wp-crm-handle">x</span>
