@@ -2808,7 +2808,7 @@ class WP_CRM_F {
 
     $user_filter = ( !empty($_REQUEST['user_id']) && is_numeric( $_REQUEST['user_id'] ) ) ? " object_id={$_REQUEST['user_id']} " : '1';
 
-    $output = '';
+    $output = array();
 
     switch ($current_screen->id) {
       case 'crm_page_wp_crm_add_new':
