@@ -553,6 +553,7 @@ class class_contact_messages {
       'js_validation_function'           => false,
       'form'                             => false,
       'display_notes'                    => 'false',
+      'redirect_url'                     => '',
       'require_login_for_existing_users' => 'true',
       'use_current_user'                 => 'true',
       'success_message'                  => __( 'Your message has been sent. Thank you.', ud_get_wp_crm()->domain ),
@@ -578,6 +579,7 @@ class class_contact_messages {
     $form_vars = array(
       'form_slug'       => $form_slug,
       'success_message' => $a[ 'success_message' ],
+      'redirect_url' => $a[ 'redirect_url' ],
       'submit_text'     => $a[ 'submit_text' ]
     );
 
@@ -750,6 +752,7 @@ class class_contact_messages {
       </div>
       <input type="hidden" name="form_slug" value="<?php echo md5( $form_slug ); ?>"/>
       <input type="hidden" name="associated_object" value="<?php echo $post->ID; ?>"/>
+      <input type="hidden" name="redirect_url" value="<?php echo !empty($redirect_url)?$redirect_url:''; ?>"/>
     </li>
   </ul>
   </form>
@@ -952,6 +955,10 @@ class class_contact_messages {
             <?php } ?>
 
             jQuery( form_response_field ).text( result.message );
+
+            if( typeof result.redirect_url != "undefined" && result.redirect_url) {
+              window.location = result.redirect_url;
+            }
 
           },
           error: function( result ) {
@@ -1288,6 +1295,15 @@ class class_contact_messages {
       'message' => $data[ 'success_message' ]
     );
 
+    // If redirect url is set on form settings.
+    if(!empty($confirmed_form_data['redirect_url'])){
+      $result['redirect_url'] = $confirmed_form_data['redirect_url'];
+    }
+    // If redirect url is set on shortcode.
+    if(!empty( $_REQUEST[ 'redirect_url' ] )){
+      $result['redirect_url'] = $_REQUEST[ 'redirect_url' ];
+    }
+    
     if( WP_CRM_F::current_user_can_manage_crm() ) {
       $result[ 'user_id' ] = $user_id;
     }
@@ -1340,7 +1356,7 @@ class class_contact_messages {
                 <td class='wp_crm_contact_form_header_col'>
                   <ul class="wp_crm_notification_main_configuration">
                     <li>
-                      <label for=""><?php _e('Title:', ud_get_wp_crm()->domain); ?></label>
+                      <label for="title_<?php echo $row_hash; ?>"><?php _e('Title:', ud_get_wp_crm()->domain); ?></label>
                       <input type="text" id="title_<?php echo $row_hash; ?>" class="slug_setter regular-text" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][title]" value="<?php echo $data['title']; ?>"/>
                     </li>
 
@@ -1366,6 +1382,11 @@ class class_contact_messages {
                         <option value="POST" <?php echo !empty($data['request_method']) && $data['request_method'] == 'POST' ? 'selected="selected"' : ''; ?>>POST</option>
                       </select>
                       <span class="description"><?php _e('Form request method.', ud_get_wp_crm()->domain); ?></span>
+                    </li>
+
+                    <li>
+                      <label for="redirect_to_<?php echo $row_hash; ?>"><?php _e( 'Redirect to:', ud_get_wp_crm()->domain ); ?></label>
+                      <input type="text" id="redirect_to_<?php echo $row_hash; ?>" class="regular-text" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][redirect_url]" value="<?php echo !empty($data[ 'redirect_url' ])?$data[ 'redirect_url' ]:''; ?>"/>
                     </li>
 
                     <li class="wp_crm_checkbox_on_left">

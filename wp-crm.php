@@ -4,7 +4,7 @@
  * Plugin URI: https://www.usabilitydynamics.com/product/wp-crm/
  * Description: This plugin is intended to significantly improve user management, easily create contact forms, and keep track of incoming shortcode form messages.
  * Author: Usability Dynamics, Inc.
- * Version: 1.0.6
+ * Version: 1.0.6.7
  * Requires at least: 4.0
  * Tested up to: 4.7
  * Text Domain: wp-crm
