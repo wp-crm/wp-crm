@@ -452,6 +452,7 @@ class WP_CRM_Core {
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'submit_text = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Submit', ud_get_wp_crm()->domain ) . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_callback_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_validation_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
+    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'redirect_url = "<i>url</i>"  &mdash; redirect to another page after submission complete.', ud_get_wp_crm()->domain ) . '</p>';
 
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p>' . __( 'For example, <b>[wp_crm_form form=example_from display_notes=true success_message="Your message was successfully sent!" submit_text="Send message!"]</b>', ud_get_wp_crm()->domain ) . '</p>';
 
