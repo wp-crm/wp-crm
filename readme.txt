@@ -3,8 +3,8 @@ Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Ko
 Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 1.0.6
+Tested up to: 4.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -74,6 +74,17 @@ For additional help, please reference the contextual help dropdowns the differen
 * Initial public release.
 
 == Changelog ==
+
+= 1.1.0 =
+* Fixed JS error on submitting the form.
+* Fixed Network issues.
+* Fixed issue with file upload field.
+* Fixed Bulk action in All People tab.
+* Fixed Network messages were not appearing from same profile.
+* Fixed issue when the notification wasn't sending without Textarea field.
+* Added captcha to the forms.
+* Added new compatibility to wp-invoice plugin - "Add invoice from wp-crm user profile".
+* Added new parameter to the shortcode redirect_url.
 
 = 1.0.6 =
 * Added Bulk actions to Messages.

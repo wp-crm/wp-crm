@@ -6,7 +6,7 @@
  * Author: Usability Dynamics, Inc.
  * Version: 1.1.0
  * Requires at least: 4.0
- * Tested up to: 4.7
+ * Tested up to: 4.8
  * Text Domain: wp-crm
  * Author URI: https://www.usabilitydynamics.com
  * GitHub Plugin URI: wp-crm/wp-crm

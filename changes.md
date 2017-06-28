@@ -1,12 +1,13 @@
-#### 1.1.0 [wip]
-* The placement/order, and the label, of the "Message Field" may be adjusted for each contact form.
-* Added Contact Form option to disable pre-filling form data for logged in users.
-* Sort order setting of Contact Form fields. [wip]
-* Attribute labels can be changed for a specific Contact Form. [wip]
-* Added Feature Flags handler.
-* Moved Google Visualization into [WP_CRM_VISUALIZATION] flag.
-* Added [WP_CRM_DISABLE_DASHBOARD_SPLASH] Feature Flag to disable Splash page.
-* Various PHP notice fixes.
+#### 1.1.0 ( June 28, 2017 )
+* Fixed JS error on submitting the form.
+* Fixed Network issues.
+* Fixed issue with file upload field.
+* Fixed Bulk action in All People tab.
+* Fixed Network messages were not appearing from same profile.
+* Fixed issue when the notification wasn't sending without Textarea field.
+* Added captcha to the forms.
+* Added new compatibility to wp-invoice plugin - "Add invoice from wp-crm user profile".
+* Added new parameter to the shortcode redirect_url.
 
 #### 1.0.6
 * Added Bulk actions to Messages.
