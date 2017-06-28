@@ -6,7 +6,22 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
 {
+    public static $prefixLengthsPsr4 = array (
+        'R' => 
+        array (
+            'ReCaptcha\\' => 10,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'ReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
+        ),
+    );
+
     public static $classMap = array (
+        'ReCaptcha\\RequestMethod\\WpRecaptchaPost' => __DIR__ . '/../..' . '/lib/classes/class-wp-recaptcha-post.php',
         'UsabilityDynamics\\Job' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-job.php',
         'UsabilityDynamics\\Loader' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-loader.php',
         'UsabilityDynamics\\Structure' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-structure.php',
@@ -42,6 +57,8 @@ class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
         'UsabilityDynamics\\UI\\Utility' => __DIR__ . '/..' . '/usabilitydynamics/lib-ui/lib/class-utility.php',
         'UsabilityDynamics\\Utility' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-utility.php',
         'UsabilityDynamics\\Utility\\Guid_Fix' => __DIR__ . '/..' . '/usabilitydynamics/lib-utility/lib/class-guid-fix.php',
+        'UsabilityDynamics\\WPC\\API' => __DIR__ . '/../..' . '/lib/classes/class-api.php',
+        'UsabilityDynamics\\WPC\\Upgrade' => __DIR__ . '/../..' . '/lib/classes/class-upgrade.php',
         'UsabilityDynamics\\WPC\\WPC_Bootstrap' => __DIR__ . '/../..' . '/lib/classes/class-WPC_Bootstrap.php',
         'UsabilityDynamics\\WP\\Bootstrap' => __DIR__ . '/..' . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php',
         'UsabilityDynamics\\WP\\Bootstrap_Plugin' => __DIR__ . '/..' . '/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap-plugin.php',
@@ -59,6 +76,8 @@ class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac::$classMap;
 
         }, null, ClassLoader::class);

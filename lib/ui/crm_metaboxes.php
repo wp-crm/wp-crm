@@ -190,6 +190,21 @@ class crm_page_wp_crm_add_new {
   }
 
   /**
+   *
+   * @global type $wp_crm
+   * @param type $user_object
+   */
+  static function side_send_invoce($user_object) {
+		global  $wpdb,$wpi_settings ;
+		if ( WP_CRM_F::current_user_can_manage_crm() ) {
+			$email = isset($user_object['user_email']['default']['0']) ? "&email=".$user_object['user_email']['default']['0']:'';
+			?>
+				<input type="button" data-gotourl="<?php echo $wpi_settings['links']['manage_invoice'].$email; ?>" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" id="crm_new_invioce"/>
+		<?php } else { ?>
+				<input type="button" data-gotourl="#" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" disabled="disabled" />
+		<?php }
+		}
+  /**
    * 
    * @global type $wp_crm
    * @param type $user_object
@@ -202,6 +217,9 @@ class crm_page_wp_crm_add_new {
       <?php if (!empty($wp_crm['data_structure']) && is_array($wp_crm['data_structure']['attributes'])) : ?>
         <?php foreach (apply_filters('wp_crm_primary_information_attributes', $wp_crm['data_structure']['attributes']) as $slug => $attribute):
 
+                if($attribute['input_type'] == 'recaptcha'){
+                  continue;
+                }
                 /* we already have an Actions box to change user pass, so we can just skip it here */
                 if ($slug=='user_pass') continue;
 

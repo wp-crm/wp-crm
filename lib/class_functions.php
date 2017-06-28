@@ -13,6 +13,67 @@
 class WP_CRM_F {
 
   /**
+   * Build and returns shortcode-form configuraiton object.
+   *
+   * - show_all - returns all fields, not just those that are actually enabled for this particualar form.
+   *
+   * @author potanin@UD
+   * @param $formData
+   * @return array
+   */
+  static public function get_attribute_array_for_form( $formData, $options = array() ) {
+    global $wp_crm;
+
+    $options = wp_parse_args($options, array(
+      'show_all' => false
+    ));
+
+    $_attributes = array();
+
+    $_field_labels = isset( $formData['field_labels'] ) ? $formData['field_labels'] : array();
+
+    foreach( $wp_crm[ 'data_structure' ][ 'attributes' ] as $attribute_slug => $attribute_data ) {
+
+      if( array_search( $attribute_slug, $formData[ 'fields' ] ) !== false ) {
+        $_attributes[ $attribute_slug ] = $attribute_data;
+        $_attributes[ $attribute_slug ][ 'order' ] = array_search( $attribute_slug, $formData[ 'fields' ] );
+      } elseif( $options['show_all'] ) {
+        $_attributes[ $attribute_slug ] = $attribute_data;
+        $_attributes[ $attribute_slug ][ 'order' ] = 100;
+      }
+
+      // Add custom field label, if field has one, and field is used.
+      if( isset( $_attributes[ $attribute_slug ]) && isset( $_field_labels[$attribute_slug] ) )  {
+        $_attributes[ $attribute_slug ]['title'] = $_field_labels[$attribute_slug];
+      }
+
+    }
+
+    // If the standard "Message Field" is used, add it to attributes for this form.
+    if( isset( $formData[ 'message_field' ] ) && $formData[ 'message_field' ] === 'on' ) {
+
+      if( array_search( '_message_field', $formData[ 'fields' ] ) !== false ) {
+        $_attributes[ '_message_field' ] = array( 'title' => isset( $_field_labels[ '_message_field' ] ) ? $_field_labels['_message_field' ] : 'Message', 'input_type' => 'textarea' );
+        $_attributes[ '_message_field' ][ 'order' ] = array_search( '_message_field', $formData[ 'fields' ] );
+      } elseif( $options['show_all'] ) {
+        $_attributes[ '_message_field' ] = array( 'title' => 'Message', 'input_type' => 'textarea' );
+        $_attributes[ '_message_field' ][ 'order' ] = 100;
+      }
+
+    }
+
+    // Sort by order.
+    uasort($_attributes, function( $first, $second ) {
+      return ( intval( $first['order']) > intval( $second['order']));
+    });
+
+
+    return $_attributes;
+
+  }
+
+
+  /**
    * Detailed Activity Log
    *
    * @todo Add geolocation service.
@@ -857,9 +918,9 @@ class WP_CRM_F {
    * Reference readme.txt to see details of updates.
    *
    * @since 0.1
-   *
+   * @param $old_version
    */
-  function handle_update($old_version) {
+  static public function handle_update($old_version) {
     global $wp_roles;
 
     if (!$wp_roles) {
@@ -1679,6 +1740,25 @@ class WP_CRM_F {
         }
 
         break;
+      case 'trash_user':
+
+        if ( WP_CRM_F::current_user_can_manage_crm() ) {
+
+          $user_id_arr = $object_id;
+
+          foreach($user_id_arr as $user_id){
+			  if ($user_id) {
+				$return['message'] .=" user is ".$user_id;
+				wp_delete_user($user_id);
+			  }
+		  }
+
+          $return['success'] = 'true';
+          $return['message'] .= __( 'in trash users User trashed.', ud_get_wp_crm()->domain );
+          $return['action'] = 'hide_element';
+        }
+
+        break;
 
       default:
         $return = apply_filters('wp_crm_quick_action', array(
@@ -1993,7 +2073,12 @@ class WP_CRM_F {
    *
    *
    * @since 0.01
-   *
+   * @param $slug
+   * @param bool $values
+   * @param bool $attribute
+   * @param bool $user_object
+   * @param string $args
+   * @return mixed|string|void
    */
   static function user_input_field($slug, $values = false, $attribute = false, $user_object = false, $args = '') {
     global $wp_crm;
@@ -2001,11 +2086,12 @@ class WP_CRM_F {
     //* Only supported in WP 3.3+ and is here to ensure the scripts are loaded */
     wp_enqueue_script('wp_crm_profile_editor');
 
-    $defaults = array(
-        'default_input_type' => 'text'
-    );
+    $args = wp_parse_args($args, array(
+      'default_input_type' => 'text',
+      'placeholder' => null
+    ));
 
-    $args = wp_parse_args($args, $defaults);
+    //echo( '<!-- args for field' . print_r( $args, true ) . '-->' );
 
     if (isset($args['tabindex'])) {
       $tabindex = " TABINDEX={$args['tabindex']} ";
@@ -2022,7 +2108,7 @@ class WP_CRM_F {
     }
 
     //** Calculate total values passed and convert to loop-ready format */
-    if ($attribute['input_type'] != 'checkbox' && $attribute['input_type'] != 'dropdown') {
+    if ($attribute['input_type'] !== 'checkbox' && $attribute['input_type'] !== 'dropdown') {
 
       foreach ($values as $type_slug => $type_values) {
 
@@ -2093,7 +2179,7 @@ class WP_CRM_F {
     $class = array();
 
     if (empty($attribute['input_type'])) {
-      $attribute['input_type'] = $default_input_type;
+      $attribute['input_type'] = $args['default_input_type'];
     }
 
     $class[] = 'wp_crm_' . $slug . '_field';
@@ -2161,10 +2247,10 @@ class WP_CRM_F {
           $input_type = in_array($attribute['input_type'], array('date')) ? 'text' : $attribute['input_type'];
           foreach ($values as $rand => $value_data) {
             ?>
-              <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+              <div class="wp_crm_input_wrap"  data-random-hash="<?php echo $rand; ?>" >
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" placeholder="<?php echo $args['placeholder'] ?>"/>
             <?php if ( !empty($attribute['has_options']) ) { ?>
-                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> class="wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> class="wp_crm_input_options" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                     <option></option>
               <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                       <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2179,12 +2265,12 @@ class WP_CRM_F {
         case 'textarea':
           foreach ($values as $rand => $value_data) {
             ?>
-              <div class="wp_crm_input_wrap" random_hash="<?php echo $rand; ?>" >
+              <div class="wp_crm_input_wrap" data-random-hash="<?php echo $rand; ?>" >
 
-                <textarea  wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>"><?php echo $value_data['value']; ?></textarea>
+                <textarea data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" placeholder="<?php echo $args['placeholder'] ?>"><?php echo $value_data['value']; ?></textarea>
 
             <?php if ( !empty($attribute['has_options']) ) { ?>
-                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo !empty($tabindex)?$tabindex:''; ?>  random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+                  <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo !empty($tabindex)?$tabindex:''; ?>  data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                     <option></option>
               <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                       <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2201,12 +2287,12 @@ class WP_CRM_F {
           if (!empty($attribute['has_options'])) {
             ?>
               <div class="wp_crm_input_wrap wp_checkbox_input wp-tab-panel"  >
-                <ul class="wp_crm_checkbox_list"  wp_crm_slug="<?php echo esc_attr($slug); ?>">
+                <ul class="wp_crm_checkbox_list"  data-crm-slug="<?php echo esc_attr($slug); ?>">
             <?php foreach ($values as $rand => $value_data) { ?>
                     <li option_meta_value="<?php echo esc_attr($value_data['option']); ?>" >
-                      <!--<input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />-->
-                      <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
-                      <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
+                      <!--<input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />-->
+                      <input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
+                      <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
                       <label for="wpi_checkbox_<?php echo $rand; ?>"><?php echo $value_data['label']; ?></label>
                     </li>
             <?php } ?>
@@ -2216,9 +2302,9 @@ class WP_CRM_F {
           } else {
             foreach ($values as $rand => $value_data) {
               ?>
-                <!--<input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />-->
-                <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
-                <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
+                <!--<input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />-->
+                <input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
+                <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
               <?php
             }
           }
@@ -2227,9 +2313,9 @@ class WP_CRM_F {
         case 'dropdown':
           foreach ($values as $rand => $value_data) {
             ?>
-              <div class="wp_crm_input_wrap wp_dropdown_input"  random_hash="<?php echo $rand; ?>" >
+              <div class="wp_crm_input_wrap wp_dropdown_input"  data-random-hash="<?php echo $rand; ?>" >
 
-                <select class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+                <select class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                   <option value=""></option>
             <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                     <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2245,8 +2331,8 @@ class WP_CRM_F {
           $input_type = $attribute['input_type'];
           foreach ($values as $rand => $value_data) {
             ?>
-              <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+              <div class="wp_crm_input_wrap"  data-random-hash="<?php echo $rand; ?>" >
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
                 <button class="button wpc_file_upload">Browse file</button>
               </div>
             <?php
@@ -2276,9 +2362,9 @@ class WP_CRM_F {
           $input_type = in_array($attribute['input_type'], array('date')) ? 'text' : $attribute['input_type'];
           foreach ($values as $rand => $value_data) {
             ?>
-            <input <?php echo $tabindex; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+            <input <?php echo $tabindex; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" placeholder="<?php echo isset( $args['placeholder'] ) ? $args['placeholder'] : ''; ?>" />
             <?php if ( !empty($attribute['has_options']) ) { ?>
-              <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?> class="input-small wp_crm_input_options" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+              <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?> class="input-small wp_crm_input_options" data-random-hash=""<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                 <option></option>
               <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                   <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2291,9 +2377,9 @@ class WP_CRM_F {
 
         case 'textarea': foreach ($values as $rand => $value_data) {
             ?>
-            <textarea wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>"><?php echo $value_data['value']; ?></textarea>
+            <textarea data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" placeholder="<?php echo isset( $args['placeholder'] ) ? $args['placeholder'] : ''; ?>"><?php echo $value_data['value']; ?></textarea>
               <?php if ( !empty($attribute['has_options']) && $attribute['has_options'] ) { ?>
-              <select class="input-small" wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?>  random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+              <select class="input-small" wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?>  data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                 <option></option>
                 <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                   <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2307,20 +2393,20 @@ class WP_CRM_F {
         case 'checkbox':
           foreach ($values as $rand => $value_data) {
             ?>
-            <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />
-            <input random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
+            <input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />
+            <input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
             <label class="checkbox" for="wpi_checkbox_<?php echo $rand; ?>">
-              <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
+              <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo $tabindex; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
               <?php echo $value_data['label']; ?>
             </label>
             <?php
             }
             break;
 
-          case 'dropdown':
+        case 'dropdown':
             foreach ($values as $rand => $value_data) {
               ?>
-            <select class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" wp_crm_slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
+            <select class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" data-crm-slug="<?php echo esc_attr($slug); ?>"  <?php echo $tabindex; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
               <option value=""></option>
                   <?php foreach ($attribute['option_labels'] as $type_slug => $type_label): ?>
                 <option  <?php selected($type_slug, $value_data['option']); ?> value="<?php echo $type_slug; ?>"><?php echo $type_label; ?></option>
@@ -2328,20 +2414,20 @@ class WP_CRM_F {
             </select>
           <?php
           }
-          break;
+        break;
 
         case 'file_upload':
           $input_type = $attribute['input_type'];
           foreach ($values as $rand => $value_data) {
             if(is_user_logged_in()):
             ?>
-              <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="text" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+              <div class="wp_crm_input_wrap"  data-random-hash="<?php echo $rand; ?>" >
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="text" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
                 <button class="button wpc_file_upload">Browse file</button>
               </div>
             <?php else: ?>
-              <div class="wp_crm_input_wrap"  random_hash="<?php echo $rand; ?>" >
-                <input <?php echo !empty($tabindex)?$tabindex:''; ?> wp_crm_slug="<?php echo esc_attr($slug); ?>" random_hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="file" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
+              <div class="wp_crm_input_wrap"  data-random-hash="<?php echo $rand; ?>" >
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="file" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" />
               </div>
             <?php
             endif;
@@ -2491,6 +2577,8 @@ class WP_CRM_F {
         $wp_crm['configuration']['overview_table_options']['main_view'] = array('display_name', 'user_email');
         $wp_crm['configuration']['default_sender_email'] = "CRM <$assumed_email>";
         $wp_crm['configuration']['primary_user_attribute'] = 'display_name';
+        $wp_crm['configuration']['recaptcha_site_key'] = '';
+        $wp_crm['configuration']['recaptcha_secret_key'] = '';
 
         $wp_crm['wp_crm_contact_system_data']['example_form']['title'] = __('Example Shortcode Form', ud_get_wp_crm()->domain);
         $wp_crm['wp_crm_contact_system_data']['example_form']['full_shortcode'] = '[wp_crm_form form=example_contact_form]';
@@ -2600,7 +2688,7 @@ class WP_CRM_F {
    * @since 0.01
    *
    */
-  function minify_js($data) {
+  public static function minify_js($data) {
 
     if (!class_exists('W3_Plugin')) {
       include_once wp_crm_Path . 'lib/third-party/jsmin.php';
@@ -2635,50 +2723,65 @@ class WP_CRM_F {
    * @uses $wpdb
    *
    */
-  static function maybe_install_tables() {
+  static function maybe_install_tables($blog_ids = array()) {
     global $wpdb;
+    $sites = array('');
+    if(!empty($blog_ids))
+      $sites = $blog_ids;
 
-    if ( empty($wpdb->crm_log) ) {
-      $wpdb->crm_log = $wpdb->base_prefix . 'crm_log';
-    }
-
-    if ( empty($wpdb->crm_log_meta) ) {
-      $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
+    if(function_exists('get_sites') && empty($blog_ids)){
+      $sites = get_sites();
+    } 
+    elseif(function_exists('wp_get_sites') && empty($blog_ids)){
+      $sites = wp_get_sites();
     }
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    $sql = "CREATE TABLE {$wpdb->crm_log} (
-      id mediumint(9) NOT NULL AUTO_INCREMENT,
-      object_id mediumint(9) NOT NULL,
-      object_type VARCHAR(11),
-      user_id mediumint(9) NOT NULL,
-      action VARCHAR(255),
-      attribute VARCHAR(255),
-      value VARCHAR(255),
-      msgno VARCHAR(255),
-      email_to VARCHAR(255),
-      email_from VARCHAR(255),
-      subject VARCHAR(255),
-      text TEXT,
-      email_references VARCHAR(255),
-      time DATETIME,
-      other VARCHAR(255),
-      UNIQUE KEY id (id)
-    );";
-    
-    dbDelta($sql);
+    foreach ($sites as $key => $site) {
+      $site = (object) $site;
 
-    $sql = "CREATE TABLE {$wpdb->crm_log_meta} (
-      meta_id mediumint(9) NOT NULL AUTO_INCREMENT,
-      message_id mediumint(9) NOT NULL,
-      meta_key VARCHAR(255),
-      meta_group VARCHAR(255),
-      meta_value TEXT,
-      UNIQUE KEY id (meta_id)
-    );";
+      if( is_multisite() && isset($site->blog_id)) {
+        switch_to_blog( $site->blog_id );
+      }
 
-    dbDelta($sql);
+      $sql = "CREATE TABLE {$wpdb->crm_log} (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        object_id mediumint(9) NOT NULL,
+        object_type VARCHAR(11),
+        user_id mediumint(9) NOT NULL,
+        action VARCHAR(255),
+        attribute VARCHAR(255),
+        value VARCHAR(255),
+        msgno VARCHAR(255),
+        email_to VARCHAR(255),
+        email_from VARCHAR(255),
+        subject VARCHAR(255),
+        text TEXT,
+        email_references VARCHAR(255),
+        time DATETIME,
+        other VARCHAR(255),
+        UNIQUE KEY id (id)
+      );";
+      
+      dbDelta($sql);
+      
+      $sql = "CREATE TABLE {$wpdb->crm_log_meta} (
+        meta_id mediumint(9) NOT NULL AUTO_INCREMENT,
+        message_id mediumint(9) NOT NULL,
+        meta_key VARCHAR(255),
+        meta_group VARCHAR(255),
+        meta_value TEXT,
+        UNIQUE KEY id (meta_id)
+      );";
+
+      dbDelta($sql);
+
+      if( is_multisite()) {
+        restore_current_blog();
+      }
+    }
+
   }
 
   /**
@@ -2705,7 +2808,7 @@ class WP_CRM_F {
 
     $user_filter = ( !empty($_REQUEST['user_id']) && is_numeric( $_REQUEST['user_id'] ) ) ? " object_id={$_REQUEST['user_id']} " : '1';
 
-    $output = '';
+    $output = array();
 
     switch ($current_screen->id) {
       case 'crm_page_wp_crm_add_new':
@@ -2886,7 +2989,7 @@ class WP_CRM_F {
 
     $defaults = array(
         'object_type' => 'user',
-        'user_id' => $current_user->data->ID,
+        'user_id' => isset( $current_user ) && isset( $current_user->data ) && isset( $current_user->data->ID ) ? $current_user->data->ID : null,
         'attribute' => 'general_message',
         'action' => 'insert',
         'ajax' => 'false',
@@ -2909,7 +3012,7 @@ class WP_CRM_F {
     $args['time'] = date('Y-m-d H:i:s', $time_stamp);
 
     //** Insert event. We double-check $wpdb->crm_log exists in case this function is called very early */
-    $wpdb->insert($wpdb->crm_log ? $wpdb->crm_log : $wpdb->base_prefix . 'crm_log', array(
+    $wpdb->insert($wpdb->crm_log, array(
         'object_id' => isset($args['object_id'])?$args['object_id']:'',
         'object_type' => isset($args['object_type'])?$args['object_type']:'',
         'user_id' => isset($args['user_id'])?$args['user_id']:'',
@@ -3338,6 +3441,10 @@ class WP_CRM_F {
           <?php
           foreach ($metabox['args']['fields'] as $slug => $attribute):
             $row_classes = array();
+
+            if($attribute['input_type'] == 'recaptcha'){
+              continue;
+            }
             // To avoid undefined warning.
             $post[$slug] = isset($post[$slug])?$post[$slug]:'';
             $row_classes[] = (@$attribute['has_options'] ? 'wp_crm_has_options' : 'wp_crm_no_options');
@@ -3445,7 +3552,7 @@ class WP_CRM_F {
 
     $current_user_can_manage_crm = false;
 
-    if(!empty($current_user->roles[$user_level])){
+    if(is_super_admin($current_user->ID) || !empty($current_user->roles[$user_level])){
         $current_user_can_manage_crm = true;
     }
     else{
@@ -3466,6 +3573,21 @@ class WP_CRM_F {
       }
     }
     return $max_level;
+  }
+
+  static function reCaptchaVerify($gRecaptchaResponse){
+    global $wp_crm;
+    if(!$secret = $wp_crm['configuration']['recaptcha_secret_key'])
+      return false;
+    $cpost = new ReCaptcha\RequestMethod\WpRecaptchaPost();
+    $recaptcha = new \ReCaptcha\ReCaptcha($secret, $cpost);
+    // Make the call to verify the response and also pass the user's IP address
+    $resp = $recaptcha->verify($gRecaptchaResponse, $_SERVER['REMOTE_ADDR']);
+    if ($resp->isSuccess()) {
+      return true;
+    } else {
+      return $resp->getErrorCodes();
+    }
   }
 
 

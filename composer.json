@@ -22,7 +22,8 @@
     "usabilitydynamics/lib-ui": "0.3.4",
     "usabilitydynamics/lib-utility": "0.3.7",
     "usabilitydynamics/lib-wp-bootstrap": "1.2.1",
-    "usabilitydynamics/lib-ud-api-client": "1.1.5.1"
+    "usabilitydynamics/lib-ud-api-client": "1.1.5.1",
+    "google/recaptcha": "~1.1"
   },
   "require-dev": {
     "codeclimate/php-test-reporter": "dev-master"
@@ -42,6 +43,48 @@
     ]
   },
   "extra": {
+    "featureFlags": [
+      {
+        "name": "Google Visualization",
+        "option": "enable_google_visualization",
+        "constant": "WP_CRM_VISUALIZATION",
+        "description": "Google graph visualization on overview page.",
+        "since": "1.1.0",
+        "enabled": false
+      },
+      {
+        "name": "Color Schemes",
+        "option": "enable_user_color_schems",
+        "constant": "WP_CRM_ENABLE_USER_COLOR_SCHEMES",
+        "description": "Color scheme selector on editor.",
+        "since": "1.1.0",
+        "enabled": false
+      },
+      {
+        "name": "Ace Editor",
+        "option": "enable_ace_editor",
+        "constant": "WP_CRM_ENABLE_ACE_EDITOR",
+        "description": "Legacy rich-test editor.",
+        "since": "1.1.0",
+        "enabled": false
+      },
+      {
+        "name": "Disable Dashboard Splash Page",
+        "option": "disable_dashboard_splash_page",
+        "constant": "WP_CRM_DISABLE_DASHBOARD_SPLASH",
+        "description": "UD splash disabled.",
+        "since": "1.1.0",
+        "enabled": true
+      },
+      {
+        "name": "Network Mood",
+        "option": "enable_network_mood",
+        "constant": "ENABLE_NETWORK_MOOD",
+        "description": "Enable Multisite.",
+        "since": "1.1.0",
+        "enabled": true
+      }
+    ],
     "splashes": {
       "install": "static/splashes/install.php"
     },

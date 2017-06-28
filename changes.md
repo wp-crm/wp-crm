@@ -1,3 +1,14 @@
+#### 1.1.0 ( June 28, 2017 )
+* Fixed JS error on submitting the form.
+* Fixed Network issues.
+* Fixed issue with file upload field.
+* Fixed Bulk action in All People tab.
+* Fixed Network messages were not appearing from same profile.
+* Fixed issue when the notification wasn't sending without Textarea field.
+* Added captcha to the forms.
+* Added new compatibility to wp-invoice plugin - "Add invoice from wp-crm user profile".
+* Added new parameter to the shortcode redirect_url.
+
 #### 1.0.6
 * Added Bulk actions to Messages.
 * Added new options for WP-Property and Denali Integration. See Help tab.

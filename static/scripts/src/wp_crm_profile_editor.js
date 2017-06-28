@@ -76,7 +76,7 @@ jQuery(document).ready(function() {
     var placeholder;
     var this_element = jQuery(this);
     var this_class = this_element.attr("class");
-    var this_attribute = this_element.attr("wp_crm_slug");
+    var this_attribute = this_element.attr("data-crm-slug");
 
     if(this_element.is("select")){
       value = this_element.find(":selected").html();
@@ -182,9 +182,9 @@ jQuery(document).ready(function() {
       meta_key = replacement_key.replace('[', '');
       meta_key = meta_key.replace(']', '');
 
-      if(jQuery("[wp_crm_slug=" + meta_key + "], [wp_crm_option_for=" + meta_key + "]").length) {
+      if(jQuery("[data-crm-slug=" + meta_key + "], [wp_crm_option_for=" + meta_key + "]").length) {
 
-        var element = jQuery("[wp_crm_slug=" + meta_key + "]");
+        var element = jQuery("[data-crm-slug=" + meta_key + "]");
 
         listener_keys.push(element);
 
