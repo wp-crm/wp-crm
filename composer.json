@@ -45,6 +45,14 @@
   "extra": {
     "featureFlags": [
       {
+        "name": "REST API",
+        "option": "enable_rest_api",
+        "constant": "WP_CRM_REST_API",
+        "description": "Exposes RESTFul API.",
+        "since": "1.2.0",
+        "enabled": false
+      },
+      {
         "name": "Google Visualization",
         "option": "enable_google_visualization",
         "constant": "WP_CRM_VISUALIZATION",

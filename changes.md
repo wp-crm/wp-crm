@@ -1,3 +1,6 @@
+#### 1.2.0 ( June 28, 2017 )
+* Adding REST API feature flag.
+
 #### 1.1.0 ( June 28, 2017 )
 * Fixed JS error on submitting the form.
 * Fixed Network issues.
