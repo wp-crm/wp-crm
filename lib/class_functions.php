@@ -13,6 +13,66 @@
 class WP_CRM_F {
 
   /**
+   * WP_CRM_F::generate_schema_for_form();
+   *
+   * @param $form
+   * @param array $options
+   * @return array
+   */
+  static public function generate_schema_for_form( $form, $options = array() ) {
+    global $wp_crm;
+
+    $_schema = array(
+      'title' => $form['title'],
+      'type' => 'object',
+      'properties' => array(),
+      'required' => array()
+    );
+
+    foreach( (array) $form['fields'] as $_index => $_field ) {
+
+      $_attribute = $wp_crm[ 'data_structure' ][ 'attributes' ][ $_field ];
+
+      $_fieldData = array(
+        'title' => $_attribute['title'] ,
+        'description' => $_attribute['description'],
+        'type' => $_attribute['input_type'],
+        'enum' => array(),
+        'order' => $_index,
+        //'x-group' => $_attribute['group'],
+        //'x-note' => $_attribute['note'],
+        'uniqueItems' => false
+      );
+
+      //die( '<pre>' . print_r( $_fieldData, true ) . '</pre>' );
+      if( isset( $_attribute['required'] ) && $_attribute['required'] === 'true' ) {
+        $_schema['required'][] = $_field ;
+      }
+
+      //echo( '<pre>' . print_r( $_attribute['option_keys'], true ) . '</pre>' );
+
+      foreach( $_attribute['option_labels'] as $_key => $_value ) {
+        $_fieldData['enum'][ $_key ] = $_value;
+      }
+      //echo( '<pre>' . print_r( $_schema['properties'][$_field]['enum'], true ) . '</pre>' );
+
+      //die( '<pre>' . print_r( $_fieldData, true ) . '</pre>' );
+
+      //$_fieldData = array_filter( $_fieldData );
+
+      $_fieldData['order'] = $_index;
+
+      $_schema['properties'][$_field] = $_fieldData;
+
+
+
+    }
+
+    return $_schema;
+
+  }
+
+  /**
    * Build and returns shortcode-form configuraiton object.
    *
    * - show_all - returns all fields, not just those that are actually enabled for this particualar form.

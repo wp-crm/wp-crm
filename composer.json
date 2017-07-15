@@ -45,12 +45,20 @@
   "extra": {
     "featureFlags": [
       {
+        "name": "Pipeline",
+        "option": "enable_rest_api",
+        "constant": "WP_CRM_PIPELINE",
+        "description": "Exposes Pipeline options.",
+        "since": "1.2.0",
+        "enabled": true
+      },
+      {
         "name": "REST API",
         "option": "enable_rest_api",
         "constant": "WP_CRM_REST_API",
         "description": "Exposes RESTFul API.",
         "since": "1.2.0",
-        "enabled": false
+        "enabled": true
       },
       {
         "name": "Google Visualization",

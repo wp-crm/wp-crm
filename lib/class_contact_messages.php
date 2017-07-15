@@ -1469,6 +1469,16 @@ class class_contact_messages {
                       <span class="description hidden"><?php _e( 'If new user created, assign this role.', ud_get_wp_crm()->domain ); ?></span>
                     </li>
 
+                    <?php if( defined( 'WP_CRM_PIPELINE' ) && WP_CRM_PIPELINE ) { ?>
+                    <li>
+                      <label for=""><?php _e( 'Pipeline:', ud_get_wp_crm()->domain ); ?></label>
+                      <select id="" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][user_pipeline]">
+                        <option value=""> - </option>
+                      </select>
+                      <span class="description hidden"><?php _e( 'Pipeline to utilize.', ud_get_wp_crm()->domain ); ?></span>
+                    </li>
+                    <?php } ?>
+
                     <li>
                       <label for="redirect_to_<?php echo $row_hash; ?>"><?php _e( 'Redirect to:', ud_get_wp_crm()->domain ); ?></label>
                       <input type="text" id="redirect_to_<?php echo $row_hash; ?>" class="regular-text" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][redirect_url]" value="<?php echo !empty($data[ 'redirect_url' ])?$data[ 'redirect_url' ]:''; ?>"/>

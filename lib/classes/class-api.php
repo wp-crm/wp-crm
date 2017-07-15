@@ -6,6 +6,7 @@
 namespace UsabilityDynamics\WPC {
 
   use WP_REST_Request;
+  use WP_CRM_F;
 
   if( !class_exists( 'UsabilityDynamics\WPC\API' ) ) {
 
@@ -25,6 +26,9 @@ namespace UsabilityDynamics\WPC {
        *
        *
        *
+       * /wp-json/wp-crm/v1/form/list
+       *
+       * /wp-json/wp-crm/v1/form/submit
        *
        */
       public function rest_api_init() {
@@ -35,9 +39,32 @@ namespace UsabilityDynamics\WPC {
           'callback' => array( $this, 'submit_form' ),
         ) );
 
+        // Return JSON schema for each form.
+        register_rest_route( 'wp-crm/v1/form', '/list/', array(
+          'methods' => array( 'GET' ),
+          'callback' => array( $this, 'get_forms' )
+        ) );
+
       }
 
-      /**
+      public function get_forms( WP_REST_Request $request ) {
+        global $wp_crm;
+
+        $_items = array();
+
+        foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $_form ) {
+          $_items[] = WP_CRM_F::generate_schema_for_form( $_form );
+        }
+
+        return array(
+          'ok'=>true,
+          'data' => $_items
+        );
+
+      }
+
+
+        /**
        * Submit CRM Form.
        *
        *
