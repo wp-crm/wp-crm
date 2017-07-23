@@ -874,6 +874,7 @@ class class_contact_messages {
         var form = this_form;
         var request_method = '<?php echo $form[ 'request_method' ]; ?>';
         var captchaInput = jQuery('.crm-g-captcha-input', form);
+        var formID = form.attr('id');
 
         wp_crm_developer_log( 'submit_this_form() initiated.' );
 
@@ -994,9 +995,14 @@ class class_contact_messages {
                 _gaq.push( [ '_trackEvent', "Contact Form: <?php echo esc_attr( $form[ 'title' ] ); ?>", "Submitted", "Total Time", (+new Date) - this_form_data.start_time ] );
               }
 
+
               jQuery( form_response_field ).addClass( "success" );
               jQuery( submit_button ).removeAttr( "disabled" );
 
+              // Reseting recaptcha so it's can be use again.
+              if(typeof grecaptcha != 'undefined'){
+                grecaptcha.reset(window[formID + "_recaptcha"]);
+              }
             } else {
 
               if( _gaq ) {
@@ -1006,7 +1012,13 @@ class class_contact_messages {
 
               jQuery( form_response_field ).addClass( "failure" );
               jQuery( submit_button ).removeAttr( "disabled" );
+
+              // Reseting recaptcha so it's can be use again.
+              if(typeof result.bad_fields != 'undefined' && typeof result.bad_fields.captcha != 'undefined' && typeof grecaptcha != 'undefined'){
+                grecaptcha.reset(window[formID + "_recaptcha"]);
+              }
             }
+
 
             <?php if( !empty( $js_callback_function ) ) { ?>
             if( typeof <?php echo $js_callback_function; ?> == 'function' ) {
@@ -1025,6 +1037,10 @@ class class_contact_messages {
 
           },
           error: function ( result ) {
+            // Reseting recaptcha so it's can be use again.
+            if(typeof grecaptcha != 'undefined'){
+              grecaptcha.reset(window[formID + "_recaptcha"]);
+            }
 
             jQuery( form_response_field ).show();
             jQuery( form_response_field ).addClass( "failure" );
@@ -1118,6 +1134,21 @@ class class_contact_messages {
   static function process_crm_message() {
     global $wp_crm;
 
+    $md5_form_slug = $_REQUEST[ 'form_slug' ];
+    $associated_object = $_REQUEST[ 'associated_object' ];
+
+    foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $form_slug => $form_data ) {
+      if( $md5_form_slug == md5( $form_slug ) ) {
+        $confirmed_form_slug = $form_slug;
+        $confirmed_form_data = $form_data;
+        continue;
+      }
+    }
+
+    if( !$confirmed_form_slug ) {
+      die();
+    }
+
     //** Server seems to return nothing somethines, adding space in beginning seems to solve */
     //** This needs to be removed - it causes a warning when the header items are set later in the code, when then causes the form NOT to work echo ' '; */
 
@@ -1125,8 +1156,7 @@ class class_contact_messages {
     if( !empty( $_REQUEST[ 'comment' ] ) ||
       !empty( $_REQUEST[ 'email' ] ) ||
       !empty( $_REQUEST[ 'name' ] ) ||
-      !empty( $_REQUEST[ 'url' ] ) ||
-      (isset($_REQUEST[ 'g-recaptcha-response' ]) && !WP_CRM_F::reCaptchaVerify($_REQUEST[ 'g-recaptcha-response' ]))
+      !empty( $_REQUEST[ 'url' ] )
     ) {
       die( json_encode( array( 'success' => 'false', 'message' => __( 'If you see this message, WP-CRM thought you were a robot.  Please contact admin if you do not think are you one.', ud_get_wp_crm()->domain ) ) ) );
     }
@@ -1142,21 +1172,6 @@ class class_contact_messages {
     if( isset( $data[ 'user_data' ][ 'user_id' ] ) ) {
       //** Fail - user_id will never be passed in this manner unless somebody is screwing around */
       die( json_encode( array( 'success' => 'false', 'message' => __( 'Form could not be submitted.', ud_get_wp_crm()->domain ) ) ) );
-    }
-
-    $md5_form_slug = $_REQUEST[ 'form_slug' ];
-    $associated_object = $_REQUEST[ 'associated_object' ];
-
-    foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $form_slug => $form_data ) {
-      if( $md5_form_slug == md5( $form_slug ) ) {
-        $confirmed_form_slug = $form_slug;
-        $confirmed_form_data = $form_data;
-        continue;
-      }
-    }
-
-    if( !$confirmed_form_slug ) {
-      die();
     }
 
     if( isset( $data[ 'user_id' ] ) ) {
@@ -1287,6 +1302,10 @@ class class_contact_messages {
 
     if( !empty( $bad_fields ) ) {
       die( json_encode( array( 'success' => 'false', 'bad_fields' => $bad_fields, 'message' => __( 'Form could not be submitted. Please make sure you have entered your information properly.', ud_get_wp_crm()->domain ) ) ) );
+    }
+
+    if(in_array('captcha', $confirmed_form_data[ 'fields' ]) && (!isset($_REQUEST[ 'wp_crm']['user_data']['captcha' ]) || !WP_CRM_F::reCaptchaVerify(WP_CRM_F::get_first_value( $_REQUEST['wp_crm']['user_data']['captcha'])))){
+      die( json_encode( array( 'success' => 'false', 'bad_fields' => array('captcha' => "Captcha validation failed."), 'message' => __( 'Captcha validation failed.', ud_get_wp_crm()->domain ) ) ) );
     }
 
     $user_role = !empty( $wp_crm[ 'configuration' ][ 'new_contact_role' ] ) ? $wp_crm[ 'configuration' ][ 'new_contact_role' ] : false;
