@@ -1499,8 +1499,8 @@ class class_contact_messages {
                     </li>
 
                     <li class="wp_crm_checkbox_on_left">
-                        <input <?php checked( !empty( $data[ 'never_use_current_user' ] ) ? $data[ 'never_use_current_user' ] : '', 'on' ); ?>  type="checkbox" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][never_use_current_user]" value="on" value="<?php echo !empty( $data[ 'never_use_current_user' ] ) ? $data[ 'never_use_current_user' ] : ''; ?>"/>
-                      <label>
+                        <input <?php checked( !empty( $data[ 'never_use_current_user' ] ) ? $data[ 'never_use_current_user' ] : '', 'on' ); ?> id="never_use_current_user<?php echo $row_hash; ?>" type="checkbox" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][never_use_current_user]" value="on" value="<?php echo !empty( $data[ 'never_use_current_user' ] ) ? $data[ 'never_use_current_user' ] : ''; ?>"/>
+                      <label for="never_use_current_user<?php echo $row_hash; ?>">
                         <span class="label-description"><?php _e( 'Ignore logged-in users.', ud_get_wp_crm()->domain ); ?></span>
                       </label>
                     </li>
