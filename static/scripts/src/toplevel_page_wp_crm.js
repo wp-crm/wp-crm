@@ -104,5 +104,13 @@ jQuery(document).ready(function () {
     }
 
   });
+  
+  jQuery("#cb-select-all-1,#cb-select-all-2").click(function(){
+  if(jQuery(this).is(":checked")){
+    jQuery(".single-user-chk").attr("checked","checked");
+  }else{
+    jQuery(".single-user-chk").removeAttr("checked","checked");
+  }
+  });
 
 });

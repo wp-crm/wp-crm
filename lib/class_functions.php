@@ -3579,14 +3579,14 @@ class WP_CRM_F {
     global $wp_crm;
     if(!$secret = $wp_crm['configuration']['recaptcha_secret_key'])
       return false;
-    $cpost = new ReCaptcha\RequestMethod\WpRecaptchaPost();
+    $cpost = new \ReCaptcha\RequestMethod\WpRecaptchaPost();
     $recaptcha = new \ReCaptcha\ReCaptcha($secret, $cpost);
     // Make the call to verify the response and also pass the user's IP address
     $resp = $recaptcha->verify($gRecaptchaResponse, $_SERVER['REMOTE_ADDR']);
     if ($resp->isSuccess()) {
       return true;
     } else {
-      return $resp->getErrorCodes();
+      return false;
     }
   }
 
