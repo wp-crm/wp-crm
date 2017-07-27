@@ -216,9 +216,10 @@ jQuery(document).ready(function($) {
             }
         }), jQuery(cloned).appendTo(table);
         var added_row = jQuery(".wp_crm_dynamic_table_row:last", table);
-        jQuery(added_row).show(), jQuery("input[type=text]:not(.wp-crm-field)", added_row).val(""), 
-        jQuery("input[type=checkbox]", added_row).attr("checked", !1), jQuery("textarea", added_row).val("").show(), 
-        jQuery("select", added_row).val(""), jQuery(".ace_editor", added_row).remove(), 
+        jQuery(added_row).show(), jQuery("input[type=text]:not(.wp-crm-field)", added_row).val("").removeAttr("disabled"), 
+        jQuery("input[type=checkbox]", added_row).attr("checked", !1).removeAttr("disabled"), 
+        jQuery("textarea", added_row).val("").show().removeAttr("disabled"), jQuery("select", added_row).val("").removeAttr("disabled"), 
+        jQuery(".ace_editor", added_row).remove(), jQuery("button", added_row).removeAttr("disabled"), 
         jQuery("input[type=text].wp-crm-field", added_row).prop("readonly", !0), jQuery(".wp-crm-field-edit", added_row).show(), 
         jQuery(added_row).attr("new_row", "true"), jQuery(".slug_setter", added_row).focus();
     }), jQuery(".wp_crm_dynamic_table_row[new_row=true] input.slug_setter").live("change", function() {
