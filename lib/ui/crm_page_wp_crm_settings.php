@@ -498,7 +498,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
           <li class="wp_crm_advanced_configuration">
             <?php if($slug == 'recaptcha'): ?>
-              <input value="true" type="hidden" checked="checked"> name="wp_crm[data_structure][attributes][recaptcha][required]" />
+              <input value="true" type="hidden" checked="checked" name="wp_crm[data_structure][attributes][recaptcha][required]" />
             <?php endif; ?>
             <input id="<?php echo $row_hash; ?>_required" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['required'])?$wp_crm['data_structure']['attributes'][$slug]['required']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][required]" <?php if($slug == 'recaptcha') echo 'disabled="disabled"'; ?> />
             <label for="<?php echo $row_hash; ?>_required" ><?php _e('Required', ud_get_wp_crm()->domain); ?></label>
