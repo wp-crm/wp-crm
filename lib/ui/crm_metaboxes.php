@@ -281,7 +281,7 @@ class crm_page_wp_crm_add_new {
           <div class="wp_crm_toggle_advanced_user_actions wp_crm_link"><?php _e('Toggle Settings',ud_get_wp_crm()->domain); ?></div>
           <div class="wp_crm_advanced_user_actions wp-tab-panel">
             <?php if (WP_CRM_F::current_user_can_manage_crm()) { ?>
-            <?php if (current_user_can('WP-CRM: Change Passwords')) { ?>
+            <?php if (current_user_can('WP-CRM: Change Passwords') || empty($user_id) ) { ?>
               <?php _e('Set Password:', ud_get_wp_crm()->domain); ?>
               <ul class="wp_crm_edit_password">
                 <li>
@@ -299,7 +299,7 @@ class crm_page_wp_crm_add_new {
                 <?php if (WP_CRM_F::current_user_can_manage_crm()) { ?>
                   <li class="wp_crm_edit_roles">
                     <label for="wp_crm_role"><?php _e('Capability Role:', ud_get_wp_crm()->domain); ?></label>
-                    <select id="wp_crm_role" <?php echo (!empty($own_profile) ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
+                    <select id="wp_crm_role" <?php echo ((!empty($user_id) && (!empty($own_profile) || !current_user_can('WP-CRM: Change Role'))) ? ' disabled="true" ' : ''); ?> name="wp_crm[user_data][role][<?php echo rand(1000, 9999); ?>][value]">
                       <option value=""></option>
                   <?php wp_dropdown_roles(!empty($object['role']['default'][0])?$object['role']['default'][0]:''); ?>
                     </select>

@@ -951,6 +951,7 @@ class WP_CRM_F {
           foreach ($wp_roles->roles as $role => $role_data) {
             if (is_array($role_data['capabilities']) && array_key_exists('edit_users', $role_data['capabilities'])) {
               $wp_roles->add_cap($role, 'WP-CRM: Change Passwords', true);
+              $wp_roles->add_cap($role, 'WP-CRM: Change Role', true);
               $wp_roles->add_cap($role, 'WP-CRM: Change Color Scheme', true);
             }
           }
