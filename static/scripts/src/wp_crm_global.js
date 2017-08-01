@@ -190,11 +190,12 @@ jQuery( document ).ready( function($) {
     jQuery( added_row ).show();
 
     // Blank out all values except the label field
-    jQuery( "input[type=text]:not(.wp-crm-field)", added_row ).val( '' );
-    jQuery( "input[type=checkbox]", added_row ).attr( 'checked', false );
-    jQuery( "textarea", added_row ).val( '' ).show();
-    jQuery( "select", added_row ).val( '' );
+    jQuery( "input[type=text]:not(.wp-crm-field)", added_row ).val( '' ).removeAttr('disabled');
+    jQuery( "input[type=checkbox]", added_row ).attr( 'checked', false ).removeAttr('disabled');
+    jQuery( "textarea", added_row ).val( '' ).show().removeAttr('disabled');
+    jQuery( "select", added_row ).val( '' ).removeAttr('disabled');
     jQuery( ".ace_editor", added_row ).remove();
+    jQuery( "button", added_row ).removeAttr('disabled');
 
     // Again setting the readonly property && dilsplay edit button.
     jQuery( "input[type=text].wp-crm-field", added_row ).prop( 'readonly', true );

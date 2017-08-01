@@ -643,7 +643,7 @@ if( !function_exists( 'wp_crm_save_user_data' ) ) {
           switch( !empty( $wp_crm[ 'data_structure' ][ 'attributes' ][ $meta_key ][ 'input_type' ] ) ? $wp_crm[ 'data_structure' ][ 'attributes' ][ $meta_key ][ 'input_type' ] : '' ) {
 
             case 'checkbox':
-              if( !empty( $data[ 'option' ] ) && $data[ 'value' ] == 'on' ) {
+              if( !empty( $data[ 'option' ] ) && isset( $data[ 'value' ] ) && $data[ 'value' ] == 'on' ) {
 
                 //** get full meta key of option */
                 $full_meta_key = $wp_crm[ 'data_structure' ][ 'attributes' ][ $meta_key ][ 'option_keys' ][ $data[ 'option' ] ];

@@ -1008,7 +1008,9 @@ if (!class_exists('CRM_UD_F')):
       $content = trim($content);
       $content = preg_replace('~[^\\pL0-9_]+~u', '_', $content); // substitutes anything but letters, numbers and '_' with separator
       $content = trim($content, "-");
-      $content = iconv("utf-8", "us-ascii//TRANSLIT", $content); // TRANSLIT does the whole job
+      if(function_exists('iconv')){
+        $content = iconv("utf-8", "us-ascii//TRANSLIT", $content); // TRANSLIT does the whole job
+      }
       $content = strtolower($content);
       $slug = preg_replace('~[^-a-z0-9_]+~', '', $content); // keep only letters, numbers, '_' and separator
 

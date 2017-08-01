@@ -951,6 +951,7 @@ class WP_CRM_F {
           foreach ($wp_roles->roles as $role => $role_data) {
             if (is_array($role_data['capabilities']) && array_key_exists('edit_users', $role_data['capabilities'])) {
               $wp_roles->add_cap($role, 'WP-CRM: Change Passwords', true);
+              $wp_roles->add_cap($role, 'WP-CRM: Change Role', true);
               $wp_roles->add_cap($role, 'WP-CRM: Change Color Scheme', true);
             }
           }
@@ -2503,6 +2504,12 @@ class WP_CRM_F {
       //* Regenerate possible meta keys */
       $wp_crm_settings['data_structure'] = WP_CRM_F::build_meta_keys($wp_crm_settings);
 
+      if(!isset($wp_crm_settings['data_structure']['attributes']['recaptcha'])){
+        $wp_crm_settings['data_structure']['attributes']['recaptcha']['title'] = __('Google reCAPTCHA', ud_get_wp_crm()->domain );
+        $wp_crm_settings['data_structure']['attributes']['recaptcha']['input_type'] = 'recaptcha';
+        $wp_crm_settings['data_structure']['attributes']['recaptcha']['required'] = 'true';
+      }
+
       update_option('wp_crm_settings', $wp_crm_settings);
 
       // Load settings out of database to overwrite defaults from action_hooks.
@@ -2517,7 +2524,6 @@ class WP_CRM_F {
       // Reload page to make sure higher-end functions take affect of new settings
       // The filters below will be ran on reload, but the saving functions won't
       if ($_REQUEST['page'] == 'wp_crm_settings')
-        ;
       {
         unset($_REQUEST);
         wp_redirect(admin_url("admin.php?page=wp_crm_settings&message=updated"));
@@ -2574,6 +2580,10 @@ class WP_CRM_F {
         $wp_crm['data_structure']['attributes']['description']['title'] = 'Description';
         $wp_crm['data_structure']['attributes']['description']['input_type'] = 'textarea';
 
+        $wp_crm['data_structure']['attributes']['recaptcha']['title'] = __('Google reCAPTCHA', ud_get_wp_crm()->domain );
+        $wp_crm['data_structure']['attributes']['recaptcha']['input_type'] = 'recaptcha';
+        $wp_crm['data_structure']['attributes']['recaptcha']['required'] = 'true';
+
         $wp_crm['configuration']['overview_table_options']['main_view'] = array('display_name', 'user_email');
         $wp_crm['configuration']['default_sender_email'] = "CRM <$assumed_email>";
         $wp_crm['configuration']['primary_user_attribute'] = 'display_name';
@@ -2616,6 +2626,12 @@ class WP_CRM_F {
 
     if(!isset($wp_crm['configuration']['user_level'])){
       $wp_crm['configuration']['user_level'] = "administrator";
+    }
+
+    if(!isset($wp_crm['data_structure']['attributes']['recaptcha'])){
+      $wp_crm['data_structure']['attributes']['recaptcha']['title'] = __('Google reCAPTCHA', ud_get_wp_crm()->domain );
+      $wp_crm['data_structure']['attributes']['recaptcha']['input_type'] = 'recaptcha';
+      $wp_crm['data_structure']['attributes']['recaptcha']['required'] = 'true';
     }
 
     $wp_crm = stripslashes_deep($wp_crm);

@@ -1304,8 +1304,10 @@ class class_contact_messages {
       die( json_encode( array( 'success' => 'false', 'bad_fields' => $bad_fields, 'message' => __( 'Form could not be submitted. Please make sure you have entered your information properly.', ud_get_wp_crm()->domain ) ) ) );
     }
 
-    if(in_array('captcha', $confirmed_form_data[ 'fields' ]) && (!isset($_REQUEST[ 'wp_crm']['user_data']['captcha' ]) || !WP_CRM_F::reCaptchaVerify(WP_CRM_F::get_first_value( $_REQUEST['wp_crm']['user_data']['captcha'])))){
-      die( json_encode( array( 'success' => 'false', 'bad_fields' => array('captcha' => "Captcha validation failed."), 'message' => __( 'Captcha validation failed.', ud_get_wp_crm()->domain ) ) ) );
+    // validating captcha
+    // Need to validate after field validation request. unless captcha will expire on field validation and won't work on form submit.
+    if(in_array('recaptcha', $confirmed_form_data[ 'fields' ]) && (!isset($_REQUEST[ 'wp_crm']['user_data']['recaptcha' ]) || !WP_CRM_F::reCaptchaVerify(WP_CRM_F::get_first_value( $_REQUEST['wp_crm']['user_data']['recaptcha'])))){
+      die( json_encode( array( 'success' => 'false', 'bad_fields' => array('recaptcha' => __( 'Captcha validation failed.', ud_get_wp_crm()->domain )), 'message' => __( 'Captcha validation failed.', ud_get_wp_crm()->domain ) ) ) );
     }
 
     $user_role = !empty( $wp_crm[ 'configuration' ][ 'new_contact_role' ] ) ? $wp_crm[ 'configuration' ][ 'new_contact_role' ] : false;
