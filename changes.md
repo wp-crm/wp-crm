@@ -1,3 +1,9 @@
+#### 1.1.1 ( August 18, 2017 )
+* Took away the opportunity of minimum user level which can manage WP-CRM to change roles and passwords of other users.
+* Improved Google reCAPTCHA options and added integration with WP-Invoice plugin.
+* Fixed conflict with Contact Form 7.
+* Fixed empty fields issue on new contact form.
+
 #### 1.1.0 ( June 28, 2017 )
 * Fixed JS error on submitting the form.
 * Fixed Network issues.
