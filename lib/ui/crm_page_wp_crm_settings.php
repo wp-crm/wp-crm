@@ -523,7 +523,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
           </td>
 
           <td class='wp_crm_values_col'>
-            <textarea  name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][options]"><?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['options'])?$wp_crm['data_structure']['attributes'][$slug]['options']:''; ?></textarea>
+            <textarea  name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][options]"><?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['options'])?htmlentities($wp_crm['data_structure']['attributes'][$slug]['options']):''; ?></textarea>
           </td>
 
           <td><span class="wp_crm_delete_row  button"><?php _e('Delete',ud_get_wp_crm()->domain) ?></span></td>
