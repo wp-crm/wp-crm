@@ -24,7 +24,7 @@ class WpRecaptchaPost implements RequestMethod
     public function submit(RequestParameters $params)
     {
         $response = wp_remote_post( self::SITE_VERIFY_URL, array(
-            'body' => $params,
+            'body' => $params->toArray(),
             )
         );
 

@@ -55,6 +55,7 @@ $wp_crm['capabilities'] = array(
     'Send Group Message' => __('Send a group message to users.', ud_get_wp_crm()->domain),
     'Perform Advanced Functions' => __('Perform advanced functions such as merging users.', ud_get_wp_crm()->domain),
     'Change Passwords' => __('Change passwords of other users. This is only checked if the user can edit users in the first place.', ud_get_wp_crm()->domain),
+    'Change Role' => __('Change role of other users. This is only checked if the user can edit users in the first place.', ud_get_wp_crm()->domain),
     'Change Color Scheme' => __('Change color scheme. This is only checked if the user can edit users in the first place.', ud_get_wp_crm()->domain)
 );
 

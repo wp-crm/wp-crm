@@ -3,8 +3,8 @@ Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Ko
 Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
-Tested up to: 4.8
-Stable tag: 1.1.0
+Tested up to: 4.8.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -74,6 +74,12 @@ For additional help, please reference the contextual help dropdowns the differen
 * Initial public release.
 
 == Changelog ==
+
+= 1.1.1 =
+* Took away the opportunity of minimum user level which can manage WP-CRM to change roles and passwords of other users.
+* Improved Google reCAPTCHA options and added integration with WP-Invoice plugin.
+* Fixed conflict with Contact Form 7.
+* Fixed empty fields issue on new contact form.
 
 = 1.1.0 =
 * Fixed JS error on submitting the form.

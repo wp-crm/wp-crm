@@ -164,10 +164,11 @@ jQuery( document ).ready( function($) {
         if( liEl.length > 0 ) {
           liEl.each( function( i,e ){
             var label = jQuery( 'label', e );
-            var input = jQuery( 'input', e );
+            var input = jQuery( 'input:eq(0)', e );
             if( label.length > 0 && input.length > 0 ) {
-              var attrFor = label.attr( 'for' );
-              var attrId = input.attr( 'id' );
+              var attrFor = label.attr( 'for' ) != 'undefined'?label.attr( 'for' ):'';
+              var attrId = input.attr( 'id' ) != 'undefined'?input.attr( 'id' ):'';
+              console.log(typeof attrFor);
               if( attrFor != '' && attrId != '' ) {
                 var rand=Math.floor( Math.random()*10000 );
                 label.attr( 'for', 'new_field_'+rand );
@@ -188,12 +189,17 @@ jQuery( document ).ready( function($) {
     // Display row ust in case
     jQuery( added_row ).show();
 
-    // Blank out all values
-    jQuery( "input[type=text]", added_row ).val( '' );
-    jQuery( "input[type=checkbox]", added_row ).attr( 'checked', false );
-    jQuery( "textarea", added_row ).val( '' ).show();
-    jQuery( "select", added_row ).val( '' );
+    // Blank out all values except the label field
+    jQuery( "input[type=text]:not(.wp-crm-field)", added_row ).val( '' ).removeAttr('disabled');
+    jQuery( "input[type=checkbox]", added_row ).attr( 'checked', false ).removeAttr('disabled');
+    jQuery( "textarea", added_row ).val( '' ).show().removeAttr('disabled');
+    jQuery( "select", added_row ).val( '' ).removeAttr('disabled');
     jQuery( ".ace_editor", added_row ).remove();
+    jQuery( "button", added_row ).removeAttr('disabled');
+
+    // Again setting the readonly property && dilsplay edit button.
+    jQuery( "input[type=text].wp-crm-field", added_row ).prop( 'readonly', true );
+    jQuery( ".wp-crm-field-edit", added_row ).show();
 
     // Unset 'new_row' attribute
     jQuery( added_row ).attr( 'new_row', 'true' );
