@@ -245,7 +245,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <div class="description"><?php printf(__('', ud_get_wp_crm()->domain)); ?></div>
             </li>
           </ul>
-          <p>See more details in <a href="#" class="open-help-tab" aria-controls="contextual-help-wrap">help tab</a>.</p>
+          <p><?php _e('See more details in <a href="#" class="open-help-tab" aria-controls="contextual-help-wrap">help tab</a>.', ud_get_wp_crm()->domain); ?></p>
         </td>
       </tr>
 
@@ -529,7 +529,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
           </td>
 
           <td class='wp_crm_values_col'>
-            <textarea  name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][options]"><?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['options'])?$wp_crm['data_structure']['attributes'][$slug]['options']:''; ?></textarea>
+            <textarea  name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][options]"><?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['options'])?htmlentities($wp_crm['data_structure']['attributes'][$slug]['options']):''; ?></textarea>
           </td>
 
           <td><button class="wp_crm_delete_row  button" <?php if($slug == 'recaptcha') echo 'disabled="disabled"'; ?> ><?php _e('Delete',ud_get_wp_crm()->domain) ?></button></td>
