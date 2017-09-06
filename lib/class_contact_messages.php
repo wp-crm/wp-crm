@@ -1000,7 +1000,7 @@ class class_contact_messages {
               jQuery( submit_button ).removeAttr( "disabled" );
 
               // Reseting recaptcha so it's can be use again.
-              if(typeof grecaptcha != 'undefined'){
+              if(captchaInput.length && typeof grecaptcha != 'undefined'){
                 grecaptcha.reset(window[formID + "_recaptcha"]);
               }
             } else {
@@ -1038,7 +1038,7 @@ class class_contact_messages {
           },
           error: function ( result ) {
             // Reseting recaptcha so it's can be use again.
-            if(typeof grecaptcha != 'undefined'){
+            if(captchaInput.length && typeof grecaptcha != 'undefined'){
               grecaptcha.reset(window[formID + "_recaptcha"]);
             }
 
