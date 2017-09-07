@@ -77,6 +77,9 @@ For additional help, please reference the contextual help dropdowns the differen
 
 = 1.1.2 =
 * Fixed jquery error on submitting the form.
+* Makes some strings translatable, such as "Messages" menu item.
+* Removed pt_BR .po/.mo files since it's already and better done in GlotPress.
+* Allows fields editors to use html for using commas in options.
 
 = 1.1.1 =
 * Took away the opportunity of minimum user level which can manage WP-CRM to change roles and passwords of other users.
