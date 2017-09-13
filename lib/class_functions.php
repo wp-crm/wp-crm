@@ -1513,8 +1513,12 @@ class WP_CRM_F {
     //* Init table object */
     $wp_list_table = new CRM_User_List_Table("ajax=true&per_page={$per_page}&iDisplayStart={$iDisplayStart}&iColumns={$iColumns}");
 
+    // should change sort order by default.
+    // $args = wp_parse_args( $args, array('order_by' => 'user_registered','sort_order' => 'desc'));
+
     $wp_list_table->prepare_items($wp_crm_search, $args);
 
+error_log(print_r($args,true));
     if ($wp_list_table->has_items()) {
 
       foreach ($wp_list_table->items as $count => $item) {

@@ -38,6 +38,7 @@ class class_contact_messages {
       return;
     }
 
+
     add_action( "admin_menu", array( __CLASS__, "admin_menu" ), 101 );
     add_action( 'wp_crm_settings_content_contact_messages', array( __CLASS__, 'settings_page_tab_content' ) );
     add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts' ) );
@@ -50,7 +51,9 @@ class class_contact_messages {
     add_filter( 'wp_crm_settings_nav', array( __CLASS__, "settings_page_nav" ) );
     add_filter( 'widget_text', 'do_shortcode' );
     add_filter( 'wp_crm_notification_actions', array( __CLASS__, 'default_wp_crm_actions' ) );
-    add_filter( 'admin_init', array( __CLASS__, 'admin_init' ) );
+
+    add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
+    
     add_filter( 'wp_list_table_cell', array( __CLASS__, 'wp_list_table_cell' ) );
     add_filter( 'wp_crm_list_table_object', array( __CLASS__, 'wp_crm_list_table_object' ) );
     add_filter( 'wp_crm_quick_action', array( __CLASS__, 'wp_crm_quick_action' ) );
@@ -101,16 +104,7 @@ class class_contact_messages {
     //** A work around to load the table columns early enough for ajax functions to use them */
     add_filter( "manage_crm_page_wp_crm_contact_messages_columns", array( 'class_contact_messages', "overview_columns" ) );
 
-    /** Determine if metabox of sidebar filter should be added to page */
-    $wp_crm_contact_messages_filter = false;
-    if( !empty( $wp_crm[ 'wp_crm_contact_system_data' ] ) && count( $wp_crm[ 'wp_crm_contact_system_data' ] ) > 1 ) {
-      $wp_crm_contact_messages_filter = true;
-    }
-    /** Check if we have archived messaged*/
-    if( $wpdb->get_var( "SELECT COUNT(id) FROM {$wpdb->crm_log} WHERE value = 'archived'" ) ) {
-      $wp_crm_contact_messages_filter = true;
-    }
-    $wp_crm_contact_messages_filter = apply_filters( 'wp_crm_messages_show_filter', $wp_crm_contact_messages_filter );
+    $wp_crm_contact_messages_filter = apply_filters( 'wp_crm_messages_show_filter', true );
 
     if( $wp_crm_contact_messages_filter ) {
       add_meta_box( 'wp_crm_messages_filter', __( 'Filter', ud_get_wp_crm()->domain ), array( 'class_contact_messages', 'metabox_filter' ), 'crm_page_wp_crm_contact_messages', 'normal', 'default' );
@@ -461,6 +455,15 @@ class class_contact_messages {
         $r .= $content;
 
         break;
+        
+      case 'date':
+
+        ///$r .= date_format( strtotime( $cell_data['object']['time'] ), 'Y/m/d H:i:s');
+        // $r .= strtotime( $cell_data['object']['time'], 'y m d' );
+        
+      break;
+      
+      break;
 
       case 'source':
 
@@ -1638,6 +1641,7 @@ class class_contact_messages {
     $columns[ 'cb' ] = '<input type="checkbox" />';
     $columns[ 'messages' ] = __( 'Message', ud_get_wp_crm()->domain );
     $columns[ 'user_card' ] = __( 'Sender', ud_get_wp_crm()->domain );
+    // $columns[ 'date' ] = __( 'Date', ud_get_wp_crm()->domain );
     $columns[ 'source' ] = __( 'Source', ud_get_wp_crm()->domain );
 
     return $columns;
@@ -1800,7 +1804,16 @@ class class_contact_messages {
 
     //** Get messages meta */
     foreach( $messages as $key => $message_data ) {
-      $meta_data = $wpdb->get_results( "SELECT * FROM {$wpdb->crm_log_meta} WHERE message_id = {$message_data['message_id']}", ARRAY_A );
+          
+      // Get message data from object cache if possible.
+      if( $meta_data = wp_cache_get( 'message-meta-' . $message_data['message_id'], 'wp-crm' ) ) {
+        $meta_data['_cached'] = true;
+      } else {
+        $meta_data = $wpdb->get_results( "SELECT * FROM {$wpdb->crm_log_meta} WHERE message_id = {$message_data['message_id']}", ARRAY_A );
+        wp_cache_set( 'message-meta-' . $message_data['message_id'], $meta_data, 'wp-crm' );
+        $meta_data['_cached'] = false;
+      }
+      
 
       if( !empty( $meta_data ) ) {
         foreach( $meta_data as $meta_data ) {

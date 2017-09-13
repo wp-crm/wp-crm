@@ -438,7 +438,7 @@ class WP_CMR_List_Table extends WP_List_Table {
     $r .= '</tr>';
 
     if ($this->_args['ajax']) {
-      return $ajax_cells;
+      return isset( $ajax_cells ) ? $ajax_cells : array();
     }
 
     return $r;
