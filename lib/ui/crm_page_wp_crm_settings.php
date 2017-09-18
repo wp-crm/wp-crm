@@ -521,11 +521,16 @@ if(empty($wp_crm['data_structure']['attributes'])) {
             <?php if($slug == 'recaptcha'): ?>
               <input value="recaptcha" type="hidden" name="wp_crm[data_structure][attributes][recaptcha][input_type]" />
             <?php endif; ?>
-              <select name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][input_type]" data-slug="<?php echo $slug; ?>" data-input-type="<?php echo $wp_crm['data_structure']['attributes'][$slug]['input_type']; ?>" <?php if($slug == 'recaptcha') echo 'disabled="disabled"'; ?> >
+              <select name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][input_type]" data-slug="<?php echo $slug; ?>" data-input-type="<?php echo $wp_crm['data_structure']['attributes'][$slug]['input_type']; ?>" <?php if($slug == 'recaptcha') echo 'disabled="disabled"'; ?> class="wp_crm_select_input_type">
                 <?php foreach($wp_crm['configuration']['input_types'] as $this_input_type_slug => $this_input_type_label) { ?>
                 <option data-input-type-label="<?php echo $this_input_type_label; ?>" data-input-type-slug="<?php echo $this_input_type_slug; ?>"  value="<?php echo $this_input_type_slug; ?>" <?php selected( isset( $wp_crm['data_structure']['attributes'][$slug]['input_type'] ) ? $wp_crm['data_structure']['attributes'][$slug]['input_type'] : 'text', $this_input_type_slug ); ?> <?php if($this_input_type_slug == 'recaptcha') echo 'disabled="disabled"'; ?>><?php echo $this_input_type_label; ?></option>
                 <?php }; ?>
             </select>
+            <div class="wp_crm_date_field_additional_config" style="display:none">
+                <input type="text" name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][date_format]" value="<?php echo (isset($data['date_format'])) ? $data['date_format'] : '' ?>" placeholder="<?php _e( 'Format (e.g., dd/mm/yy)', ud_get_wp_crm()->domain ) ?>">
+                <input type="text" name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][date_range]" value="<?php echo (isset($data['date_range'])) ? $data['date_range'] : '' ?>" placeholder="<?php _e( 'Year Range (e.g., -50:+10)', ud_get_wp_crm()->domain ) ?>">
+                <small><?php printf( __( 'For possible values see <i>dateFormat</i> and <i>yearRange</i> options at <a href="%s" target="_blank">jQuery UI datepicker docs.</a>', ud_get_wp_crm()->domain ), "http://api.jqueryui.com/datepicker/" ) ?></small>
+            </div>
           </td>
 
           <td class='wp_crm_values_col'>

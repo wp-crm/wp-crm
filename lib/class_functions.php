@@ -2243,13 +2243,24 @@ class WP_CRM_F {
       switch ($attribute['input_type']) {
 
         case 'date':
+          $additional_attributes = " data-date-format='{$attribute['date_format']}' data-year-range='{$attribute['date_range']}'";
+          $class .= ' wp_crm_date_alt_field';
+          foreach ($values as $rand => $value_data) {
+            ?>
+            <div class="wp_crm_input_wrap"  data-random-hash="<?php echo $rand; ?>" >
+                <input <?php echo $tabindex; ?> class="<?php echo $class; ?> " placeholder="<?php echo isset( $args['placeholder'] ) ? $args['placeholder'] : ''; ?>" type="text" value="<?php echo esc_attr($value_data['value']); ?>" <?php echo $additional_attributes ?>>
+                <input data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_date_real_field" type="hidden" value="<?php echo esc_attr($value_data['value']); ?>" />
+            </div>
+            <?php
+          }
+        break;
+
         case 'password':
         case 'text':
-          $input_type = in_array($attribute['input_type'], array('date')) ? 'text' : $attribute['input_type'];
           foreach ($values as $rand => $value_data) {
             ?>
               <div class="wp_crm_input_wrap"  data-random-hash="<?php echo $rand; ?>" >
-                <input <?php echo !empty($tabindex)?$tabindex:''; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" placeholder="<?php echo $args['placeholder'] ?>"/>
+                <input <?php echo !empty($tabindex)?$tabindex:''; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  <?php echo ($class) ? 'class="' . $class . '"' : ''; ?> type="<?php echo $attribute['input_type']; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" placeholder="<?php echo $args['placeholder'] ?>"/>
             <?php if ( !empty($attribute['has_options']) ) { ?>
                   <select wp_crm_option_for="<?php echo esc_attr($slug); ?>"  <?php echo !empty($tabindex)?$tabindex:''; ?> class="wp_crm_input_options" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                     <option></option>
@@ -2358,12 +2369,20 @@ class WP_CRM_F {
       switch ($attribute['input_type']) {
 
         case 'date':
-        case 'password':
-        case 'text':
-          $input_type = in_array($attribute['input_type'], array('date')) ? 'text' : $attribute['input_type'];
+          $additional_attributes = " data-date-format='{$attribute['date_format']}' data-year-range='{$attribute['date_range']}'";
           foreach ($values as $rand => $value_data) {
             ?>
-            <input <?php echo $tabindex; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type="<?php echo $input_type; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" placeholder="<?php echo isset( $args['placeholder'] ) ? $args['placeholder'] : ''; ?>" />
+            <input <?php echo $tabindex; ?> class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?> wp_crm_date_alt_field" placeholder="<?php echo isset( $args['placeholder'] ) ? $args['placeholder'] : ''; ?>" type="text" value="<?php echo esc_attr($value_data['value']); ?>" <?php echo $additional_attributes ?>>
+            <input data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]" class="wp_crm_date_real_field" type="hidden" value="<?php echo esc_attr($value_data['value']); ?>" />
+          <?php
+          }
+          break;
+
+        case 'password':
+        case 'text':
+          foreach ($values as $rand => $value_data) {
+            ?>
+            <input <?php echo $tabindex; ?> data-crm-slug="<?php echo esc_attr($slug); ?>" data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="input-large wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type="<?php echo $attribute['input_type']; ?>" value="<?php echo ($slug != 'user_pass') ? esc_attr($value_data['value']) : ''; ?>" placeholder="<?php echo isset( $args['placeholder'] ) ? $args['placeholder'] : ''; ?>" />
             <?php if ( !empty($attribute['has_options']) ) { ?>
               <select wp_crm_option_for="<?php echo esc_attr($slug); ?>" <?php echo $tabindex; ?> class="input-small wp_crm_input_options" data-random-hash=""<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]">
                 <option></option>

@@ -41,11 +41,22 @@ jQuery(document).bind("wp_crm_value_changed", function(event, data) {
             });
         });
     }
-    "function" == typeof jQuery.fn.datepicker && jQuery("input.wpc_date_picker").datepicker({
-        dateFormat: "yy-mm-dd",
-        changeMonth: !0,
-        changeYear: !0
-    }), jQuery(".wp_crm_attribute_uneditable:not(div)").each(function() {
+    if ("function" == typeof jQuery.fn.datepicker) {
+        var datepicker_default_opts = {
+            dateFormat: "yy-mm-dd",
+            changeMonth: !0,
+            changeYear: !0
+        };
+        jQuery("input.wpc_date_picker").each(function() {
+            var datepicker_opts = datepicker_default_opts, dateFormat = jQuery(this).attr("data-date-format"), yearRange = jQuery(this).attr("data-year-range");
+            "" != dateFormat && (datepicker_opts.altFormat = "yy-mm-dd"), "" != yearRange && (datepicker_opts.yearRange = yearRange), 
+            datepicker_opts.altField = jQuery(this).next(".wp_crm_date_real_field"), jQuery(this).datepicker(datepicker_opts), 
+            "" != dateFormat && jQuery(this).datepicker("option", {
+                dateFormat: dateFormat
+            });
+        });
+    }
+    jQuery(".wp_crm_attribute_uneditable:not(div)").each(function() {
         var value, chkBoxs, placeholder, this_element = jQuery(this), this_class = this_element.attr("class");
         this_element.attr("data-crm-slug");
         this_element.is("select") ? value = this_element.find(":selected").html() : this_element.is(":checkbox") ? (chkBoxs = this_element.closest(".wp_crm_checkbox_list").find("input[type=checkbox]"), 
