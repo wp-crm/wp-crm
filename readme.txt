@@ -4,7 +4,7 @@ Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
 Tested up to: 4.8.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -74,6 +74,12 @@ For additional help, please reference the contextual help dropdowns the differen
 * Initial public release.
 
 == Changelog ==
+
+= 1.1.2 =
+* Fixed jquery error on submitting the form.
+* Makes some strings translatable, such as "Messages" menu item.
+* Removed pt_BR .po/.mo files since it's already and better done in GlotPress.
+* Allows fields editors to use html for using commas in options.
 
 = 1.1.1 =
 * Took away the opportunity of minimum user level which can manage WP-CRM to change roles and passwords of other users.

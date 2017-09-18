@@ -1,3 +1,6 @@
+#### 1.1.2 ( September 6, 2017 )
+* Fixed jquery error on submitting the form.
+
 #### 1.1.1 ( August 18, 2017 )
 * Took away the opportunity of minimum user level which can manage WP-CRM to change roles and passwords of other users.
 * Improved Google reCAPTCHA options and added integration with WP-Invoice plugin.
