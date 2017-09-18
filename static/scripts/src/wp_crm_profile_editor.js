@@ -60,11 +60,27 @@ jQuery(document).ready(function() {
   }
 
   if(typeof jQuery.fn.datepicker == 'function') {
-    jQuery('input.wpc_date_picker').datepicker({
+    var datepicker_default_opts = {
       dateFormat: 'yy-mm-dd',
       changeMonth: true,
       changeYear: true
-    });
+    };
+    jQuery('input.wpc_date_picker').each(function() {
+      var datepicker_opts = datepicker_default_opts,
+          dateFormat = jQuery(this).attr('data-date-format'),
+          yearRange = jQuery(this).attr('data-year-range');
+      if ('' != dateFormat) {
+        datepicker_opts['altFormat'] = 'yy-mm-dd';
+      }
+      if ('' != yearRange) {
+        datepicker_opts['yearRange'] = yearRange;
+      }
+      datepicker_opts['altField'] = jQuery(this).next('.wp_crm_date_real_field');
+      jQuery(this).datepicker(datepicker_opts);
+      if ('' != dateFormat) {
+          jQuery(this).datepicker('option', { 'dateFormat' : dateFormat });
+      }
+  });
   }
 
 

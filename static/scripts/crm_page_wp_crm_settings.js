@@ -16,6 +16,10 @@ jQuery(document).ready(function() {
         return;
     }), jQuery("#wp_crm_attribute_fields tbody").sortable({
         delay: 50
+    }), jQuery("#wp_crm_attribute_fields").on("change", ".wp_crm_select_input_type", function() {
+        jQuery(this).next(".wp_crm_date_field_additional_config").toggle("date" == jQuery(this).val());
+    }), jQuery(".wp_crm_select_input_type").each(function() {
+        jQuery(this).change();
     }), jQuery("#wp_crm_show_settings_array, #wp_crm_show_settings_array_cancel").click(function() {
         jQuery("#wp_crm_show_settings_array_result").is(":visible") ? (jQuery("#wp_crm_show_settings_array_cancel").hide(), 
         jQuery("#wp_crm_show_settings_array_result").hide()) : (jQuery("#wp_crm_show_settings_array_cancel").show(), 
