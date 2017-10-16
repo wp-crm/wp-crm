@@ -109,6 +109,8 @@ class WP_CRM_Core {
 
     wp_register_style( 'wp-crm-data-tables', ud_get_wp_crm()->path( "static/styles/crm-data-tables.css", 'url' ), array(), WP_CRM_Version );
 
+    add_action( "template_redirect", array( 'WP_CRM_Core', "template_redirect" ), 0 );
+
     if(!WP_CRM_F::current_user_can_manage_crm()){
       return;
     }
@@ -166,13 +168,10 @@ class WP_CRM_Core {
     add_action( "wp_ajax_wp_crm_list_table", array( 'WP_CRM_AJAX', 'list_table' ) );
     add_action( "wp_ajax_wp_crm_quick_action", array( 'WP_CRM_AJAX', 'quick_action' ) );
     add_action( "wp_ajax_wp_crm_check_email_for_duplicates", array( 'WP_CRM_AJAX', 'check_email_for_duplicates' ) );
-
     add_action( "admin_init", array( 'WP_CRM_Core', "admin_init" ) );
     add_action( "current_screen", array( 'WP_CRM_Core', "current_screen" ) );
     add_action( "admin_head", array( 'WP_CRM_Core', "admin_head" ) );
-
     add_action( 'admin_notices', array( 'WP_CRM_F', 'wp_crm_admin_notice' ) );
-
     add_action( 'wp_crm_contextual_help', array( 'WP_CRM_Core', 'wp_crm_contextual_help' ) );
     add_action( 'load-toplevel_page_wp_crm', array( 'WP_CRM_Core', 'toplevel_page_wp_crm' ) );
     add_action( 'load-toplevel_page_wp_crm-network', array( 'WP_CRM_Core', 'toplevel_page_wp_crm' ) );
@@ -184,10 +183,7 @@ class WP_CRM_Core {
     add_action( 'load-user-edit.php', array( 'WP_CRM_Core', 'crm_page_traditional_user_page' ) );
     add_action( 'load-users.php', array( 'WP_CRM_Core', 'crm_page_traditional_user_page' ) );
     add_action( 'load-user-new.php', array( 'WP_CRM_Core', 'crm_page_traditional_user_page' ) );
-
-    add_action( "template_redirect", array( 'WP_CRM_Core', "template_redirect" ), 0 );
     add_action( "deleted_user", array( 'WP_CRM_F', "deleted_user" ) );
-
     add_filter( 'set-screen-option', array( 'WP_CRM_F', "crm_set_option" ), 10, 3 );
     add_action( 'wp_ajax_wpc_ajax_clear_cache', create_function( "", 'echo WP_CRM_F::clear_cache(); die();' ) );
     add_action( "wp_ajax_wp_crm_user_search_network", array( 'WP_CRM_AJAX', 'user_search_network' ) );

@@ -2113,7 +2113,7 @@ error_log(print_r($args,true));
     }
 
     //** Calculate total values passed and convert to loop-ready format */
-    if ($attribute['input_type'] !== 'checkbox' && $attribute['input_type'] !== 'dropdown') {
+    if ($attribute['input_type'] !== 'checkbox' && $attribute['input_type'] !== 'dropdown' && $attribute['input_type'] !== 'radio') {
 
       foreach ($values as $type_slug => $type_values) {
 
@@ -2136,8 +2136,7 @@ error_log(print_r($args,true));
     }
 
     //** Checkbox options are handled differently because they all need to be displayed, and we don't cycle through the values but through the available options */
-    if ($attribute['input_type'] == 'checkbox') {
-
+    if ($attribute['input_type'] == 'checkbox' ) {
 
       if (isset($attribute['has_options']) && $attribute['has_options']) {
         foreach ($attribute['option_labels'] as $option_key => $option_label) {
@@ -2160,6 +2159,21 @@ error_log(print_r($args,true));
         $loop_ready_values[$rand_id]['enabled'] = null;
         if (in_array('on', $values['default']) || in_array('true', $values['default'])) {
           $loop_ready_values[$rand_id]['enabled'] = true;
+        }
+      }
+    }
+
+    if ( $attribute['input_type'] == 'radio' ) {
+      if (isset($attribute['has_options']) && $attribute['has_options']) {
+        foreach ($attribute['option_labels'] as $option_key => $option_label) {
+          $rand_id = rand(10000, 99999);
+          $loop_ready_values[$rand_id]['option'] = $option_key;
+          $loop_ready_values[$rand_id]['label'] = $option_label;
+
+          $loop_ready_values[$rand_id]['enabled'] = null;
+          if ( !empty($values['default']) && !empty($values['default']) && in_array($option_key, $values['default'])) {
+            $loop_ready_values[$rand_id]['enabled'] = true;
+          }
         }
       }
     }
@@ -2295,7 +2309,6 @@ error_log(print_r($args,true));
                 <ul class="wp_crm_checkbox_list"  data-crm-slug="<?php echo esc_attr($slug); ?>">
             <?php foreach ($values as $rand => $value_data) { ?>
                     <li option_meta_value="<?php echo esc_attr($value_data['option']); ?>" >
-                      <!--<input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  type='hidden' value="" />-->
                       <input data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][option]"  type='hidden' value="<?php echo esc_attr($value_data['option']); ?>" />
                       <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
                       <label for="wpi_checkbox_<?php echo $rand; ?>"><?php echo $value_data['label']; ?></label>
@@ -2312,6 +2325,25 @@ error_log(print_r($args,true));
                 <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked($value_data['enabled'], true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="on" />
               <?php
             }
+          }
+          break;
+
+        case 'radio':
+          if (!empty($attribute['has_options'])) {
+            ?>
+              <div class="wp_crm_input_wrap wp_checkbox_input wp-tab-panel"  >
+                <ul class="wp_crm_checkbox_list"  data-crm-slug="<?php echo esc_attr($slug); ?>">
+            <?php foreach ($values as $rand => $value_data) {
+                if ( empty($_rand) ) $_rand = $rand;
+              ?>
+                    <li option_meta_value="<?php echo esc_attr($value_data['option']); ?>" >
+                      <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo !empty($tabindex)?$tabindex:''; ?> data-random-hash="<?php echo $_rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $_rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="<?php echo esc_attr($value_data['option']); ?>" />
+                      <label for="wpi_checkbox_<?php echo $rand; ?>"><?php echo $value_data['label']; ?></label>
+                    </li>
+            <?php } ?>
+                </ul>
+              </div>
+            <?php
           }
           break;
 
@@ -2438,6 +2470,18 @@ error_log(print_r($args,true));
             endif;
           }
 
+          break;
+
+        case 'radio':
+          foreach ($values as $rand => $value_data) {
+            if ( empty($_rand) ) $_rand = $rand;
+            ?>
+            <label class="checkbox" for="wpi_checkbox_<?php echo $rand; ?>">
+              <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo $tabindex; ?> data-random-hash="<?php echo $_rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $_rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="<?php echo esc_attr($value_data['option']); ?>" />
+              <?php echo $value_data['label']; ?>
+            </label>
+            <?php
+          }
           break;
 
         default:

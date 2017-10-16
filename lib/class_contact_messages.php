@@ -1324,7 +1324,6 @@ class class_contact_messages {
       'return_detail' => 'true',
     ) ) );
 
-
     $message_field_supported = isset( $confirmed_form_data[ 'message_field' ] ) ? $confirmed_form_data[ 'message_field' ] : null;
 
     if( !$user_data ) {
@@ -1460,16 +1459,16 @@ class class_contact_messages {
           </thead>
           <tbody>
             <?php
-			foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $contact_form_slug => $data ){
-				if( is_array( $wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ] ) ){
-					$wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ][] = '_message_field';
-				}
-				else{
-					$wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ] = array( '_message_field' );
-				}
-			}
+              foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $contact_form_slug => $data ){
+                if( !empty($wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ]) && is_array( $wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ] ) ){
+                  $wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ][] = '_message_field';
+                }
+                else{
+                  $wp_crm[ 'wp_crm_contact_system_data' ][$contact_form_slug][ 'fields' ] = array( '_message_field' );
+                }
+              }
 
-			foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $contact_form_slug => $data ): $row_hash = rand( 100, 999 ); ?>
+              foreach( $wp_crm[ 'wp_crm_contact_system_data' ] as $contact_form_slug => $data ): $row_hash = rand( 100, 999 ); ?>
               <tr class="wp_crm_dynamic_table_row" slug="<?php echo $contact_form_slug; ?>" new_row='false'>
                 <td class='wp_crm_contact_form_header_col'>
                   <ul class="wp_crm_notification_main_configuration">

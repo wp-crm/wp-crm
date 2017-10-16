@@ -656,6 +656,12 @@ if( !function_exists( 'wp_crm_save_user_data' ) ) {
               }
               break;
 
+            case 'radio':
+              if( isset( $data[ 'value' ] ) ) {
+                $insert_custom_data[ $meta_key ][] = $data[ 'value' ];
+              }
+              break;
+
             case 'dropdown':
 
               //** get full meta key of option */

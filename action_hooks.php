@@ -31,16 +31,17 @@ $wp_crm['configuration']['mail'] = array(
     'send_email' => get_bloginfo('admin_email')
 );
 
-$wp_crm['configuration']['input_types'] = array(
+$wp_crm['configuration']['input_types'] = apply_filters('wp_crm_input_types', array(
     'text' => __('Single Line Text', ud_get_wp_crm()->domain),
     'checkbox' => __("Checkbox", ud_get_wp_crm()->domain),
+    'radio' => __("Radio", ud_get_wp_crm()->domain),
     'textarea' => __("Textarea", ud_get_wp_crm()->domain),
     'dropdown' => __("Dropdown", ud_get_wp_crm()->domain),
     'password' => __("Password", ud_get_wp_crm()->domain),
     'date' => __("Date Picker", ud_get_wp_crm()->domain),
     'file_upload' => __("File Upload", ud_get_wp_crm()->domain),
-    'recaptcha' => __("Google reCAPTCHA", ud_get_wp_crm()->domain),
-);
+    'recaptcha' => __("Google reCAPTCHA", ud_get_wp_crm()->domain)
+));
 
 /**
  * Permissions to be utilized through the plugin.
