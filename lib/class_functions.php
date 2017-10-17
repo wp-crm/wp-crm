@@ -1618,7 +1618,7 @@ error_log(print_r($args,true));
     $wp_crm['data_structure']['full_meta_keys'] = $full_meta_keys;
 
 
-    return $wp_crm['data_structure'];
+    return apply_filters( 'wp_crm_build_meta_keys', $wp_crm['data_structure'] );
   }
 
   /**
@@ -2390,6 +2390,7 @@ error_log(print_r($args,true));
       <?php
     //** Draw input for front-end */
     else:
+      do_action("wp_crm_before_input_frontend", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
       do_action("wp_crm_before_{$slug}_input_frontend", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
       switch ($attribute['input_type']) {
 
@@ -2490,6 +2491,7 @@ error_log(print_r($args,true));
       }
 
       //** API Access for data after the field *'
+      do_action("wp_crm_after_input_frontend", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
       do_action("wp_crm_after_{$slug}_input_frontend", array('slug' => $slug, 'values' => $values, 'attribute' => $attribute, 'user_object' => $user_object, 'args' => $args));
 
     endif;
