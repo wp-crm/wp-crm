@@ -485,39 +485,42 @@ if(empty($wp_crm['data_structure']['attributes'])) {
           </ul>
         </td>
         <td>
-        <ul>
-          <li>
-            <input id="<?php echo $row_hash; ?>_primary" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['primary'])?$wp_crm['data_structure']['attributes'][$slug]['primary']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][primary]" />
-            <label for="<?php echo $row_hash; ?>_primary" ><?php _e('Primary', ud_get_wp_crm()->domain); ?></label>
-          </li>
+          <ul>
+            <li>
+              <input id="<?php echo $row_hash; ?>_primary" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['primary'])?$wp_crm['data_structure']['attributes'][$slug]['primary']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][primary]" />
+              <label for="<?php echo $row_hash; ?>_primary" ><?php _e('Primary', ud_get_wp_crm()->domain); ?></label>
+            </li>
 
-          <li>
-            <input  id="<?php echo $row_hash; ?>_overview_column"  value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['overview_column'])?$wp_crm['data_structure']['attributes'][$slug]['overview_column']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][overview_column]" />
-            <label for="<?php echo $row_hash; ?>_overview_column" ><?php _e('Overview Column', ud_get_wp_crm()->domain); ?></label>
-          </li>
+            <li>
+              <input  id="<?php echo $row_hash; ?>_overview_column"  value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['overview_column'])?$wp_crm['data_structure']['attributes'][$slug]['overview_column']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][overview_column]" />
+              <label for="<?php echo $row_hash; ?>_overview_column" ><?php _e('Overview Column', ud_get_wp_crm()->domain); ?></label>
+            </li>
 
-          <li class="wp_crm_advanced_configuration">
-            <?php if($slug == 'recaptcha'): ?>
-              <input value="true" type="hidden" checked="checked" name="wp_crm[data_structure][attributes][recaptcha][required]" />
-            <?php endif; ?>
-            <input id="<?php echo $row_hash; ?>_required" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['required'])?$wp_crm['data_structure']['attributes'][$slug]['required']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][required]" <?php if($slug == 'recaptcha') echo 'disabled="disabled"'; ?> />
-            <label for="<?php echo $row_hash; ?>_required" ><?php _e('Required', ud_get_wp_crm()->domain); ?></label>
-          </li>
+            <li class="wp_crm_advanced_configuration">
+              <?php if($slug == 'recaptcha'): ?>
+                <input value="true" type="hidden" checked="checked" name="wp_crm[data_structure][attributes][recaptcha][required]" />
+              <?php endif; ?>
+              <input id="<?php echo $row_hash; ?>_required" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['required'])?$wp_crm['data_structure']['attributes'][$slug]['required']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][required]" <?php if($slug == 'recaptcha') echo 'disabled="disabled"'; ?> />
+              <label for="<?php echo $row_hash; ?>_required" ><?php _e('Required', ud_get_wp_crm()->domain); ?></label>
+            </li>
 
-          <li class="wp_crm_advanced_configuration">
-            <input id="<?php echo $row_hash; ?>_no_edit" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['uneditable'])?$wp_crm['data_structure']['attributes'][$slug]['uneditable']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][uneditable]" />
-            <label for="<?php echo $row_hash; ?>_no_edit" ><?php _e('Uneditable', ud_get_wp_crm()->domain); ?></label>
-          </li>
+            <li class="wp_crm_advanced_configuration">
+              <input id="<?php echo $row_hash; ?>_no_edit" value="true" type="checkbox"  <?php checked(!empty($wp_crm['data_structure']['attributes'][$slug]['uneditable'])?$wp_crm['data_structure']['attributes'][$slug]['uneditable']:false, 'true'); ?> name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][uneditable]" />
+              <label for="<?php echo $row_hash; ?>_no_edit" ><?php _e('Uneditable', ud_get_wp_crm()->domain); ?></label>
+            </li>
 
-          <?php do_action('wp_crm_data_structure_attributes', array(
-                  'slug'     => $slug,
-                  'data'     => $data,
-                  'row_hash' => $row_hash
-                )); ?>
+            <?php do_action('wp_crm_data_structure_attributes', array(
+                    'slug'     => $slug,
+                    'data'     => $data,
+                    'row_hash' => $row_hash
+                  )); ?>
 
           </ul>
-          </td>
-          <td>
+        </td>
+        <td>
+
+            <?php do_action('wp_crm_attributes_before_type', array('slug'=>$slug,'data'=>$data,'row_hash'=>$row_hash)); ?>
+
             <?php if($slug == 'recaptcha'): ?>
               <input value="recaptcha" type="hidden" name="wp_crm[data_structure][attributes][recaptcha][input_type]" />
             <?php endif; ?>
@@ -526,10 +529,15 @@ if(empty($wp_crm['data_structure']['attributes'])) {
                 <option data-input-type-label="<?php echo $this_input_type_label; ?>" data-input-type-slug="<?php echo $this_input_type_slug; ?>"  value="<?php echo $this_input_type_slug; ?>" <?php selected( isset( $wp_crm['data_structure']['attributes'][$slug]['input_type'] ) ? $wp_crm['data_structure']['attributes'][$slug]['input_type'] : 'text', $this_input_type_slug ); ?> <?php if($this_input_type_slug == 'recaptcha') echo 'disabled="disabled"'; ?>><?php echo $this_input_type_label; ?></option>
                 <?php }; ?>
             </select>
+
+            <?php do_action('wp_crm_attributes_after_type', array('slug'=>$slug,'data'=>$data,'row_hash'=>$row_hash)); ?>
+
           </td>
 
           <td class='wp_crm_values_col'>
+            <?php do_action('wp_crm_attributes_before_options', array('slug'=>$slug,'data'=>$data,'row_hash'=>$row_hash)); ?>
             <textarea  name="wp_crm[data_structure][attributes][<?php echo $slug; ?>][options]"><?php echo !empty($wp_crm['data_structure']['attributes'][$slug]['options'])?htmlentities($wp_crm['data_structure']['attributes'][$slug]['options']):''; ?></textarea>
+            <?php do_action('wp_crm_attributes_after_options', array('slug'=>$slug,'data'=>$data,'row_hash'=>$row_hash)); ?>
           </td>
 
           <td><button class="wp_crm_delete_row  button" <?php if($slug == 'recaptcha') echo 'disabled="disabled"'; ?> ><?php _e('Delete',ud_get_wp_crm()->domain) ?></button></td>
