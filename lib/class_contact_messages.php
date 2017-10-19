@@ -455,15 +455,6 @@ class class_contact_messages {
         $r .= $content;
 
         break;
-        
-      case 'date':
-
-        ///$r .= date_format( strtotime( $cell_data['object']['time'] ), 'Y/m/d H:i:s');
-        // $r .= strtotime( $cell_data['object']['time'], 'y m d' );
-        
-      break;
-      
-      break;
 
       case 'source':
 
@@ -1640,7 +1631,6 @@ class class_contact_messages {
     $columns[ 'cb' ] = '<input type="checkbox" />';
     $columns[ 'messages' ] = __( 'Message', ud_get_wp_crm()->domain );
     $columns[ 'user_card' ] = __( 'Sender', ud_get_wp_crm()->domain );
-    // $columns[ 'date' ] = __( 'Date', ud_get_wp_crm()->domain );
     $columns[ 'source' ] = __( 'Source', ud_get_wp_crm()->domain );
 
     return $columns;
