@@ -1488,7 +1488,7 @@ class class_contact_messages {
                       <input type="text" id="redirect_to_<?php echo $row_hash; ?>" class="regular-text" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][redirect_url]" value="<?php echo !empty($data[ 'redirect_url' ])?$data[ 'redirect_url' ]:''; ?>"/>
                     </li>
 
-                    <li class="wp-crm-advanced-field">
+                    <li>
                       <label for=""><?php _e( 'Method:', ud_get_wp_crm()->domain ); ?></label>
                       <select id="" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][request_method]">
                         <option value="GET" <?php echo !empty( $data[ 'request_method' ] ) && $data[ 'request_method' ] == 'GET' ? 'selected="selected"' : ''; ?>>GET</option>
