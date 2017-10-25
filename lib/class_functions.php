@@ -2473,6 +2473,7 @@ class WP_CRM_F {
           foreach ($values as $rand => $value_data) {
             if ( empty($_rand) ) $_rand = $rand;
             ?>
+            <input name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $_rand; ?>][value]"  type='hidden' value="" />
             <label class="checkbox" for="wpi_checkbox_<?php echo $rand; ?>">
               <input id="wpi_checkbox_<?php echo $rand; ?>" <?php checked(!empty($value_data['enabled'])?$value_data['enabled']:false, true); ?> <?php echo $tabindex; ?> data-random-hash="<?php echo $_rand; ?>" name="wp_crm[user_data][<?php echo $slug; ?>][<?php echo $_rand; ?>][value]"  class="wp_crm_<?php echo $slug; ?>_field <?php echo $class; ?>" type='<?php echo $attribute['input_type']; ?>' value="<?php echo esc_attr($value_data['option']); ?>" />
               <?php echo $value_data['label']; ?>
