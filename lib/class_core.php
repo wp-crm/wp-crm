@@ -150,7 +150,7 @@ class WP_CRM_Core {
     add_filter( "retrieve_password_message", array( 'WP_CRM_F', "retrieve_password_message" ) );
 
     //** Modify default WP password reset message */
-    add_filter( "admin_body_class", create_function( '', "return WP_CRM_Core::admin_body_class(); " ) );
+    add_filter( "admin_body_class", array('WP_CRM_Core', 'admin_body_class') );
 
     add_filter( 'wp_crm_entry_type_label', array( 'WP_CRM_F', 'wp_crm_entry_type_label' ), 10, 2 );
     //** Load back-end scripts */
@@ -898,38 +898,38 @@ class WP_CRM_Core {
    *
    * Note: The white-space on the end of 'wp_crm ' is intentional.
    *
-   * @return string|$request a modified request to query listings
+   * @param $classes
+   * @return string $request a modified request to query listings
    * @since 0.5
-   *
    */
-  static function admin_body_class() {
+  static function admin_body_class( $classes ) {
     global $current_screen, $wp_crm_user, $current_user;
 
-    $classes = array();
+    $new_classes = array();
 
     switch ( $current_screen->id ) {
 
       case 'toplevel_page_wp_crm':
       case 'crm_page_wp_crm_settings':
 
-        $classes[ ] = 'wp_crm';
+      $new_classes[ ] = 'wp_crm';
 
         break;
 
       case 'crm_page_wp_crm_add_new':
 
-        $classes[ ] = 'wp_crm';
+        $new_classes[ ] = 'wp_crm';
 
         if ( $wp_crm_user ) {
 
           if ( $current_user->data->ID == $wp_crm_user[ 'ID' ][ 'default' ][ 0 ] ) {
-            $classes[ ] = 'wp_crm_my_profile';
+            $new_classes[ ] = 'wp_crm_my_profile';
           }
 
-          $classes[ ] = 'wp_crm_existing_user';
+          $new_classes[ ] = 'wp_crm_existing_user';
         } else {
 
-          $classes[ ] = 'wp_crm_new_user';
+          $new_classes[ ] = 'wp_crm_new_user';
 
         }
 
@@ -937,8 +937,8 @@ class WP_CRM_Core {
 
     }
 
-    if ( !empty( $classes ) && is_array( $classes ) ) {
-      return implode( ' ', $classes );
+    if ( !empty( $new_classes ) && is_array( $new_classes ) ) {
+      return implode(' ', array($classes, implode( ' ', $new_classes )));
     }
 
   }
