@@ -1,3 +1,7 @@
+#### 1.1.3 ( November 16, 2017 )
+* Added radio field type.
+* Other fixes and improvements.
+
 #### 1.1.2 ( September 6, 2017 )
 * Fixed jquery error on submitting the form.
 

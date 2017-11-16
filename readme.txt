@@ -3,8 +3,8 @@ Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Ko
 Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
-Tested up to: 4.8.1
-Stable tag: 1.1.2
+Tested up to: 4.9
+Stable tag: 1.1.3
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -53,7 +53,7 @@ For additional help, please reference the contextual help dropdowns the differen
 
 == Frequently Asked Questions ==
 
-[WP-Invoice FAQ](http://feedback.usabilitydynamics.com/knowledgebase/topics/51306-wp-crm)
+[WP-CRM FAQ](https://www.usabilitydynamics.com/product/wp-crm/docs/home)
 
 == Screenshots ==
 
@@ -74,6 +74,10 @@ For additional help, please reference the contextual help dropdowns the differen
 * Initial public release.
 
 == Changelog ==
+
+= 1.1.3 =
+* Added radio field type.
+* Other fixes and improvements.
 
 = 1.1.2 =
 * Fixed jquery error on submitting the form.
