@@ -21,12 +21,9 @@
     "php": ">=5.3",
     "usabilitydynamics/lib-ui": "0.3.4",
     "usabilitydynamics/lib-utility": "0.3.7",
-    "usabilitydynamics/lib-wp-bootstrap": "1.2.1",
+    "usabilitydynamics/lib-wp-bootstrap": "1.2.3",
     "usabilitydynamics/lib-ud-api-client": "1.1.5.1",
     "google/recaptcha": "~1.1"
-  },
-  "require-dev": {
-    "codeclimate/php-test-reporter": "dev-master"
   },
   "autoload": {
     "classmap": [ "lib/classes" ]
