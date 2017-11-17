@@ -190,20 +190,28 @@ class crm_page_wp_crm_add_new {
   }
 
   /**
-   *
+   * Create Invoice Metabox
    * @global type $wp_crm
    * @param type $user_object
    */
-  static function side_send_invoce($user_object) {
-		global  $wpdb,$wpi_settings ;
-		if ( WP_CRM_F::current_user_can_manage_crm() ) {
-			$email = isset($user_object['user_email']['default']['0']) ? "&email=".$user_object['user_email']['default']['0']:'';
-			?>
-				<input type="button" data-gotourl="<?php echo $wpi_settings['links']['manage_invoice'].$email; ?>" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" id="crm_new_invioce"/>
-		<?php } else { ?>
-				<input type="button" data-gotourl="#" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" disabled="disabled" />
-		<?php }
-		}
+  static function side_send_invoice($user_object) {
+
+    if ( !class_exists( 'WPI_UI' ) ) {
+      echo '<p>'._e('WP-Invoice plugin is required', ud_get_wp_crm()->domain).'</p>';
+      return;
+    }
+
+    global $wpi_settings;
+    if ( !WP_CRM_F::current_user_can_manage_crm() || !current_user_can(WPI_UI::get_capability_by_level($wpi_settings['user_level'])) ) {
+      echo '<p>'._e('You cannot manage invoices', ud_get_wp_crm()->domain).'</p>';
+      return;
+    }
+
+    $email = isset($user_object['user_email']['default']['0']) ? "&email=".$user_object['user_email']['default']['0']:'';
+    ?>
+      <input type="button" data-gotourl="<?php echo $wpi_settings['links']['manage_invoice'].$email; ?>" class="button" value="<?php echo  __('Send New Invoice', ud_get_wp_crm()->domain) ?>" id="crm_new_invioce"/>
+    <?php
+  }
   /**
    * 
    * @global type $wp_crm
