@@ -479,7 +479,7 @@ class WP_CRM_F {
   static function retrieve_password($user_login) {
     global $wp_crm, $wpdb;
 
-    if ($wp_crm['configuration']['disable_wp_password_reset_email'] != 'true') {
+    if ( isset($wp_crm['configuration']['disable_wp_password_reset_email']) && $wp_crm['configuration']['disable_wp_password_reset_email'] != 'true') {
       return;
     }
 
@@ -525,10 +525,10 @@ class WP_CRM_F {
    * @since 0.21
    *
    */
-  function retrieve_password_message($message) {
+  static function retrieve_password_message($message) {
     global $wp_crm, $wpdb;
 
-    if ($wp_crm['configuration']['disable_wp_password_reset_email'] == 'true') {
+    if ( isset($wp_crm['configuration']['disable_wp_password_reset_email']) && $wp_crm['configuration']['disable_wp_password_reset_email'] == 'true' ) {
 
       //** Returning false disabled the built-in WP message sending notification */
       return false;
