@@ -1127,6 +1127,8 @@ class WP_CRM_F {
       foreach ($option_type_values as $single_option_value) {
         if ($single_option_value == 'on') {
           $return[] = $wp_crm['data_structure']['attributes'][$column_name]['option_labels'][$option_type_slug];
+        } elseif ( !empty($wp_crm['data_structure']['attributes'][$column_name]['option_labels'][$single_option_value] ) ) {
+          $return[] = $wp_crm['data_structure']['attributes'][$column_name]['option_labels'][$single_option_value];
         }
       }
     }
