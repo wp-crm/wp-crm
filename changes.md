@@ -1,3 +1,10 @@
+#### 1.1.4 ( February 9, 2018 )
+* Fixed connection to WP-Invoice.
+* Updated libraries.
+* Fixed Radio field type.
+* Added Feedback form.
+* Fixed Warnings.
+
 #### 1.1.3 ( November 16, 2017 )
 * Added radio field type.
 * Other fixes and improvements.
