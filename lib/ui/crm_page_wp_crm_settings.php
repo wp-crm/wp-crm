@@ -124,8 +124,24 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
     ?>
     <li><a href="#tab_troubleshooting"><?php _e('Help',ud_get_wp_crm()->domain); ?></a></li>
+    <li><a href="#tab_feedback"><?php _e('Feedback',ud_get_wp_crm()->domain); ?></a></li>
 
   </ul>
+
+  <div id="tab_feedback">
+      <div class="wp_crm_inner_tab">
+        <!--[if lte IE 8]>
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+        <![endif]-->
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            portalId: '3453418',
+            formId: '60714dc0-f1bf-42c4-849c-a8736b16a60b'
+          });
+        </script>
+      </div>
+  </div>
 
   <div id="tab_main">
 
