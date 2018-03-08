@@ -141,7 +141,7 @@ var wp_crm_ui = {}, wpp_crm_form_stop = !1;
 
 jQuery(document).ready(function($) {
     if ("undefined" == typeof wp_crm_dev_mode) var wp_crm_dev_mode = !1;
-    jQuery(".wpc_file_upload").on("click", function() {
+    jQuery(".wpc_file_upload").on("click", function(event) {
         var _this = jQuery(this);
         event.preventDefault();
         var media_uploader = null;
