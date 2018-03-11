@@ -17,7 +17,7 @@ jQuery( document ).ready( function($) {
   }
 
 
-  jQuery('.wpc_file_upload').on('click', function(){
+  jQuery('.wpc_file_upload').on('click', function(event){
     var _this = jQuery(this);
     event.preventDefault();
 
