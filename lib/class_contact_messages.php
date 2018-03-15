@@ -1541,8 +1541,8 @@ class class_contact_messages {
                         }
                         ?>
                         <li data-attribute="<?php echo $attribute_slug; ?>" data-order="<?php echo $attribute_data[ 'order' ]; ?>"  class="wp-crm-editable-item">
-                          <span class="wp-crm-handle">x</span>
                           <label>
+                            <span class="wp-crm-handle" style="float: left;"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></span>
                             <input type="checkbox" <?php CRM_UD_UI::checked_in_array( $attribute_slug, !empty( $data[ 'fields' ] ) ? $data[ 'fields' ] : array() ); ?> name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][fields][]" value="<?php echo $attribute_slug; ?>"/>
                             <span class="field-title">
                               <input type="text" class="wp-crm-field" readonly name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][field_labels][<?php echo $attribute_slug; ?>]" value="<?php echo isset( $data[ 'field_labels' ][ $attribute_slug ] ) ? $data[ 'field_labels' ][ $attribute_slug ] : $attribute_data[ 'title' ]; ?>"/>
