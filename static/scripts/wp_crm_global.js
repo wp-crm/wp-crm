@@ -174,17 +174,17 @@ jQuery(document).ready(function($) {
         }), !1;
     }), jQuery(".wp_crm_show_advanced").each(function() {
         wp_crm_toggle_advanced_options(this);
-    }), jQuery(".wp_crm_show_advanced").live("click", function(event) {
+    }), jQuery( document ).on("click", ".wp_crm_show_advanced", function(event) {
         wp_crm_toggle_advanced_options(this, event);
-    }), jQuery(".wp_crm_cancel_ajax_action").live("click", function() {
+    }), jQuery( document ).on("click", ".wp_crm_cancel_ajax_action", function() {
         var ajax_wrapper = jQuery(this).parents(".wpc_action_wrapper");
         ajax_wrapper.remove();
-    }), jQuery("label.wpc_closest").live("click", function() {
+    }), jQuery( document ).on("click", "label.wpc_closest", function() {
         var parent = jQuery(this).closest("li"), element = jQuery("input[type=checkbox]", parent);
         element.is(":checked") ? element.removeAttr("checked") : element.attr("checked", "checked");
-    }), jQuery(".wp_crm_toggle").live("click", function() {
+    }), jQuery( document ).on("click", ".wp_crm_toggle", function() {
         jQuery("." + jQuery(this).attr("toggle")).toggle();
-    }), jQuery(".wp_crm_message_quick_action").live("click", function() {
+    }), jQuery( document ).on("click", ".wp_crm_message_quick_action", function() {
         var action = jQuery(this).attr("wp_crm_action"), object_id = jQuery(this).attr("object_id"), instant_hide = jQuery(this).attr("instant_hide"), parent_element = jQuery(this).parents("tr");
         return jQuery(this).attr("verify_action") && !confirm("Are you sure?") ? !1 : ("true" == instant_hide && jQuery(parent_element).hide(), 
         void jQuery.post(ajaxurl, {
@@ -197,7 +197,7 @@ jQuery(document).ready(function($) {
                 jQuery(parent_element).hide();
             }
         }, "json"));
-    }), jQuery(".wp_crm_add_row").live("click", function() {
+    }), jQuery( document ).on("click", ".wp_crm_add_row", function() {
         var table = jQuery(this).parents(".ud_ui_dynamic_table"), cloned = (jQuery(table).attr("id"), 
         jQuery(".wp_crm_dynamic_table_row:last", table).clone());
         jQuery(cloned).children().each(function(i, e) {
@@ -222,7 +222,7 @@ jQuery(document).ready(function($) {
         jQuery(".ace_editor", added_row).remove(), jQuery("button", added_row).removeAttr("disabled"), 
         jQuery("input[type=text].wp-crm-field", added_row).prop("readonly", !0), jQuery(".wp-crm-field-edit", added_row).show(), 
         jQuery(added_row).attr("new_row", "true"), jQuery(".slug_setter", added_row).focus();
-    }), jQuery(".wp_crm_dynamic_table_row[new_row=true] input.slug_setter").live("change", function() {
+    }), jQuery( document ).on("change", ".wp_crm_dynamic_table_row[new_row=true] input.slug_setter", function() {
         var this_row = jQuery(this).parents("tr.wp_crm_dynamic_table_row"), old_slug = jQuery(this_row).attr("slug"), new_slug = jQuery(this).val(), new_slug = wp_crm_create_slug(new_slug);
         if ("" != new_slug) {
             var samename = jQuery(".wp_crm_dynamic_table_row[new_row=false][slug=" + new_slug + "]").length;
@@ -245,7 +245,7 @@ jQuery(document).ready(function($) {
                 }
             });
         }
-    }), jQuery(".wp_crm_delete_row").live("click", function() {
+    }), jQuery( document ).on("click", ".wp_crm_delete_row", function() {
         var parent = jQuery(this).parents("tr.wp_crm_dynamic_table_row"), row_count = jQuery(".wp_crm_delete_row:visible").length;
         jQuery("input[type=text]", parent).val(""), jQuery("textarea", parent).val(""), 
         jQuery("input[type=checkbox]", parent).attr("checked", !1), jQuery(parent).attr("new_row", "true"), 
@@ -264,7 +264,7 @@ jQuery(document).ready(function($) {
         var panel = jQuery("#" + jQuery(this).attr("aria-controls")), button = jQuery("#screen-meta-links").find(".show-settings");
         return screenMeta.open(panel, button), !1;
     });
-}), jQuery(".wp_crm_load_more_stream").live("click", function() {
+}), jQuery( document ).on("click", ".wp_crm_load_more_stream", function() {
     var params = {
         per_page: jQuery(this).attr("per_page"),
         all_messages: jQuery(this).attr("all_messages"),

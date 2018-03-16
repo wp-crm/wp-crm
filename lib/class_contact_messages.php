@@ -1427,7 +1427,7 @@ class class_contact_messages {
     <script type="text/javascript">
     jQuery( document ).ready( function () {
 
-      jQuery( "#wp_crm_wp_crm_contact_system_data .slug_setter" ).live( 'change', function () {
+      jQuery( document ).on( 'change', "#wp_crm_wp_crm_contact_system_data .slug_setter", function () {
         var parent = jQuery( this ).parents( '.wp_crm_notification_main_configuration' );
         jQuery( ".wp_crm_contact_form_shortcode", parent ).val( "[wp_crm_form form=" + wp_crm_create_slug( jQuery( this ).val() ) + "]" );
         jQuery( ".wp_crm_contact_form_current_form_slug", parent ).val( wp_crm_create_slug( jQuery( this ).val() ) );

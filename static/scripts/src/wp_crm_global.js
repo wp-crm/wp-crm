@@ -92,17 +92,17 @@ jQuery( document ).ready( function($) {
   });
 
   /* Enable monitoring of toggling of advanced UI options */
-  jQuery( '.wp_crm_show_advanced' ).live( 'click', function( event ) {
+  jQuery( document ).on( 'click', '.wp_crm_show_advanced', function( event ) {
     wp_crm_toggle_advanced_options( this, event );
   });
 
-  jQuery( '.wp_crm_cancel_ajax_action' ).live( 'click', function() {
+  jQuery( document ).on( 'click', '.wp_crm_cancel_ajax_action', function() {
     var ajax_wrapper = jQuery( this ).parents( '.wpc_action_wrapper' );
     ajax_wrapper.remove();
 
   });
 
-  jQuery( 'label.wpc_closest' ).live( 'click',function() {
+  jQuery( document ).on( 'click', 'label.wpc_closest', function() {
     var parent = jQuery( this ).closest( "li" );
     var element = jQuery( "input[type=checkbox]", parent );
 
@@ -114,11 +114,11 @@ jQuery( document ).ready( function($) {
 
   });
 
-  jQuery( '.wp_crm_toggle' ).live( 'click',function() {
+  jQuery( document ).on( 'click', '.wp_crm_toggle', function() {
     jQuery( '.' + jQuery( this ).attr( 'toggle' ) ).toggle();
   });
 
-  jQuery( '.wp_crm_message_quick_action' ).live( 'click',function() {
+  jQuery( document ).on( 'click', '.wp_crm_message_quick_action', function() {
     var action = jQuery( this ).attr( 'wp_crm_action' );
     var object_id = jQuery( this ).attr( 'object_id' );
     var instant_hide = jQuery( this ).attr( 'instant_hide' );
@@ -149,7 +149,7 @@ jQuery( document ).ready( function($) {
   });
 
   // Add row to UD UI Dynamic Table
-  jQuery( ".wp_crm_add_row" ).live( 'click' , function() {
+  jQuery( document ).on( 'click', ".wp_crm_add_row", function() {
 
     var table = jQuery( this ).parents( '.ud_ui_dynamic_table' );
     var table_id = jQuery( table ).attr( "id" );
@@ -209,7 +209,7 @@ jQuery( document ).ready( function($) {
   });
 
   // When the .slug_setter input field is modified, we update names of other elements in row
-  jQuery( ".wp_crm_dynamic_table_row[new_row=true] input.slug_setter" ).live( "change", function() {
+  jQuery( document ).on( "change", ".wp_crm_dynamic_table_row[new_row=true] input.slug_setter", function() {
 
     var this_row = jQuery( this ).parents( 'tr.wp_crm_dynamic_table_row' );
 
@@ -279,7 +279,7 @@ jQuery( document ).ready( function($) {
   });
 
 
-  jQuery( ".wp_crm_delete_row" ).live( 'click', function() {
+  jQuery( document ).on( 'click', ".wp_crm_delete_row", function() {
 
     var parent = jQuery( this ).parents( 'tr.wp_crm_dynamic_table_row' );
     var row_count = jQuery( ".wp_crm_delete_row:visible" ).length;
@@ -443,7 +443,7 @@ function wp_crm_create_slug( slug ) {
   }
 
   /*  */
-  jQuery( ".wp_crm_load_more_stream" ).live( 'click', function() {
+  jQuery( document ).on( 'click', ".wp_crm_load_more_stream", function() {
     var params = {
       per_page : jQuery( this ).attr( 'per_page' ),
       all_messages : jQuery( this ).attr( 'all_messages' ),

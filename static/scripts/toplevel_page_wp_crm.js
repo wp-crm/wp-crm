@@ -2,7 +2,7 @@ var wp_crm_quick_reports = [];
 
 jQuery(document).ready(function() {
     jQuery("#side-sortables").removeClass("empty-container"), jQuery("#wp_crm_text_search").focus(), 
-    jQuery(".wp_crm_user_row_actions .wp_crm_user_action[action=reset_password]").live("click", function() {
+    jQuery( document ).on("click", ".wp_crm_user_row_actions .wp_crm_user_action[action=reset_password]", function() {
         var this_button = this, user_id = jQuery(this).attr("user_id"), user_card_wrapper = jQuery(this).closest(".user_card_inner_wrapper"), user_primary = jQuery("li.primary", user_card_wrapper).html();
         jQuery.ajax({
             url: ajaxurl,
@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
                 jQuery(".wp_crm_quick_report_wrapper .reset_passwords").append("<li>" + user_primary + "</li>")));
             }
         });
-    }), jQuery(".wp_crm_user_row_actions .wp_crm_user_action[action=exclude]").live("click", function() {
+    }), jQuery( document ).on("click", ".wp_crm_user_row_actions .wp_crm_user_action[action=exclude]", function() {
         var row_element = jQuery(this).closest("tr"), row = jQuery(row_element).get(0), row_position = wp_list_table.fnGetPosition(row);
         void 0 === wp_list_counts.excluded_users && (wp_list_counts.excluded_users = []), 
         wp_list_table.fnDeleteRow(row_position, function() {}, !1), wp_list_counts.excluded_users.push(user_id), 
