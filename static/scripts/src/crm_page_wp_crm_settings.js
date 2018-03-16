@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
   });
 
     /* Force default values when value is changed */
-  jQuery(".wp_crm_force_default").live("change", function(event) {
+  jQuery( document ).on("change", ".wp_crm_force_default", function(event) {
     wp_crm_handle_default_values(this, event);
   });
 
@@ -35,7 +35,7 @@ jQuery(document).ready(function() {
 
   /* Incomplete function to get all available trigger actions, and add them in dropdown form below message text area */
   /** @TODO: Check the function. who worked on it? peshkov@UD */
-  jQuery(".wp_crm_trigger_action").live("change", function() {
+  jQuery( document ).on("change", ".wp_crm_trigger_action", function() {
     return;
     var actions = new Array();
     var selected_triggers = new Array();

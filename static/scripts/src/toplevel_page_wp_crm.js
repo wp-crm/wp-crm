@@ -5,7 +5,7 @@ jQuery(document).ready(function () {
   jQuery('#side-sortables').removeClass('empty-container');
   jQuery("#wp_crm_text_search").focus();
 
-  jQuery(".wp_crm_user_row_actions .wp_crm_user_action[action=reset_password]").live("click", function() {
+  jQuery( document ).on("click", ".wp_crm_user_row_actions .wp_crm_user_action[action=reset_password]", function() {
     var this_button = this;
     var user_id = jQuery(this).attr("user_id");
     var user_card_wrapper = jQuery(this).closest(".user_card_inner_wrapper");
@@ -47,7 +47,7 @@ jQuery(document).ready(function () {
   });
 
   //* Hides a row and adds the user_id to an array. Problem with working accross pagination as well as updating counts. */
-  jQuery(".wp_crm_user_row_actions .wp_crm_user_action[action=exclude]").live("click", function() {
+  jQuery( document ).on("click", ".wp_crm_user_row_actions .wp_crm_user_action[action=exclude]", function() {
     var row_element = jQuery(this).closest('tr');
     var row = jQuery(row_element).get(0);
     var row_position = wp_list_table.fnGetPosition(row);

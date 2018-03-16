@@ -111,7 +111,7 @@ jQuery( document ).ready( function() {
     jQuery( 'div.wp_crm_advanced_user_actions' ).toggle();
   });
 
-  jQuery( 'tr.not_primary .wp_crm_input_wrap select,  tr.not_primary .wp_crm_input_wrap select' ).live( 'mousedown', function() {
+  jQuery( document ).on( 'mousedown', 'tr.not_primary .wp_crm_input_wrap select,  tr.not_primary .wp_crm_input_wrap select', function() {
     jQuery( this ).trigger( 'wp_crm_value_changed', {object: this, action: 'option_mousedown'});
   });
 
@@ -148,7 +148,7 @@ jQuery( document ).ready( function() {
    * @todo Should migrate functionality into UD Dynamic Rows
    *
    */
-  jQuery( '.add_another' ).live( "click", function() {
+  jQuery( document ).on( "click", '.add_another', function() {
     var parent_row =  jQuery( this ).closest( ".wp_crm_user_entry_row" );
     var input_div =  jQuery( '.input_div:last', parent_row );
     var new_input_div =  input_div.clone();

@@ -8,11 +8,11 @@ jQuery(document).ready(function() {
         classes: {
             "ui-sortable": "highlight"
         }
-    }), jQuery(".wp_crm_force_default").live("change", function(event) {
+    }), jQuery( document ).on("change", ".wp_crm_force_default", function(event) {
         wp_crm_handle_default_values(this, event);
     }), jQuery(".wp_crm_force_default").each(function() {
         wp_crm_handle_default_values(this);
-    }), jQuery(".wp_crm_trigger_action").live("change", function() {
+    }), jQuery( document ).on("change", ".wp_crm_trigger_action", function() {
         return;
     }), jQuery("#wp_crm_attribute_fields tbody").sortable({
         delay: 50

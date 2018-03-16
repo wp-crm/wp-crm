@@ -51,7 +51,7 @@ jQuery(document).ready(function() {
 
     jQuery.each(listener_keys, function(i, listener_object) {
 
-        jQuery(listener_object).live("change", function() {
+        jQuery( document ).on("change", listener_object, function() {
           wp_crm_standardized_display_name();
         });
 
@@ -126,7 +126,7 @@ jQuery(document).ready(function() {
 
   });
 
-  jQuery('tr.not_primary .wp_crm_input_wrap input,  tr.not_primary .wp_crm_input_wrap textarea').live('focusout', function() {
+  jQuery( document ).on('focusout', 'tr.not_primary .wp_crm_input_wrap input,  tr.not_primary .wp_crm_input_wrap textarea', function() {
     var parent = jQuery(this).parents('.wp_crm_input_wrap');
 
     if(jQuery('select', parent).length) {
@@ -151,7 +151,7 @@ jQuery(document).ready(function() {
    * Shows "Add Another" element to additional profile fields can be edited when a multi-edit field is modified
    *
    */
-  jQuery('div.allow_multiple input').live("keyup", function() {
+  jQuery( document ).on("keyup", 'div.allow_multiple input', function() {
     var parent_row =  jQuery(this).closest(".wp_crm_user_entry_row");
 
     if(jQuery(this).val() != '') {
