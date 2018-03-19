@@ -7,6 +7,11 @@
   opacity:0;
 }
 
+.wp-crm-field-save,
+.wp-crm-field-edit {
+  cursor: pointer;
+}
+
 input.wp-crm-field[readonly] {
   background-color: transparent;
   border-color: transparent;

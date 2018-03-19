@@ -33,7 +33,7 @@ wp_crm_ui.changed_fields = new Array(), "function" != typeof String.prototype.tr
         jQuery(_toggle_target).toggle();
     }), jQuery("div.wp_crm_toggle_advanced_user_actions").click(function() {
         jQuery("div.wp_crm_advanced_user_actions").toggle();
-    }), jQuery( document ).on("mousedown", "tr.not_primary .wp_crm_input_wrap select,  tr.not_primary .wp_crm_input_wrap select", function() {
+    }), jQuery(document).on("mousedown", "tr.not_primary .wp_crm_input_wrap select,  tr.not_primary .wp_crm_input_wrap select", function() {
         jQuery(this).trigger("wp_crm_value_changed", {
             object: this,
             action: "option_mousedown"
@@ -53,7 +53,7 @@ wp_crm_ui.changed_fields = new Array(), "function" != typeof String.prototype.tr
         });
     }), jQuery("#wp_crm_add_message").click(function() {
         wp_crm_save_stream_message();
-    }), jQuery( document ).on("click", ".add_another", function() {
+    }), jQuery(document).on("click", ".add_another", function() {
         var parent_row = jQuery(this).closest(".wp_crm_user_entry_row"), input_div = jQuery(".input_div:last", parent_row), new_input_div = input_div.clone();
         jQuery("input", new_input_div).val("");
         var current_hash = jQuery("input", new_input_div).attr("data-random-hash"), new_hash = Math.floor(9999 * Math.random()) + 1e3;
