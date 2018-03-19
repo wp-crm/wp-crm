@@ -1162,6 +1162,10 @@ class class_contact_messages {
       die();
     }
 
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+
     //** Some other security */
     if( isset( $data[ 'user_data' ][ 'user_id' ] ) ) {
       //** Fail - user_id will never be passed in this manner unless somebody is screwing around */
