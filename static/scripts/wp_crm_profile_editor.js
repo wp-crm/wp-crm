@@ -59,7 +59,7 @@ jQuery(document).bind("wp_crm_value_changed", function(event, data) {
     }), jQuery(".form-table tr.not_primary").each(function() {
         jQuery("div.wp_checkbox_input", this).length > 0 || "" == jQuery("input,textarea", this).val() && (jQuery(".input_div", this).hide(), 
         jQuery(".blank_slate", this).show());
-    }), jQuery( document ).on("focusout", "tr.not_primary .wp_crm_input_wrap input,  tr.not_primary .wp_crm_input_wrap textarea", function() {
+    }), jQuery(document).on("focusout", "tr.not_primary .wp_crm_input_wrap input,  tr.not_primary .wp_crm_input_wrap textarea", function() {
         var parent = jQuery(this).parents(".wp_crm_input_wrap");
         jQuery("select", parent).length || jQuery(this).trigger("wp_crm_value_changed", {
             object: this,
@@ -69,7 +69,7 @@ jQuery(document).bind("wp_crm_value_changed", function(event, data) {
         var parent_row = jQuery(this).closest(".wp_crm_user_entry_row");
         jQuery(".input_div", parent_row).show(), jQuery("input,textarea", parent_row).focus(), 
         jQuery(".blank_slate", parent_row).hide();
-    }), jQuery( document ).on("keyup", "div.allow_multiple input", function() {
+    }), jQuery(document).on("keyup", "div.allow_multiple input", function() {
         var parent_row = jQuery(this).closest(".wp_crm_user_entry_row");
         "" != jQuery(this).val() ? jQuery(".add_another", parent_row).show() : jQuery(".add_another", parent_row).hide();
     });

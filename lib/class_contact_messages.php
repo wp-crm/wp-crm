@@ -1554,10 +1554,14 @@ class class_contact_messages {
                             <span class="wp-crm-handle" style="float: left;"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span></span>
                             <input type="checkbox" <?php CRM_UD_UI::checked_in_array( $attribute_slug, !empty( $data[ 'fields' ] ) ? $data[ 'fields' ] : array() ); ?> name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][fields][]" value="<?php echo $attribute_slug; ?>"/>
                             <span class="field-title">
-                              <input type="text" class="wp-crm-field" readonly name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][field_labels][<?php echo $attribute_slug; ?>]" value="<?php echo isset( $data[ 'field_labels' ][ $attribute_slug ] ) ? $data[ 'field_labels' ][ $attribute_slug ] : $attribute_data[ 'title' ]; ?>"/>
+                              <?php $is_changed = (isset($wp_crm['wp_crm_contact_system_data'][$contact_form_slug]['field_labels_custom_value'][$attribute_slug]) && !empty($wp_crm['wp_crm_contact_system_data'][$contact_form_slug]['field_labels_custom_value'][$attribute_slug])) ? $wp_crm['wp_crm_contact_system_data'][$contact_form_slug]['field_labels_custom_value'][$attribute_slug] : 'false';
+                              $input_value = (isset($wp_crm['wp_crm_contact_system_data'][$contact_form_slug]['field_labels_custom_value'][$attribute_slug]) && $wp_crm['wp_crm_contact_system_data'][$contact_form_slug]['field_labels_custom_value'][$attribute_slug] === 'false') ? $wp_crm['data_structure']['attributes'][$attribute_slug]['title'] : $attribute_data[ 'title' ]; ?>
+                              <input type="hidden" class="wp-crm-field wp-crm-field-changed-value" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][field_labels_custom_value][<?php echo $attribute_slug; ?>]" value="<?php echo $is_changed; ?>" />
+                              <input type="text" class="wp-crm-field" readonly name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][field_labels][<?php echo $attribute_slug; ?>]" value="<?php echo $input_value; ?>"/>
                             </span>
                           </label>
                           <span class="wp-crm-field-edit">Edit</span>
+                          <span class="wp-crm-field-save" style="display: none;">Confirm</span>
                         </li>
                       <?php }; ?>
                     </ul>

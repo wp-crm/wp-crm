@@ -1,18 +1,22 @@
 jQuery(document).ready(function() {
     jQuery("#wp_crm_wp_crm_contact_system_data").on("click", ".wp-crm-field-edit", function() {
         var _parent = jQuery(this).parent(".wp-crm-editable-item"), _field = jQuery(".wp-crm-field", _parent);
-        _field.prop("readonly", !1), _field.focus(), jQuery(this).hide();
+        _field.prop("readonly", !1), _field.focus(), jQuery(this).hide(), jQuery(".wp-crm-field-save", _parent).show(), 
+        jQuery(".wp-crm-field-changed-value", _parent).val("true");
+    }), jQuery("#wp_crm_wp_crm_contact_system_data").on("click", ".wp-crm-field-save", function() {
+        var _parent = jQuery(this).parent(".wp-crm-editable-item"), _field = jQuery(".wp-crm-field", _parent);
+        _field.prop("readonly", !0), jQuery(this).hide(), jQuery(".wp-crm-field-edit", _parent).show();
     }), jQuery(".wp-crm-form-attributes").sortable({
         handle: ".wp-crm-handle",
         containment: "parent",
         classes: {
             "ui-sortable": "highlight"
         }
-    }), jQuery( document ).on("change", ".wp_crm_force_default", function(event) {
+    }), jQuery(document).on("change", ".wp_crm_force_default", function(event) {
         wp_crm_handle_default_values(this, event);
     }), jQuery(".wp_crm_force_default").each(function() {
         wp_crm_handle_default_values(this);
-    }), jQuery( document ).on("change", ".wp_crm_trigger_action", function() {
+    }), jQuery(document).on("change", ".wp_crm_trigger_action", function() {
         return;
     }), jQuery("#wp_crm_attribute_fields tbody").sortable({
         delay: 50

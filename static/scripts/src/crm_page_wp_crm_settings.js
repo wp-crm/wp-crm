@@ -10,10 +10,27 @@ jQuery(document).ready(function() {
     // focus on field we can edit
     _field.focus();
 
-    // hide "edit" button
+    // hide "edit" button and show "confirm" button
     jQuery(this).hide();
+    jQuery(".wp-crm-field-save", _parent).show();
+
+    // Change "editable" status
+    jQuery(".wp-crm-field-changed-value", _parent).val('true');
 
   });
+
+  jQuery("#wp_crm_wp_crm_contact_system_data").on('click', '.wp-crm-field-save', function() {
+    var _parent = jQuery(this).parent(".wp-crm-editable-item");
+    var _field = jQuery(".wp-crm-field", _parent);
+
+    // mark field as not-readonly
+    _field.prop("readonly", true);
+
+    // hide "confirm" button and show "edit" button
+    jQuery(this).hide();
+    jQuery(".wp-crm-field-edit", _parent).show();
+
+  })
 
   jQuery(".wp-crm-form-attributes").sortable({
     handle: ".wp-crm-handle",
