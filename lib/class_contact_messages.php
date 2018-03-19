@@ -1162,10 +1162,6 @@ class class_contact_messages {
       die();
     }
 
-    echo '<pre>';
-    print_r($data);
-    echo '</pre>';
-
     //** Some other security */
     if( isset( $data[ 'user_data' ][ 'user_id' ] ) ) {
       //** Fail - user_id will never be passed in this manner unless somebody is screwing around */
@@ -1341,6 +1337,15 @@ class class_contact_messages {
 
     if( $message_field_supported ) {
       $message = WP_CRM_F::get_first_value( $data['user_data']['_message_field'] );
+      $message = wp_kses($message, array(
+        'a' => array(
+          'href' => array(),
+          'title' => array()
+        ),
+        'br' => array(),
+        'em' => array(),
+        'strong' => array(),
+      ));
     } else {
       $message = null;
     }
