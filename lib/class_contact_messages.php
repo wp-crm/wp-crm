@@ -1337,6 +1337,15 @@ class class_contact_messages {
 
     if( $message_field_supported ) {
       $message = WP_CRM_F::get_first_value( $data['user_data']['_message_field'] );
+      $message = wp_kses($message, array(
+        'a' => array(
+          'href' => array(),
+          'title' => array()
+        ),
+        'br' => array(),
+        'em' => array(),
+        'strong' => array(),
+      ));
     } else {
       $message = null;
     }
