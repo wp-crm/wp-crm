@@ -20,6 +20,7 @@ global $wp_crm;
 $wp_crm['version'] = '0.1';
 
 $wp_crm['configuration'] = array(
+    'user_level' => 'administrator',
     'default_user_capability' => 'prospect',
     'default_user_capability_permissions_base' => 'subscriber',
     'create_individual_pages_for_crm_capabilities' => 'true'
@@ -29,15 +30,18 @@ $wp_crm['configuration']['mail'] = array(
     'sender_name' => get_bloginfo(),
     'send_email' => get_bloginfo('admin_email')
 );
-$wp_crm['configuration']['input_types'] = array(
+
+$wp_crm['configuration']['input_types'] = apply_filters('wp_crm_input_types', array(
     'text' => __('Single Line Text', ud_get_wp_crm()->domain),
     'checkbox' => __("Checkbox", ud_get_wp_crm()->domain),
+    'radio' => __("Radio", ud_get_wp_crm()->domain),
     'textarea' => __("Textarea", ud_get_wp_crm()->domain),
     'dropdown' => __("Dropdown", ud_get_wp_crm()->domain),
     'password' => __("Password", ud_get_wp_crm()->domain),
     'date' => __("Date Picker", ud_get_wp_crm()->domain),
     'file_upload' => __("File Upload", ud_get_wp_crm()->domain),
-);
+    'recaptcha' => __("Google reCAPTCHA", ud_get_wp_crm()->domain)
+));
 
 /**
  * Permissions to be utilized through the plugin.
@@ -52,6 +56,7 @@ $wp_crm['capabilities'] = array(
     'Send Group Message' => __('Send a group message to users.', ud_get_wp_crm()->domain),
     'Perform Advanced Functions' => __('Perform advanced functions such as merging users.', ud_get_wp_crm()->domain),
     'Change Passwords' => __('Change passwords of other users. This is only checked if the user can edit users in the first place.', ud_get_wp_crm()->domain),
+    'Change Role' => __('Change role of other users. This is only checked if the user can edit users in the first place.', ud_get_wp_crm()->domain),
     'Change Color Scheme' => __('Change color scheme. This is only checked if the user can edit users in the first place.', ud_get_wp_crm()->domain)
 );
 

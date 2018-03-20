@@ -240,7 +240,7 @@ namespace UsabilityDynamics\UD_API {
               $theme = basename( dirname( $this->file ) );
               $response = (array)$response;
               if( empty( $response[ 'url' ] ) ) { 
-                $response[ 'url' ] = !empty( $this->changelog ) ? $this->changelog : 'https://www.usabilitydynamics.com';
+                $response[ 'url' ] = !empty( $this->changelog ) ? $this->changelog : ( defined( 'UD_API_URL' ) ? trailingslashit( UD_API_URL ) : 'https://www.usabilitydynamics.com' );
               }
               $transient->response[$theme] = (array)$response;
             }

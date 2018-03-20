@@ -49,7 +49,11 @@ class WPI_WPC {
   static function wp_crm_metaboxes() {
     global $wp_crm_user;
 
-    if ( !empty( $wp_crm_user['has_invoices'] ) ) {
+    if ( !class_exists( 'WPI_UI' ) ) return;
+
+    global $wpi_settings;
+
+    if ( !empty( $wp_crm_user['has_invoices'] ) && current_user_can(WPI_UI::get_capability_by_level($wpi_settings['user_level'])) ) {
       add_meta_box("Invoices", "Invoices", array('WPI_WPC', 'metabox'), 'crm_page_wp_crm_add_new', 'normal', 'default');
     }
   }

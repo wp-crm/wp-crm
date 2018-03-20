@@ -26,12 +26,10 @@ class WP_CRM_Core {
    * @uses $wp_crm WP-CRM configuration array
    *
    */
-  function WP_CRM_Core() {
+  function __construct() {
     global $wpdb, $wp_crm;
 
-
     do_action( 'wp_crm_pre_load' );
-
 
     if(WP_CRM_F::current_user_can_manage_crm()){
       add_filter( 'wp_crm_settings_save', array( 'WP_CRM_F', 'wp_crm_settings_save_email_required' ), 10, 2 );
@@ -39,6 +37,7 @@ class WP_CRM_Core {
       //* Process settings updates */
       WP_CRM_F::settings_action();
     }
+
     // Load third-party plugin load_plugin_compatibility */
     WP_CRM_F::load_plugin_compatibility();
 
@@ -51,14 +50,17 @@ class WP_CRM_Core {
     //** Hook in lower init */
     add_action( 'init', array( $this, 'init_lower' ), 100 );
 
-    if ( empty($wpdb->crm_log) ) {
-      $wpdb->crm_log = $wpdb->base_prefix . 'crm_log';
-    }
+  }
 
-    if ( empty($wpdb->crm_log_meta) ) {
-      $wpdb->crm_log_meta = $wpdb->crm_log . '_meta';
-    }
-
+  /**
+   * Backwards Compat.
+   *
+   * @todo Verify this is proper way of doing this or even if it matters . -potanin@UD
+   *
+   * @return WP_CRM_Core
+   */
+  function WP_CRM_Core() {
+    return new WP_CRM_Core;
   }
 
   /**
@@ -83,6 +85,7 @@ class WP_CRM_Core {
   
 
     wp_register_script( 'google-jsapi', 'https://www.google.com/jsapi' );
+    wp_register_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js?onload=crm_recaptcha_onload&render=explicit' );
     wp_register_script( 'wp-crm-jquery-cookie', ud_get_wp_crm()->path( 'lib/third-party/jquery.smookie.js', 'url' ), array( 'jquery' ), '1.7.3' );
     wp_register_script( 'swfobject', ud_get_wp_crm()->path( 'lib/third-party/swfobject.js', 'url' ), array( 'jquery' ) );
     wp_register_script( 'wp-crm-data-tables', ud_get_wp_crm()->path( 'lib/third-party/dataTables/jquery.dataTables.min.js', 'url' ), array( 'jquery' ) );
@@ -105,6 +108,8 @@ class WP_CRM_Core {
     }
 
     wp_register_style( 'wp-crm-data-tables', ud_get_wp_crm()->path( "static/styles/crm-data-tables.css", 'url' ), array(), WP_CRM_Version );
+
+    add_action( "template_redirect", array( 'WP_CRM_Core', "template_redirect" ), 0 );
 
     if(!WP_CRM_F::current_user_can_manage_crm()){
       return;
@@ -145,7 +150,7 @@ class WP_CRM_Core {
     add_filter( "retrieve_password_message", array( 'WP_CRM_F', "retrieve_password_message" ) );
 
     //** Modify default WP password reset message */
-    add_filter( "admin_body_class", create_function( '', "return WP_CRM_Core::admin_body_class(); " ) );
+    add_filter( "admin_body_class", array('WP_CRM_Core', 'admin_body_class') );
 
     add_filter( 'wp_crm_entry_type_label', array( 'WP_CRM_F', 'wp_crm_entry_type_label' ), 10, 2 );
     //** Load back-end scripts */
@@ -163,13 +168,10 @@ class WP_CRM_Core {
     add_action( "wp_ajax_wp_crm_list_table", array( 'WP_CRM_AJAX', 'list_table' ) );
     add_action( "wp_ajax_wp_crm_quick_action", array( 'WP_CRM_AJAX', 'quick_action' ) );
     add_action( "wp_ajax_wp_crm_check_email_for_duplicates", array( 'WP_CRM_AJAX', 'check_email_for_duplicates' ) );
-
     add_action( "admin_init", array( 'WP_CRM_Core', "admin_init" ) );
     add_action( "current_screen", array( 'WP_CRM_Core', "current_screen" ) );
     add_action( "admin_head", array( 'WP_CRM_Core', "admin_head" ) );
-
     add_action( 'admin_notices', array( 'WP_CRM_F', 'wp_crm_admin_notice' ) );
-
     add_action( 'wp_crm_contextual_help', array( 'WP_CRM_Core', 'wp_crm_contextual_help' ) );
     add_action( 'load-toplevel_page_wp_crm', array( 'WP_CRM_Core', 'toplevel_page_wp_crm' ) );
     add_action( 'load-toplevel_page_wp_crm-network', array( 'WP_CRM_Core', 'toplevel_page_wp_crm' ) );
@@ -181,10 +183,7 @@ class WP_CRM_Core {
     add_action( 'load-user-edit.php', array( 'WP_CRM_Core', 'crm_page_traditional_user_page' ) );
     add_action( 'load-users.php', array( 'WP_CRM_Core', 'crm_page_traditional_user_page' ) );
     add_action( 'load-user-new.php', array( 'WP_CRM_Core', 'crm_page_traditional_user_page' ) );
-
-    add_action( "template_redirect", array( 'WP_CRM_Core', "template_redirect" ), 0 );
     add_action( "deleted_user", array( 'WP_CRM_F', "deleted_user" ) );
-
     add_filter( 'set-screen-option', array( 'WP_CRM_F', "crm_set_option" ), 10, 3 );
     add_action( 'wp_ajax_wpc_ajax_clear_cache', create_function( "", 'echo WP_CRM_F::clear_cache(); die();' ) );
     add_action( "wp_ajax_wp_crm_user_search_network", array( 'WP_CRM_AJAX', 'user_search_network' ) );
@@ -416,9 +415,27 @@ class WP_CRM_Core {
     $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Predefined Values', ud_get_wp_crm()->domain ) . '</h3>';
     $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'If you want your attributes to have predefined values, such as in a dropdown, or a checkbox list, enter a comma separated list of values you want to use.  You can also get more advanced by using taxonomies - to load all values from a taxonomy, simply type line: <b>taxonomy:taxonomy_name</b>.', ud_get_wp_crm()->domain ) . '</p>';
 
-    $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Visualize User Data', ud_get_wp_crm()->domain ) . '</h3>';
-    $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'You will see graphics for all attributes from your data tab which have Dropdown or Checkbox Data Input and filled at least in 2 users profiles.', ud_get_wp_crm()->domain ) . '</p>';
+    if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION ) {
+      $contextual_help[ 'General Help' ][ ] = '<h3>' . __( 'Visualize User Data', ud_get_wp_crm()->domain ) . '</h3>';
+      $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'You will see graphics for all attributes from your data tab which have Dropdown or Checkbox Data Input and filled at least in 2 users profiles.', ud_get_wp_crm()->domain ) . '</p>';
+    }
 
+    $contextual_help[ 'General Help' ][ ] = '<h3>' . sprintf(__( '<a href="%s">Google reCAPTCHA</a>', ud_get_wp_crm()->domain ), "https://www.google.com/recaptcha/intro/") . '</h3>';
+    $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'To use recaptcha you need to get <b>Browser key</b> and <b>Server key</b>.', ud_get_wp_crm()->domain ) . '</p>';
+    $contextual_help[ 'General Help' ][ ] = '<h4>' . __( 'To use existing keys:', ud_get_wp_crm()->domain ) . '</h4>';
+    $contextual_help[ 'General Help' ][ ] = '<ol>';
+    $contextual_help[ 'General Help' ][ ] = '<li>' . sprintf(__( 'Go to reCAPTCHA admin panel by clicking <a href="%s">here</a>.', ud_get_wp_crm()->domain ), "https://www.google.com/recaptcha/admin#list") . '</li>';
+    $contextual_help[ 'General Help' ][ ] = '<li>' . __( 'Select site from <b>Your reCAPTCHA sites</b> section.', ud_get_wp_crm()->domain ) . '</li>';
+    $contextual_help[ 'General Help' ][ ] = '<li>' . __( 'Copy the <b>Site key</b> and <b>Secret key</b> to the <b>reCAPTCHA keys</b> in <b>Main</b> tab of <b>Settings page</b>.', ud_get_wp_crm()->domain ) . '</li>';
+    $contextual_help[ 'General Help' ][ ] = '</ol>';
+
+    $contextual_help[ 'General Help' ][ ] = '<h4>' . __( 'To create new keys:', ud_get_wp_crm()->domain ) . '</h4>';
+    $contextual_help[ 'General Help' ][ ] = '<ol>';
+    $contextual_help[ 'General Help' ][ ] = '<li>' . sprintf(__( 'Go to reCAPTCHA admin panel by clicking <a href="%s">here</a>.', ud_get_wp_crm()->domain ), "https://www.google.com/recaptcha/admin") . '</li>';
+    $contextual_help[ 'General Help' ][ ] = '<li>' . __( 'Fill up the form on <b>Register a new site</b> section and click <b>Register</b>.', ud_get_wp_crm()->domain ) . '</li>';
+    $contextual_help[ 'General Help' ][ ] = '<li>' . __( 'Copy the <b>Site key</b> and <b>Secret key</b> to the <b>reCAPTCHA keys</b> in <b>Main</b> tab of <b>Settings page</b>.', ud_get_wp_crm()->domain ) . '</li>';
+    $contextual_help[ 'General Help' ][ ] = '</ol>';
+    
     $contextual_help[ 'Shortcode Forms' ][ ] = '<h3>' . __( 'Shortcode Forms', ud_get_wp_crm()->domain ) . '</h3>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p>' . __( 'Shortcode Forms, which can be used for contact forms, or profile editing, are setup here, and then inserted using a shortcode into a page, or a widget. The available shortcode form attributes are taken from the WP-CRM attributes, and when filled out by a user, are mapped over directly into their profile. User profiles are created based on the e-mail address, if one does not already exist, for keeping track of users. ', ud_get_wp_crm()->domain ) . '</p>';
 
@@ -428,9 +445,10 @@ class WP_CRM_Core {
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'require_login_for_existing_users = [ <b>true</b> | false ]', ud_get_wp_crm()->domain ) . '</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'use_current_user = [ <b>true</b> | false ]', ud_get_wp_crm()->domain ) . '</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'success_message = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Your message has been sent. Thank you.', ud_get_wp_crm()->domain ) . '".</p>';
-    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'submit_text = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Submit', ud_get_wp_crm()->domain ) . " " . ud_get_wp_crm()->domain . '".</p>';
+    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'submit_text = "<i>custom text</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'Submit', ud_get_wp_crm()->domain ) . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_callback_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'js_validation_function = "<i>custom_function_name</i>"  &mdash; default value is "', ud_get_wp_crm()->domain ) . __( 'false', ud_get_wp_crm()->domain ) . '".</p>';
+    $contextual_help[ 'Shortcode Forms' ][ ] = '<p> - ' . __( 'redirect_url = "<i>url</i>"  &mdash; redirect to another page after submission complete.', ud_get_wp_crm()->domain ) . '</p>';
 
     $contextual_help[ 'Shortcode Forms' ][ ] = '<p>' . __( 'For example, <b>[wp_crm_form form=example_from display_notes=true success_message="Your message was successfully sent!" submit_text="Send message!"]</b>', ud_get_wp_crm()->domain ) . '</p>';
 
@@ -675,6 +693,8 @@ class WP_CRM_Core {
   static function overview_columns( $columns = false ) {
     global $wp_crm;
 
+    //$columns[ 'wp_crm_cb' ] =  '<input type="checkbox" name="select-all-users" class="select-all-users" />';
+    $columns[ 'cb' ] =  '<input type="checkbox" name="select-all-users" class="select-all-users" />';
     $columns[ 'wp_crm_user_card' ] = __( 'Information', ud_get_wp_crm()->domain );
 
     if ( !empty( $wp_crm[ 'data_structure' ] ) && is_array( $wp_crm[ 'data_structure' ][ 'attributes' ] ) ) {
@@ -702,7 +722,7 @@ class WP_CRM_Core {
 
     do_action( 'wp_crm_network_admin_menu' );
     //** Replace default user management screen if set */
-    $position = ( ( !empty($wp_crm[ 'configuration' ][ 'replace_default_user_page' ]) && $wp_crm[ 'configuration' ][ 'replace_default_user_page' ] == 'true' && current_user_can( 'manage_options' ) ) ? '70' : '33' );
+    $position = 11;
 
     $wp_crm[ 'system' ][ 'pages' ][ 'core' ] = add_menu_page( 'CRM', 'CRM', $capability, 'wp_crm', array( 'WP_CRM_Core', 'page_loader' ), 'dashicons-groups', $position );
     $wp_crm[ 'system' ][ 'pages' ][ 'core' ] .= "_network"; // Unless metabox will not work;
@@ -825,9 +845,13 @@ class WP_CRM_Core {
         wp_enqueue_script( 'post' );
         wp_enqueue_script( 'postbox' );
         wp_enqueue_script( 'wp-crm-data-tables' );
-        wp_enqueue_script( 'google-jsapi' );
+
+        if( defined( 'WP_CRM_VISUALIZATION' ) && WP_CRM_VISUALIZATION ) {
+          wp_enqueue_script( 'wp-crm-google-visualization', ud_get_wp_crm()->path( 'static/scripts/wp-crm-visualization.js', 'url' ), array( 'google-jsapi' ), null, true );
+        }
+
         wp_enqueue_style( 'wp-crm-data-tables' );
-        break;
+      break;
 
       case 'crm_page_wp_crm_add_new':
         wp_enqueue_script( 'post' );
@@ -836,17 +860,19 @@ class WP_CRM_Core {
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_script( 'thickbox' );
         wp_enqueue_style( 'thickbox' );
-        break;
+      break;
 
       case 'crm_page_wp_crm_settings':
         wp_enqueue_script( 'jquery-ui-widget' );
         wp_enqueue_script( 'jquery-ui-sortable' );
         wp_enqueue_script( 'jquery-ui-mouse' );
-        wp_enqueue_script( 'ace', ud_get_wp_crm()->path( 'lib/third-party/ace/ace.js', 'url' ) );
 
-        break;
-      default:
-        break;
+        if( defined( 'WP_CRM_ENABLE_ACE_EDITOR' ) && WP_CRM_ENABLE_ACE_EDITOR ) {
+          wp_enqueue_script( 'ace', ud_get_wp_crm()->path( 'lib/third-party/ace/ace.js', 'url' ) );
+        }
+
+      break;
+
     }
 
     //** Include on all pages */
@@ -872,38 +898,38 @@ class WP_CRM_Core {
    *
    * Note: The white-space on the end of 'wp_crm ' is intentional.
    *
-   * @return string|$request a modified request to query listings
+   * @param $classes
+   * @return string $request a modified request to query listings
    * @since 0.5
-   *
    */
-  static function admin_body_class() {
+  static function admin_body_class( $classes ) {
     global $current_screen, $wp_crm_user, $current_user;
 
-    $classes = array();
+    $new_classes = array();
 
     switch ( $current_screen->id ) {
 
       case 'toplevel_page_wp_crm':
       case 'crm_page_wp_crm_settings':
 
-        $classes[ ] = 'wp_crm';
+      $new_classes[ ] = 'wp_crm';
 
         break;
 
       case 'crm_page_wp_crm_add_new':
 
-        $classes[ ] = 'wp_crm';
+        $new_classes[ ] = 'wp_crm';
 
         if ( $wp_crm_user ) {
 
           if ( $current_user->data->ID == $wp_crm_user[ 'ID' ][ 'default' ][ 0 ] ) {
-            $classes[ ] = 'wp_crm_my_profile';
+            $new_classes[ ] = 'wp_crm_my_profile';
           }
 
-          $classes[ ] = 'wp_crm_existing_user';
+          $new_classes[ ] = 'wp_crm_existing_user';
         } else {
 
-          $classes[ ] = 'wp_crm_new_user';
+          $new_classes[ ] = 'wp_crm_new_user';
 
         }
 
@@ -911,8 +937,8 @@ class WP_CRM_Core {
 
     }
 
-    if ( !empty( $classes ) && is_array( $classes ) ) {
-      return implode( ' ', $classes );
+    if ( !empty( $new_classes ) && is_array( $new_classes ) ) {
+      return implode(' ', array($classes, implode( ' ', $new_classes )));
     }
 
   }
@@ -936,7 +962,7 @@ class WP_CRM_Core {
   /**
    * WP-CRM Contextual Help
    *
-   * @param type $args
+   * @param array|type $args
    *
    * @author korotkov@UD
    */

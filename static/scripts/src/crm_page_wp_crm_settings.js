@@ -1,6 +1,29 @@
 jQuery(document).ready(function() {
 
-  /* Force default values when value is changed */
+  jQuery("#wp_crm_wp_crm_contact_system_data").on('click', ".wp-crm-field-edit", function editFormField() {
+    var _parent = jQuery(this).parent('.wp-crm-editable-item');
+    var _field = jQuery( '.wp-crm-field', _parent );
+
+    // mark field as not-readonly
+    _field.prop( 'readonly', false );
+
+    // focus on field we can edit
+    _field.focus();
+
+    // hide "edit" button
+    jQuery(this).hide();
+
+  });
+
+  jQuery(".wp-crm-form-attributes").sortable({
+    handle: ".wp-crm-handle",
+    containment: "parent",
+    classes: {
+      "ui-sortable": "highlight"
+    }
+  });
+
+    /* Force default values when value is changed */
   jQuery(".wp_crm_force_default").live("change", function(event) {
     wp_crm_handle_default_values(this, event);
   });

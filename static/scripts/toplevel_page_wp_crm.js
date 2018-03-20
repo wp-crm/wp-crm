@@ -1,8 +1,6 @@
 var wp_crm_quick_reports = [];
 
-google.load("visualization", "1", {
-    packages: [ "corechart" ]
-}), jQuery(document).bind("wp_crm_user_results", function(data) {}), jQuery(document).ready(function() {
+jQuery(document).ready(function() {
     jQuery("#side-sortables").removeClass("empty-container"), jQuery("#wp_crm_text_search").focus(), 
     jQuery(".wp_crm_user_row_actions .wp_crm_user_action[action=reset_password]").live("click", function() {
         var this_button = this, user_id = jQuery(this).attr("user_id"), user_card_wrapper = jQuery(this).closest(".user_card_inner_wrapper"), user_primary = jQuery("li.primary", user_card_wrapper).html();
@@ -25,21 +23,6 @@ google.load("visualization", "1", {
         void 0 === wp_list_counts.excluded_users && (wp_list_counts.excluded_users = []), 
         wp_list_table.fnDeleteRow(row_position, function() {}, !1), wp_list_counts.excluded_users.push(user_id), 
         jQuery(row_element).remove(), wp_list_table_rebrand_rows();
-    }), jQuery(".wp_crm_visualize_results").click(function() {
-        var filters = jQuery("#wp-crm-filter").serialize();
-        jQuery.ajax({
-            url: ajaxurl,
-            context: document.body,
-            data: {
-                action: "wp_crm_visualize_results",
-                filters: filters
-            },
-            success: function(result) {
-                jQuery(".wp_crm_ajax_result").html(result), jQuery(".wp_crm_ajax_result").show("slide", {
-                    direction: "down"
-                }, 1e3);
-            }
-        });
     }), jQuery(".wp_crm_export_to_csv").click(function() {
         var filters = jQuery("#wp-crm-filter").serialize();
         wp_crm_csv_download = ajaxurl + "?action=wp_crm_csv_export&" + filters, location = wp_crm_csv_download;
@@ -52,5 +35,7 @@ google.load("visualization", "1", {
     }), jQuery("thead th.check-column input[type=checkbox]").change(function() {
         var wp_result_user_count = 10;
         jQuery(this).is(":checked") ? jQuery(".wp_crm_above_overview_table").html('<div class="updated"><p><span class="wp_crm_link">Select all ' + wp_result_user_count + " users?</span></p></div>") : jQuery(".wp_crm_above_overview_table div").remove();
+    }), jQuery("#cb-select-all-1,#cb-select-all-2").click(function() {
+        jQuery(this).is(":checked") ? jQuery(".single-user-chk").attr("checked", "checked") : jQuery(".single-user-chk").removeAttr("checked", "checked");
     });
 });

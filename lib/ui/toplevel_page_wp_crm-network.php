@@ -18,7 +18,7 @@ $screen_id = str_replace('-network', '_network', $screen_id);
 ?>
 <div class="wp_crm_overview_wrapper wrap">
 <div class="wp_crm_ajax_result"></div>
-    <?php screen_icon(); ?>
+
     <h2><?php _e('CRM - All People', ud_get_wp_crm()->domain); ?></h2>
     <?php WP_CRM_F::print_messages(); ?>
 

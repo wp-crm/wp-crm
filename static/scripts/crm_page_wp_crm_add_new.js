@@ -2,9 +2,8 @@ wp_crm_ui.changed_fields = new Array(), "function" != typeof String.prototype.tr
     return this.replace(/^\s+|\s+$/g, "");
 }), jQuery(document).ready(function() {
     if ("undefined" == typeof wp_crm_dev_mode) var wp_crm_dev_mode = !1;
-    jQuery(".wp_crm_advanced_user_actions.wp-tab-panel").text().trim().length || jQuery("ul.wp_crm_advanced_user_actions_wrapper").hide(), 
-    jQuery("form#crm_user input[ type=text ], form#crm_user input[ type=checkbox ], form#crm_user select").change(function() {
-        var this_attribute = jQuery(this).attr("wp_crm_slug");
+    !jQuery(".wp_crm_advanced_user_actions.wp-tab-panel").text().trim().length, jQuery("form#crm_user input[ type=text ], form#crm_user input[ type=checkbox ], form#crm_user select").change(function() {
+        var this_attribute = jQuery(this).attr("data-crm-slug");
         wp_crm_ui.change_made = !0, wp_crm_ui.changed_fields.push(this_attribute);
     }), jQuery("input.wp_crm_user_email_field").change(function() {
         var obj = this, user_id = jQuery("#user_id").val();
@@ -29,6 +28,9 @@ wp_crm_ui.changed_fields = new Array(), "function" != typeof String.prototype.tr
         !1;
     }), jQuery(".submitdelete").click(function() {
         return confirm("Are you sure you want to delete user?");
+    }), jQuery("div.wp-crm-toggle-action").click(function() {
+        var _toggle_target = jQuery(this).data("toggle-target");
+        jQuery(_toggle_target).toggle();
     }), jQuery("div.wp_crm_toggle_advanced_user_actions").click(function() {
         jQuery("div.wp_crm_advanced_user_actions").toggle();
     }), jQuery("tr.not_primary .wp_crm_input_wrap select,  tr.not_primary .wp_crm_input_wrap select").live("mousedown", function() {
@@ -54,19 +56,21 @@ wp_crm_ui.changed_fields = new Array(), "function" != typeof String.prototype.tr
     }), jQuery(".add_another").live("click", function() {
         var parent_row = jQuery(this).closest(".wp_crm_user_entry_row"), input_div = jQuery(".input_div:last", parent_row), new_input_div = input_div.clone();
         jQuery("input", new_input_div).val("");
-        var current_hash = jQuery("input", new_input_div).attr("random_hash"), new_hash = Math.floor(9999 * Math.random()) + 1e3;
+        var current_hash = jQuery("input", new_input_div).attr("data-random-hash"), new_hash = Math.floor(9999 * Math.random()) + 1e3;
         if (jQuery("input", new_input_div).length) {
-            jQuery("input", new_input_div).attr("random_hash", new_hash);
+            jQuery("input", new_input_div).attr("data-random-hash", new_hash);
             var old_name = jQuery("input", new_input_div).attr("name");
             jQuery("input", new_input_div).attr("name", old_name.replace(current_hash, new_hash));
         }
         if (jQuery("select", new_input_div).length) {
-            jQuery("select", new_input_div).attr("random_hash", new_hash);
+            jQuery("select", new_input_div).attr("data-random-hash", new_hash);
             var old_name = jQuery("select", new_input_div).attr("name");
             jQuery("select", new_input_div).attr("name", old_name.replace(current_hash, new_hash));
         }
         jQuery(new_input_div).insertAfter(input_div), jQuery(this).hide();
     }), jQuery("#crm_user_activity_filter input").change(function() {
         wp_crm_update_activity_stream();
+    }), jQuery("#crm_new_invioce").click(function() {
+        window.location.href = jQuery(this).data("gotourl");
     });
 });

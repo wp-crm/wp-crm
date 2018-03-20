@@ -1,5 +1,14 @@
 jQuery(document).ready(function() {
-    jQuery(".wp_crm_force_default").live("change", function(event) {
+    jQuery("#wp_crm_wp_crm_contact_system_data").on("click", ".wp-crm-field-edit", function() {
+        var _parent = jQuery(this).parent(".wp-crm-editable-item"), _field = jQuery(".wp-crm-field", _parent);
+        _field.prop("readonly", !1), _field.focus(), jQuery(this).hide();
+    }), jQuery(".wp-crm-form-attributes").sortable({
+        handle: ".wp-crm-handle",
+        containment: "parent",
+        classes: {
+            "ui-sortable": "highlight"
+        }
+    }), jQuery(".wp_crm_force_default").live("change", function(event) {
         wp_crm_handle_default_values(this, event);
     }), jQuery(".wp_crm_force_default").each(function() {
         wp_crm_handle_default_values(this);

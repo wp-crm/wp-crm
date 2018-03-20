@@ -1,3 +1,34 @@
+#### 1.1.4 ( February 9, 2018 )
+* Fixed connection to WP-Invoice.
+* Updated libraries.
+* Fixed Radio field type.
+* Added Feedback form.
+* Fixed Warnings.
+
+#### 1.1.3 ( November 16, 2017 )
+* Added radio field type.
+* Other fixes and improvements.
+
+#### 1.1.2 ( September 6, 2017 )
+* Fixed jquery error on submitting the form.
+
+#### 1.1.1 ( August 18, 2017 )
+* Took away the opportunity of minimum user level which can manage WP-CRM to change roles and passwords of other users.
+* Improved Google reCAPTCHA options and added integration with WP-Invoice plugin.
+* Fixed conflict with Contact Form 7.
+* Fixed empty fields issue on new contact form.
+
+#### 1.1.0 ( June 28, 2017 )
+* Fixed JS error on submitting the form.
+* Fixed Network issues.
+* Fixed issue with file upload field.
+* Fixed Bulk action in All People tab.
+* Fixed Network messages were not appearing from same profile.
+* Fixed issue when the notification wasn't sending without Textarea field.
+* Added captcha to the forms.
+* Added new compatibility to wp-invoice plugin - "Add invoice from wp-crm user profile".
+* Added new parameter to the shortcode redirect_url.
+
 #### 1.0.6
 * Added Bulk actions to Messages.
 * Added new options for WP-Property and Denali Integration. See Help tab.

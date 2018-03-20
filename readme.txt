@@ -1,10 +1,10 @@
 === WP-CRM - Customer Relations Management for WordPress ===
-Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Korotkoff, ideric, MariaKravchenko
+Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Korotkoff, ideric, MariaKravchenko, smoot328
 Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 1.0.6
+Tested up to: 4.9.4
+Stable tag: 1.1.4
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -53,7 +53,7 @@ For additional help, please reference the contextual help dropdowns the differen
 
 == Frequently Asked Questions ==
 
-[WP-Invoice FAQ](http://feedback.usabilitydynamics.com/knowledgebase/topics/51306-wp-crm)
+[WP-CRM FAQ](https://www.usabilitydynamics.com/product/wp-crm/docs/home)
 
 == Screenshots ==
 
@@ -74,6 +74,40 @@ For additional help, please reference the contextual help dropdowns the differen
 * Initial public release.
 
 == Changelog ==
+
+= 1.1.4 =
+* Fixed connection to WP-Invoice.
+* Updated libraries.
+* Fixed Radio field type.
+* Added Feedback form.
+* Fixed Warnings.
+
+= 1.1.3 =
+* Added radio field type.
+* Other fixes and improvements.
+
+= 1.1.2 =
+* Fixed jquery error on submitting the form.
+* Makes some strings translatable, such as "Messages" menu item.
+* Removed pt_BR .po/.mo files since it's already and better done in GlotPress.
+* Allows fields editors to use html for using commas in options.
+
+= 1.1.1 =
+* Took away the opportunity of minimum user level which can manage WP-CRM to change roles and passwords of other users.
+* Improved Google reCAPTCHA options and added integration with WP-Invoice plugin.
+* Fixed conflict with Contact Form 7.
+* Fixed empty fields issue on new contact form.
+
+= 1.1.0 =
+* Fixed JS error on submitting the form.
+* Fixed Network issues.
+* Fixed issue with file upload field.
+* Fixed Bulk action in All People tab.
+* Fixed Network messages were not appearing from same profile.
+* Fixed issue when the notification wasn't sending without Textarea field.
+* Added captcha to the forms.
+* Added new compatibility to wp-invoice plugin - "Add invoice from wp-crm user profile".
+* Added new parameter to the shortcode redirect_url.
 
 = 1.0.6 =
 * Added Bulk actions to Messages.

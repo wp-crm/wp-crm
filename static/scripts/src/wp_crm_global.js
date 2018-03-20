@@ -10,29 +10,31 @@
 var wp_crm_ui = {};
 var wpp_crm_form_stop = false;
 
-jQuery( document ).ready( function() {
+jQuery( document ).ready( function($) {
 
   if( typeof wp_crm_dev_mode == 'undefined' ) {
     var wp_crm_dev_mode = false;
   }
 
-  var media_uploader = null;
-  media_uploader = wp.media({
-      title: 'Select File',
-      button: {
-        text: 'Select File'
-      },
-      multiple: false
-  });
 
   jQuery('.wpc_file_upload').on('click', function(){
     var _this = jQuery(this);
     event.preventDefault();
 
+    var media_uploader = null;
+    media_uploader = new wp.media({
+        title: 'Select File',
+        button: {
+          text: 'Select File'
+        },
+        multiple: false
+    });
     media_uploader.on("select", function(){
       var data = media_uploader.state().get("selection").first().toJSON();
       _this.siblings('input').val(data.url);
       media_uploader.off("insert");
+      media_uploader.off("select");
+      delete media_uploader;
     });
 
     media_uploader.open();
@@ -162,10 +164,11 @@ jQuery( document ).ready( function() {
         if( liEl.length > 0 ) {
           liEl.each( function( i,e ){
             var label = jQuery( 'label', e );
-            var input = jQuery( 'input', e );
+            var input = jQuery( 'input:eq(0)', e );
             if( label.length > 0 && input.length > 0 ) {
-              var attrFor = label.attr( 'for' );
-              var attrId = input.attr( 'id' );
+              var attrFor = label.attr( 'for' ) != 'undefined'?label.attr( 'for' ):'';
+              var attrId = input.attr( 'id' ) != 'undefined'?input.attr( 'id' ):'';
+              console.log(typeof attrFor);
               if( attrFor != '' && attrId != '' ) {
                 var rand=Math.floor( Math.random()*10000 );
                 label.attr( 'for', 'new_field_'+rand );
@@ -186,12 +189,17 @@ jQuery( document ).ready( function() {
     // Display row ust in case
     jQuery( added_row ).show();
 
-    // Blank out all values
-    jQuery( "input[type=text]", added_row ).val( '' );
-    jQuery( "input[type=checkbox]", added_row ).attr( 'checked', false );
-    jQuery( "textarea", added_row ).val( '' ).show();
-    jQuery( "select", added_row ).val( '' );
+    // Blank out all values except the label field
+    jQuery( "input[type=text]:not(.wp-crm-field)", added_row ).val( '' ).removeAttr('disabled');
+    jQuery( "input[type=checkbox]", added_row ).attr( 'checked', false ).removeAttr('disabled');
+    jQuery( "textarea", added_row ).val( '' ).show().removeAttr('disabled');
+    jQuery( "select", added_row ).val( '' ).removeAttr('disabled');
     jQuery( ".ace_editor", added_row ).remove();
+    jQuery( "button", added_row ).removeAttr('disabled');
+
+    // Again setting the readonly property && dilsplay edit button.
+    jQuery( "input[type=text].wp-crm-field", added_row ).prop( 'readonly', true );
+    jQuery( ".wp-crm-field-edit", added_row ).show();
 
     // Unset 'new_row' attribute
     jQuery( added_row ).attr( 'new_row', 'true' );
@@ -313,8 +321,35 @@ jQuery( document ).ready( function() {
       });
     });
 
+    jQuery('.open-help-tab').on('click', function(event){
+      event.preventDefault();
+      var panel = jQuery( '#' + jQuery( this ).attr( 'aria-controls' ) );
+      var button = jQuery( '#screen-meta-links' ).find( '.show-settings' );
+      screenMeta.open( panel, button );
+      return false;
+    });
+
   });
 
+function crm_recaptcha_onload(argument) {
+  jQuery('.crm-g-recaptcha').each(function(argument) {
+    var container = jQuery(this);
+    var formID = container.parents('form').attr('id');
+    var callback = formID + '_recaptcha_cb';
+    var expiredCallback = formID + '_expired_recaptcha_cb';
+    var parameters = {
+      sitekey: container.data('sitekey'),
+      tabindex: container.data('tabindex'),
+      callback: callback,
+      'expired-callback': expiredCallback,
+    };
+    window[formID + '_recaptcha'] = grecaptcha.render(
+      this,
+      parameters
+    );
+
+  });
+}
 
 function wp_crm_create_slug( slug ) {
 
@@ -389,8 +424,8 @@ function wp_crm_create_slug( slug ) {
    */
   function wp_crm_refresh_random_keys( element ) {
 
-    if( jQuery( element ).attr( "random_hash" ) ) {
-      var old_hash = jQuery( element ).attr( "random_hash" );
+    if( jQuery( element ).attr( "data-random-hash" ) ) {
+      var old_hash = jQuery( element ).attr( "data-random-hash" );
       var new_hash = Math.floor( Math.random()*10000000 );
       var current_html = jQuery( element ).html();
 
@@ -401,7 +436,7 @@ function wp_crm_create_slug( slug ) {
       jQuery( element ).html( new_html );
 
 
-      jQuery( element ).attr( "random_hash", new_hash );
+      jQuery( element ).attr( "data-random-hash", new_hash );
 
     }
 
