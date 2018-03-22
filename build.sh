@@ -181,6 +181,7 @@ else
   grunt json-minify
 
   echo "Be sure we do not add node and other specific files needed only for development"
+  rm -rf package-lock.json
   rm -rf vendor/composer/installers
   rm -rf coverage.clover
   rm -rf ocular.phar

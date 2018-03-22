@@ -1,3 +1,11 @@
+#### 1.1.5 ( March 22, 2018 )
+* Added French translation.
+* Added data sanitization of the form filling.
+* Added url_redirect option to the form settings.
+* Fixed issue with attribute not changing its name in the form after it was changed in Data tab.
+* Updated drag icon in Shortcode form tab to prevent confusing.
+* Updated jQuery live() function to on().
+
 #### 1.1.4 ( February 9, 2018 )
 * Fixed connection to WP-Invoice.
 * Updated libraries.
