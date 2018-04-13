@@ -47,7 +47,7 @@
         "constant": "WP_CRM_VISUALIZATION",
         "description": "Google graph visualization on overview page.",
         "since": "1.1.0",
-        "enabled": false
+        "enabled": true
       },
       {
         "name": "Color Schemes",
