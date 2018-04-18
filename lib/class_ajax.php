@@ -84,12 +84,22 @@ if ( !class_exists( 'WP_CRM_AJAX' ) ) {
      * Insert activity message
      */
     static function insert_activity_message() {
+      $message = $_REQUEST["content"];
+      $message = wp_kses($message, array(
+        'a' => array(
+          'href' => array(),
+          'title' => array()
+        ),
+        'br' => array(),
+        'em' => array(),
+        'strong' => array(),
+      ));
       die( WP_CRM_F::insert_event(
         array(
           'time' => $_REQUEST["time"],
           'attribute' => !empty( $_REQUEST["message_type"] ) ? $_REQUEST["message_type"] : "note",
           'object_id' => $_REQUEST["user_id"],
-          'text' => $_REQUEST["content"],
+          'text' => $message,
           'ajax' => 'true'
         )
       ));
