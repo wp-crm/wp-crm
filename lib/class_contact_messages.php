@@ -1506,11 +1506,6 @@ class class_contact_messages {
                       <span class="description"><?php _e( 'Form request method.', ud_get_wp_crm()->domain ); ?></span>
                     </li>
 
-                    <li>
-                      <label for="redirect_to_<?php echo $row_hash; ?>"><?php _e( 'Redirect to:', ud_get_wp_crm()->domain ); ?></label>
-                      <input type="text" id="redirect_to_<?php echo $row_hash; ?>" class="regular-text" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][redirect_url]" value="<?php echo !empty($data[ 'redirect_url' ])?$data[ 'redirect_url' ]:''; ?>"/>
-                    </li>
-
                     <li class="wp_crm_checkbox_on_left">
                       <input <?php checked( !empty( $data[ 'message_field' ] ) ? $data[ 'message_field' ] : '', 'on' ); ?> id="message_<?php echo $row_hash; ?>" type="checkbox" name="wp_crm[wp_crm_contact_system_data][<?php echo $contact_form_slug; ?>][message_field]" value="on" value="<?php echo !empty( $data[ 'message_field' ] ) ? $data[ 'message_field' ] : ''; ?>"/>
                       <label for="message_<?php echo $row_hash; ?>"><?php _e( 'Display textarea for custom message.', ud_get_wp_crm()->domain ); ?></label>
