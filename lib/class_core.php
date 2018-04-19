@@ -286,7 +286,6 @@ class WP_CRM_Core {
    */
   static function toplevel_page_wp_crm() {
     add_screen_option( 'layout_columns', array( 'max' => 2, 'default' => 2 ) );
-    add_screen_option( 'per_page', array( 'label' => __( 'Users', ud_get_wp_crm()->domain ) ) );
 
     //** Top level page contextual help data */
     $contextual_help[ 'General Help' ][ ] = '<p>' . __( 'This page is used to filter and find various users. Visit the Settings page to select which attributes to show on the overview.', ud_get_wp_crm()->domain ) . '</p>';

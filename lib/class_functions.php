@@ -2859,12 +2859,9 @@ class WP_CRM_F {
    * @return $value|false
    * @author odokienko@UD
    */
-  static function crm_set_option($status = false, $option = false, $value = false) {
-    if ($status || !$option) {
-      return false;
-    } elseif ('crm_page_wp_crm_add_new_per_page' == $option) {
-      return $value;
-    }
+  static function crm_set_option($status, $option, $value) {
+    if ( 'crm_page_wp_crm_add_new_per_page' == $option ) return $value;
+    return $status;
   }
 
   /*
