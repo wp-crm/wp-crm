@@ -1,3 +1,9 @@
+#### 1.1.6 ( April 30, 3018 )
+* Fixed pagination function for messages on a user page, which crashed property list pagination in WP-Property plugin.
+* Turned on Google Visualization Feature.
+* Removed duplicated options.
+* Security fix added. Scripts no longer can be sent via a contact form or admin message.
+
 #### 1.1.5 ( March 22, 2018 )
 * Added French translation.
 * Added data sanitization of the form filling.
