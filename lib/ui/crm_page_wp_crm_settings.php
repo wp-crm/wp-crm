@@ -124,7 +124,7 @@ if(empty($wp_crm['data_structure']['attributes'])) {
 
     ?>
     <li><a href="#tab_troubleshooting"><?php _e('Help',ud_get_wp_crm()->domain); ?></a></li>
-    <li><a href="#tab_feedback"><?php _e('Feedback',ud_get_wp_crm()->domain); ?></a></li>
+    <li><a href="#tab_feedback"><?php _e('Support',ud_get_wp_crm()->domain); ?></a></li>
 
   </ul>
 
