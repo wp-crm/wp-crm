@@ -967,7 +967,7 @@ class class_contact_messages {
                   return;
                 }
 
-                jQuery( "div.wp_crm_" + field + "_div input.regular-text:first, div.wp_crm_" + field + "_div select", form ).addClass( "wp_crm_input_error" );
+                jQuery( "div.wp_crm_" + field + "_div input.regular-text:first, div.wp_crm_" + field + "_div select, div.wp_crm_" + field + "_div input.wp_crm_" + field + "_field", form ).addClass( "wp_crm_input_error" );
                 jQuery( "div.wp_crm_" + field + "_div.control-group", form ).addClass( "error" );
                 jQuery( "div.wp_crm_" + field + "_div span.wp_crm_error_messages", form ).text( result.bad_fields[ field ] );
               } );
@@ -1210,6 +1210,23 @@ class class_contact_messages {
            * @see _wp_handle_upload() in wp-admin/includes/file.php
            */
         }
+
+        if (!empty($wp_crm['data_structure']['attributes'][$field_slug]['required'])) {
+
+          $value = $data['user_data'][$field_slug][0]['value'];
+          $error = apply_filters('wp_crm_contact_form_data_validation', false, array('field' => $field_slug, 'value' => $value));
+
+          if ($error) {
+            $bad_fields[$field_slug] = $error;
+            continue;
+          }
+
+          if (empty($value)) {
+            $bad_fields[$field_slug] = sprintf(__('%1s cannot be empty.', ud_get_wp_crm()->domain), $wp_crm['data_structure']['attributes'][$field_slug]['title']);
+          }
+
+        }
+
       }
 
     }
