@@ -3228,7 +3228,7 @@ class WP_CRM_F {
 
     echo '<div class="wp_crm_ajax_update_message"></div>';
 
-    if (count($wp_crm_messages) < 1) {
+    if (!empty($wp_crm_messages) && count($wp_crm_messages) < 1) {
       return;
     }
 
