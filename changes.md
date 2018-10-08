@@ -1,4 +1,9 @@
-#### 1.1.6 ( April 30, 3018 )
+#### 1.1.7 ( October 8, 2018 )
+* Fixed issue with file upload input field
+* Added Compatibility with WP-Stateless plugin
+* Added Support tab
+
+#### 1.1.6 ( April 30, 2018 )
 * Fixed pagination function for messages on a user page, which crashed property list pagination in WP-Property plugin.
 * Turned on Google Visualization Feature.
 * Removed duplicated options.

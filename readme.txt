@@ -3,8 +3,8 @@ Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Ko
 Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
-Tested up to: 4.9.4
-Stable tag: 1.1.6
+Tested up to: 4.9.8
+Stable tag: 1.1.7
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -74,6 +74,11 @@ For additional help, please reference the contextual help dropdowns the differen
 * Initial public release.
 
 == Changelog ==
+
+= 1.1.7 =
+* Fixed issue with file upload input field
+* Added Compatibility with WP-Stateless plugin
+* Added Support tab
 
 = 1.1.6 =
 * Fixed pagination function for messages on a user page, which crashed property list pagination in WP-Property plugin.
