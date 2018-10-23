@@ -22,7 +22,7 @@
     "usabilitydynamics/lib-ui": "0.3.4",
     "usabilitydynamics/lib-utility": "0.3.7",
     "usabilitydynamics/lib-wp-bootstrap": "1.2.3",
-    "usabilitydynamics/lib-ud-api-client": "1.1.5.1",
+    "usabilitydynamics/lib-ud-api-client": "~1.1.5.3",
     "google/recaptcha": "~1.1"
   },
   "autoload": {
