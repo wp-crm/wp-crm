@@ -1,65 +1,92 @@
 [
     {
-        "name": "usabilitydynamics/lib-utility",
-        "version": "0.3.7",
-        "version_normalized": "0.3.7.0",
+        "name": "google/recaptcha",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "git@github.com:UsabilityDynamics/lib-utility",
-            "reference": "0.3.7"
+            "url": "https://github.com/google/recaptcha.git",
+            "reference": "a61b968c739abf0619fafa6716647c8ee1fad9bf"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/UsabilityDynamics/lib-utility/archive/0.3.7.zip",
-            "reference": "0.3.7",
-            "shasum": null
+            "url": "https://api.github.com/repos/google/recaptcha/zipball/a61b968c739abf0619fafa6716647c8ee1fad9bf",
+            "reference": "a61b968c739abf0619fafa6716647c8ee1fad9bf",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5"
         },
         "require-dev": {
-            "phpunit/phpunit": "4.1.*"
+            "friendsofphp/php-cs-fixer": "^2.2.20|^2.12",
+            "php-coveralls/php-coveralls": "^2.1",
+            "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7"
+        },
+        "time": "2018-10-17T14:20:35+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.2.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "ReCaptcha\\": "src/ReCaptcha"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Client library for reCAPTCHA, a free service that protects websites from spam and abuse.",
+        "homepage": "https://www.google.com/recaptcha/",
+        "keywords": [
+            "Abuse",
+            "captcha",
+            "recaptcha",
+            "spam"
+        ]
+    },
+    {
+        "name": "usabilitydynamics/lib-ud-api-client",
+        "version": "1.1.5.3",
+        "version_normalized": "1.1.5.3",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-ud-api-client",
+            "reference": "1.1.5.3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/UsabilityDynamics/lib-ud-api-client/archive/1.1.5.3.zip",
+            "reference": "1.1.5.3",
+            "shasum": null
+        },
+        "require": {
+            "php": ">=5.3"
         },
         "type": "library",
         "extra": {
-            "installer-name": "lib-utility",
-            "component": {
-                "name": "utility",
-                "scripts": [
-                    "scripts/*.js"
-                ]
-            }
+            "installer-name": "lib-ud-api-client"
         },
         "installation-source": "dist",
         "autoload": {
             "classmap": [
-                "lib"
+                "lib/classes"
             ]
         },
         "license": [
-            "MIT"
+            "GPLv2"
         ],
-        "authors": [
-            {
-                "name": "Andy Potanin",
-                "email": "andy.potanin@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Maxim Peshkov",
-                "email": "maxim.peshkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            },
-            {
-                "name": "Anton Korotkov",
-                "email": "anton.korotkov@usabilitydynamics.com",
-                "homepage": "http://usabilitydynamics.com",
-                "role": "Developer"
-            }
-        ],
+        "description": "UD API Client for WooCommerce API Manager",
+        "homepage": "https://github.com/UsabilityDynamics/lib-ud-api-client",
         "keywords": [
-            "job",
-            "process",
-            "utility"
+            "api",
+            "client",
+            "licenses",
+            "plugins",
+            "wordpress"
         ]
     },
     {
@@ -137,91 +164,66 @@
         ]
     },
     {
-        "name": "usabilitydynamics/lib-ud-api-client",
-        "version": "1.1.5.1",
-        "version_normalized": "1.1.5.1",
+        "name": "usabilitydynamics/lib-utility",
+        "version": "0.3.7",
+        "version_normalized": "0.3.7.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:UsabilityDynamics/lib-ud-api-client",
-            "reference": "1.1.5.1"
+            "url": "git@github.com:UsabilityDynamics/lib-utility",
+            "reference": "0.3.7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/UsabilityDynamics/lib-ud-api-client/archive/1.1.5.1.zip",
-            "reference": "1.1.5.1",
+            "url": "https://github.com/UsabilityDynamics/lib-utility/archive/0.3.7.zip",
+            "reference": "0.3.7",
             "shasum": null
         },
-        "require": {
-            "php": ">=5.3"
+        "require-dev": {
+            "phpunit/phpunit": "4.1.*"
         },
         "type": "library",
         "extra": {
-            "installer-name": "lib-ud-api-client"
+            "installer-name": "lib-utility",
+            "component": {
+                "name": "utility",
+                "scripts": [
+                    "scripts/*.js"
+                ]
+            }
         },
         "installation-source": "dist",
         "autoload": {
             "classmap": [
-                "lib/classes"
+                "lib"
             ]
         },
         "license": [
-            "GPLv2"
+            "MIT"
         ],
-        "description": "UD API Client for WooCommerce API Manager",
-        "homepage": "https://github.com/UsabilityDynamics/lib-ud-api-client",
-        "keywords": [
-            "api",
-            "client",
-            "licenses",
-            "plugins",
-            "wordpress"
-        ]
-    },
-    {
-        "name": "google/recaptcha",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/google/recaptcha.git",
-            "reference": "d3274db7c061770472b8eff8a7dbae0871f6cf03"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/google/recaptcha/zipball/d3274db7c061770472b8eff8a7dbae0871f6cf03",
-            "reference": "d3274db7c061770472b8eff8a7dbae0871f6cf03",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.5.*"
-        },
-        "time": "2016-08-04T17:35:35+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.1.x-dev"
+        "authors": [
+            {
+                "name": "Andy Potanin",
+                "email": "andy.potanin@usabilitydynamics.com",
+                "homepage": "http://usabilitydynamics.com",
+                "role": "Developer"
+            },
+            {
+                "name": "Maxim Peshkov",
+                "email": "maxim.peshkov@usabilitydynamics.com",
+                "homepage": "http://usabilitydynamics.com",
+                "role": "Developer"
+            },
+            {
+                "name": "Anton Korotkov",
+                "email": "anton.korotkov@usabilitydynamics.com",
+                "homepage": "http://usabilitydynamics.com",
+                "role": "Developer"
             }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "ReCaptcha\\": "src/ReCaptcha"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
         ],
-        "description": "Client library for reCAPTCHA, a free service that protect websites from spam and abuse.",
-        "homepage": "http://www.google.com/recaptcha/",
         "keywords": [
-            "Abuse",
-            "captcha",
-            "recaptcha",
-            "spam"
+            "job",
+            "process",
+            "utility"
         ]
     },
     {
