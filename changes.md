@@ -1,3 +1,7 @@
+#### 1.1.8 ( November 15, 2018 )
+* Updated libraries
+* Fixed Warning. Related issue https://github.com/wp-crm/wp-crm/issues/169
+
 #### 1.1.7 ( October 8, 2018 )
 * Fixed issue with file upload input field
 * Added Compatibility with WP-Stateless plugin
