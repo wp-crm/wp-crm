@@ -193,6 +193,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
           "aoColumns": [<?php echo implode(",", $this->aoColumns); ?>],
           "fnDrawCallback": function(data) {
             wp_list_table_do_columns();
+            jQuery(document).trigger('wp-crm-user-list-redraw', [data])
           }
         });
         var bulkWrapper = jQuery('.crm-msg-bulk-action');
@@ -295,8 +296,8 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
     global $role, $usersearch;
 
     $args = wp_parse_args( $args, array(
-      'order_by' => 'user_registered',
-      'sort_order' => 'DESC',
+        'order_by' => apply_filters('wp_crm::user_list_sql::default_order_by', 'user_registered', $args, $wp_crm_search),
+        'sort_order' => apply_filters('wp_crm::user_list_sql::default_sort_order', 'DESC', $args, $wp_crm_search)
     ));
 
     if(!isset($this->all_items)) {

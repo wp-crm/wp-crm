@@ -1461,6 +1461,11 @@ class WP_CRM_F {
       $where .= " AND u.ID IN (SELECT user_id FROM {$wpdb->usermeta} WHERE meta_key = '{$blog_prefix}capabilities' )";
     }
 
+    $select  = apply_filters('wp_crm::user_list_sql::select', $select, $args, $search_vars);
+    $join    = apply_filters('wp_crm::user_list_sql::join', $join, $args, $search_vars);
+    $where   = apply_filters('wp_crm::user_list_sql::where', $where, $args, $search_vars);
+    $sort_by = apply_filters('wp_crm::user_list_sql::sort_by', $sort_by, $args, $search_vars);
+
     $sql = $select . $join . $where . $sort_by;
 
     //die( $sql );
