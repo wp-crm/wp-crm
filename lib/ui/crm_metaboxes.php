@@ -326,7 +326,7 @@ class crm_page_wp_crm_add_new {
             </div>
           </li>
         </ul>
-        <?php if ( ( !empty($wp_filter['show_user_profile']) && count( $wp_filter['show_user_profile'] ) ) || ( !empty($wp_filter['profile_personal_options']) && count( $wp_filter['profile_personal_options'] ) ) ) { ?>
+        <?php if ( !empty($wp_filter['show_user_profile']) || !empty($wp_filter['profile_personal_options']) ) { ?>
           <div class="wp_crm_user_api_actions">
         <?php
             add_filter('wpi_user_information', array('WP_CRM_F', 'wpi_user_information'));

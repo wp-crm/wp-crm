@@ -734,7 +734,8 @@ class WP_CRM_F {
       if ( !empty($wp_crm['data_structure']['attributes'][$key]['has_options']) ) {
         $visible_options = WP_CRM_F::list_options($user_object, $key);
       } else {
-        $visible_options[] = apply_filters('wp_crm_display_' . $key, WP_CRM_F::get_first_value($user_object[$key]), $user_id, $user_object, 'user_card');
+        $firstValue = isset($user_object[$key]) ? WP_CRM_F::get_first_value($user_object[$key]) : false;
+        $visible_options[] = apply_filters('wp_crm_display_' . $key, $firstValue, $user_id, $user_object, 'user_card');
       }
 
       if (is_array($visible_options)) {
@@ -2874,27 +2875,27 @@ class WP_CRM_F {
    * @author odokienko@UD
    */
 
-  static function crm_screen_options() {
+  static function crm_screen_options($output) {
     global $current_screen, $wpdb;
 
     $user_filter = ( !empty($_REQUEST['user_id']) && is_numeric( $_REQUEST['user_id'] ) ) ? " object_id={$_REQUEST['user_id']} " : '1';
-
-    $output = array();
 
     switch ($current_screen->id) {
       case 'crm_page_wp_crm_add_new':
         $results = $wpdb->get_results("SELECT DISTINCT attribute,other FROM `{$wpdb->crm_log}` WHERE {$user_filter} ");
 
+        $_output = [];
+
         foreach ((array) $results as $row) {
           $name = $row->attribute . (($row->other) ? '[' . $row->other . ']' : '');
-          $output[] = '<label for="wp_crm_ui_crm_user_activity_' . $name . '">';
-          $output[] = '<input type="checkbox" ' . checked(get_user_option('wp_crm_ui_crm_user_activity_' . $name), 'false', false) . ' value="' . $name . '" id="wp_crm_ui_crm_user_activity_' . $name . '" name="wp_crm_ui_crm_user_activity_' . $name . '"  class="non-metabox-option" attribute="' . $row->attribute . '" other="' . $row->other . '" />';
-          $output[] = apply_filters('wp_crm_entry_type_label', $row->attribute, $row);
-          $output[] = '</label>';
+          $_output[] = '<label for="wp_crm_ui_crm_user_activity_' . $name . '">';
+          $_output[] = '<input type="checkbox" ' . checked(get_user_option('wp_crm_ui_crm_user_activity_' . $name), 'false', false) . ' value="' . $name . '" id="wp_crm_ui_crm_user_activity_' . $name . '" name="wp_crm_ui_crm_user_activity_' . $name . '"  class="non-metabox-option" attribute="' . $row->attribute . '" other="' . $row->other . '" />';
+          $_output[] = apply_filters('wp_crm_entry_type_label', $row->attribute, $row);
+          $_output[] = '</label>';
         }
 
-        if (!empty($output)) {
-          $output = '<div id="crm_user_activity_filter"><h5>' . __('Show in User Activity History', ud_get_wp_crm()->domain) . '</h5>' . implode('', (array) $output) . '</div>';
+        if (!empty($_output)) {
+          $output .= '<div id="crm_user_activity_filter"><h5>' . __('Show in User Activity History', ud_get_wp_crm()->domain) . '</h5>' . implode('', $_output) . '</div>';
         }
 
         break;

@@ -40,7 +40,10 @@ class wp_crm_default_api {
     }
 
     //** Add trigger */
-    add_filter( 'wp_crm_notification_actions', create_function( '$current', ' $current["password_reset"] = __("Password Reset", ud_get_wp_crm()->domain); return $current;  ' ) );
+    add_filter( 'wp_crm_notification_actions', function($current) {
+      $current["password_reset"] = __("Password Reset", ud_get_wp_crm()->domain);
+      return $current;
+    });
 
     return $wp_crm;
   }

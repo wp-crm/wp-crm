@@ -372,7 +372,7 @@ class class_contact_messages {
     $object = $cell_data[ 'object' ];
     $user_id = $object[ 'user_id' ];
 
-    if( $associated_object = $object[ 'associated_object' ] ) {
+    if( !empty($object[ 'associated_object' ]) && $associated_object = $object[ 'associated_object' ] ) {
       $associated_object = get_post( $associated_object );
 
       //** Only allow specific post types to be "associated "*/
