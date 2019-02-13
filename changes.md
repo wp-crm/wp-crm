@@ -1,3 +1,7 @@
+#### 1.1.9 ( February 13, 2019 )
+* Added new actions and filters.
+* Fixed Warnings.
+
 #### 1.1.8 ( November 15, 2018 )
 * Updated libraries
 * Fixed Warning. Related issue [#169](https://github.com/wp-crm/wp-crm/issues/169)
