@@ -108,6 +108,7 @@ jQuery( document ).ready( function() {
   });
 
   jQuery( 'div.wp_crm_toggle_advanced_user_actions' ).click( function() {
+    jQuery( '#minor-publishing .wp_crm_edit_password input[type=password]' ).removeAttr('readonly');
     jQuery( 'div.wp_crm_advanced_user_actions' ).toggle();
   });
 

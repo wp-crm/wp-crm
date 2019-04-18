@@ -293,11 +293,11 @@ class crm_page_wp_crm_add_new {
               <?php _e('Set Password:', ud_get_wp_crm()->domain); ?>
               <ul class="wp_crm_edit_password">
                 <li>
-                  <input type="password" autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_1" name="wp_crm[user_data][user_pass][<?php echo rand(1000, 9999); ?>][value]" />
+                  <input type="password" readonly autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_1" name="wp_crm[user_data][user_pass][<?php echo rand(1000, 9999); ?>][value]" />
                   <span class="description"><?php _e('Type in new password twice to change.',ud_get_wp_crm()->domain); ?></span>
                 </li>
                 <li>
-                  <input type="password" autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_2" />
+                  <input type="password" readonly autocomplete="off" value="" size="16" class="wp_crm_user_password" id="wp_crm_password_2" />
                   <span class="description"><?php _e('Type your new password again.',ud_get_wp_crm()->domain); ?></span>
                 </li>
               </ul>

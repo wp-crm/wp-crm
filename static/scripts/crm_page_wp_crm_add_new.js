@@ -32,6 +32,7 @@ wp_crm_ui.changed_fields = new Array(), "function" != typeof String.prototype.tr
         var _toggle_target = jQuery(this).data("toggle-target");
         jQuery(_toggle_target).toggle();
     }), jQuery("div.wp_crm_toggle_advanced_user_actions").click(function() {
+        jQuery("#minor-publishing .wp_crm_edit_password input[type=password]").removeAttr("readonly"), 
         jQuery("div.wp_crm_advanced_user_actions").toggle();
     }), jQuery(document).on("mousedown", "tr.not_primary .wp_crm_input_wrap select,  tr.not_primary .wp_crm_input_wrap select", function() {
         jQuery(this).trigger("wp_crm_value_changed", {

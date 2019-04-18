@@ -102,11 +102,9 @@ td.wp_crm_user_card div.user_avatar {
   border: none !important;
   height: auto !important;
 }
-
-.checkbox-column{
-	width:1em;
+.checkbox-column {
+  width: 1em;
 }
-
 .select-all-users {
-		margin:0px !important;
+  margin: 0px !important;
 }
