@@ -21,12 +21,12 @@
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-markdown": "~0.4.0",
     "grunt-contrib-less": "~0.8.3",
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-watch": "~0.5.3",
+    "grunt-json-minify": "~0.4.0",
+    "grunt-markdown": "^0.7.0",
     "grunt-phpunit": "~0.3.3",
-    "grunt-shell": "~0.6.0",
-    "grunt-json-minify": "~0.4.0"
+    "grunt-shell": "~0.6.0"
   }
 }
