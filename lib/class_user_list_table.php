@@ -167,6 +167,7 @@ class CRM_User_List_Table extends WP_CMR_List_Table {
           },
           "iColumns": <?php echo count($this->aoColumnDefs); ?>,
           "bProcessing": true,
+          "bServerSide": true,
           "aaSorting": <?php echo apply_filters('wp-crm-list-table-default-sorting', "[[0,'asc']]", $this->column_ids); ?>,
           "aoColumnDefs": [<?php echo implode(',', $this->aoColumnDefs); ?>],
           "sAjaxSource": ajaxurl + '?&action=<?php echo $this->_args['ajax_action']; ?>',
