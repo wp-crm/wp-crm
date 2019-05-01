@@ -3,8 +3,8 @@ Contributors: usability_dynamics, andypotanin, jbrw1984, maxim.peshkov, Anton Ko
 Donate link: http://www.usabilitydynamics.com/product/wp-crm/
 Tags: wp-crm, users, CRM, user management, contact form, shortcode form, email, feedback, form, contact form plugin, WordPress CRM, contact form builder, newsletters, bbpress
 Requires at least: 4.0
-Tested up to: 5.0
-Stable tag: 1.1.9
+Tested up to: 5.1
+Stable tag: 1.1.10
 License: GPLv2 or later
 Organize your business clients, improve user management.
 
@@ -74,6 +74,11 @@ For additional help, please reference the contextual help dropdowns the differen
 * Initial public release.
 
 == Changelog ==
+
+= 1.1.10 =
+* Added new filter for developers that allows changing default sorting when viewing the list of users.
+* Fixed Password pre-filling issue.
+* Fixed Other Warnings and Notices.
 
 = 1.1.9 =
 * Added new actions and filters.

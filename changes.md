@@ -1,3 +1,8 @@
+#### 1.1.10 ( May 1, 2019 )
+* Added new filter for developers that allows changing default sorting when viewing the list of users.
+* Fixed Password pre-filling issue.
+* Fixed Other Warnings and Notices.
+
 #### 1.1.9 ( February 13, 2019 )
 * Added new actions and filters.
 * Fixed Warnings.
