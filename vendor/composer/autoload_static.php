@@ -35,6 +35,8 @@ class ComposerStaticInit6afb91b6865b9a6a958f7e82c67280ac
         'UsabilityDynamics\\UD_API\\Scaffold' => __DIR__ . '/..' . '/usabilitydynamics/lib-ud-api-client/lib/classes/class-scaffold.php',
         'UsabilityDynamics\\UD_API\\UI' => __DIR__ . '/..' . '/usabilitydynamics/lib-ud-api-client/lib/classes/class-ui.php',
         'UsabilityDynamics\\UD_API\\Update_Checker' => __DIR__ . '/..' . '/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php',
+		    'UsabilityDynamics\\WPA\\Addons_Table' => __DIR__ . '/..' . '/usabilitydynamics/lib-wp-addons/lib/class-addons-table.php',
+		    'UsabilityDynamics\\WPA\\Addons' => __DIR__ . '/..' . '/usabilitydynamics/lib-wp-addons/lib/class-addons.php',
         'UsabilityDynamics\\UI\\Field' => __DIR__ . '/..' . '/usabilitydynamics/lib-ui/lib/class-field.php',
         'UsabilityDynamics\\UI\\Field_Checkbox' => __DIR__ . '/..' . '/usabilitydynamics/lib-ui/lib/fields/class-checkbox.php',
         'UsabilityDynamics\\UI\\Field_Checkbox_Advanced' => __DIR__ . '/..' . '/usabilitydynamics/lib-ui/lib/fields/class-checkbox-advanced.php',

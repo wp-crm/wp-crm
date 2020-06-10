@@ -66,6 +66,12 @@ namespace UsabilityDynamics\WPC {
         /** Contact messages */
         include_once ud_get_wp_crm()->path( "lib/class_contact_messages.php", 'dir' );
 
+        /**
+         * Load WP Add-ons library.
+         */
+        new \UsabilityDynamics\WPA\Addons(ud_get_wp_crm()->get_instance());
+
+
         //** Initiate the plugin */
         $this->core = new WP_CRM_Core();
 
