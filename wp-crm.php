@@ -148,4 +148,6 @@ if( ud_check_wp_crm() ) {
 
   //** Initialize. */
   ud_get_wp_crm();
+
+  new \UsabilityDynamics\WPA\Addons(ud_get_wp_crm()->get_instance());
 }

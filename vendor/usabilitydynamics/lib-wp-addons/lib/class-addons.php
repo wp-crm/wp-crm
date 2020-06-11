@@ -48,10 +48,22 @@ namespace UsabilityDynamics\WPA {
       /**
        *
        */
-      public function __construct() {
+      private $addons_homepage;
 
-        $schema = ud_get_wp_property()->get_schema( 'extra.schemas.licenses.client' );
+      /**
+       *
+       */
+      private $bootstrap;
 
+      /**
+       *
+       */
+      public function __construct( $bootstrap ) {
+        $this->bootstrap = $bootstrap;
+
+        $schema = $bootstrap->get_schema( 'extra.schemas.licenses.client' );
+
+        $this->args = $schema;
         $this->slug = $schema[ 'slug' ];
 
         //** Don't ever change this, as it will mess with the data stored of which products are activated, etc. */
@@ -63,23 +75,28 @@ namespace UsabilityDynamics\WPA {
         $path = wp_normalize_path( dirname( __DIR__ ) );
         $this->screens_path = trailingslashit( $path . '/static/templates' );
 
-        $this->addons = ud_get_wp_property()->get_schema( 'extra.schemas.addons' );
+        $this->addons = $this->bootstrap->get_schema( 'extra.schemas.addons' );
         $this->init_addons();
 
-        //** Add Add-ons page */
-        add_action( 'admin_menu', array( $this, 'register_addons_screen' ), 9999 );
+        $this->addons_homepage = $this->bootstrap->get_schema( 'extra.schemas.addons_homepage' );
 
+        //** Add Add-ons page */
+        add_action( 'admin_menu', array( $this, 'register_addons_screen' ), 999 );
+
+        /**
+         * add admin notices
+         */
         add_filter( 'ud:warnings:admin_notices', array( $this, 'skip_licenses_notices' ), 99, 2);
       }
 
 
       /**
-       * Skiping notices for licenses
+       * Skipping notices for licenses
        * @param $warnings
        * @param $args
        * @return array
        */
-      public function skip_licenses_notices ( $warnings, $args) {
+      public function skip_licenses_notices ( $warnings, $args ) {
         if ( is_array($warnings) && !empty($warnings) ) {
           foreach( $warnings as $k=>$warning ) {
             if ( strpos( $warning, 'License is not active' )) {
@@ -90,15 +107,16 @@ namespace UsabilityDynamics\WPA {
         return $warnings;
       }
 
+
       /**
        * Init active addons
        */
       public function init_addons() {
-        $active_addons = get_option( 'wpp_active_addons', array() );
+        $active_addons = get_option( $this->bootstrap->domain . '_active_addons', array() );
         if( !empty( $active_addons ) ) {
           foreach( $this->addons as $addon ) {
-            if( in_array( $addon[ 'slug' ], $active_addons ) && file_exists( WPP_Path . '/' . $addon[ 'path' ] ) ) {
-              require_once( WPP_Path . '/' . $addon[ 'path' ] );
+            if( in_array( $addon[ 'slug' ], $active_addons ) && file_exists( $this->bootstrap->root_path . '/' . $addon[ 'path' ] ) ) {
+              require_once( $this->bootstrap->root_path . '/' . $addon[ 'path' ] );
             }
           }
         }
@@ -114,23 +132,22 @@ namespace UsabilityDynamics\WPA {
       public function register_addons_screen() {
         $args = $this->args;
         $screen = !empty( $args[ 'screen' ] ) ? $args[ 'screen' ] : false;
-        $this->screen_type = !empty( $screen[ 'parent' ] ) ? 'submenu' : 'menu';
         $this->icon_url = !empty( $screen[ 'icon_url' ] ) ? $screen[ 'icon_url' ] : '';
         $this->position = !empty( $screen[ 'position' ] ) ? $screen[ 'position' ] : 66;
         $this->menu_title = !empty( $screen[ 'menu_title' ] ) ? $screen[ 'menu_title' ] : __( 'Add-ons', $this->domain );
-        $this->page_title = !empty( $screen[ 'page_title' ] ) ? $screen[ 'page_title' ] : __( 'WP-Property Add-ons Manager', $this->domain );
-        $this->menu_slug = $this->slug . '_' . sanitize_key( $this->page_title );
+        $this->page_title = !empty( $screen[ 'page_title' ] ) ? $screen[ 'page_title' ] : __( 'Add-ons Manager', $this->domain );
+        $this->menu_slug = $this->slug . '_' . sanitize_key( $screen[ 'menu_title' ] );
 
-        switch( $this->screen_type ) {
-          case 'menu':
-            global $menu;
-            $this->hook = add_menu_page( $this->page_title, $this->menu_title, 'manage_options', $this->menu_slug, array( $this, 'settings_screen' ), $this->icon_url, $this->position );
-            break;
-          case 'submenu':
-            global $submenu;
-            $this->hook = add_submenu_page( $screen[ 'parent' ], $this->page_title, $this->menu_title, 'manage_options', $this->menu_slug, array( $this, 'settings_screen' ) );
-            break;
-        }
+        global $submenu;
+        /**
+         * removing old page with add-ons
+         */
+        remove_submenu_page( $screen[ 'parent' ], $this->slug . '_' . sanitize_key( $screen[ 'page_title' ] ) );
+
+        /**
+         * adding new page with add-ons
+         */
+        $this->hook = add_submenu_page( $screen[ 'parent' ], $this->page_title, $this->menu_title, 'manage_options', $this->menu_slug, array( $this, 'settings_screen_addon' ) );
 
         add_action( 'load-' . $this->hook, array( $this, 'process_request' ) );
         add_action( 'admin_print_styles-' . $this->hook, array( $this, 'enqueue_styles' ) );
@@ -144,7 +161,7 @@ namespace UsabilityDynamics\WPA {
        * @since   1.0.0
        * @return   void
        */
-      public function settings_screen() {
+      public function settings_screen_addon() {
         $this->ui->get_header();
         require_once( $this->screens_path . 'screen-manage-addons.php' );
         $this->ui->get_footer();
@@ -178,9 +195,8 @@ namespace UsabilityDynamics\WPA {
                 }
               }
             }
-            if( 0 < count( $products ) ) {
-              update_option( 'wpp_active_addons', $products );
-            }
+            update_option( $this->bootstrap->domain . '_active_addons', $products );
+
             $response = true;
             break;
 
@@ -247,7 +263,7 @@ namespace UsabilityDynamics\WPA {
       protected function get_detected_addons() {
 
         if( is_array( $this->addons ) && ( 0 < count( $this->addons ) ) ) {
-          $active_addons = get_option( 'wpp_active_addons', array() );
+          $active_addons = get_option( $this->bootstrap->domain . '_active_addons', array() );
           $plugins = $this->get_detected_plugins();
           if( !empty( $plugins ) ) {
             foreach( $plugins as $plugin ) {
