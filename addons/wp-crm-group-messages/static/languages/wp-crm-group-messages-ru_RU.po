@@ -1,0 +1,594 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-CRM\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-26 17:06+0200\n"
+"PO-Revision-Date: 2014-09-26 17:08+0200\n"
+"Last-Translator: rotcod <denys.kostin@usabilitydynamics.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Generator: Poedit 1.6.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: /.git\n"
+
+#: lib/class-crm-group-messages.php:68
+msgid "Group Messages"
+msgstr "Групповые рассылки"
+
+#: lib/class-crm-group-messages.php:104
+msgid "PDF Attachment"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:107
+msgid ""
+"User attributes to include in PDF Attachments for each recipient without an "
+"e-mail:"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:118
+msgid ""
+"When message recipients include users without e-mails, a PDF list of such "
+"recipients can be distributed amongst recipients with e-mails."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:140
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2047
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:382
+msgid "Type"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:144
+msgid "Shortcode Form Messages"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:149
+msgid "Group Messags"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:182
+msgid "Group Message"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:196
+msgid "Group Messages (Newsletters)"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:197
+msgid ""
+"To send a group message, first use the filters to narrow down to the users "
+"you want to contact."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:198
+msgid ""
+"Once the users are filtered, click \"Show Actions\", and \"Send Group Message"
+"\" to begin creating a message."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:333
+#, php-format
+msgid "You are about to send this message to %d users, are you sure?."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:339
+msgid "Sending..."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:384
+msgid "Send"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:407
+msgid "From:"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:416
+msgid "To:"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:422
+msgid "Template:"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:433
+msgid "Subject:"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:446
+#, php-format
+msgid ""
+"Be advised, %1d of the %2d intended recipients do not have an e-mail "
+"addresses.  <span class=\"wp_crm_secondary_action wp_crm_toggle\" toggle="
+"\"wp_crm_no_email_actions\">Take action.</span>"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:450
+#, php-format
+msgid ""
+"Evenly break-up the users amongst recipients in the %1s group, and send them "
+"the user report."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:451
+msgid "E-mail me full report of all users without e-mail addresses."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:473
+msgid "Send Message"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:474
+msgid "Discard"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:591
+msgid ""
+"There are no users in this list that have e-mails and the necessary role to "
+"disseminate the information."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:694
+#, php-format
+msgid ""
+"<p class=\"wp_crm_system_message\">User received PDF Attachment and asked to "
+"contact the following recipients: %1s </p>"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:730
+msgid "No messages were sent. Check your SMTP settings."
+msgstr ""
+
+#: lib/class-crm-group-messages.php:806
+#, php-format
+msgid "Please notify the following (%1s) people of this message:"
+msgstr ""
+
+#: lib/class-crm-group-messages.php:956
+msgid "Send Group Message"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:26
+msgid "Could not create index on your posts table for the `guid` column"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:27
+msgid "Could not update a post&rsquo;s GUID"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:28
+msgid "Could not remove the index from `guid`"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:41
+msgid "Run GUID-fix"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:62
+msgid "CF GUID-Fix"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:66
+msgid ""
+"Post GUIDs are now unique! <b>You should now disable and remove this plugin."
+"</b>"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:82
+msgid "What does this plugin do?"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:82
+msgid ""
+"Corrects duplicate GUID values created with versions of WordPress that "
+"exhibited a <a href=\"http://core.trac.wordpress.org/ticket/15041\">non-"
+"unique GUID bug</a>."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:83
+msgid ""
+"Clicking the button below runs the plugin to ensure your guids are unique."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:86
+msgid "Fix Your GUIDs"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-guid-fix.php:100
+msgid "You should not be here."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:138
+#, php-format
+msgid "Job %s"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:197
+msgid "Could not load job with unknown ID."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:252
+#, php-format
+msgid "Job Batch %s"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:382
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:383
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:386
+msgid "Jobs"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:384
+msgid "New Job"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:385
+msgid "View Job"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-job.php:388
+msgid "UsabilityDynamics Jobs."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:187
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:219
+msgid "Required file not found."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:868
+msgid "Invalid file type."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:877
+msgid "Could not create mentioned directory."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:916
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:981
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:993
+msgid "Could not get image dimensions (headers)"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:1534
+#, php-format
+msgid ""
+"You cannot call UD\\Utility::log() before the %1$s hook, since the current "
+"user is not yet known."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:1547
+msgid "Log Started."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2015
+#, php-format
+msgid "You cannot call UD\\Utility::add_log_page() after the %1$s hook."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2042
+msgid "Log Page for"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2043
+msgid "Clear Log"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2046
+msgid "Timestamp"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2048
+msgid "Event"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2049
+msgid "User"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2050
+msgid "Related Object"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-utility/lib/class-utility.php:2060
+msgid "None"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:328
+msgid ""
+"Class \\UsabilityDynamics\\UD_API\\Bootstrap does not exist. Be sure all "
+"required plugins and (or) composer modules installed and activated."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:336
+msgid "Licenses client can not be activated due to invalid 'licenses' schema."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:357
+msgid ""
+"Product requires license, but product ID and (or) referrer is undefined. "
+"Please, be sure, that license schema has all required data."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:366
+msgid ""
+"Class \\UsabilityDynamics\\UD_API\\Manager does not exist. Be sure all "
+"required plugins installed and activated."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:403
+#, php-format
+msgid ""
+"Module <b>%s</b> is not installed or the version is old, class <b>%s</b> "
+"does not exist."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-bootstrap.php:407
+#, php-format
+msgid ""
+"Module <b>%s</b> should be updated to the latest version, class <b>%s</b> "
+"must have version <b>%s</b> or higher."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:85
+msgid "Welcome to Usability Dynamics, Inc."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:85
+msgid "UD Notices"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:103
+msgid "Usability Dynamics, Inc. Dashboard"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-dashboard.php:104
+msgid "Thank you for using our products."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:145
+#, php-format
+msgid "<p><b>%s</b> is not active due to following errors:</p> %s"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:159
+#, php-format
+msgid "<p><b>%s</b> has the following additional notices:</p> %s"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:161
+#, php-format
+msgid "<p><b>%s</b> is active, but has the following notices:</p> %s"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-errors.php:163
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:196
+msgid "Dismiss this notice"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:285
+msgid "Install package not available."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:286
+#, php-format
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:287
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:288
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:289
+msgid "Plugin install failed."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:290
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:301
+msgid "Plugin activation failed."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:302
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:193
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:415
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:416
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:416
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:425
+msgid "Show Details"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:416
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:425
+msgid "Hide Details"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:417
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:418
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:422
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:423
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:424
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:425
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:426
+msgid "All installations have been completed."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:427
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-bulk-installer.php:519
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:549
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:149
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:152
+msgid "Private Repository"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:157
+msgid "Pre-Packaged"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:162
+msgid "WordPress Repository"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:166
+msgid "Required"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:166
+msgid "Recommended"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:169
+msgid "Not Installed"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:171
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:284
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:401
+msgid "Install"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:307
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:402
+msgid "Activate"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:364
+#, php-format
+msgid ""
+"No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
+"Dashboard\">Return to the Dashboard</a>"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:380
+msgid "Plugin"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:381
+msgid "Source"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-list-table.php:383
+msgid "Status"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:177
+msgid "Install Required Plugins"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:178
+msgid "Install Plugins"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:179
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:180
+msgid "Something went wrong."
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:191
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:192
+msgid "Return to the dashboard"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:194
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: vendor/usabilitydynamics/lib-wp-bootstrap/lib/classes/class-tgm-plugin-activation.php:195
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: wp-crm-group-messages.php:43
+msgid ""
+"Distributive is broken. composer.json is missed. Try to remove and upload "
+"plugin again."
+msgstr ""
+
+#: wp-crm-group-messages.php:51
+#, php-format
+msgid "Plugin requires PHP %s or higher. Your current PHP version is %s"
+msgstr ""
+
+#: wp-crm-group-messages.php:59
+#, php-format
+msgid ""
+"Distributive is broken. %s file is missed. Try to remove and upload plugin "
+"again."
+msgstr ""
+
+#: wp-crm-group-messages.php:63
+msgid ""
+"Distributive is broken. Plugin loader is not available. Try to remove and "
+"upload plugin again."
+msgstr ""
+
+#: wp-crm-group-messages.php:84
+#, php-format
+msgid "<p><b>%s</b> can not be initialized. %s</p>"
+msgstr ""

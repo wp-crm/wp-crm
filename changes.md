@@ -1,3 +1,7 @@
+#### 1.2.0 ( June 16, 2020 )
+* Included add-ons to plugin.
+* Removed licenses for add-ons.
+
 #### 1.1.10 ( May 1, 2019 )
 * Added new filter for developers that allows changing default sorting when viewing the list of users.
 * Fixed Password pre-filling issue.

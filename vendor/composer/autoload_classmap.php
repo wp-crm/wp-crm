@@ -20,6 +20,8 @@ return array(
     'UsabilityDynamics\\UD_API\\Scaffold' => $vendorDir . '/usabilitydynamics/lib-ud-api-client/lib/classes/class-scaffold.php',
     'UsabilityDynamics\\UD_API\\UI' => $vendorDir . '/usabilitydynamics/lib-ud-api-client/lib/classes/class-ui.php',
     'UsabilityDynamics\\UD_API\\Update_Checker' => $vendorDir . '/usabilitydynamics/lib-ud-api-client/lib/classes/class-update-checker.php',
+	  'UsabilityDynamics\\WPA\\Addons_Table' => $vendorDir . '/usabilitydynamics/lib-wp-addons/lib/class-addons-table.php',
+	  'UsabilityDynamics\\WPA\\Addons' => $vendorDir . '/usabilitydynamics/lib-wp-addons/lib/class-addons.php',
     'UsabilityDynamics\\UI\\Field' => $vendorDir . '/usabilitydynamics/lib-ui/lib/class-field.php',
     'UsabilityDynamics\\UI\\Field_Checkbox' => $vendorDir . '/usabilitydynamics/lib-ui/lib/fields/class-checkbox.php',
     'UsabilityDynamics\\UI\\Field_Checkbox_Advanced' => $vendorDir . '/usabilitydynamics/lib-ui/lib/fields/class-checkbox-advanced.php',
