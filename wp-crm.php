@@ -4,9 +4,9 @@
  * Plugin URI: https://www.usabilitydynamics.com/product/wp-crm/
  * Description: This plugin is intended to significantly improve user management, easily create contact forms, and keep track of incoming shortcode form messages.
  * Author: Usability Dynamics, Inc.
- * Version: 1.1.10
+ * Version: 1.2.0
  * Requires at least: 4.0
- * Tested up to: 5.1
+ * Tested up to: 5.4
  * Text Domain: wp-crm
  * Author URI: https://www.usabilitydynamics.com
  * GitHub Plugin URI: wp-crm/wp-crm
@@ -14,13 +14,13 @@
  * Support: https://wordpress.org/support/plugin/wp-crm
  * UserVoice: http://feedback.usabilitydynamics.com/forums/95257-wp-crm
  *
- * Copyright 2012 - 2019 Usability Dynamics, Inc.  ( email : info@usabilitydynamics.com )
+ * Copyright 2012 - 2020 Usability Dynamics, Inc.  ( email : info@usabilitydynamics.com )
  *
  */
 
 /** Plugin Version */
 if ( !defined( 'WP_CRM_Version' ) ) {
-  define('WP_CRM_Version', '1.1.10');
+  define('WP_CRM_Version', '1.2.0');
 }
 
 /** Path for Includes */
@@ -119,7 +119,7 @@ if( !function_exists( 'ud_check_wp_crm' ) ) {
 
 }
 
-if( !function_exists( 'ud_my_wp_plugin_message' ) ) {
+if( !function_exists( 'ud_wp_crm_message' ) ) {
   /**
    * Renders admin notes in case there are errors on plugin init
    *
@@ -148,4 +148,7 @@ if( ud_check_wp_crm() ) {
 
   //** Initialize. */
   ud_get_wp_crm();
+  if( class_exists( '\UsabilityDynamics\WPA\Addons' ) ) {
+    new \UsabilityDynamics\WPA\Addons( ud_get_wp_crm()->get_instance() );
+  }
 }

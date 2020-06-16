@@ -23,6 +23,7 @@
     "usabilitydynamics/lib-utility": "0.3.7",
     "usabilitydynamics/lib-wp-bootstrap": "1.2.3",
     "usabilitydynamics/lib-ud-api-client": "~1.1.5.3",
+    "usabilitydynamics/lib-wp-addons": "~0.0.1",
     "google/recaptcha": "~1.1"
   },
   "autoload": {
@@ -100,7 +101,9 @@
           }
         },
         "product" : false
-      }
+      },
+      "addons" : [{"slug":"wpcrmgm","product_id":"wp-crm\/wp-crm-group-messages","path":"addons\/wp-crm-group-messages\/wp-crm-group-messages.php","name":"WP-CRM: Group Messages"}],
+      "addons_homepage" : "https://wp-crm.github.io/addons/"
     }
   }
 }
