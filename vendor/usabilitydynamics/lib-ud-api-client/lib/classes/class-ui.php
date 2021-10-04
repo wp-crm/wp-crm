@@ -98,7 +98,7 @@ namespace UsabilityDynamics\UD_API {
        * @return  string The token for the current screen.
        */
       public function get_current_screen () {
-        $screen = 'licenses'; // Default.
+        $screen = 'more_products'; // Default.
         if ( isset( $_GET['screen'] ) && '' != $_GET['screen'] ) $screen = esc_attr( $_GET['screen'] );
         return $screen;
       }

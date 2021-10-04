@@ -85,12 +85,10 @@ namespace UsabilityDynamics\UD_API {
         $screens = array();
         if( $this->type == 'theme' ) {
           $screens =array_filter( array(
-            'licenses' => __( 'License', $this->domain ),
             'more_products' => false,
           ) );
         } elseif ( $this->type == 'plugin' ) {
           $screens =array_filter( array(
-            'licenses' => __( 'Licenses', $this->domain ),
             'more_products' => __( 'More Products', $this->domain ),
           ) );
         }
