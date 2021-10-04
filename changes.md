@@ -1,3 +1,6 @@
+#### 1.2.1 ( October 4, 2021 )
+* Remove Support tab.
+
 #### 1.2.0 ( June 16, 2020 )
 * Included add-ons to plugin.
 * Removed licenses for add-ons.
