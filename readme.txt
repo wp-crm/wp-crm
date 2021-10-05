@@ -67,7 +67,7 @@ For additional help, please reference the contextual help dropdowns the differen
 == Upgrade Notice ==
 
 = Version 1.2.1 =
-* Remove Support tab.
+* Removed Support tab.
 
 = Version 1.2.0 =
 * Final release. No more updates.
@@ -82,7 +82,7 @@ For additional help, please reference the contextual help dropdowns the differen
 == Changelog ==
 
 = 1.2.1 =
-* Remove Support tab.
+* Removed Support tab.
 
 = 1.2.0 =
 * Included add-ons to plugin.
