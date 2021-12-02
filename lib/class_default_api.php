@@ -690,7 +690,7 @@ if( !function_exists( 'wp_crm_save_user_data' ) ) {
               //* Do not save empty values until this is being done on the profile editing page */
               if( isset( $data[ 'value' ] ) ) {
                 if( ( !isset( $args[ 'admin_save_action' ] ) || !$args[ 'admin_save_action' ] ) && empty( $data[ 'value' ] ) ) {
-                  continue;
+                  continue 2;
                 }
               }
 
