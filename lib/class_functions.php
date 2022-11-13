@@ -313,8 +313,8 @@ class WP_CRM_F {
    * @version 1.17.3
    */
   static function track_detailed_user_activity() {
-    add_action('password_reset', create_function('$user', '  WP_CRM_F::insert_event(array("object_id"=> $user->ID, "attribute" => "detailed_log", "other" => 5, "action" => "password_reset")); '));
-    add_action('wp_login', create_function('$user_login', ' $user = get_user_by("login", $user_login);  WP_CRM_F::insert_event(array("object_id"=> $user->ID, "attribute" => "detailed_log", "other" => 2, "action" => "login")); '));
+    add_action('password_reset', function ($user) { WP_CRM_F::insert_event(["object_id" => $user->ID, "attribute" => "detailed_log", "other" => 5, "action" => "password_reset"]); });
+    add_action('wp_login', function ($user_login) { $user = get_user_by("login", $user_login); WP_CRM_F::insert_event(["object_id" => $user->ID, "attribute" => "detailed_log", "other" => 2, "action" => "login"]); });
   }
 
   /**
